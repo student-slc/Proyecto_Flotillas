@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('operadores', function (Blueprint $table) {
             $table->id();
+            $table->string('nombreoperador');
+            $table->string('fechanacimiento');
+            $table->string('nolicencia');
+            $table->string('tipolicencia');
+            $table->string('fechavencimientomedico');
+            $table->string('fechvencimientolicencia');
+            $table->string('id_flotilla');
             $table->timestamps();
         });
     }

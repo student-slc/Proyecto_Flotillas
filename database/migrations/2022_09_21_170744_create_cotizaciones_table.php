@@ -15,6 +15,16 @@ return new class extends Migration
     {
         Schema::create('cotizaciones', function (Blueprint $table) {
             $table->id();
+            $table->string('nombrecliente');
+            $table->string('fecha');
+            $table->string('plaga');
+            $table->string('telefonocliente');
+            $table->string('tipolugar');
+            $table->string('nocuartos');
+            $table->string('mtrscuadrados');
+            $table->string('tiempoplaga');
+            $table->string('quimicousado');
+            $table->string('costo');
             $table->timestamps();
         });
     }

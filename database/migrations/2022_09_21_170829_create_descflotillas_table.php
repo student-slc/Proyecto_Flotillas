@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('descflotillas', function (Blueprint $table) {
             $table->id();
+            $table->string('id_flotilla');
+            $table->string('id_unidad');
             $table->timestamps();
         });
     }

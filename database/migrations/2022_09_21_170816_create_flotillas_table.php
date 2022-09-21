@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('flotillas', function (Blueprint $table) {
             $table->id();
+            $table->string('id_cliente');
+            $table->string('fecha');
+            $table->string('nounidades');
             $table->timestamps();
         });
     }

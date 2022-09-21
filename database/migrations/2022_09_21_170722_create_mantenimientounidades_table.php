@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('mantenimientounidades', function (Blueprint $table) {
             $table->id();
+            $table->string('id_unidad');
+            $table->string('kmfinales');
+            $table->string('fecha');
+            $table->string('frecuencia');
+            $table->string('sigservicio');
+            $table->string('kmfaltantes');
+            $table->string('tipomantenimiento');
             $table->timestamps();
         });
     }

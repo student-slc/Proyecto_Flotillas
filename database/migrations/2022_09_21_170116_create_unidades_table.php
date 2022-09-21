@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('unidades', function (Blueprint $table) {
             $table->id();
+            $table->string('serieunidad');
+            $table->string('marca');
+            $table->string('submarca');
+            $table->string('añounidad');
+            $table->string('tipounidad');
+            $table->string('razonsocialunidad');
+            $table->string('placas');
+            $table->string('status');
             $table->timestamps();
         });
     }

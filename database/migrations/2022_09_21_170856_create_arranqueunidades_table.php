@@ -15,6 +15,22 @@ return new class extends Migration
     {
         Schema::create('arranqueunidades', function (Blueprint $table) {
             $table->id();
+            $table->string('id_operador');
+            $table->string('id_unidad');
+            $table->string('id_flotilla');
+            $table->string('eco');
+            $table->string('kmarranque');
+            $table->string('combustible');
+            $table->string('llantarefaccion');
+            $table->string('crucetaygato');
+            $table->string('lonas');
+            $table->string('cuerdas');
+            $table->string('exterior');
+            $table->string('banderin');
+            $table->string('firma');
+            $table->string('fotoreporte');
+            $table->string('status');
+            $table->string('satisfaccionservicio');
             $table->timestamps();
         });
     }

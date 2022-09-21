@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('fumigadores', function (Blueprint $table) {
             $table->id();
+            $table->string('nombrecompleto');
+            $table->string('fechanacimiento');
+            $table->string('certificacion');
             $table->timestamps();
         });
     }

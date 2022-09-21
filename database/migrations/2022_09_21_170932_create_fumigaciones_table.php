@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('fumigaciones', function (Blueprint $table) {
             $table->id();
+            $table->string('id_cliente');
+            $table->string('id_fumigador');
+            $table->string('fechaprogramada');
+            $table->string('fechaultimafumigacion');
+            $table->string('lugardelservicio');
+            $table->string('status');
+            $table->string('numerodevisitas');
+            $table->string('costo');
+            $table->string('satisfaccionservicio');
             $table->timestamps();
         });
     }

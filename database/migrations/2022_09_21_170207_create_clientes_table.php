@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->string('nombrecompleto');
+            $table->string('razonsocial');
+            $table->string('direccionfisica');
+            $table->string('statuspago');
             $table->timestamps();
         });
     }
