@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UnidadesController;
+use App\Http\Controllers\ClientesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' =>['auth']],function(){
 Route::resource('roles', RolController::class);
 Route::resource('usuarios', UsuarioController::class);
-Route::resource('blogs', BlogController::class);
+Route::resource('clientes', ClientesController::class);
+Route::resource('unidades', UnidadesController::class);
 });
