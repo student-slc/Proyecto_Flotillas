@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Cliente;
+use App\Models\Fumigadore;
 use App\Models\Unidade;
 use App\Models\Operadore;
 
 use App\Observers\ClienteObserver;
+use App\Observers\FumigadoreObserver;
 use App\Observers\UnidadeObserver;
 use App\Observers\OperadoreObserver;
 
@@ -40,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         Cliente::observe(ClienteObserver::class);
         Unidade::observe(UnidadeObserver::class);
         Operadore::observe(OperadoreObserver::class);
+        Fumigadore::observe(FumigadoreObserver::class);
 
     }
 }

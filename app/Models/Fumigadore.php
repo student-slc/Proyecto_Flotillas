@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Fumigadore extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable=[
+        "nombrecompleto",
+        "fechanacimiento",
+        "certificacion",];
 }

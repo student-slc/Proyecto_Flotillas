@@ -17,19 +17,20 @@
     <a class="nav-link" href="/operadores">
         <i class=" fas fa-id-card"></i><span>Operadores</span>
     </a>
-    {{-- //TODO Me quede --}}
-
-    <a class="nav-link" href="/unidades">
-        <i class=" fas fa-bus"></i><span>Flotillas</span>
+    <a class="nav-link" href="/fumigadores">
+        <i class=" fas fa-id-card"></i><span>Fumigadores</span>
     </a>
-    <a class="nav-link" href="/unidades">
-        <i class=" fas fa-bus"></i><span>Fumigadores</span>
-    </a>
+     {{-- //TODO Me quede --}}
     <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Fumigaciones</span>
+    </a>
+    <a class="nav-link" href="/unidades">
+        <i class=" fas fa-bus"></i><span>Flotillas</span>
     </a>
     <a class="nav-link" href="/logs">
         <i class="fas fa-clipboard-list"></i><span>logs</span>
     </a>
-
+    <a class="nav-link" href="/logs">
+        <i class="fas fa-clipboard-list"></i><span>Cotizaciones</span>
+    </a>
 </li>
