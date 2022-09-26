@@ -8,5 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Unidade extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable = [
+        'serieunidad',
+        'marca',
+        'submarca',
+        'añounidad',
+        'tipounidad',
+        'razonsocialunidad',
+        'placas',
+        'status'
+    ];
 }

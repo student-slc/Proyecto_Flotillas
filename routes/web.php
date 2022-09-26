@@ -37,5 +37,7 @@ Route::resource('roles', RolController::class);
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('clientes', ClientesController::class);
 Route::resource('unidades', UnidadesController::class);
+Route::resource('operadores', UnidadesController::class);
+Route::resource('logs', ObservadorController::class);
 Route::resource('logs', ObservadorController::class);
 });

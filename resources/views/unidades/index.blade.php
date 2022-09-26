@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+Unidades
+@endsection
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -14,23 +16,37 @@
                         <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Titulo</th>
-                                    <th style="color:#fff;">Contenido</th>
+                                    <th style="color:#fff;">No. Serie</th>
+                                    <th style="color:#fff;">Marca</th>
+                                    <th style="color:#fff;">Submarca</th>
+                                    <th style="color:#fff;">Año</th>
+                                    <th style="color:#fff;">Tipo</th>
+                                    <th style="color:#fff;">Razon social</th>
+                                    <th style="color:#fff;">Placas</th>
+                                    <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
                             @foreach ($unidades as $unidade)
                             <tr>
                                 <td style="display: none;">{{ $unidade->id }}</td>
-                                <td>{{ $unidade->titulo }}</td>
-                                <td>{{ $unidade->contenido }}</td>
+                                <td>{{ $unidade->serieunidad }}</td>
+                                <td>{{ $unidade->marca }}</td>
+                                <td>{{ $unidade->submarca }}</td>
+                                <td>{{ $unidade->añounidad }}</td>
+                                <td>{{ $unidade->tipounidad }}</td>
+                                <td>{{ $unidade->razonsocialunidad }}</td>
+                                <td>{{ $unidade->placas }}</td>
+                                <td>{{ $unidade->status }}</td>
                                 <td>
                                     <form action="{{ route('unidades.destroy',$unidade->id) }}" method="POST">
-                                        <a class="btn btn-info" href="{{ route('unidades.edit',$unidade->id) }}">Editar</a>
-
+                                        <a class="btn btn-info" href="{{ route('unidades.edit',$unidade->id) }}">
+                                            <i class="fas fa-edit"></i></a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

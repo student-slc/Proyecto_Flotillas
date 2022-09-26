@@ -14,10 +14,10 @@ class UnidadesController extends Controller
      */
     public function index()
     {
-         //Con paginación
-         $unidades = Unidade::paginate(5);
-         return view('unidades.index',compact('unidades'));
-         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $blogs->links() !!}
+        //Con paginación
+        $unidades = Unidade::paginate(5);
+        return view('unidades.index', compact('unidades'));
+        //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
 
     /**
@@ -27,7 +27,7 @@ class UnidadesController extends Controller
      */
     public function create()
     {
-        return view('blogs.crear');
+        return view('unidades.crear');
     }
 
     /**
@@ -39,13 +39,18 @@ class UnidadesController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'titulo' => 'required',
-            'contenido' => 'required',
+            'serieunidad' => 'required',
+            'marca' => 'required',
+            'submarca' => 'required',
+            'añounidad' => 'required',
+            'tipounidad' => 'required',
+            'razonsocialunidad' => 'required',
+            'placas' => 'required',
+            'status' => 'required'
         ]);
 
-        Blog::create($request->all());
-
-        return redirect()->route('blogs.index');
+        Unidade::create($request->all());
+        return redirect()->route('unidades.index');
     }
 
     /**
@@ -65,9 +70,9 @@ class UnidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Unidade $unidade)
     {
-        return view('blogs.editar',compact('blog'));
+        return view('unidades.editar', compact('unidade'));
     }
 
     /**
@@ -77,16 +82,20 @@ class UnidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, Unidade $unidade)
     {
-         request()->validate([
-            'titulo' => 'required',
-            'contenido' => 'required',
+        request()->validate([
+            'serieunidad' => 'required',
+            'marca' => 'required',
+            'submarca' => 'required',
+            'añounidad' => 'required',
+            'tipounidad' => 'required',
+            'razonsocialunidad' => 'required',
+            'placas' => 'required',
+            'status' => 'required'
         ]);
-
-        $blog->update($request->all());
-
-        return redirect()->route('blogs.index');
+        $unidade->update($request->all());
+        return redirect()->route('unidades.index');
     }
 
     /**
@@ -95,10 +104,9 @@ class UnidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Unidade $unidade)
     {
-        $blog->delete();
-
-        return redirect()->route('blogs.index');
+        $unidade->delete();
+        return redirect()->route('unidades.index');
     }
 }

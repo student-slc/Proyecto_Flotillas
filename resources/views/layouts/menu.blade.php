@@ -8,15 +8,15 @@
     {{-- <a class="nav-link" href="/roles">
         <i class=" fas fa-user-lock"></i><span>Roles</span>
     </a> --}}
-    {{-- //TODO Me quede --}}
     <a class="nav-link" href="/clientes">
         <i class=" fas fa-user-tie"></i><span>Clientes</span>
     </a>
     <a class="nav-link" href="/unidades">
-        <i class=" fas fa-bus"></i><span>Operadores</span>
-    </a>
-    <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Unidades</span>
+    </a>
+    {{-- //TODO Me quede --}}
+    <a class="nav-link" href="/unidades">
+        <i class=" fas fa-bus"></i><span>Operadores</span>
     </a>
     <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Flotillas</span>
