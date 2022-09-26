@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Operadore extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable = [
+        "nombreoperador",
+        "fechanacimiento",
+        "nolicencia",
+        "tipolicencia",
+        "fechavencimientomedico",
+        "fechavencimientolicencia",
+        "id_flotilla"
+    ];
 }

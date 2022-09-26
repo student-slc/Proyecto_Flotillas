@@ -51,7 +51,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="añounidad">Año</label>
-                                        <input type="text" name="añounidad" class="form-control"
+                                        <input type="number" min="1900" max="2099" step="1" type="text" name="añounidad" class="form-control"
                                         value="{{ $unidade->añounidad }}">
                                     </div>
                                 </div>

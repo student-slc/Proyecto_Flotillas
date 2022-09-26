@@ -7,6 +7,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ObservadorController;
+use App\Http\Controllers\OperadoresController;
+
 
 
 /*
@@ -37,7 +39,6 @@ Route::resource('roles', RolController::class);
 Route::resource('usuarios', UsuarioController::class);
 Route::resource('clientes', ClientesController::class);
 Route::resource('unidades', UnidadesController::class);
-Route::resource('operadores', UnidadesController::class);
-Route::resource('logs', ObservadorController::class);
+Route::resource('operadores', OperadoresController::class);
 Route::resource('logs', ObservadorController::class);
 });

@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\Cliente;
 use App\Models\Unidade;
+use App\Models\Operadore;
 
 use App\Observers\ClienteObserver;
 use App\Observers\UnidadeObserver;
+use App\Observers\OperadoreObserver;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -37,5 +39,7 @@ class AppServiceProvider extends ServiceProvider
         //Observadores
         Cliente::observe(ClienteObserver::class);
         Unidade::observe(UnidadeObserver::class);
+        Operadore::observe(OperadoreObserver::class);
+
     }
 }

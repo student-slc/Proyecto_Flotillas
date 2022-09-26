@@ -14,10 +14,11 @@
     <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Unidades</span>
     </a>
-    {{-- //TODO Me quede --}}
-    <a class="nav-link" href="/unidades">
-        <i class=" fas fa-bus"></i><span>Operadores</span>
+    <a class="nav-link" href="/operadores">
+        <i class=" fas fa-id-card"></i><span>Operadores</span>
     </a>
+    {{-- //TODO Me quede --}}
+
     <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Flotillas</span>
     </a>

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nolicencia');
             $table->string('tipolicencia');
             $table->string('fechavencimientomedico');
-            $table->string('fechvencimientolicencia');
+            $table->string('fechavencimientolicencia');
             $table->string('id_flotilla');
             $table->timestamps();
         });
