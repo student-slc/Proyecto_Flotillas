@@ -9,10 +9,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ObservadorController;
 use App\Http\Controllers\OperadoresController;
 use App\Http\Controllers\FumigadoresController;
-
-
-
-
+use App\Http\Controllers\FumigacionesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +40,7 @@ Route::resource('clientes', ClientesController::class);
 Route::resource('unidades', UnidadesController::class);
 Route::resource('operadores', OperadoresController::class);
 Route::resource('fumigadores', FumigadoresController::class);
+Route::resource('fumigaciones', FumigacionesController::class);
 
 Route::resource('logs', ObservadorController::class);
 });

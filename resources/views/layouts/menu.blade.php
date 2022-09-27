@@ -20,9 +20,9 @@
     <a class="nav-link" href="/fumigadores">
         <i class=" fas fa-id-card"></i><span>Fumigadores</span>
     </a>
-     {{-- //TODO Me quede --}}
-    <a class="nav-link" href="/unidades">
-        <i class=" fas fa-bus"></i><span>Fumigaciones</span>
+    {{-- //TODO Me quede --}}
+    <a class="nav-link" href="/fumigaciones">
+        <i class=" fas fa-bug"></i><span>Fumigaciones</span>
     </a>
     <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Flotillas</span>

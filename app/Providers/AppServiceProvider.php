@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Cliente;
+use App\Models\Fumigacione;
 use App\Models\Fumigadore;
 use App\Models\Unidade;
 use App\Models\Operadore;
 
 use App\Observers\ClienteObserver;
+use App\Observers\FumigacioneObserver;
 use App\Observers\FumigadoreObserver;
 use App\Observers\UnidadeObserver;
 use App\Observers\OperadoreObserver;
@@ -43,6 +45,8 @@ class AppServiceProvider extends ServiceProvider
         Unidade::observe(UnidadeObserver::class);
         Operadore::observe(OperadoreObserver::class);
         Fumigadore::observe(FumigadoreObserver::class);
+        Fumigacione::observe(FumigacioneObserver::class);
+
 
     }
 }
