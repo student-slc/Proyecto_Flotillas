@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UnidadesRequest;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
 
@@ -36,20 +37,9 @@ class UnidadesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UnidadesRequest $request)
     {
-        request()->validate([
-            'serieunidad' => 'required',
-            'marca' => 'required',
-            'submarca' => 'required',
-            'añounidad' => 'required',
-            'tipounidad' => 'required',
-            'razonsocialunidad' => 'required',
-            'placas' => 'required',
-            'status' => 'required'
-        ]);
-
-        Unidade::create($request->all());
+        Unidade::create($request->validated());
         return redirect()->route('unidades.index');
     }
 
@@ -82,19 +72,9 @@ class UnidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidade $unidade)
+    public function update(UnidadesRequest $request, Unidade $unidade)
     {
-        request()->validate([
-            'serieunidad' => 'required',
-            'marca' => 'required',
-            'submarca' => 'required',
-            'añounidad' => 'required',
-            'tipounidad' => 'required',
-            'razonsocialunidad' => 'required',
-            'placas' => 'required',
-            'status' => 'required'
-        ]);
-        $unidade->update($request->all());
+        $unidade->update($request->validated());
         return redirect()->route('unidades.index');
     }
 

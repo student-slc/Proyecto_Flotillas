@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FumigadoresRequest;
 use App\Models\Fumigadore;
 use Illuminate\Http\Request;
-
 class FumigadoresController extends Controller
 {
     /**
@@ -36,15 +36,9 @@ class FumigadoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FumigadoresRequest $request)
     {
-        request()->validate([
-            'nombrecompleto' => 'required',
-            'fechanacimiento' => 'required',
-            'certificacion' => 'required'
-        ]);
-
-        Fumigadore::create($request->all());
+        Fumigadore::create($request->validated());
         return redirect()->route('fumigadores.index');
     }
 
@@ -77,14 +71,9 @@ class FumigadoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fumigadore $fumigadore)
+    public function update(FumigadoresRequest $request, Fumigadore $fumigadore)
     {
-        request()->validate([
-            'nombrecompleto' => 'required',
-            'fechanacimiento' => 'required',
-            'certificacion' => 'required'
-        ]);
-        $fumigadore->update($request->all());
+        $fumigadore->update($request->validated());
         return redirect()->route('fumigadores.index');
     }
 

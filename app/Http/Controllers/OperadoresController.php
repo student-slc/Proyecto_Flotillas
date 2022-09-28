@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OperadoresRequest;
 use App\Models\Operadore;
 use Illuminate\Http\Request;
 
@@ -36,19 +37,9 @@ class OperadoresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OperadoresRequest $request)
     {
-        request()->validate([
-            "nombreoperador" => 'required',
-            "fechanacimiento" => 'required',
-            "nolicencia" => 'required',
-            "tipolicencia" => 'required',
-            "fechavencimientomedico" => 'required',
-            "fechavencimientolicencia" => 'required',
-            "id_flotilla" => 'required'
-        ]);
-
-        Operadore::create($request->all());
+        Operadore::create($request->validated());
         return redirect()->route('operadores.index');
     }
 
@@ -81,18 +72,9 @@ class OperadoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Operadore $operadore)
+    public function update(OperadoresRequest $request, Operadore $operadore)
     {
-        request()->validate([
-            "nombreoperador" => 'required',
-            "fechanacimiento" => 'required',
-            "nolicencia" => 'required',
-            "tipolicencia" => 'required',
-            "fechavencimientomedico" => 'required',
-            "fechavencimientolicencia" => 'required',
-            "id_flotilla" => 'required'
-        ]);
-        $operadore->update($request->all());
+        $operadore->update($request->validated());
         return redirect()->route('operadores.index');
     }
 

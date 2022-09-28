@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FumigacionesRequest;
 use App\Models\Cliente;
 use App\Models\Fumigacione;
 use App\Models\Fumigadore;
@@ -40,20 +41,9 @@ class FumigacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FumigacionesRequest $request)
     {
-        request()->validate([
-            "id_cliente" => 'required',
-            "id_fumigador" => 'required',
-            "fechaprogramada" => 'required',
-            "fechaultimafumigacion" => 'required',
-            "lugardelservicio" => 'required',
-            "status" => 'required',
-            "numerodevisitas" => 'required',
-            "costo" => 'required',
-            "satisfaccionservicio" => 'required',
-        ]);
-        Fumigacione::create($request->all());
+        Fumigacione::create($request->validated());
         return redirect()->route('fumigaciones.index');
     }
 
@@ -88,20 +78,9 @@ class FumigacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fumigacione $fumigacione)
+    public function update(FumigacionesRequest $request, Fumigacione $fumigacione)
     {
-        request()->validate([
-            "id_cliente" => 'required',
-            "id_fumigador" => 'required',
-            "fechaprogramada" => 'required',
-            "fechaultimafumigacion" => 'required',
-            "lugardelservicio" => 'required',
-            "status" => 'required',
-            "numerodevisitas" => 'required',
-            "costo" => 'required',
-            "satisfaccionservicio" => 'required',
-        ]);
-        $fumigacione->update($request->all());
+        $fumigacione->update($request->validated());
         return redirect()->route('fumigaciones.index');
     }
 

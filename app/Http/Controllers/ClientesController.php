@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
@@ -36,16 +37,9 @@ class ClientesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
-        request()->validate([
-            'nombrecompleto' => 'required',
-            'razonsocial' => 'required',
-            'direccionfisica' => 'required',
-            'statuspago' => 'required',
-        ]);
-
-        Cliente::create($request->all());
+        Cliente::create($request->validated());
         return redirect()->route('clientes.index');
     }
 
@@ -78,15 +72,9 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(ClienteRequest $request, Cliente $cliente)
     {
-         request()->validate([
-            'nombrecompleto' => 'required',
-            'razonsocial' => 'required',
-            'direccionfisica' => 'required',
-            'statuspago' => 'required',
-        ]);
-        $cliente->update($request->all());
+        $cliente->update($request->validated());
         return redirect()->route('clientes.index');
     }
 
