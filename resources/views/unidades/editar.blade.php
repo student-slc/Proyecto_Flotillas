@@ -27,6 +27,26 @@
                             <form action="{{ route('unidades.update', $unidade->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
+                                {{-- ========================================= OCULTOS ========================================= --}}
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="seguro">seguro</label>
+                                        <input type="text" name="seguro" class="form-control" value="{{ $unidade->seguro }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="verificacion">verificacion</label>
+                                        <input type="text" name="verificacion" class="form-control" value="{{ $unidade->verificacion }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="mantenimiento">mantenimiento</label>
+                                        <input type="text" name="mantenimiento" class="form-control" value="{{ $unidade->mantenimiento }}">
+                                    </div>
+                                </div>
+                                {{-- ========================================================================= --}}
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="serieunidad">No. Serie</label>

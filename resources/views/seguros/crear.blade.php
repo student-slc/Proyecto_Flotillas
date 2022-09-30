@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Unidades
+    Seguros
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Agregar Unidades</h3>
+            <h3 class="page__heading">Seguro para: {{ $unidad }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -25,82 +25,69 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('unidades.store') }}" method="POST">
+                            <form action="{{ route('seguros.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     {{-- ========================================= OCULTOS ========================================= --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
-                                            <label for="seguro">seguro</label>
-                                            <input type="text" name="seguro" class="form-control" value="Sin Seguro">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="verificacion">verificacion</label>
-                                            <input type="text" name="verificacion" class="form-control" value="Sin Verificación">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="mantenimiento">mantenimiento</label>
-                                            <input type="text" name="mantenimiento" class="form-control" value="Sin Mantenimiento">
+                                            <label for="id_unidad">id_unidad</label>
+                                            <input type="text" name="id_unidad" class="form-control" value="{{ $unidad }}">
                                         </div>
                                     </div>
                                     {{-- ========================================================================= --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="serieunidad">No. Serie</label>
-                                            <input type="text" name="serieunidad" class="form-control">
+                                            <label for="nopoliza">No. Poliza</label>
+                                            <input type="text" name="nopoliza" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="marca">Marca</label>
-                                            <input type="text" name="marca" class="form-control">
+                                            <label for="fechainicio">Fecha de Inicio</label>
+                                            <input type="date" name="fechainicio" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="submarca">Sub Marca</label>
-                                            <input type="text" name="submarca" class="form-control">
+                                            <label for="fechavencimiento">Fecha de Vencimiento</label>
+                                            <input type="date" name="fechavencimiento" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="añounidad">Año</label>
-                                            <input type="number" min="1900" max="2099" step="1" value="2022" name="añounidad" class="form-control">
+                                            <label for="tiposeguro">Tipo de Seguro</label>
+                                            <input type="text" name="tiposeguro" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="tipounidad">Tipo</label>
-                                            <input type="text" name="tipounidad" class="form-control">
+                                            <label for="caratulaseguro">Caratula Seguro</label>
+                                            <input type="text" name="caratulaseguro" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="razonsocialunidad">Razon Social</label>
-                                            <input type="text" name="razonsocialunidad" class="form-control">
+                                            <label for="provedor">Proveedor</label>
+                                            <input type="text" name="provedor" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="placas">Placas</label>
-                                            <input type="text" name="placas" class="form-control">
+                                            <label for="precio">Precio</label>
+                                            <input type="text" name="precio" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="status">Status de Servivio</label>
-                                            <select name="status" id="status" class=" selectsearch">
-                                                <option disabled selected value="">Selecciona Status</option>
-                                                <option value="Status 1">Status 1</option>
-                                                <option value="Status 2">Status 2</option>
-                                                <option value="Status 3">Status 3</option>
-                                                {{-- <option value="No Pagado">No Pagado</option>
-                                                <option value="Pagado">Pagado</option> --}}
-                                            </select>
+                                            <label for="impuestos">Impuestos</label>
+                                            <input type="text" name="impuestos" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="costototal">Costo Total</label>
+                                            <input type="text" name="costototal" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

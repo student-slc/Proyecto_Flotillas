@@ -31,7 +31,10 @@ class UnidadesRequest extends FormRequest
             'tipounidad' => 'required',
             'razonsocialunidad' => 'required',
             'placas' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'seguro' => 'required',
+            'verificacion' => 'required',
+            'mantenimiento' => 'required'
         ];
     }
     public function messages()

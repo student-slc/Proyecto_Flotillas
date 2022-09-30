@@ -8,5 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Seguro extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable=[
+        'nopoliza',
+        'id_unidad',
+        'fechavencimiento',
+        'fechainicio',
+        'tiposeguro',
+        'caratulaseguro',
+        'provedor',
+        'precio',
+        'impuestos',
+        'costototal',
+    ];
 }

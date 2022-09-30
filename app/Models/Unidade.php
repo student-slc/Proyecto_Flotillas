@@ -16,6 +16,9 @@ class Unidade extends Model
         'tipounidad',
         'razonsocialunidad',
         'placas',
-        'status'
+        'status',
+        'seguro',
+        'mantenimiento',
+        'verificacion'
     ];
 }

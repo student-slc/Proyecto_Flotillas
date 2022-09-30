@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('razonsocialunidad');
             $table->string('placas');
             $table->string('status');
+            $table->string('seguro');
+            $table->string('verificacion');
+            $table->string('mantenimiento');
             $table->timestamps();
         });
     }

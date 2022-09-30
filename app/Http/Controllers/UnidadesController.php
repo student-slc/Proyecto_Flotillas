@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UnidadesRequest;
+use App\Models\Seguro;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
 
@@ -49,9 +50,10 @@ class UnidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($unidad)
     {
-        //
+        $seguros = Seguro::where('id_unidad', '=', $unidad)->paginate(10);
+        return view('seguros.index', compact('seguros', 'unidad'));
     }
 
     /**
@@ -86,6 +88,8 @@ class UnidadesController extends Controller
      */
     public function destroy(Unidade $unidade)
     {
+        $unidad=$unidade->serieunidad;
+        $cambio=Seguro::where('id_unidad', '=', $unidad)->delete();
         $unidade->delete();
         return redirect()->route('unidades.index');
     }
