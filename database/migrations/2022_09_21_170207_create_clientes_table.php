@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('razonsocial');
             $table->string('direccionfisica');
             $table->string('statuspago');
+            $table->string('telefono');
+            $table->string('correo');
             $table->timestamps();
         });
     }

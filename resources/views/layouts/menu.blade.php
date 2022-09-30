@@ -24,9 +24,6 @@
     <a class="nav-link" href="/fumigaciones">
         <i class=" fas fa-bug"></i><span>Fumigaciones</span>
     </a>
-    <a class="nav-link" href="/unidades">
-        <i class=" fas fa-bus"></i><span>Flotillas</span>
-    </a>
     <a class="nav-link" href="/logs">
         <i class="fas fa-clipboard-list"></i><span>logs</span>
     </a>

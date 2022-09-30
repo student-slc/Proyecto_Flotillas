@@ -26,7 +26,9 @@ class ClienteRequest extends FormRequest
         return [
             'nombrecompleto' => 'required',
             'razonsocial' => 'required',
+            'telefono' => 'required',
             'direccionfisica' => 'required',
+            'correo' => 'required',
             'statuspago' => 'required',
         ];
     }
@@ -35,7 +37,9 @@ class ClienteRequest extends FormRequest
         return [
             'nombrecompleto.required'=>"El Nombre es obligatorio",
             'razonsocial.required'=>"La Razon Social es obligatoria",
+            'telefono.required'=>"La Razon Social es obligatoria",
             'direccionfisica.required'=>"La Direccion Fisica es obligatoria",
+            'correo.required'=>"La Razon Social es obligatoria",
             'statuspago.required'=>"El Status es obligatorio",
         ];
 

@@ -42,8 +42,20 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
+                                            <label for="telefono">Telefono</label>
+                                            <input type="text" name="telefono" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
                                             <label for="direccionfisica">Dirección Fisica</label>
                                             <input type="text" name="direccionfisica" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="correo">Correo</label>
+                                            <input type="text" name="correo" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

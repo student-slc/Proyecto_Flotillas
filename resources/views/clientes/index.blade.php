@@ -18,7 +18,9 @@ Clientes
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Cliente</th>
                                     <th style="color:#fff;">Razon Social</th>
+                                    <th style="color:#fff;">Telefono</th>
                                     <th style="color:#fff;">Direccion</th>
+                                    <th style="color:#fff;">Correo</th>
                                     <th style="color:#fff;">Status de Servicio</th>
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
@@ -28,7 +30,9 @@ Clientes
                                 <td style="display: none;">{{ $cliente->id }}</td>
                                 <td>{{ $cliente->nombrecompleto }}</td>
                                 <td>{{ $cliente->razonsocial }}</td>
+                                <td>{{ $cliente->telefono }}</td>
                                 <td>{{ $cliente->direccionfisica }}</td>
+                                <td>{{ $cliente->correo }}</td>
 
                                 <td>
                                     @if ( $cliente->statuspago =='Sin Servicio')
