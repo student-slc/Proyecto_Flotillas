@@ -70,15 +70,11 @@
                                             <input type="date" name="fechavencimientolicencia" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
-                                            <label for="id_flotilla">Flotilla</label>
-                                            <select name="id_flotilla" id="id_flotilla" class=" selectsearch">
-                                                <option disabled selected value="">Selecciona la Flotilla</option>
-                                                <option value="Flotilla 1">Flotilla 1</option>
-                                                {{-- <option value="No Pagado">No Pagado</option>
-                                                <option value="Pagado">Pagado</option> --}}
-                                            </select>
+                                            <label for="unidad">unidad</label>
+                                            <input type="text" name="unidad" class="form-control"
+                                            value="{{ $unidad }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

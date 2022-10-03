@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OperadoresRequest;
 use App\Models\Operadore;
+use App\Models\Unidade;
 use Illuminate\Http\Request;
 
 class OperadoresController extends Controller
@@ -16,8 +17,8 @@ class OperadoresController extends Controller
     public function index()
     {
         //Con paginación
-        $operadores = Operadore::paginate(5);
-        return view('operadores.index', compact('operadores'));
+        /* $operadores = Operadore::paginate(5);
+        return view('operadores.index', compact('operadores')); */
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
 
@@ -28,7 +29,11 @@ class OperadoresController extends Controller
      */
     public function create()
     {
-        return view('operadores.crear');
+        /* return view('operadores.crear',compact('unidad')); */
+    }
+    public function crear($unidad)
+    {
+        return view('operadores.crear',compact('unidad'));
     }
 
     /**
@@ -39,8 +44,10 @@ class OperadoresController extends Controller
      */
     public function store(OperadoresRequest $request)
     {
+        $unidad=$request->unidad;
         Operadore::create($request->validated());
-        return redirect()->route('operadores.index');
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["operador"=>"1"]);
+        return redirect()->route('operadores.show',$unidad);
     }
 
     /**
@@ -49,9 +56,11 @@ class OperadoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($unidad)
     {
-        //
+        $numero = Operadore::where('unidad', '=', $unidad)->count();
+        $operadores = Operadore::where('unidad', '=', $unidad)->paginate(5);
+        return view('operadores.index', compact('operadores','numero','unidad'));
     }
 
     /**
@@ -74,8 +83,9 @@ class OperadoresController extends Controller
      */
     public function update(OperadoresRequest $request, Operadore $operadore)
     {
+        $unidad=$request->unidad;
         $operadore->update($request->validated());
-        return redirect()->route('operadores.index');
+        return redirect()->route('operadores.show',$unidad);
     }
 
     /**
@@ -86,7 +96,9 @@ class OperadoresController extends Controller
      */
     public function destroy(Operadore $operadore)
     {
+        $unidad=$operadore->unidad;
         $operadore->delete();
-        return redirect()->route('operadores.index');
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["operador"=>"0"]);
+        return redirect()->route('operadores.show',$unidad);
     }
 }

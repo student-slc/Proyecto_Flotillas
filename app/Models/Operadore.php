@@ -15,6 +15,6 @@ class Operadore extends Model
         "tipolicencia",
         "fechavencimientomedico",
         "fechavencimientolicencia",
-        "id_flotilla"
+        "unidad"
     ];
 }

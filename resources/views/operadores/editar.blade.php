@@ -27,6 +27,13 @@
                             <form action="{{ route('operadores.update', $operadore->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="unidad">unidad</label>
+                                        <input type="text" name="unidad" class="form-control"
+                                        value="{{ $operadore->unidad }}">
+                                    </div>
+                                </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="nombreoperador">Nombre del Operador</label>

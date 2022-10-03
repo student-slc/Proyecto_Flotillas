@@ -43,6 +43,12 @@ Route::resource('operadores', OperadoresController::class);
 Route::resource('fumigadores', FumigadoresController::class);
 Route::resource('fumigaciones', FumigacionesController::class);
 Route::resource('seguros', SegurosController::class);
-
 Route::resource('logs', ObservadorController::class);
 });
+
+///--------------------------------------UNIDADES--------------------------------------------------------------------
+Route::get('/clientes/unidades/crear/{usuario}','App\Http\Controllers\UnidadesController@crear')->name('unidades.crear');
+
+///--------------------------------------OPERADORES--------------------------------------------------------------------
+Route::get('/clientes/unidades/operadores/crear/{usuario}','App\Http\Controllers\OperadoresController@crear')->name('operadores.crear');
+

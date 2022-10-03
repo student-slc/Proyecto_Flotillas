@@ -5,7 +5,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Agregar Unidades</h3>
+            <h3 class="page__heading">Agregar Unidad a {{ $usuario }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -45,6 +45,13 @@
                                         <div class="form-group">
                                             <label for="mantenimiento">mantenimiento</label>
                                             <input type="text" name="mantenimiento" class="form-control" value="Sin Mantenimiento">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="cliente">cliente</label>
+                                            <input type="text" name="cliente" class="form-control"
+                                            value="{{ $usuario }}">
                                         </div>
                                     </div>
                                     {{-- ========================================================================= --}}

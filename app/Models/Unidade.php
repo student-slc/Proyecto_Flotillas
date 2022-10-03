@@ -19,6 +19,8 @@ class Unidade extends Model
         'status',
         'seguro',
         'mantenimiento',
-        'verificacion'
+        'verificacion',
+        'cliente',
+        'operador'
     ];
 }

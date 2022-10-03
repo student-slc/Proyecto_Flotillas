@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tipolicencia');
             $table->string('fechavencimientomedico');
             $table->string('fechavencimientolicencia');
-            $table->string('id_flotilla');
+            $table->string('unidad');
             $table->timestamps();
         });
     }

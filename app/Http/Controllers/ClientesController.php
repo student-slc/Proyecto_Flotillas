@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
+use App\Models\Operadore;
+use App\Models\Unidade;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -49,9 +51,10 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($usuario)
     {
-        //
+        $unidades=Unidade::where('cliente', '=', $usuario)->paginate(5);
+        return view('unidades.index', compact('unidades','usuario'));
     }
 
     /**

@@ -16,9 +16,10 @@ class UnidadesController extends Controller
      */
     public function index()
     {
+        /* //TODO Operadores_reponer */
         //Con paginación
-        $unidades = Unidade::paginate(5);
-        return view('unidades.index', compact('unidades'));
+        /* $unidades = Unidade::paginate(5);
+        return view('unidades.index', compact('unidades')); */
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
 
@@ -29,9 +30,12 @@ class UnidadesController extends Controller
      */
     public function create()
     {
-        return view('unidades.crear');
+        /* return view('unidades.crear'); */
     }
-
+    public function crear($usuario)
+    {
+        return view('unidades.crear', compact('usuario'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -40,8 +44,9 @@ class UnidadesController extends Controller
      */
     public function store(UnidadesRequest $request)
     {
+        $usuario=$request->cliente;
         Unidade::create($request->validated());
-        return redirect()->route('unidades.index');
+        return redirect()->route('clientes.show',$usuario);
     }
 
     /**
@@ -76,8 +81,9 @@ class UnidadesController extends Controller
      */
     public function update(UnidadesRequest $request, Unidade $unidade)
     {
+        $usuario=$unidade->cliente;
         $unidade->update($request->validated());
-        return redirect()->route('unidades.index');
+        return redirect()->route('clientes.show',$usuario);
     }
 
     /**
@@ -88,9 +94,10 @@ class UnidadesController extends Controller
      */
     public function destroy(Unidade $unidade)
     {
-        $unidad=$unidade->serieunidad;
-        $cambio=Seguro::where('id_unidad', '=', $unidad)->delete();
+        $usuario=$unidade->cliente;
+        $unidad = $unidade->serieunidad;
+        $cambio = Seguro::where('id_unidad', '=', $unidad)->delete();
         $unidade->delete();
-        return redirect()->route('unidades.index');
+        return redirect()->route('clientes.show',$usuario);
     }
 }

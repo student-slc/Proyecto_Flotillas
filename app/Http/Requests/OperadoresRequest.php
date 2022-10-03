@@ -30,7 +30,7 @@ class OperadoresRequest extends FormRequest
             "tipolicencia" => 'required',
             "fechavencimientomedico" => 'required',
             "fechavencimientolicencia" => 'required',
-            "id_flotilla" => 'required'
+            "unidad" => 'required'
         ];
     }
     public function messages()
@@ -42,7 +42,6 @@ class OperadoresRequest extends FormRequest
             "tipolicencia.required" => 'El Tipo de Licencia es Obligatorio',
             "fechavencimientomedico.required" => 'La Fecha de Vencimineto Medico es Obligatoria',
             "fechavencimientolicencia.required" => 'La Fecha de Vencimineto DE Licenia es Obligatoria',
-            "id_flotilla.required" => 'La Flotilla es Obligatorio'
         ];
     }
 }

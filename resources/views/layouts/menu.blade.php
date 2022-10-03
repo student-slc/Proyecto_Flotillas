@@ -5,22 +5,22 @@
     <a class="nav-link" href="/usuarios">
         <i class=" fas fa-users"></i><span>Usuarios</span>
     </a>
-    {{-- <a class="nav-link" href="/roles">
+    <a class="nav-link" href="/roles">
         <i class=" fas fa-user-lock"></i><span>Roles</span>
-    </a> --}}
+    </a>
     <a class="nav-link" href="/clientes">
         <i class=" fas fa-user-tie"></i><span>Clientes</span>
     </a>
-    <a class="nav-link" href="/unidades">
+    {{-- //TODO Unidades_reponer --}}
+    {{-- <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Unidades</span>
-    </a>
+    </a> --}}
     <a class="nav-link" href="/operadores">
         <i class=" fas fa-id-card"></i><span>Operadores</span>
     </a>
     <a class="nav-link" href="/fumigadores">
         <i class=" fas fa-id-card"></i><span>Fumigadores</span>
     </a>
-    {{-- //TODO Me quede --}}
     <a class="nav-link" href="/fumigaciones">
         <i class=" fas fa-bug"></i><span>Fumigaciones</span>
     </a>

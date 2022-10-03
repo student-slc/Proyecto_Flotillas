@@ -34,7 +34,9 @@ class UnidadesRequest extends FormRequest
             'status' => 'required',
             'seguro' => 'required',
             'verificacion' => 'required',
-            'mantenimiento' => 'required'
+            'mantenimiento' => 'required',
+            'cliente' => 'required',
+            'operador'=>'required'
         ];
     }
     public function messages()
@@ -48,6 +50,7 @@ class UnidadesRequest extends FormRequest
             'razonsocialunidad.required' => "La Razon Social de Unidad es obligatoria",
             'placas.required' => "Las Placas son obligatorias",
             'status.required' => "El Status es obligatorio",
+            'cliente.required' => "El Cliente es obligatorio",
         ];
     }
 }
