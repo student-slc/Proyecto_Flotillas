@@ -15,9 +15,9 @@
     {{-- <a class="nav-link" href="/unidades">
         <i class=" fas fa-bus"></i><span>Unidades</span>
     </a> --}}
-    <a class="nav-link" href="/operadores">
+    {{-- <a class="nav-link" href="/operadores">
         <i class=" fas fa-id-card"></i><span>Operadores</span>
-    </a>
+    </a> --}}
     <a class="nav-link" href="/fumigadores">
         <i class=" fas fa-id-card"></i><span>Fumigadores</span>
     </a>

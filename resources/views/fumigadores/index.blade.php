@@ -17,8 +17,7 @@
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre</th>
-                                    <th style="color:#fff;">Fecha Nacimiento</th>
-                                    <th style="color:#fff;">Certificado</th>
+                                    <th style="color:#fff;">Informacion</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -26,19 +25,14 @@
                                         <tr>
                                             <td style="display: none;">{{ $fumigadore->id }}</td>
                                             <td>{{ $fumigadore->nombrecompleto }}</td>
-                                            <td>{{ $fumigadore->fechanacimiento }}</td>
+                                            {{-- Boton MODAL --}}
                                             <td>
-                                                @if ($fumigadore->certificacion == 'No')
-                                                    <h5><span
-                                                            class="badge badge-danger">{{ $fumigadore->certificacion }}</span>
-                                                    </h5>
-                                                @endif
-                                                @if ($fumigadore->certificacion == 'Si')
-                                                    <h5><span
-                                                            class="badge badge-success">{{ $fumigadore->certificacion }}</span>
-                                                    </h5>
-                                                @endif
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}">
+                                                    Detalles
+                                                </button>
                                             </td>
+                                            {{-- ====================== --}}
                                             <td>
                                                 <form action="{{ route('fumigadores.destroy', $fumigadore->id) }}"
                                                     method="POST">
@@ -66,4 +60,36 @@
             </div>
         </div>
     </section>
+    {{-- MODAL --}}
+    @foreach ($fumigadores as $fumigadore)
+        <div class="modal fade" id="{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}" tabindex="-1" role="dialog"
+            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
+                                {{ $fumigadore->nombrecompleto }}</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" class="close" aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <b>Fecha de Nacimiento:</b>
+                        <li class="list-group-item">
+                            {{ $fumigadore->fechanacimiento }}
+                        </li>
+                        <br>
+                        <b>Certificado:</b>
+                        <li class="list-group-item">
+                            {{ $fumigadore->certificacion }}
+                        </li>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- =========================================== --}}
 @endsection

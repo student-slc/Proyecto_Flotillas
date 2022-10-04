@@ -57,6 +57,9 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @php
+                                            $a = $a . 'a';
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>

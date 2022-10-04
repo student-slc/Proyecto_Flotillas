@@ -30,11 +30,6 @@
                                         <tr>
                                             <td style="display: none;">{{ $operadore->id }}</td>
                                             <td>{{ $operadore->nombreoperador }}</td>
-                                            {{-- <td>{{ $operadore->fechanacimiento }}</td>
-                                <td>{{ $operadore->nolicencia }}</td>
-                                <td>{{ $operadore->tipolicencia }}</td>
-                                <td>{{ $operadore->fechavencimientomedico }}</td>
-                                <td>{{ $operadore->fechavencimientolicencia }}</td> --}}
                                             {{-- Boton MODAL --}}
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
