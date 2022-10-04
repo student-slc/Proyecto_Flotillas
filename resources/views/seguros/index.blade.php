@@ -9,48 +9,45 @@
         </div>
         <div class="section-body">
             <div class="row">
+                <div class="card-body">
+                    <a class="btn btn-danger" href="{{ route('clientes.show', $usuario = $unidad) }}">Regresar</a>
+                </div>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('seguros.show',$unidad) }}">Nuevo</a>
+                            <a class="btn btn-warning" href="{{ route('seguros.show', $unidad) }}">Nuevo</a>
                             <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">No. Poliza</th>
-                                    <th style="color:#fff;">Serie Unidad</th>
-                                    <th style="color:#fff;">Fecha Inicio</th>
-                                    <th style="color:#fff;">Fecha de Vencimiento</th>
-                                    <th style="color:#fff;">Tipo de Seguro</th>
-                                    <th style="color:#fff;">Caratula</th>
-                                    <th style="color:#fff;">Proveedor</th>
-                                    <th style="color:#fff;">Precio</th>
-                                    <th style="color:#fff;">Impuestos</th>
-                                    <th style="color:#fff;">Costo Total</th>
+                                    <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $a = 'a';
+                                    @endphp
                                     @foreach ($seguros as $seguro)
                                         <tr>
                                             <td style="display: none;">{{ $seguro->id }}</td>
                                             <td>{{ $seguro->nopoliza }}</td>
-                                            <td>{{ $seguro->id_unidad }}</td>
-                                            <td>{{ $seguro->fechainicio }}</td>
-                                            <td>{{ $seguro->fechavencimiento }}</td>
-                                            <td>{{ $seguro->tiposeguro }}</td>
-                                            <td>{{ $seguro->caratulaseguro }}</td>
-                                            <td>{{ $seguro->provedor }}</td>
-                                            <td>{{ $seguro->precio }}</td>
-                                            <td>{{ $seguro->impuestos }}</td>
-                                            <td>{{ $seguro->costototal }}</td>
+                                            {{-- Boton MODAL --}}
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#{{ $a }}">
+                                                    Detalles
+                                                </button>
+                                            </td>
+                                            {{-- ====================== --}}
                                             <td>
                                                 <h5><span class="badge badge-success">Activo</span>
                                                 </h5>
                                             </td>
                                             <td>
-                                                <form action="{{ route('seguros.destroy', $seguro->id,$unidad) }}" method="POST">
-                                                    <a class="btn btn-info"
-                                                        href="{{ route('seguros.edit', $seguro->id) }}">
+                                                <form action="{{ route('seguros.destroy', $seguro->id, $unidad) }}"
+                                                    method="POST">
+                                                    <a class="btn btn-info" href="{{ route('seguros.edit', $seguro->id) }}">
                                                         <i class="fas fa-edit"></i></a>
                                                     @csrf
                                                     @method('DELETE')
@@ -74,4 +71,77 @@
             </div>
         </div>
     </section>
+    {{-- MODAL --}}
+    @php
+        $a = 'a';
+    @endphp
+    @foreach ($seguros as $seguro)
+        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog" aria-labelledby="ModalDetallesTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
+                                {{ $seguro->nopoliza }}</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" class="close" aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <b>Unidad:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->id_unidad }}
+                        </li>
+                        <br>
+                        <b>Fecha de Inicio:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->fechainicio }}
+                        </li>
+                        <br>
+                        <b>Fecha de Vencimiento:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->fechavencimiento }}
+                        </li>
+                        <br>
+                        <b>Tipo de Seguro:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->tiposeguro }}
+                        </li>
+                        <br>
+                        <b>Caratula del Seguro:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->caratulaseguro }}
+                        </li>
+                        <br>
+                        <b>Proveedor:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->provedor }}
+                        </li>
+                        <br>
+                        <b>Precio:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->precio }}
+                        </li>
+                        <br>
+                        <b>Impuestos:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->impuestos }}
+                        </li>
+                        <br>
+                        <b>Costo Total:</b>
+                        <li class="list-group-item">
+                            {{ $seguro->costototal }}
+                        </li>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php
+            $a = $a . 'a';
+        @endphp
+    @endforeach
+    {{-- =========================================== --}}
 @endsection

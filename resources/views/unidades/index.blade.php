@@ -20,13 +20,7 @@
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">No. Serie</th>
-                                    <th style="color:#fff;">Marca</th>
-                                    <th style="color:#fff;">Submarca</th>
-                                    <th style="color:#fff;">Año</th>
-                                    <th style="color:#fff;">Tipo</th>
-                                    <th style="color:#fff;">Razon social</th>
-                                    <th style="color:#fff;">Placas</th>
-                                    <th style="color:#fff;">Status</th>
+                                    <th style="color:#fff;">Información Unidad</th>
                                     <th style="color:#fff;">Seguro</th>
                                     <th style="color:#fff;">Verificación</th>
                                     <th style="color:#fff;">Mantenimiento</th>
@@ -34,17 +28,21 @@
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $a = 'a';
+                                    @endphp
                                     @foreach ($unidades as $unidade)
                                         <tr>
                                             <td style="display: none;">{{ $unidade->id }}</td>
                                             <td>{{ $unidade->serieunidad }}</td>
-                                            <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->submarca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td>
-                                            <td>{{ $unidade->tipounidad }}</td>
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->status }}</td>
+                                            {{-- Boton MODAL --}}
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#{{ $a }}">
+                                                    Detalles
+                                                </button>
+                                            </td>
+                                            {{-- ====================== --}}
                                             <td>
                                                 @if ($unidade->seguro == 'Sin Seguro')
                                                     <h5><span class="badge badge-danger"><a class="link-light"
@@ -108,10 +106,12 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @php
+                                            $a = $a . 'a';
+                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>
-
                             <!-- Ubicamos la paginacion a la derecha -->
                             <div class="pagination justify-content-end">
                                 {!! $unidades->links() !!}
@@ -122,4 +122,72 @@
             </div>
         </div>
     </section>
+    {{-- MODAL --}}
+    @php
+        $a = 'a';
+    @endphp
+    @foreach ($unidades as $unidade)
+        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog" aria-labelledby="ModalDetallesTitle"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
+                                {{ $unidade->serieunidad }}</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" class="close" aria-label="Close"><span
+                                aria-hidden="true">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <b>Marca:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->marca }}
+                        </li>
+                        <br>
+                        <b>SubMarca:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->submarca }}
+                        </li>
+                        <br>
+                        <b>Año de la Unidad:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->añounidad }}
+                        </li>
+                        <br>
+                        <b>Tipo de Unidad:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->tipounidad }}
+                        </li>
+                        <br>
+                        <b>Razon Social:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->razonsocialunidad }}
+                        </li>
+                        <br>
+                        <b>Placas:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->placas }}
+                        </li>
+                        <br>
+                        <b>Status:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->status }}
+                        </li>
+                        <br>
+                        <b>Cliente:</b>
+                        <li class="list-group-item">
+                            {{ $unidade->cliente }}
+                        </li>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @php
+            $a = $a . 'a';
+        @endphp
+    @endforeach
+    {{-- =========================================== --}}
 @endsection

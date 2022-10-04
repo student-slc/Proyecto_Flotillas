@@ -12,7 +12,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-danger"
+                                href="{{ route('unidades.show', $unidad = $seguro->id_unidad) }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                     <strong>¡Revise los campos!</strong>
@@ -40,63 +43,63 @@
                                     <div class="form-group">
                                         <label for="nopoliza">No. Poliza</label>
                                         <input type="text" name="nopoliza" class="form-control"
-                                        value="{{ $seguro->nopoliza }}">
+                                            value="{{ $seguro->nopoliza }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fechainicio">Fecha de Inicio</label>
                                         <input type="date" name="fechainicio" class="form-control"
-                                        value="{{ $seguro->fechainicio }}">
+                                            value="{{ $seguro->fechainicio }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fechavencimiento">Fecha de Vencimiento</label>
                                         <input type="date" name="fechavencimiento" class="form-control"
-                                        value="{{ $seguro->fechavencimiento }}">
+                                            value="{{ $seguro->fechavencimiento }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="tiposeguro">Tipo de Seguro</label>
                                         <input type="text" name="tiposeguro" class="form-control"
-                                        value="{{ $seguro->tiposeguro }}">
+                                            value="{{ $seguro->tiposeguro }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="caratulaseguro">Caratula Seguro</label>
                                         <input type="text" name="caratulaseguro" class="form-control"
-                                        value="{{ $seguro->caratulaseguro }}">
+                                            value="{{ $seguro->caratulaseguro }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="provedor">Proveedor</label>
                                         <input type="text" name="provedor" class="form-control"
-                                        value="{{ $seguro->provedor }}">
+                                            value="{{ $seguro->provedor }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="precio">Precio</label>
                                         <input type="text" name="precio" class="form-control"
-                                        value="{{ $seguro->precio }}">
+                                            value="{{ $seguro->precio }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="impuestos">Impuestos</label>
                                         <input type="text" name="impuestos" class="form-control"
-                                        value="{{ $seguro->impuestos }}">
+                                            value="{{ $seguro->impuestos }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="costototal">Costo Total</label>
                                         <input type="text" name="costototal" class="form-control"
-                                        value="{{ $seguro->costototal }}">
+                                            value="{{ $seguro->costototal }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
