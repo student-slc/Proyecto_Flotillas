@@ -12,7 +12,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-danger" href="{{ route('clientes.show', $usuario=$unidade->cliente) }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                     <strong>¡Revise los campos!</strong>
@@ -31,26 +33,29 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label for="seguro">seguro</label>
-                                        <input type="text" name="seguro" class="form-control" value="{{ $unidade->seguro }}">
+                                        <input type="text" name="seguro" class="form-control"
+                                            value="{{ $unidade->seguro }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label for="verificacion">verificacion</label>
-                                        <input type="text" name="verificacion" class="form-control" value="{{ $unidade->verificacion }}">
+                                        <input type="text" name="verificacion" class="form-control"
+                                            value="{{ $unidade->verificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label for="mantenimiento">mantenimiento</label>
-                                        <input type="text" name="mantenimiento" class="form-control" value="{{ $unidade->mantenimiento }}">
+                                        <input type="text" name="mantenimiento" class="form-control"
+                                            value="{{ $unidade->mantenimiento }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label for="cliente">cliente</label>
                                         <input type="text" name="cliente" class="form-control"
-                                        value="{{ $unidade->cliente }}">
+                                            value="{{ $unidade->cliente }}">
                                     </div>
                                 </div>
                                 {{-- ========================================================================= --}}
@@ -58,49 +63,49 @@
                                     <div class="form-group">
                                         <label for="serieunidad">No. Serie</label>
                                         <input type="text" name="serieunidad" class="form-control"
-                                        value="{{ $unidade->serieunidad }}">
+                                            value="{{ $unidade->serieunidad }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="marca">Marca</label>
                                         <input type="text" name="marca" class="form-control"
-                                        value="{{ $unidade->marca }}">
+                                            value="{{ $unidade->marca }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="submarca">Sub Marca</label>
                                         <input type="text" name="submarca" class="form-control"
-                                        value="{{ $unidade->submarca }}">
+                                            value="{{ $unidade->submarca }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="añounidad">Año</label>
-                                        <input type="number" min="1900" max="2099" step="1" type="text" name="añounidad" class="form-control"
-                                        value="{{ $unidade->añounidad }}">
+                                        <input type="number" min="1900" max="2099" step="1" type="text"
+                                            name="añounidad" class="form-control" value="{{ $unidade->añounidad }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="tipounidad">Tipo</label>
                                         <input type="text" name="tipounidad" class="form-control"
-                                        value="{{ $unidade->tipounidad }}">
+                                            value="{{ $unidade->tipounidad }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="razonsocialunidad">Razon Social</label>
                                         <input type="text" name="razonsocialunidad" class="form-control"
-                                        value="{{ $unidade->razonsocialunidad }}">
+                                            value="{{ $unidade->razonsocialunidad }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="placas">Placas</label>
                                         <input type="text" name="placas" class="form-control"
-                                        value="{{ $unidade->placas }}">
+                                            value="{{ $unidade->placas }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

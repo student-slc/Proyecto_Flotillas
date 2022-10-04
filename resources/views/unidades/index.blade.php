@@ -9,6 +9,9 @@
         </div>
         <div class="section-body">
             <div class="row">
+                <div class="card-body">
+                    <a class="btn btn-danger" href="{{ route('clientes.index') }}">Regresar</a>
+                </div>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
@@ -80,19 +83,15 @@
                                             </td>
                                             <td>
                                                 @if ($unidade->operador == 0)
-                                                   {{--  <a class="btn btn-danger"
-                                                        href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">
-                                                        <i class="fas fa-id-card"></i></a> --}}
-                                                        <h5><span class="badge badge-danger"><a class="link-light"
-                                                            href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">Sin Operador</a></span>
-                                                </h5>
+                                                    <h5><span class="badge badge-danger"><a class="link-light"
+                                                                href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">Sin
+                                                                Operador</a></span>
+                                                    </h5>
                                                 @else
-                                                   {{--  <a class="btn btn-success"
-                                                        href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">
-                                                        <i class="fas fa-id-card"></i></a> --}}
-                                                        <h5><span class="badge badge-success"><a class="link-light"
-                                                            href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">Con Operador</a></span>
-                                                </h5>
+                                                    <h5><span class="badge badge-success"><a class="link-light"
+                                                                href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">Con
+                                                                Operador</a></span>
+                                                    </h5>
                                                 @endif
                                             </td>
                                             <td>

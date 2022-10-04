@@ -12,6 +12,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                            <a class="btn btn-danger"
+                                href="{{ route('operadores.show', $unidad = $operadore->unidad) }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
 
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
@@ -31,7 +35,7 @@
                                     <div class="form-group">
                                         <label for="unidad">unidad</label>
                                         <input type="text" name="unidad" class="form-control"
-                                        value="{{ $operadore->unidad }}">
+                                            value="{{ $operadore->unidad }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

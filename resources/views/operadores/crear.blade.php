@@ -12,7 +12,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-danger" href="{{ route('operadores.show', $unidad) }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                     <strong>¡Revise los campos!</strong>
@@ -24,7 +26,6 @@
                                     </button>
                                 </div>
                             @endif
-
                             <form action="{{ route('operadores.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
@@ -50,7 +51,8 @@
                                         <div class="form-group">
                                             <label for="tipolicencia">Tipo de Licencia</label>
                                             <select name="tipolicencia" id="tipolicencia" class=" selectsearch">
-                                                <option disabled selected value="">Selecciona el Tipo de Licencia</option>
+                                                <option disabled selected value="">Selecciona el Tipo de Licencia
+                                                </option>
                                                 <option value="Federal">Federal</option>
                                                 <option value="Estatal">Estatal</option>
                                                 {{-- <option value="No Pagado">No Pagado</option>
@@ -74,7 +76,7 @@
                                         <div class="form-group">
                                             <label for="unidad">unidad</label>
                                             <input type="text" name="unidad" class="form-control"
-                                            value="{{ $unidad }}">
+                                                value="{{ $unidad }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

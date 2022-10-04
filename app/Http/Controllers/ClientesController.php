@@ -17,10 +17,10 @@ class ClientesController extends Controller
      */
     public function index()
     {
-         //Con paginación
-         $clientes = Cliente::paginate(5);
-         return view('clientes.index',compact('clientes'));
-         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
+        //Con paginación
+        $clientes = Cliente::paginate(5);
+        return view('clientes.index', compact('clientes'));
+        //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
 
     /**
@@ -53,8 +53,14 @@ class ClientesController extends Controller
      */
     public function show($usuario)
     {
-        $unidades=Unidade::where('cliente', '=', $usuario)->paginate(5);
-        return view('unidades.index', compact('unidades','usuario'));
+        $uni = Unidade::all();
+        foreach ($uni as $unis) {
+            if ($unis->serieunidad == $usuario) {
+                $usuario = $unis->cliente;
+            }
+        }
+        $unidades = Unidade::where('cliente', '=', $usuario)->paginate(5);
+        return view('unidades.index', compact('unidades', 'usuario'));
     }
 
     /**
@@ -65,7 +71,7 @@ class ClientesController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        return view('clientes.editar',compact('cliente'));
+        return view('clientes.editar', compact('cliente'));
     }
 
     /**

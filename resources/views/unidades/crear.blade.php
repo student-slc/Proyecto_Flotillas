@@ -12,7 +12,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-danger" href="{{ route('clientes.show', $usuario) }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                     <strong>¡Revise los campos!</strong>
@@ -38,20 +40,22 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="verificacion">verificacion</label>
-                                            <input type="text" name="verificacion" class="form-control" value="Sin Verificación">
+                                            <input type="text" name="verificacion" class="form-control"
+                                                value="Sin Verificación">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="mantenimiento">mantenimiento</label>
-                                            <input type="text" name="mantenimiento" class="form-control" value="Sin Mantenimiento">
+                                            <input type="text" name="mantenimiento" class="form-control"
+                                                value="Sin Mantenimiento">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="cliente">cliente</label>
                                             <input type="text" name="cliente" class="form-control"
-                                            value="{{ $usuario }}">
+                                                value="{{ $usuario }}">
                                         </div>
                                     </div>
                                     {{-- ========================================================================= --}}
@@ -76,7 +80,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="añounidad">Año</label>
-                                            <input type="number" min="1900" max="2099" step="1" value="2022" name="añounidad" class="form-control">
+                                            <input type="number" min="1900" max="2099" step="1"
+                                                value="2022" name="añounidad" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

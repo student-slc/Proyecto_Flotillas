@@ -9,6 +9,9 @@ Operadores
         </div>
         <div class="section-body">
             <div class="row">
+                <div class="card-body">
+                    <a class="btn btn-danger" href="{{ route('clientes.show', $usuario=$unidad) }}">Regresar</a>
+                </div>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
