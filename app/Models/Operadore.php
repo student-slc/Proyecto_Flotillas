@@ -15,7 +15,7 @@ class Operadore extends Model
         "tipolicencia",
         "fechavencimientomedico",
         "fechavencimientolicencia",
-        "unidad",
+        "cliente",
         "licencia",
         "curso",
         "examenmedico",

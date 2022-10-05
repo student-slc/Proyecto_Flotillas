@@ -31,9 +31,9 @@ class OperadoresController extends Controller
     {
         /* return view('operadores.crear',compact('unidad')); */
     }
-    public function crear($unidad)
+    public function crear($usuario)
     {
-        return view('operadores.crear', compact('unidad'));
+        return view('operadores.crear', compact('usuario'));
     }
 
     /**
@@ -51,7 +51,7 @@ class OperadoresController extends Controller
             "tipolicencia" => 'required',
             "fechavencimientomedico" => 'required',
             "fechavencimientolicencia" => 'required',
-            "unidad" => 'required',
+            "cliente" => 'required',
             "licencia" => 'required',
             "curso" => 'required',
             "examenmedico" => 'required'
@@ -89,7 +89,7 @@ class OperadoresController extends Controller
             $examenmedico = $destino_p12 . $filename_p12;
         }
         /* ======================================================== */
-        $unidad = $request->unidad;
+        $usuario = $request->cliente;
         Operadore::create([
             'nombreoperador' => $request['nombreoperador'],
             'fechanacimiento' => $request['fechanacimiento'],
@@ -97,13 +97,12 @@ class OperadoresController extends Controller
             'tipolicencia' => $request['tipolicencia'],
             'fechavencimientomedico' => $request['fechavencimientomedico'],
             'fechavencimientolicencia' => $request['fechavencimientolicencia'],
-            'unidad' => $request['unidad'],
+            'cliente' => $request['cliente'],
             'licencia' => $licencia,
             'curso' => $curso,
             'examenmedico' => $examenmedico
         ]);
-        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["operador" => "1"]);
-        return redirect()->route('operadores.show', $unidad);
+        return redirect()->route('operadores.show', $usuario);
     }
 
     /**
@@ -112,11 +111,10 @@ class OperadoresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($unidad)
+    public function show($usuario)
     {
-        $numero = Operadore::where('unidad', '=', $unidad)->count();
-        $operadores = Operadore::where('unidad', '=', $unidad)->paginate(5);
-        return view('operadores.index', compact('operadores', 'numero', 'unidad'));
+        $operadores = Operadore::where('cliente', '=', $usuario)->paginate(5);
+        return view('operadores.index', compact('operadores', 'usuario'));
     }
 
     /**
@@ -146,12 +144,12 @@ class OperadoresController extends Controller
             "tipolicencia" => 'required',
             "fechavencimientomedico" => 'required',
             "fechavencimientolicencia" => 'required',
-            "unidad" => 'required',
+            "cliente" => 'required',
         ]);
         /* CARGAR DOCUMENTOS */
-        $licencia = 'sin evidencia';
-        $curso = 'sin evidencia';
-        $examenmedico = 'sin evidencia';
+        $licencia = $request->licenciaruta;
+        $curso = $request->cursoruta;
+        $examenmedico = $request->examenmedicoruta;
         $ruta = "img/evidencia";
         if (is_dir($ruta)) {
         } else {
@@ -184,7 +182,7 @@ class OperadoresController extends Controller
             $examenmedico = $destino_p12 . $filename_p12;
         }
         /* ======================================================== */
-        $unidad = $request->unidad;
+        $usuario = $request->cliente;
         $operadore->update([
             'nombreoperador' => $request['nombreoperador'],
             'fechanacimiento' => $request['fechanacimiento'],
@@ -192,12 +190,12 @@ class OperadoresController extends Controller
             'tipolicencia' => $request['tipolicencia'],
             'fechavencimientomedico' => $request['fechavencimientomedico'],
             'fechavencimientolicencia' => $request['fechavencimientolicencia'],
-            'unidad' => $request['unidad'],
+            'cliente' => $request['cliente'],
             'licencia' => $licencia,
             'curso' => $curso,
             'examenmedico' => $examenmedico
         ]);
-        return redirect()->route('operadores.show', $unidad);
+        return redirect()->route('operadores.show', $usuario);
     }
 
     /**
@@ -208,9 +206,11 @@ class OperadoresController extends Controller
      */
     public function destroy(Operadore $operadore)
     {
-        $unidad = $operadore->unidad;
+        $usuario = $operadore->cliente;
+        unlink($operadore->licencia);
+        unlink($operadore->curso);
+        unlink($operadore->examenmedico);
         $operadore->delete();
-        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["operador" => "0"]);
-        return redirect()->route('operadores.show', $unidad);
+        return redirect()->route('operadores.show', $usuario);
     }
 }

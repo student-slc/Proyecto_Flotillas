@@ -30,7 +30,7 @@ class OperadoresRequest extends FormRequest
             "tipolicencia" => 'required',
             "fechavencimientomedico" => 'required',
             "fechavencimientolicencia" => 'required',
-            "unidad" => 'required',
+            "cliente" => 'required',
             "licencia" => 'required',
             "curso" => 'required',
             "examenmedico" => 'required'

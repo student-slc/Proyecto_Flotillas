@@ -20,7 +20,6 @@ class Unidade extends Model
         'seguro',
         'mantenimiento',
         'verificacion',
-        'cliente',
-        'operador'
+        'cliente'
     ];
 }

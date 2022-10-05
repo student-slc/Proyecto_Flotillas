@@ -19,6 +19,7 @@
                                     <th style="color:#fff;">Nombre Cliente</th>
                                     <th style="color:#fff;">Información completa</th>
                                     <th style="color:#fff;">Unidades</th>
+                                    <th style="color:#fff;">Operadores</th>
                                     <th style="color:#fff;">Status de Servicio</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
@@ -38,6 +39,12 @@
                                             <td>
                                                 <a class="btn btn-dark"
                                                     href="{{ route('clientes.show', $usuario = $cliente->nombrecompleto) }}">
+                                                    <i class="fas fa-bus"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-dark"
+                                                    href="{{ route('operadores.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-bus"></i>
                                                 </a>
                                             </td>

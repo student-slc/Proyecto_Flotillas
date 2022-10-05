@@ -24,7 +24,6 @@
                                     <th style="color:#fff;">Seguro</th>
                                     <th style="color:#fff;">Verificación</th>
                                     <th style="color:#fff;">Mantenimiento</th>
-                                    <th style="color:#fff;">Operador</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -76,19 +75,6 @@
                                                 @if ($unidade->mantenimiento == 'Con Mantenimiento')
                                                     <h5><span class="badge badge-success"><a class="link-light"
                                                                 href="{{ route('unidades.show', $unidade->id) }}">{{ $unidade->mantenimiento }}</a></span>
-                                                    </h5>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($unidade->operador == 0)
-                                                    <h5><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">Sin
-                                                                Operador</a></span>
-                                                    </h5>
-                                                @else
-                                                    <h5><span class="badge badge-success"><a class="link-light"
-                                                                href="{{ route('operadores.show', $unidad = $unidade->serieunidad) }}">Con
-                                                                Operador</a></span>
                                                     </h5>
                                                 @endif
                                             </td>

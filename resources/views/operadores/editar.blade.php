@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-danger"
-                                href="{{ route('operadores.show', $unidad = $operadore->unidad) }}">Regresar</a>
+                                href="{{ route('operadores.show', $usuario = $operadore->cliente) }}">Regresar</a>
                         </div>
                         <div class="card-body">
 
@@ -33,9 +33,9 @@
                                 @method('PUT')
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
-                                        <label for="unidad">unidad</label>
-                                        <input type="text" name="unidad" class="form-control"
-                                            value="{{ $operadore->unidad }}">
+                                        <label for="cliente">cliente</label>
+                                        <input type="text" name="cliente" class="form-control"
+                                            value="{{ $operadore->cliente }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

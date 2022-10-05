@@ -12,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-danger" href="{{ route('operadores.show', $unidad) }}">Regresar</a>
+                            <a class="btn btn-danger" href="{{ route('operadores.show', $usuario) }}">Regresar</a>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -74,9 +74,9 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
-                                            <label for="unidad">unidad</label>
-                                            <input type="text" name="unidad" class="form-control"
-                                                value="{{ $unidad }}">
+                                            <label for="cliente">cliente</label>
+                                            <input type="text" name="cliente" class="form-control"
+                                                value="{{ $usuario }}">
                                         </div>
                                     </div>
                                     <br>
