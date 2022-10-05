@@ -108,6 +108,31 @@
                             {{ $operadore->unidad }}
                         </li>
                         <br>
+                        <b>Licencia:</b>
+                        <li class="list-group-item">
+                            <object type="application/pdf" data="{{ asset($operadore->licencia) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
+                        </li>
+                        <br>
+                        <b>Certificación:</b>
+                        <li class="list-group-item">
+                            <object type="application/pdf" data="{{ asset($operadore->curso) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
+                        </li>
+                        <br>
+                        <b>Examen Medico:</b>
+                        <li class="list-group-item">
+                            <object type="application/pdf" data="{{ asset($operadore->examenmedico) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
+                        </li>
+                        <br>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

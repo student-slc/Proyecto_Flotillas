@@ -30,7 +30,10 @@ class OperadoresRequest extends FormRequest
             "tipolicencia" => 'required',
             "fechavencimientomedico" => 'required',
             "fechavencimientolicencia" => 'required',
-            "unidad" => 'required'
+            "unidad" => 'required',
+            "licencia" => 'required',
+            "curso" => 'required',
+            "examenmedico" => 'required'
         ];
     }
     public function messages()
@@ -42,6 +45,9 @@ class OperadoresRequest extends FormRequest
             "tipolicencia.required" => 'El Tipo de Licencia es Obligatorio',
             "fechavencimientomedico.required" => 'La Fecha de Vencimineto Medico es Obligatoria',
             "fechavencimientolicencia.required" => 'La Fecha de Vencimineto DE Licenia es Obligatoria',
+            "licencia.required" => 'El Doc de la Licenia es Obligatoria',
+            "curso.required" => 'El Doc del Curso es Obligatoria',
+            "examenmedico.required" => 'El Doc del Examen Medico es Obligatoria',
         ];
     }
 }

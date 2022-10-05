@@ -28,7 +28,7 @@
                                     </button>
                                 </div>
                             @endif
-                            <form action="{{ route('operadores.update', $operadore->id) }}" method="POST">
+                            <form action="{{ route('operadores.update', $operadore->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
@@ -93,19 +93,98 @@
                                             value="{{ $operadore->fechavencimientomedico }}">
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
-                                        <label for="id_flotilla">Flotilla</label>
-                                        <select name="id_flotilla" id="id_flotilla" class=" selectsearch">
-                                            <option disabled selected value="">Selecciona la Flotilla</option>
-                                            @if ($operadore->id_flotilla == 'Flotilla 1')
-                                                <option selected value="Flotilla 1">Flotilla 1</option>
-                                            @else
-                                                <option value="Flotilla 1">Flotilla 1</option>
-                                            @endif
-                                        </select>
+                                        <label for="unidad">unidad</label>
+                                        <input type="text" name="unidad" class="form-control"
+                                            value="{{ $operadore->unidad }}">
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="licenciaruta">licenciaruta</label>
+                                        <input type="text" name="licenciaruta" class="form-control"
+                                            value="{{ $operadore->licencia }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="cursoruta">cursoruta</label>
+                                        <input type="text" name="cursoruta" class="form-control"
+                                            value="{{ $operadore->curso }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="examenmedicoruta">examenmedicoruta</label>
+                                        <input type="text" name="examenmedicoruta" class="form-control"
+                                            value="{{ $operadore->examenmedico }}">
+                                    </div>
+                                </div>
+                                <br>
+                                {{-- ==================================================== SUBIR DOCUMENTOS ======================== --}}
+                                <div class="form">
+                                    <div class="grid">
+                                        {{-- LICENCIA --}}
+                                        <div class="form-element">
+                                            <div class="from-group">
+                                                <input name="licencia" type="file" id="licencia">
+                                                <label for="licencia" id="licencia-preview">
+                                                    <object type="application/pdf" data="{{ asset($operadore->licencia) }}"
+                                                        style="width: 200px; height: 250px;">
+                                                        ERROR (no puede mostrarse el objeto)
+                                                    </object>
+                                                    <div>
+                                                        <span>+</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form">
+                                                <label>Licencia</label>
+                                            </div>
+                                        </div>
+                                        {{-- CERTIFICADO --}}
+                                        <div class="form-element">
+                                            <div class="from-group">
+                                                <input name="curso" type="file" id="curso">
+                                                <label for="curso" id="curso-preview">
+                                                    <object type="application/pdf" data="{{ asset($operadore->curso) }}"
+                                                        style="width: 200px; height: 250px;">
+                                                        ERROR (no puede mostrarse el objeto)
+                                                    </object>
+                                                    <div>
+                                                        <span>+</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="from">
+                                                <label>Certificado</label>
+                                            </div>
+                                        </div>
+                                        {{-- EXAMEN MEDICO --}}
+                                        <div class="form-element">
+                                            <div class="from-group">
+                                                <input name="examenmedico" type="file" id="examenmedico">
+                                                <label for="examenmedico" id="examenmedico-preview">
+                                                    <object type="application/pdf"
+                                                        data="{{ asset($operadore->examenmedico) }}"
+                                                        style="width: 200px; height: 250px;">
+                                                        ERROR (no puede mostrarse el objeto)
+                                                    </object>
+                                                    <div>
+                                                        <span>+</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="form">
+                                                <label>Examen Medico</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                </div>
+                                {{-- ======================================================== --}}
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
@@ -116,4 +195,21 @@
             </div>
         </div>
     </section>
+    <script>
+        //================================================ //BUG: IMAGE PREVIEW ========================================
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview object").data = url;
+            });
+        }
+        previewBeforeUpload("licencia");
+        previewBeforeUpload("curso");
+        previewBeforeUpload("examenmedico");
+    </script>
 @endsection

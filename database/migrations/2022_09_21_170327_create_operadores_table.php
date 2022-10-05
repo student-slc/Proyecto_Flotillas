@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('fechavencimientomedico');
             $table->string('fechavencimientolicencia');
             $table->string('unidad');
+            $table->string('licencia');
+            $table->string('curso');
+            $table->string('examenmedico');
             $table->timestamps();
         });
     }
