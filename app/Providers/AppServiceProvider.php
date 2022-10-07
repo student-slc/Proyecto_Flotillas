@@ -9,6 +9,7 @@ use App\Models\Unidade;
 use App\Models\Operadore;
 use App\Models\Seguro;
 use App\Models\Verificacione;
+use App\Models\Mantenimiento;
 
 use App\Observers\ClienteObserver;
 use App\Observers\FumigacioneObserver;
@@ -17,6 +18,8 @@ use App\Observers\UnidadeObserver;
 use App\Observers\OperadoreObserver;
 use App\Observers\SeguroObserver;
 use App\Observers\VerificacioneObserver;
+use App\Observers\MantenimientoObserver;
+
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -52,9 +55,6 @@ class AppServiceProvider extends ServiceProvider
         Fumigacione::observe(FumigacioneObserver::class);
         Seguro::observe(SeguroObserver::class);
         Verificacione::observe(VerificacioneObserver::class);
-
-
-
-
+        Mantenimiento::observe(MantenimientoObserver::class);
     }
 }

@@ -69,12 +69,12 @@
                                             <td>
                                                 @if ($unidade->mantenimiento == 'Sin Mantenimiento')
                                                     <h5><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('unidades.show', $unidade->id) }}">{{ $unidade->mantenimiento }}</a></span>
+                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->mantenimiento }}</a></span>
                                                     </h5>
                                                 @endif
                                                 @if ($unidade->mantenimiento == 'Con Mantenimiento')
                                                     <h5><span class="badge badge-success"><a class="link-light"
-                                                                href="{{ route('unidades.show', $unidade->id) }}">{{ $unidade->mantenimiento }}</a></span>
+                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->mantenimiento }}</a></span>
                                                     </h5>
                                                 @endif
                                             </td>
