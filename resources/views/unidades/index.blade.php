@@ -57,12 +57,12 @@
                                             <td>
                                                 @if ($unidade->verificacion == 'Sin Verificación')
                                                     <h5><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('unidades.show', $unidade->id) }}">{{ $unidade->verificacion }}</a></span>
+                                                                href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->verificacion }}</a></span>
                                                     </h5>
                                                 @endif
                                                 @if ($unidade->verificacion == 'Con Verificación')
                                                     <h5><span class="badge badge-success"><a class="link-light"
-                                                                href="{{ route('unidades.show', $unidade->id) }}">{{ $unidade->verificacion }}</a></span>
+                                                                href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->verificacion }}</a></span>
                                                     </h5>
                                                 @endif
                                             </td>

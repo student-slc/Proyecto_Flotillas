@@ -45,7 +45,7 @@
                                             <td>
                                                 <a class="btn btn-dark"
                                                     href="{{ route('operadores.show', $usuario = $cliente->nombrecompleto) }}">
-                                                    <i class="fas fa-bus"></i>
+                                                    <i class="fas fa-address-card"></i>
                                                 </a>
                                             </td>
                                             <td>

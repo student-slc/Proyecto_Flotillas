@@ -8,5 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Verificacione extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable=[
+        'id_unidad',
+        'fechavencimiento',
+        'tipoverificacion',
+        'subtipoverificacion',
+        'ultimaverificacion',
+        'caratulaverificacion',
+    ];
 }

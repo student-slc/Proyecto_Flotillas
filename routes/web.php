@@ -11,6 +11,7 @@ use App\Http\Controllers\OperadoresController;
 use App\Http\Controllers\FumigadoresController;
 use App\Http\Controllers\FumigacionesController;
 use App\Http\Controllers\SegurosController;
+use App\Http\Controllers\VerificacionesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,7 @@ Route::resource('operadores', OperadoresController::class);
 Route::resource('fumigadores', FumigadoresController::class);
 Route::resource('fumigaciones', FumigacionesController::class);
 Route::resource('seguros', SegurosController::class);
+Route::resource('verificaciones', VerificacionesController::class);
 Route::resource('logs', ObservadorController::class);
 });
 
@@ -52,3 +54,5 @@ Route::get('/clientes/unidades/crear/{usuario}','App\Http\Controllers\UnidadesCo
 ///--------------------------------------OPERADORES--------------------------------------------------------------------
 Route::get('/clientes/unidades/operadores/crear/{usuario}','App\Http\Controllers\OperadoresController@crear')->name('operadores.crear');
 
+///--------------------------------------CREAR VERIFICACIÓN--------------------------------------------------------------------
+Route::get('/clientes/unidades/verificaciones/crear/{unidad}','App\Http\Controllers\VerificacionesController@crear')->name('verificaciones.crear');
