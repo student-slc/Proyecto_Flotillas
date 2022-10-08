@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UnidadesRequest;
+use App\Models\Mantenimiento;
 use App\Models\Seguro;
 use App\Models\Unidade;
+use App\Models\Verificacione;
 use Illuminate\Http\Request;
 
 class UnidadesController extends Controller
@@ -82,7 +84,11 @@ class UnidadesController extends Controller
     public function update(UnidadesRequest $request, Unidade $unidade)
     {
         $usuario=$unidade->cliente;
+        $unidad=$unidade->serieunidad;
         $unidade->update($request->validated());
+        $cambio=Verificacione::where('id_unidad', '=', $unidad)->update(["id_unidad"=>$request->serieunidad]);
+        $cambio=Seguro::where('id_unidad', '=', $unidad)->update(["id_unidad"=>$request->serieunidad]);
+        $cambio=Mantenimiento::where('id_unidad', '=', $unidad)->update(["id_unidad"=>$request->serieunidad]);
         return redirect()->route('clientes.show',$usuario);
     }
 

@@ -83,7 +83,10 @@ class ClientesController extends Controller
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
+        $usuario=$cliente->nombrecompleto;
         $cliente->update($request->validated());
+        $cambio=Operadore::where('cliente', '=', $usuario)->update(["cliente"=>$request->nombrecompleto]);
+        $cambio=Unidade::where('cliente', '=', $usuario)->update(["cliente"=>$request->nombrecompleto]);
         return redirect()->route('clientes.index');
     }
 
