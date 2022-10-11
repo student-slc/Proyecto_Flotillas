@@ -36,8 +36,8 @@
                                             <td>{{ $unidade->serieunidad }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#{{ $a }}">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$('#{{ $a }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
@@ -120,8 +120,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
                                 {{ $unidade->serieunidad }}</b></h5>
-                        <button type="button" class="close" data-dismiss="modal" class="close" aria-label="Close"><span
-                                aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
                     </div>
                     <div class="modal-body">
                         <b>Marca:</b>
@@ -166,7 +165,8 @@
                         <br>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger"
+                            onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
                     </div>
                 </div>
             </div>

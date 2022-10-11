@@ -30,8 +30,8 @@
                                             <td>{{ $operadore->nombreoperador }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$('#{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
@@ -72,8 +72,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
                                 {{ $operadore->nombreoperador }}</b></h5>
-                        <button type="button" class="close" data-dismiss="modal" class="close" aria-label="Close"><span
-                                aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close"
+                            onclick="$('#{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
                     </div>
                     <div class="modal-body">
                         <b>Fecha Nacimiento:</b>
@@ -133,7 +133,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger"
+                            onclick="$('#{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">Cerrar</button>
                     </div>
                 </div>
             </div>

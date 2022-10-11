@@ -30,8 +30,7 @@
                                             <td>{{ $cliente->nombrecompleto }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-primary" {{-- data-toggle="modal"
-                                                    data-target="#{{ str_replace(' ', '', $cliente->nombrecompleto) }}" --}}
+                                                <button type="button" class="btn btn-primary"
                                                     onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                     Detalles
                                                 </button>
@@ -110,7 +109,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
                                 {{ $cliente->nombrecompleto }}</b></h5>
-                        <button type="button" class="btn-close" onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
+                        <button type="button" class="btn-close"
+                        onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
                     </div>
                     <div class="modal-body">
                         <h5 style="text-align: center">Datos de Personales</h5>
@@ -176,7 +176,6 @@
                 </div>
             </div>
         </div>
-
     @endforeach
     {{-- =========================================== --}}
 @endsection

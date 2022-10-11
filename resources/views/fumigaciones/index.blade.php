@@ -17,7 +17,7 @@
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Cliente</th>
-                                    <th style="color:#fff;">Informaciòn</th>
+                                    <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
@@ -31,8 +31,8 @@
                                             <td>{{ $fumigacione->id_cliente }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#{{ $a }}">
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$('#{{ $a }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
@@ -88,9 +88,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>
-                                Informacion de la Fumigaciòn</b></h5>
-                        <button type="button" class="close" data-dismiss="modal" class="close" aria-label="Close"><span
-                                aria-hidden="true">&times;</span>
+                                Informacion de la Fumigación</b></h5>
+                        <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
                     </div>
                     <div class="modal-body">
                         <b>Cliente:</b>
@@ -136,7 +135,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
                     </div>
                 </div>
             </div>
