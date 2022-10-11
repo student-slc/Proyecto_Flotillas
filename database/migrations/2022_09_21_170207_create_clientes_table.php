@@ -21,6 +21,15 @@ return new class extends Migration
             $table->string('statuspago');
             $table->string('telefono');
             $table->string('correo');
+
+            $table->string('colonia');
+            $table->string('ciudad');
+            $table->string('municipio');
+            $table->string('estado');
+            $table->string('codigopostal');
+            $table->string('rfc');
+            $table->string('numero');
+            $table->string('observaciones');
             $table->timestamps();
         });
     }

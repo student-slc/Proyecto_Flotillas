@@ -30,8 +30,9 @@
                                             <td>{{ $cliente->nombrecompleto }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                    data-target="#{{ str_replace(' ', '', $cliente->nombrecompleto) }}">
+                                                <button type="button" class="btn btn-primary" {{-- data-toggle="modal"
+                                                    data-target="#{{ str_replace(' ', '', $cliente->nombrecompleto) }}" --}}
+                                                    onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
@@ -98,6 +99,8 @@
             </div>
         </div>
     </section>
+@endsection
+@section('modal')
     {{-- MODAL --}}
     @foreach ($clientes as $cliente)
         <div class="modal fade" id="{{ str_replace(' ', '', $cliente->nombrecompleto) }}" tabindex="-1" role="dialog"
@@ -107,10 +110,10 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
                                 {{ $cliente->nombrecompleto }}</b></h5>
-                        <button type="button" class="close" data-dismiss="modal" class="close"
-                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                        <button type="button" class="btn-close" onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
                     </div>
                     <div class="modal-body">
+                        <h5 style="text-align: center">Datos de Personales</h5>
                         <b>Telefono:</b>
                         <li class="list-group-item">
                             {{ $cliente->telefono }}
@@ -126,18 +129,54 @@
                             {{ $cliente->direccionfisica }}
                         </li>
                         <br>
+                        <b>Municipio:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->municipio }}
+                        </li>
+                        <br>
+                        <b>Clonia:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->colonia }}
+                        </li>
+                        <br>
+                        <b>Estado:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->estado }}
+                        </li>
+                        <br>
+                        <b>CP:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->codigopostal }}
+                        </li>
+                        <br>
+                        <h5 style="text-align: center">Datos de Facturación</h5>
+                        <b>RFC:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->rfc }}
+                        </li>
+                        <br>
                         <b>Razon Social:</b>
                         <li class="list-group-item">
                             {{ $cliente->razonsocial }}
                         </li>
                         <br>
+                        <b>Numero:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->numero }}
+                        </li>
+                        <br>
+                        <b>Observaciones:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->observaciones }}
+                        </li>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">Cerrar</button>
                     </div>
                 </div>
             </div>
         </div>
+
     @endforeach
     {{-- =========================================== --}}
 @endsection

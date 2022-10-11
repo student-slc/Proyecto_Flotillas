@@ -14,6 +14,15 @@ class Cliente extends Model
         'telefono',
         'direccionfisica',
         'correo',
-        'statuspago'
+        'statuspago',
+
+        'colonia',
+        'ciudad',
+        'municipio',
+        'estado',
+        'codigopostal',
+        'rfc',
+        'numero',
+        'observaciones'
     ];
 }
