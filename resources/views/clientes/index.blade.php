@@ -71,18 +71,12 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="{{ route('clientes.destroy', $cliente->id) }}"
-                                                    method="POST">
-                                                    <a class="btn btn-info"
-                                                        href="{{ route('clientes.edit', $cliente->id) }}">
-                                                        <i class="fas fa-edit"></i></a>
-
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+                                                <a class="btn btn-info" href="{{ route('clientes.edit', $cliente->id) }}">
+                                                    <i class="fas fa-edit"></i></a>
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -100,7 +94,7 @@
     </section>
 @endsection
 @section('modal')
-    {{-- MODAL --}}
+    {{-- ===================== MODAL_DETALLES ===================== --}}
     @foreach ($clientes as $cliente)
         <div class="modal fade" id="{{ str_replace(' ', '', $cliente->nombrecompleto) }}" tabindex="-1" role="dialog"
             aria-labelledby="ModalDetallesTitle" aria-hidden="true">
@@ -110,7 +104,7 @@
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
                                 {{ $cliente->nombrecompleto }}</b></h5>
                         <button type="button" class="btn-close"
-                        onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
+                            onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
                     </div>
                     <div class="modal-body">
                         <h5 style="text-align: center">Datos de Personales</h5>
@@ -171,8 +165,43 @@
                         </li>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">Cerrar</button>
+                        <button type="button" class="btn btn-danger"
+                            onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">Cerrar</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        {{-- ========================================================== --}}
+        {{-- ===================== MODAL_ELIMINAR ===================== --}}
+        <div class="modal fade" id="delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}" tabindex="-1"
+            role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
+                                Eliminar al Cliente
+                                {{ $cliente->nombrecompleto }}?</b></h5>
+                        <button type="button" class="btn-close"
+                            onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('hide')">
+                                            NO</button>
+                                        <button type="submit" class="btn btn-success">
+                                            SI</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

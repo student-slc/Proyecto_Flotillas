@@ -79,17 +79,12 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="{{ route('unidades.destroy', $unidade->id) }}"
-                                                    method="POST">
-                                                    <a class="btn btn-info"
-                                                        href="{{ route('unidades.edit', $unidade->id) }}">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+                                                <a class="btn btn-info" href="{{ route('unidades.edit', $unidade->id) }}">
+                                                    <i class="fas fa-edit"></i></a>
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="$('#delete{{ $a }}').modal('show')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                         @php
@@ -168,6 +163,38 @@
                         <button type="button" class="btn btn-danger"
                             onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        {{-- ===================== MODAL_ELIMINAR ===================== --}}
+        <div class="modal fade" id="delete{{ $a }}" tabindex="-1" role="dialog"
+            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
+                                Eliminar la Unidad
+                                {{ $unidade->serieunidad }}?</b></h5>
+                        <button type="button" class="btn-close" onclick="$('#delete{{ $a }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('unidades.destroy', $unidade->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#delete{{ $a }}').modal('hide')">
+                                            NO</button>
+                                        <button type="submit" class="btn btn-success">
+                                            SI</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

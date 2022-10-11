@@ -34,17 +34,13 @@
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <form action="{{ route('fumigadores.destroy', $fumigadore->id) }}"
-                                                    method="POST">
-                                                    <a class="btn btn-info"
-                                                        href="{{ route('fumigadores.edit', $fumigadore->id) }}">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
+                                                <a class="btn btn-info"
+                                                    href="{{ route('fumigadores.edit', $fumigadore->id) }}">
+                                                    <i class="fas fa-edit"></i></a>
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="$('#delete{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}').modal('show')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -88,6 +84,39 @@
                         <button type="button" class="btn btn-danger"
                             onclick="$('#{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}').modal('hide')">Cerrar</button>
                     </div>
+                </div>
+            </div>
+        </div>
+        {{-- ===================== MODAL_ELIMINAR ===================== --}}
+        <div class="modal fade" id="delete{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}" tabindex="-1"
+            role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
+                                Eliminar al Fumigador
+                                {{ $fumigadore->nombrecompleto }}?</b></h5>
+                        <button type="button" class="btn-close"
+                            onclick="$('#delete{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('fumigadores.destroy', $fumigadore->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#delete{{ str_replace(' ', '', $fumigadore->nombrecompleto) }}').modal('hide')">
+                                            NO</button>
+                                        <button type="submit" class="btn btn-success">
+                                            SI</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
