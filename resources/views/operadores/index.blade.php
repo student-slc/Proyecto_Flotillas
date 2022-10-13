@@ -21,6 +21,8 @@
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Operador</th>
                                     <th style="color:#fff;">Informacion</th>
+                                    <th style="color:#fff;">Estado Vencimiento Medico</th>
+                                    <th style="color:#fff;">Estado Vencimiento Licencia</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -36,6 +38,226 @@
                                                 </button>
                                             </td>
                                             {{-- ====================== --}}
+                                            <td>
+                                                {{-- ===================== CALCULO_DE_FECHAS_MEDICO ===================== --}}
+                                                @php
+                                                    /* FECHA LICENCIA */
+                                                    $vencimiento_dia = substr($operadore->fechavencimientomedico, 8, 2);
+                                                    $vencimiento_mes = substr($operadore->fechavencimientomedico, 5, 2);
+                                                    $vencimiento_año = substr($operadore->fechavencimientomedico, 0, 4);
+                                                    /* FECHA ACTUAL */
+                                                    $año_actual = date('Y');
+                                                    $mes_actual = date('n');
+                                                    $dia_actual = date('d');
+                                                    /* OBTIENE LA DIFERENCIA DE AÑO ENTRE FECHA ACTUAL Y FECHA A VENCER */
+                                                    $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
+                                                    /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
+                                                    $uno = 'nulo';
+                                                    if ($diferencia_año >= 1) {
+                                                        $meses = $diferencia_año * 12 + 12;
+                                                        $operacion_1 = $meses - (int) $mes_actual;
+                                                        $operacion_2 = 12 - (int) $vencimiento_mes;
+                                                        $operacion_3 = $operacion_1 - $operacion_2;
+                                                        $meses = $operacion_3;
+                                                    } else {
+                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                    }
+                                                    if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
+                                                        $uno = 'uno';
+                                                    }
+                                                    /* CALCULO DE DIAS EXACTOS */
+                                                    $dias_exactos = 0;
+                                                    $contador_1 = 0;
+                                                    $contador_2 = 0;
+                                                    $cuenta_mes = $mes_actual;
+                                                    $operacion_1 = 0;
+                                                    $mes_contador = 0;
+                                                    for ($i = 0; $i <= $meses; $i++) {
+                                                        if ($uno == 'uno') {
+                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                            $i = $meses + 1;
+                                                        } else {
+                                                            if ($contador_1 == 0) {
+                                                                $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                $dias_exactos = $dias_exactos + $operacion_2;
+                                                                $contador_1 = 1;
+                                                            } else {
+                                                                if ($i == $meses) {
+                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                } else {
+                                                                    $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                    $mes_contador = $mes_contador + 1;
+                                                                }
+                                                            }
+                                                            if ($cuenta_mes == 12) {
+                                                                $contador_2 = $contador_2 + 1;
+                                                                $cuenta_mes = 1;
+                                                            } else {
+                                                                $cuenta_mes = $cuenta_mes + 1;
+                                                            }
+                                                        }
+                                                    }
+                                                    /* CALCULO DE MESES EXACTOS */
+                                                    $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                    $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                    $calcular = $direstantes + (int) $vencimiento_dia;
+                                                    $dias_resto = $calcular;
+                                                    $opc = 2;
+                                                    for ($i = 0; $i <= $opc; $i++) {
+                                                        if ($calcular >= 30) {
+                                                            $mes_contador = $mes_contador + 1;
+                                                            $calcular = $calcular - 29;
+                                                        }
+                                                    }
+                                                @endphp
+                                                {{-- ============================================================== --}}
+                                                {{-- ========================== IF PARA MOSTRAR =================== --}}
+                                                <h5>
+                                                    @if ($mes_contador >= 9)
+                                                        <span class="badge badge-primary">
+                                                            El Medico expira en:
+                                                            {{ $mes_contador }} meses
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                        <span class="badge badge-success">
+                                                            El Medico expira en:
+                                                            {{ $mes_contador }} meses
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                        <span class="badge badge-warning">
+                                                            El Medico expira en:
+                                                            {{ $mes_contador }} meses
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 1 && $uno == 'nulo')
+                                                        <span class="badge badge-danger">
+                                                            El Medico expira en:
+                                                            {{ $mes_contador }} mes
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 1 && $uno == 'uno')
+                                                        <span class="badge badge-danger">
+                                                            El Medico expira en:
+                                                            {{ $dias_exactos }} dias
+                                                        </span>
+                                                    @endif
+                                                </h5>
+                                            </td>
+                                            {{-- ============================================================== --}}
+                                            <td>
+                                                {{-- ===================== CALCULO_DE_FECHAS_LICENCIAS ===================== --}}
+                                                @php
+                                                    /* FECHA LICENCIA */
+                                                    $vencimiento_dia = substr($operadore->fechavencimientolicencia, 8, 2);
+                                                    $vencimiento_mes = substr($operadore->fechavencimientolicencia, 5, 2);
+                                                    $vencimiento_año = substr($operadore->fechavencimientolicencia, 0, 4);
+                                                    /* FECHA ACTUAL */
+                                                    $año_actual = date('Y');
+                                                    $mes_actual = date('n');
+                                                    $dia_actual = date('d');
+                                                    /* OBTIENE LA DIFERENCIA DE AÑO ENTRE FECHA ACTUAL Y FECHA A VENCER */
+                                                    $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
+                                                    /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
+                                                    $uno = 'nulo';
+                                                    if ($diferencia_año >= 1) {
+                                                        $meses = $diferencia_año * 12 + 12;
+                                                        $operacion_1 = $meses - (int) $mes_actual;
+                                                        $operacion_2 = 12 - (int) $vencimiento_mes;
+                                                        $operacion_3 = $operacion_1 - $operacion_2;
+                                                        $meses = $operacion_3;
+                                                    } else {
+                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                    }
+                                                    if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
+                                                        $uno = 'uno';
+                                                    }
+                                                    /* CALCULO DE DIAS EXACTOS */
+                                                    $dias_exactos = 0;
+                                                    $contador_1 = 0;
+                                                    $contador_2 = 0;
+                                                    $cuenta_mes = $mes_actual;
+                                                    $operacion_1 = 0;
+                                                    $mes_contador = 0;
+                                                    for ($i = 0; $i <= $meses; $i++) {
+                                                        if ($uno == 'uno') {
+                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                            $i = $meses + 1;
+                                                        } else {
+                                                            if ($contador_1 == 0) {
+                                                                $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                $dias_exactos = $dias_exactos + $operacion_2;
+                                                                $contador_1 = 1;
+                                                            } else {
+                                                                if ($i == $meses) {
+                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                } else {
+                                                                    $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                    $mes_contador = $mes_contador + 1;
+                                                                }
+                                                            }
+                                                            if ($cuenta_mes == 12) {
+                                                                $contador_2 = $contador_2 + 1;
+                                                                $cuenta_mes = 1;
+                                                            } else {
+                                                                $cuenta_mes = $cuenta_mes + 1;
+                                                            }
+                                                        }
+                                                    }
+                                                    /* CALCULO DE MESES EXACTOS */
+                                                    $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                    $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                    $calcular = $direstantes + (int) $vencimiento_dia;
+                                                    $dias_resto = $calcular;
+                                                    $opc = 2;
+                                                    for ($i = 0; $i <= $opc; $i++) {
+                                                        if ($calcular >= 30) {
+                                                            $mes_contador = $mes_contador + 1;
+                                                            $calcular = $calcular - 29;
+                                                        }
+                                                    }
+                                                @endphp
+                                                {{-- ============================================================== --}}
+                                                {{-- ========================== IF PARA MOSTRAR =================== --}}
+                                                <h5>
+                                                    @if ($mes_contador >= 9)
+                                                        <span class="badge badge-primary">
+                                                            La Licencia expira en:
+                                                            {{ $mes_contador }} meses
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                        <span class="badge badge-success">
+                                                            La Licencia expira en:
+                                                            {{ $mes_contador }} meses
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                        <span class="badge badge-warning">
+                                                            La Licencia expira en:
+                                                            {{ $mes_contador }} meses
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 1 && $uno == 'nulo')
+                                                        <span class="badge badge-danger">
+                                                            La Licencia expira en:
+                                                            {{ $mes_contador }} mes
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 1 && $uno == 'uno')
+                                                        <span class="badge badge-danger">
+                                                            La Licencia expira en:
+                                                            {{ $dias_exactos }} dias
+                                                        </span>
+                                                    @endif
+                                                </h5>
+                                            </td>
+                                            {{-- ============================================================== --}}
                                             <td>
                                                 <a class="btn btn-info"
                                                     href="{{ route('operadores.edit', $operadore->id) }}">

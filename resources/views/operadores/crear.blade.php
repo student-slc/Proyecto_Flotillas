@@ -60,16 +60,22 @@
                                             </select>
                                         </div>
                                     </div>
+                                    @php
+                                        /* FECHA ACTUAL */
+                                        $fecha_actual = date('Y-n-d');
+                                    @endphp
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechavencimientomedico">Fecha de Vencimiento Medico</label>
-                                            <input type="date" name="fechavencimientomedico" class="form-control">
+                                            <input type="date" name="fechavencimientomedico" class="form-control"
+                                                min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechavencimientolicencia">Fecha de Vencimiento Licencia</label>
-                                            <input type="date" name="fechavencimientolicencia" class="form-control">
+                                            <input type="date" name="fechavencimientolicencia" class="form-control"
+                                                min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>

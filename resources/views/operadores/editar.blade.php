@@ -28,7 +28,12 @@
                                     </button>
                                 </div>
                             @endif
-                            <form action="{{ route('operadores.update', $operadore->id) }}" method="POST" enctype="multipart/form-data">
+                            @php
+                                /* FECHA ACTUAL */
+                                $fecha_actual = date('Y-n-d');
+                            @endphp
+                            <form action="{{ route('operadores.update', $operadore->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
@@ -83,14 +88,14 @@
                                     <div class="form-group">
                                         <label for="fechavencimientomedico">Fecha de Vencimiento Medico</label>
                                         <input type="date" name="fechavencimientomedico" class="form-control"
-                                            value="{{ $operadore->fechavencimientomedico }}">
+                                            value="{{ $operadore->fechavencimientomedico }}" min="{{ $fecha_actual }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fechavencimientolicencia">Fecha de Vencimiento Licencia</label>
                                         <input type="date" name="fechavencimientolicencia" class="form-control"
-                                            value="{{ $operadore->fechavencimientomedico }}">
+                                            value="{{ $operadore->fechavencimientolicencia }}"min="{{ $fecha_actual }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
@@ -130,7 +135,8 @@
                                             <div class="from-group">
                                                 <input name="licencia" type="file" id="licencia">
                                                 <label for="licencia" id="licencia-preview">
-                                                    <object type="application/pdf" data="{{ asset($operadore->licencia) }}"
+                                                    <object type="application/pdf"
+                                                        data="{{ asset($operadore->licencia) }}"
                                                         style="width: 200px; height: 250px;">
                                                         ERROR (no puede mostrarse el objeto)
                                                     </object>
