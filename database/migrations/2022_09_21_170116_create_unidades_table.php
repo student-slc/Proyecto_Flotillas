@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('seguro');
             $table->string('verificacion');
             $table->string('mantenimiento');
+            $table->string('seguro_fecha');
+            $table->string('verificacion_fecha');
+            $table->string('mantenimiento_fecha');
             $table->string('operador');
             $table->timestamps();
         });

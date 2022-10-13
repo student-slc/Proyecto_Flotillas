@@ -53,6 +53,7 @@ class ClientesController extends Controller
      */
     public function show($usuario)
     {
+        /* ESTE CODIGO ES PARA QUE FUNCIONE EL REGRESO DE SEGUROS, VERIFICACIONES Y MANTENIMIENTO */
         $uni = Unidade::all();
         foreach ($uni as $unis) {
             if ($unis->serieunidad == $usuario) {

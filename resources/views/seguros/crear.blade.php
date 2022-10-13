@@ -26,7 +26,10 @@
                                     </button>
                                 </div>
                             @endif
-
+                            @php
+                                /* FECHA ACTUAL */
+                                $fecha_actual = date('Y-n-d');
+                            @endphp
                             <form action="{{ route('seguros.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
@@ -34,7 +37,15 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="id_unidad">id_unidad</label>
-                                            <input type="text" name="id_unidad" class="form-control" value="{{ $unidad }}">
+                                            <input type="text" name="id_unidad" class="form-control"
+                                                value="{{ $unidad }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="estado">estado</label>
+                                            <input type="text" name="estado" class="form-control"
+                                                value="Activo">
                                         </div>
                                     </div>
                                     {{-- ========================================================================= --}}
@@ -47,13 +58,15 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechainicio">Fecha de Inicio</label>
-                                            <input type="date" name="fechainicio" class="form-control">
+                                            <input type="date" name="fechainicio" class="form-control"
+                                                min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechavencimiento">Fecha de Vencimiento</label>
-                                            <input type="date" name="fechavencimiento" class="form-control">
+                                            <input type="date" name="fechavencimiento" class="form-control"
+                                                min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

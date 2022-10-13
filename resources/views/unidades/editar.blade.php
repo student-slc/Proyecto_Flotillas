@@ -53,6 +53,27 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
+                                        <label for="seguro_fecha">seguro_fecha</label>
+                                        <input type="text" name="seguro_fecha" class="form-control"
+                                            value="{{ $unidade->seguro_fecha }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="verificacion_fecha">verificacion_fecha</label>
+                                        <input type="text" name="verificacion_fecha" class="form-control"
+                                            value="{{ $unidade->verificacion_fecha }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="mantenimiento_fecha">mantenimiento_fecha</label>
+                                        <input type="text" name="mantenimiento_fecha" class="form-control"
+                                            value="{{ $unidade->mantenimiento_fecha }}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
                                         <label for="cliente">cliente</label>
                                         <input type="text" name="cliente" class="form-control"
                                             value="{{ $unidade->cliente }}">

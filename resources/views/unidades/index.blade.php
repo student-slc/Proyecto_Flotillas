@@ -21,9 +21,9 @@
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">No. Serie</th>
                                     <th style="color:#fff;">Información Unidad</th>
-                                    <th style="color:#fff;">Seguro</th>
-                                    <th style="color:#fff;">Verificación</th>
-                                    <th style="color:#fff;">Mantenimiento</th>
+                                    <th style="color:#fff;">Estado Seguro</th>
+                                    <th style="color:#fff;">Estado Verificación</th>
+                                    <th style="color:#fff;">Estado Mantenimiento</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -47,13 +47,171 @@
                                                     <h5><span class="badge badge-danger"><a class="link-light"
                                                                 href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->seguro }}</a></span>
                                                     </h5>
-                                                @endif
-                                                @if ($unidade->seguro == 'Con Seguro')
-                                                    <h5><span class="badge badge-success"><a class="link-light"
-                                                                href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->seguro }}</a></span>
+                                                @else
+                                                    {{-- ===================== CALCULO_DE_FECHAS_MEDICO ===================== --}}
+                                                    @php
+                                                        /* FECHA LICENCIA */
+                                                        $vencimiento_dia = substr($unidade->seguro_fecha, 8, 2);
+                                                        $vencimiento_mes = substr($unidade->seguro_fecha, 5, 2);
+                                                        $vencimiento_año = substr($unidade->seguro_fecha, 0, 4);
+                                                        /* FECHA ACTUAL */
+                                                        $año_actual = date('Y');
+                                                        $mes_actual = date('n');
+                                                        $dia_actual = date('d');
+                                                        /* OBTIENE LA DIFERENCIA DE AÑO ENTRE FECHA ACTUAL Y FECHA A VENCER */
+                                                        $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
+                                                        /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
+                                                        $uno = 'nulo';
+                                                        if ($diferencia_año >= 1) {
+                                                            $meses = $diferencia_año * 12 + 12;
+                                                            $operacion_1 = $meses - (int) $mes_actual;
+                                                            $operacion_2 = 12 - (int) $vencimiento_mes;
+                                                            $operacion_3 = $operacion_1 - $operacion_2;
+                                                            $meses = $operacion_3;
+                                                        } else {
+                                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        }
+                                                        if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
+                                                            $uno = 'uno';
+                                                        }
+                                                        /* CALCULO DE DIAS EXACTOS */
+                                                        $dias_exactos = 0;
+                                                        $contador_1 = 0;
+                                                        $contador_2 = 0;
+                                                        $cuenta_mes = $mes_actual;
+                                                        $operacion_1 = 0;
+                                                        $mes_contador = 0;
+                                                        for ($i = 0; $i <= $meses; $i++) {
+                                                            if ($uno == 'uno') {
+                                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                $i = $meses + 1;
+                                                            } else {
+                                                                if ($contador_1 == 0) {
+                                                                    $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                    $dias_exactos = $dias_exactos + $operacion_2;
+                                                                    $contador_1 = 1;
+                                                                } else {
+                                                                    if ($i == $meses) {
+                                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                    } else {
+                                                                        $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                        $mes_contador = $mes_contador + 1;
+                                                                    }
+                                                                }
+                                                                if ($cuenta_mes == 12) {
+                                                                    $contador_2 = $contador_2 + 1;
+                                                                    $cuenta_mes = 1;
+                                                                } else {
+                                                                    $cuenta_mes = $cuenta_mes + 1;
+                                                                }
+                                                            }
+                                                        }
+                                                        /* CALCULO DE MESES EXACTOS */
+                                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                        $calcular = $direstantes + (int) $vencimiento_dia;
+                                                        $dias_resto = $calcular;
+                                                        $opc = 2;
+                                                        for ($i = 0; $i <= $opc; $i++) {
+                                                            if ($calcular >= 30) {
+                                                                $mes_contador = $mes_contador + 1;
+                                                                $calcular = $calcular - 29;
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    {{-- ============================================================== --}}
+                                                    {{-- ========================== IF PARA MOSTRAR =================== --}}
+                                                    <h5>
+                                                        @if ($mes_contador >= 9)
+                                                            <span class="badge badge-primary">
+                                                                <a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                    en:
+                                                                    {{ $mes_contador }} meses</a>
+                                                            </span>
+                                                        @endif
+                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                            <span class="badge badge-success">
+                                                                <a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                    en:
+                                                                    {{ $mes_contador }} meses</a>
+                                                            </span>
+                                                        @endif
+                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                            <span class="badge badge-warning">
+                                                                <a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                    en:
+                                                                    {{ $mes_contador }} meses</a>
+                                                            </span>
+                                                        @endif
+                                                        @if ($mes_contador == 1 && $uno == 'nulo')
+                                                            <span class="badge badge-danger">
+                                                                <a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                    en:
+                                                                    {{ $mes_contador }} mes
+                                                                </a> </span>
+                                                        @endif
+                                                        @if ($mes_contador == 1 && $uno == 'uno')
+                                                            <span class="badge badge-danger">
+                                                                <a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                    en:
+                                                                    {{ $dias_exactos }} dias
+                                                                </a> </span>
+                                                        @endif
                                                     </h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                                 @endif
                                             </td>
+                                            {{-- ============================================================== --}}
                                             <td>
                                                 @if ($unidade->verificacion == 'Sin Verificación')
                                                     <h5><span class="badge badge-danger"><a class="link-light"
@@ -175,7 +333,8 @@
                         <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
                                 Eliminar la Unidad
                                 {{ $unidade->serieunidad }}?</b></h5>
-                        <button type="button" class="btn-close" onclick="$('#delete{{ $a }}').modal('hide')">
+                        <button type="button" class="btn-close"
+                            onclick="$('#delete{{ $a }}').modal('hide')">
                     </div>
                     <form action="{{ route('unidades.destroy', $unidade->id) }}" method="POST">
                         @csrf

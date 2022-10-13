@@ -36,11 +36,14 @@ class SegurosController extends Controller
     public function store(SegurosRequest $request)
     {
         $unidad=$request->get('id_unidad');
+        if ($request->validated()) {
+            $cambio=Seguro::where('id_unidad', '=', $unidad)->update(["estado"=>"Inactivo"]);
+        }
         Seguro::create($request->validated());
-        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["seguro"=>"Con Seguro"]);
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["seguro"=>$request->get('nopoliza')]);
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["seguro_fecha"=>$request->get('fechavencimiento')]);
         return redirect()->route('unidades.show',$unidad);
     }
-
     /**
      * Display the specified resource.
      *
@@ -74,6 +77,8 @@ class SegurosController extends Controller
     {
         $seguro->update($request->validated());
         $unidad=$seguro->id_unidad;
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["seguro"=>$request->get('nopoliza')]);
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["seguro_fecha"=>$request->get('fechavencimiento')]);
         return redirect()->route('unidades.show',$unidad);
     }
 
@@ -86,7 +91,10 @@ class SegurosController extends Controller
     public function destroy(Seguro $seguro)
     {
         $unidad=$seguro->id_unidad;
+        $seguros=$seguro->nopoliza;
         $seguro->delete();
+        $cambio=Unidade::where('seguro', '=', $seguros)->update(["seguro"=>"Sin Seguro"]);
+        $cambio=Unidade::where('seguro', '=', $seguros)->update(["seguro_fecha"=>"Sin Fecha"]);
         return redirect()->route('unidades.show',$unidad);
     }
 }

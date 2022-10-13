@@ -34,6 +34,23 @@ class SegurosRequest extends FormRequest
             'precio' => 'required',
             'impuestos' => 'required',
             'costototal' => 'required',
+            'estado' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nopoliza.required' => "El No de Poliza es obligatorio",
+            'id_unidad.required' => "La Unidad es obligatoria",
+            'fechavencimiento.required' => "La Fecha de Vencimiento es obligatoria",
+            'fechainicio.required' => "La Fecha de Inicio es obligatoria",
+            'tiposeguro.required' => "El Tipo de Seguro es obligatorio",
+            'caratulaseguro.required' => "La Caratula es obligatoria",
+            'provedor.required' => "El Proveedor obligatorias",
+            'precio.required' => "El Precio obligatorio",
+            'impuestos.required' => "Los Impuestos son obligatorios",
+            'costototal.required' => "El Costo Total es obligatorio",
+            'estado.required' => "El Estado es obligatorio",
         ];
     }
 }

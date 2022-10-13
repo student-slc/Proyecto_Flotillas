@@ -36,6 +36,9 @@ class UnidadesRequest extends FormRequest
             'verificacion' => 'required',
             'mantenimiento' => 'required',
             'cliente' => 'required',
+            'seguro_fecha' => 'required',
+            'verificacion_fecha' => 'required',
+            'mantenimiento_fecha' => 'required',
         ];
     }
     public function messages()

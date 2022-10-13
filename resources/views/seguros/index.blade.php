@@ -41,8 +41,13 @@
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <h5><span class="badge badge-success">Activo</span>
-                                                </h5>
+                                                @if ($seguro->estado == 'Activo')
+                                                    <h5><span class="badge badge-success">Activo</span>
+                                                    </h5>
+                                                @else
+                                                    <h5><span class="badge badge-danger">Inactivo</span>
+                                                    </h5>
+                                                @endif
                                             </td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ route('seguros.edit', $seguro->id) }}">
@@ -146,7 +151,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
                                 Eliminar el Seguro
-                                {{$seguro->nopoliza }}?</b></h5>
+                                {{ $seguro->nopoliza }}?</b></h5>
                         <button type="button" class="btn-close" onclick="$('#delete{{ $a }}').modal('hide')">
                     </div>
                     <form action="{{ route('seguros.destroy', $seguro->id, $unidad) }}" method="POST">

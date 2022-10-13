@@ -19,5 +19,6 @@ class Seguro extends Model
         'precio',
         'impuestos',
         'costototal',
+        'estado',
     ];
 }

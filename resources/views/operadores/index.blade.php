@@ -117,31 +117,31 @@
                                                 <h5>
                                                     @if ($mes_contador >= 9)
                                                         <span class="badge badge-primary">
-                                                            El Medico expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                         <span class="badge badge-success">
-                                                            El Medico expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                         <span class="badge badge-warning">
-                                                            El Medico expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
                                                         <span class="badge badge-danger">
-                                                            El Medico expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} mes
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
                                                         <span class="badge badge-danger">
-                                                            El Medico expira en:
+                                                            Expira en:
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
@@ -227,31 +227,31 @@
                                                 <h5>
                                                     @if ($mes_contador >= 9)
                                                         <span class="badge badge-primary">
-                                                            La Licencia expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                         <span class="badge badge-success">
-                                                            La Licencia expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                         <span class="badge badge-warning">
-                                                            La Licencia expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
                                                         <span class="badge badge-danger">
-                                                            La Licencia expira en:
+                                                            Expira en:
                                                             {{ $mes_contador }} mes
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
                                                         <span class="badge badge-danger">
-                                                            La Licencia expira en:
+                                                            Expira en:
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
