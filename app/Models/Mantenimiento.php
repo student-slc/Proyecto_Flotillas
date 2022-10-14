@@ -15,6 +15,8 @@ class Mantenimiento extends Model
         "frecuencia",
         "sigservicio",
         "kmfaltantes",
-        "tipomantenimiento"
+        "tipomantenimiento",
+        'estado',
+        'nomantenimiento',
     ];
 }

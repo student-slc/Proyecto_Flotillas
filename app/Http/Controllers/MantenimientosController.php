@@ -6,6 +6,7 @@ use App\Http\Requests\MantenimientosRequest;
 use App\Models\Mantenimiento;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
+
 class MantenimientosController extends Controller
 {
     /**
@@ -40,8 +41,12 @@ class MantenimientosController extends Controller
     public function store(MantenimientosRequest $request)
     {
         $unidad = $request->id_unidad;
+        if ($request->validated()) {
+            $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->update(["estado" => "Inactivo"]);
+        }
         Mantenimiento::create($request->validated());
-        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento" => "Con Mantenimiento"]);
+        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento" => $request->get('nomantenimiento')]);
+        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('fecha')]);
         return redirect()->route('mantenimientos.show', $unidad);
     }
 
@@ -79,6 +84,8 @@ class MantenimientosController extends Controller
     {
         $unidad = $mantenimiento->id_unidad;
         $mantenimiento->update($request->validated());
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento"=>$request->get('nomantenimiento')]);
+        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha"=>$request->get('fecha')]);
         return redirect()->route('mantenimientos.show', $unidad);
     }
 
@@ -91,7 +98,10 @@ class MantenimientosController extends Controller
     public function destroy(Mantenimiento $mantenimiento)
     {
         $unidad = $mantenimiento->id_unidad;
+        $mantenimientos=$mantenimiento->nomantenimiento;
         $mantenimiento->delete();
+        $cambio=Unidade::where('mantenimiento', '=', $mantenimientos)->update(["mantenimiento"=>"Sin Mantenimiento"]);
+        $cambio=Unidade::where('mantenimiento', '=', $mantenimientos)->update(["mantenimiento_fecha"=>"Sin Fecha"]);
         return redirect()->route('mantenimientos.show', $unidad);
     }
 }

@@ -31,7 +31,7 @@
                                     @foreach ($mantenimientos as $mantenimiento)
                                         <tr>
                                             <td style="display: none;">{{ $mantenimiento->id }}</td>
-                                            <td>{{ $mantenimiento->id }}</td>
+                                            <td>{{ $mantenimiento->nomantenimiento }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
                                                 <button type="button" class="btn btn-primary"
@@ -41,8 +41,13 @@
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <h5><span class="badge badge-success">Activo</span>
-                                                </h5>
+                                                @if ($mantenimiento->estado == 'Activo')
+                                                    <h5><span class="badge badge-success">Activo</span>
+                                                    </h5>
+                                                @else
+                                                    <h5><span class="badge badge-danger">Inactivo</span>
+                                                    </h5>
+                                                @endif
                                             </td>
                                             <td>
                                                 <a class="btn btn-info"
@@ -82,7 +87,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
-                                {{ $mantenimiento->id }}</b></h5>
+                                {{ $mantenimiento->nomantenimiento }}</b></h5>
                         <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
                     </div>
                     <div class="modal-body">

@@ -27,6 +27,10 @@
                                     </button>
                                 </div>
                             @endif
+                            @php
+                                /* FECHA ACTUAL */
+                                $fecha_actual = date('Y-n-d');
+                            @endphp
                             <form action="{{ route('verificaciones.update', $verificacione->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -38,40 +42,47 @@
                                             value="{{ $verificacione->id_unidad }}">
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="estado">estado</label>
+                                        <input type="text" name="estado" class="form-control"
+                                            value="{{ $verificacione->estado }}">
+                                    </div>
+                                </div>
                                 {{-- ========================================================================= --}}
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="fechavencimiento">Fecha de Vencimiento</label>
-                                        <input type="date" name="fechavencimiento" class="form-control"
-                                        value="{{ $verificacione->fechavencimiento }}">
+                                        <label for="noverificacion">Numero de Verificación</label>
+                                        <input type="text" name="noverificacion" class="form-control"
+                                        value="{{ $verificacione->noverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="tipoverificacion">Tipo de Verificación</label>
                                         <input type="text" name="tipoverificacion" class="form-control"
-                                        value="{{ $verificacione->tipoverificacion }}">
+                                            value="{{ $verificacione->tipoverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="subtipoverificacion">Sub Tipo de Verificación</label>
                                         <input type="text" name="subtipoverificacion" class="form-control"
-                                        value="{{ $verificacione->subtipoverificacion }}">
+                                            value="{{ $verificacione->subtipoverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="ultimaverificacion">Fecha Ultima Verificación</label>
                                         <input type="date" name="ultimaverificacion" class="form-control"
-                                        value="{{ $verificacione->ultimaverificacion }}">
+                                            value="{{ $verificacione->ultimaverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fechavencimiento">Fecha de Vencimiento</label>
                                         <input type="date" name="fechavencimiento" class="form-control"
-                                        value="{{ $verificacione->fechavencimiento }}">
+                                            value="{{ $verificacione->fechavencimiento }}" min="{{ $fecha_actual }}">
                                     </div>
                                 </div>
 
@@ -79,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="caratulaverificacion">Caratula De Verificación</label>
                                         <input type="text" name="caratulaverificacion" class="form-control"
-                                        value="{{ $verificacione->caratulaverificacion }}">
+                                            value="{{ $verificacione->caratulaverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

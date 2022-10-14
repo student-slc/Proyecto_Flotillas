@@ -27,6 +27,10 @@
                                     </button>
                                 </div>
                             @endif
+                            @php
+                                /* FECHA ACTUAL */
+                                $fecha_actual = date('Y-n-d');
+                            @endphp
                             <form action="{{ route('mantenimientos.update', $mantenimiento->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -38,47 +42,61 @@
                                             value="{{ $mantenimiento->id_unidad }}">
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="estado">estado</label>
+                                        <input type="text" name="estado" class="form-control"
+                                            value="{{ $mantenimiento->estado }}">
+                                    </div>
+                                </div>
                                 {{-- ========================================================================= --}}
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="nomantenimiento">Numero de Mantenimiento</label>
+                                        <input type="text" name="nomantenimiento" class="form-control"
+                                        value="{{ $mantenimiento->nomantenimiento }}">
+                                    </div>
+                                </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="kmfinales">Kilometros Finales</label>
                                         <input type="text" name="kmfinales" class="form-control"
-                                        value="{{ $mantenimiento->kmfinales }}">
+                                            value="{{ $mantenimiento->kmfinales }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fecha">Fecha</label>
                                         <input type="date" name="fecha" class="form-control"
-                                        value="{{ $mantenimiento->fecha }}">
+                                            value="{{ $mantenimiento->fecha }}" min="{{ $fecha_actual }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="frecuencia">Frecuencia</label>
                                         <input type="text" name="frecuencia" class="form-control"
-                                        value="{{ $mantenimiento->frecuencia }}">
+                                            value="{{ $mantenimiento->frecuencia }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="sigservicio">Siguiente Servicio</label>
                                         <input type="text" name="sigservicio" class="form-control"
-                                        value="{{ $mantenimiento->sigservicio }}">
+                                            value="{{ $mantenimiento->sigservicio }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="kmfaltantes">Kilometros Faltantes</label>
                                         <input type="text" name="kmfaltantes" class="form-control"
-                                        value="{{ $mantenimiento->kmfaltantes }}">
+                                            value="{{ $mantenimiento->kmfaltantes }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="tipomantenimiento">Tipo De Mantenimiento</label>
                                         <input type="text" name="tipomantenimiento" class="form-control"
-                                        value="{{ $mantenimiento->tipomantenimiento }}">
+                                            value="{{ $mantenimiento->tipomantenimiento }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

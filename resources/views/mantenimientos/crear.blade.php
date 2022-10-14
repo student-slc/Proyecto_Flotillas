@@ -26,7 +26,10 @@
                                     </button>
                                 </div>
                             @endif
-
+                            @php
+                                /* FECHA ACTUAL */
+                                $fecha_actual = date('Y-n-d');
+                            @endphp
                             <form action="{{ route('mantenimientos.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
@@ -38,7 +41,19 @@
                                                 value="{{ $unidad }}">
                                         </div>
                                     </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="estado">estado</label>
+                                            <input type="text" name="estado" class="form-control" value="Activo">
+                                        </div>
+                                    </div>
                                     {{-- ========================================================================= --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="nomantenimiento">Numero de Mantenimiento</label>
+                                            <input type="text" name="nomantenimiento" class="form-control">
+                                        </div>
+                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="kmfinales">Kilometros Finales</label>
@@ -48,7 +63,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fecha">Fecha</label>
-                                            <input type="date" name="fecha" class="form-control">
+                                            <input type="date" name="fecha" class="form-control"
+                                            min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

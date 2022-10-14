@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
+use App\Models\Mantenimiento;
 use App\Models\Operadore;
+use App\Models\Seguro;
 use App\Models\Unidade;
+use App\Models\Verificacione;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -99,7 +102,16 @@ class ClientesController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
+        $usuario=$cliente->nombrecompleto;
         $cliente->delete();
+        $unidades = Unidade::where('cliente', '=', $usuario)->get();
+        foreach ($unidades as $unidad) {
+            $cambio = Seguro::where('id_unidad', '=', $unidad->serieunidad)->delete();
+            $cambio = Verificacione::where('id_unidad', '=', $unidad->serieunidad)->delete();
+            $cambio = Mantenimiento::where('id_unidad', '=', $unidad->serieunidad)->delete();
+        }
+        $cambio = Operadore::where('cliente', '=', $usuario)->delete();
+        $cambio = Unidade::where('cliente', '=', $usuario)->delete();
         return redirect()->route('clientes.index');
     }
 }

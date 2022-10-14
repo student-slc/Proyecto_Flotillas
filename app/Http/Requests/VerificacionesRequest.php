@@ -30,6 +30,8 @@ class VerificacionesRequest extends FormRequest
             'subtipoverificacion' => 'required',
             'ultimaverificacion' => 'required',
             'caratulaverificacion' => 'required',
+            'estado' => 'required',
+            'noverificacion' =>'required'
         ];
     }
     public function messages()
@@ -41,6 +43,8 @@ class VerificacionesRequest extends FormRequest
             'subtipoverificacion.required'=>"El Subtipo de Verificacion es obligatoria",
             'ultimaverificacion.required'=>"La Ultima Verificacion es obligatoria",
             'caratulaverificacion.required'=>"La Caratula es obligatorio",
+            'estado.required'=>"El Estado es obligatorio",
+            'noverificacion.required'=>"El Numero de Verificacion es obligatorio",
         ];
 
     }

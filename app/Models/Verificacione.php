@@ -15,5 +15,7 @@ class Verificacione extends Model
         'subtipoverificacion',
         'ultimaverificacion',
         'caratulaverificacion',
+        'estado',
+        'noverificacion'
     ];
 }

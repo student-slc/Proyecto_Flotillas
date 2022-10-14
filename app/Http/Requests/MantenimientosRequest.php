@@ -31,6 +31,8 @@ class MantenimientosRequest extends FormRequest
             "sigservicio" => "required",
             "kmfaltantes" => "required",
             "tipomantenimiento" => "required",
+            "estado" => "required",
+            "nomantenimiento" => "required",
         ];
     }
     public function messages()
@@ -42,7 +44,9 @@ class MantenimientosRequest extends FormRequest
             "frecuencia.required" => 'La Frecuencia es Obligatoria',
             "sigservicio.required" => 'El Siguiente Servicio es Obligatorio',
             "kmfaltantes.required" => 'Los Km Faltantes son Obligatorios',
-            "tipomantenimiento.required" => 'El Tipo de Mantenimiento es Obligatorio'
+            "tipomantenimiento.required" => 'El Tipo de Mantenimiento es Obligatorio',
+            'estado.required'=>"El Estado es obligatorio",
+            'nomantenimiento.required'=>"El Numero de Mantenimiento es obligatorio",
         ];
     }
 }

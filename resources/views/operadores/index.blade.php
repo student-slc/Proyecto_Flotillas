@@ -134,12 +134,25 @@
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
-                                                        <span class="badge badge-danger">
-                                                            Expira en:
-                                                            {{ $mes_contador }} mes
-                                                        </span>
+                                                        @if ($calcular == 0)
+                                                            <span class="badge badge-danger">
+                                                                Expira en:
+                                                                {{ $mes_contador }} mes
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-danger">
+                                                                Expira en:
+                                                                {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                            </span>
+                                                        @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
+                                                        <span class="badge badge-danger">
+                                                            Expira en:
+                                                            {{ $dias_exactos }} dias
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 0)
                                                         <span class="badge badge-danger">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
@@ -244,12 +257,25 @@
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
-                                                        <span class="badge badge-danger">
-                                                            Expira en:
-                                                            {{ $mes_contador }} mes
-                                                        </span>
+                                                        @if ($calcular == 0)
+                                                            <span class="badge badge-danger">
+                                                                Expira en:
+                                                                {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                            </span>
+                                                        @else
+                                                            <span class="badge badge-danger">
+                                                                Expira en:
+                                                                {{ $mes_contador }} mes
+                                                            </span>
+                                                        @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
+                                                        <span class="badge badge-danger">
+                                                            Expira en:
+                                                            {{ $dias_exactos }} dias
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 0)
                                                         <span class="badge badge-danger">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias

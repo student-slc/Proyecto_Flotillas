@@ -46,9 +46,9 @@ class UnidadesController extends Controller
      */
     public function store(UnidadesRequest $request)
     {
-        $usuario=$request->cliente;
+        $usuario = $request->cliente;
         Unidade::create($request->validated());
-        return redirect()->route('clientes.show',$usuario);
+        return redirect()->route('clientes.show', $usuario);
     }
 
     /**
@@ -83,13 +83,13 @@ class UnidadesController extends Controller
      */
     public function update(UnidadesRequest $request, Unidade $unidade)
     {
-        $usuario=$unidade->cliente;
-        $unidad=$unidade->serieunidad;
+        $usuario = $unidade->cliente;
+        $unidad = $unidade->serieunidad;
         $unidade->update($request->validated());
-        $cambio=Verificacione::where('id_unidad', '=', $unidad)->update(["id_unidad"=>$request->serieunidad]);
-        $cambio=Seguro::where('id_unidad', '=', $unidad)->update(["id_unidad"=>$request->serieunidad]);
-        $cambio=Mantenimiento::where('id_unidad', '=', $unidad)->update(["id_unidad"=>$request->serieunidad]);
-        return redirect()->route('clientes.show',$usuario);
+        $cambio = Verificacione::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+        $cambio = Seguro::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+        $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+        return redirect()->route('clientes.show', $usuario);
     }
 
     /**
@@ -100,10 +100,12 @@ class UnidadesController extends Controller
      */
     public function destroy(Unidade $unidade)
     {
-        $usuario=$unidade->cliente;
+        $usuario = $unidade->cliente;
         $unidad = $unidade->serieunidad;
-        $cambio = Seguro::where('id_unidad', '=', $unidad)->delete();
         $unidade->delete();
-        return redirect()->route('clientes.show',$usuario);
+        $cambio = Seguro::where('id_unidad', '=', $unidad)->delete();
+        $cambio = Verificacione::where('id_unidad', '=', $unidad)->delete();
+        $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->delete();
+        return redirect()->route('clientes.show', $usuario);
     }
 }
