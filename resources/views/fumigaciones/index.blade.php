@@ -13,7 +13,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('fumigaciones.create') }}">Nuevo</a>
-                            <table class="table table-striped mt-2">
+                            <div class="form-group">
+                                <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar....">
+                                <br>
+                            </div>
+                            <table class="table table-striped mt-2" id="tabla">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -64,9 +68,9 @@
                                 </tbody>
                             </table>
                             <!-- Ubicamos la paginacion a la derecha -->
-                            <div class="pagination justify-content-end">
+                           {{--  <div class="pagination justify-content-end">
                                 {!! $fumigaciones->links() !!}
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

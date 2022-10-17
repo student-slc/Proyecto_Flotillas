@@ -14,7 +14,7 @@ class ObservadorController extends Controller
      */
     public function index()
     {
-        $logs = Log::paginate(10);
+        $logs = Log::all();
         return view('observers.index',compact('logs'));
     }
 
