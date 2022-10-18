@@ -8,14 +8,16 @@ tr {
     table-layout: fixed;
 }
 table {
-    height: 550px;
+    min-height: 50px;
+    max-height: 550px;
     width: 100%;
     display: block;
 }
 tbody {
     overflow-y: scroll;
     display: inline-block;
-    height: 500px;
+    max-height: 500px;
+    min-height: 0px;
 }
 /* - */
 * {
