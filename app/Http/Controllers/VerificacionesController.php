@@ -57,7 +57,7 @@ class VerificacionesController extends Controller
      */
     public function show($unidad)
     {
-        $verificaciones = Verificacione::where('id_unidad', '=', $unidad)->paginate(10);
+        $verificaciones = Verificacione::where('id_unidad', '=', $unidad)->get();
         return view('verificaciones.index', compact('verificaciones', 'unidad'));
     }
 

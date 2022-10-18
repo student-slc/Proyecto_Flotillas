@@ -20,7 +20,7 @@ class UnidadesController extends Controller
     {
         /* //TODO Operadores_reponer */
         //Con paginación
-        /* $unidades = Unidade::paginate(5);
+        /* $unidades = Unidade::get(;
         return view('unidades.index', compact('unidades')); */
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
@@ -59,7 +59,7 @@ class UnidadesController extends Controller
      */
     public function show($unidad)
     {
-        $seguros = Seguro::where('id_unidad', '=', $unidad)->paginate(10);
+        $seguros = Seguro::where('id_unidad', '=', $unidad)->get();
         return view('seguros.index', compact('seguros', 'unidad'));
     }
 

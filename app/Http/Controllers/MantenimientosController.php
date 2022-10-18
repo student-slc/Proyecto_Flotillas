@@ -58,7 +58,7 @@ class MantenimientosController extends Controller
      */
     public function show($unidad)
     {
-        $mantenimientos = Mantenimiento::where('id_unidad', '=', $unidad)->paginate(10);
+        $mantenimientos = Mantenimiento::where('id_unidad', '=', $unidad)->get();
         return view('mantenimientos.index', compact('mantenimientos', 'unidad'));
     }
 

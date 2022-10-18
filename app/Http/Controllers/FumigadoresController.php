@@ -15,7 +15,7 @@ class FumigadoresController extends Controller
     public function index()
     {
         //Con paginación
-        $fumigadores = Fumigadore::paginate(5);
+        $fumigadores = Fumigadore::all();
         return view('fumigadores.index', compact('fumigadores'));
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }

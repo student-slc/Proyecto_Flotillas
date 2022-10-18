@@ -17,7 +17,7 @@ class OperadoresController extends Controller
     public function index()
     {
         //Con paginación
-        /* $operadores = Operadore::paginate(5);
+        /* $operadores = Operadore::get();
         return view('operadores.index', compact('operadores')); */
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
@@ -113,7 +113,7 @@ class OperadoresController extends Controller
      */
     public function show($usuario)
     {
-        $operadores = Operadore::where('cliente', '=', $usuario)->paginate(5);
+        $operadores = Operadore::where('cliente', '=', $usuario)->get();
         return view('operadores.index', compact('operadores', 'usuario'));
     }
 

@@ -21,7 +21,7 @@ class ClientesController extends Controller
     public function index()
     {
         //Con paginación
-        $clientes = Cliente::paginate(5);
+        $clientes = Cliente::all();
         return view('clientes.index', compact('clientes'));
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
@@ -63,7 +63,7 @@ class ClientesController extends Controller
                 $usuario = $unis->cliente;
             }
         }
-        $unidades = Unidade::where('cliente', '=', $usuario)->paginate(5);
+        $unidades = Unidade::where('cliente', '=', $usuario)->get();
         return view('unidades.index', compact('unidades', 'usuario'));
     }
 

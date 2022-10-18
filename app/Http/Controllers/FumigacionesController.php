@@ -18,7 +18,7 @@ class FumigacionesController extends Controller
     public function index()
     {
         //Con paginación
-        $fumigaciones = Fumigacione::paginate(5);
+        $fumigaciones = Fumigacione::all();
         return view('fumigaciones.index', compact('fumigaciones'));
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
