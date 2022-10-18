@@ -6,6 +6,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ExcelLogController;
 use App\Http\Controllers\ObservadorController;
 use App\Http\Controllers\OperadoresController;
 use App\Http\Controllers\FumigadoresController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\FumigacionesController;
 use App\Http\Controllers\SegurosController;
 use App\Http\Controllers\VerificacionesController;
 use App\Http\Controllers\MantenimientosController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +51,10 @@ Route::resource('verificaciones', VerificacionesController::class);
 Route::resource('mantenimientos', MantenimientosController::class);
 
 Route::resource('logs', ObservadorController::class);
+});
+Route::controller(ExcelLogController::class)->group(function(){
+    Route::get('log-export', 'export')->name('log.export');
+    Route::post('log-import', 'import')->name('log.import');
 });
 
 ///--------------------------------------UNIDADES--------------------------------------------------------------------
