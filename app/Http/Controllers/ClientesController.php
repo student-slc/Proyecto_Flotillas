@@ -10,6 +10,10 @@ use App\Models\Seguro;
 use App\Models\Unidade;
 use App\Models\Verificacione;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClientesExport;
+use App\Imports\ClientesImport;
+
 
 class ClientesController extends Controller
 {
@@ -114,4 +118,13 @@ class ClientesController extends Controller
         $cambio = Unidade::where('cliente', '=', $usuario)->delete();
         return redirect()->route('clientes.index');
     }
+    public function export()
+    {
+        return Excel::download(new ClientesExport, 'Clientes.xlsx');
+    }
+    /* public function import()
+    {
+        Excel::import(new ClientesImport,request()->file('file'));
+        return back();
+    } */
 }

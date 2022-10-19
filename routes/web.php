@@ -49,13 +49,12 @@ Route::resource('fumigaciones', FumigacionesController::class);
 Route::resource('seguros', SegurosController::class);
 Route::resource('verificaciones', VerificacionesController::class);
 Route::resource('mantenimientos', MantenimientosController::class);
-
 Route::resource('logs', ObservadorController::class);
 });
-Route::controller(ExcelLogController::class)->group(function(){
+/* Route::controller(ExcelLogController::class)->group(function(){
     Route::get('log-export', 'export')->name('log.export');
     Route::post('log-import', 'import')->name('log.import');
-});
+}); */
 
 ///--------------------------------------UNIDADES--------------------------------------------------------------------
 Route::get('/clientes/unidades/crear/{usuario}','App\Http\Controllers\UnidadesController@crear')->name('unidades.crear');
@@ -67,3 +66,14 @@ Route::get('/clientes/unidades/operadores/crear/{usuario}','App\Http\Controllers
 Route::get('/clientes/unidades/verificaciones/crear/{unidad}','App\Http\Controllers\VerificacionesController@crear')->name('verificaciones.crear');
 ///--------------------------------------CREAR MANTENIMIENTO--------------------------------------------------------------------
 Route::get('/clientes/unidades/mantenimientos/crear/{unidad}','App\Http\Controllers\MantenimientosController@crear')->name('mantenimientos.crear');
+
+///--------------------------------------CREAR EXCEL LOG--------------------------------------------------------------------
+Route::controller(ObservadorController::class)->group(function(){
+    Route::get('logs-export', 'export')->name('logs.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+///--------------------------------------CREAR EXCEL CLIENTES--------------------------------------------------------------------
+Route::controller(ClientesController::class)->group(function(){
+    Route::get('clientes-export', 'export')->name('clientes.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});

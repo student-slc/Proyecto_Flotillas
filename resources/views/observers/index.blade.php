@@ -11,17 +11,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="form-group">
+                        {{-- IMPORTAR EXCEL --}}
+                        {{-- <div class="form-group">
                             <form action="{{ route('log.import') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <input type="file" name="file" class="form-control">
                                 <br>
                                 <button class="btn btn-warning"><i class="fas fa-file-excel"></i></button>
                             </form>
-                        </div>
+                        </div> --}}
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success" href="{{ route('log.export') }}"><i
+                                <a class="btn btn-success" href="{{ route('logs.export') }}"><i
                                         class="fas fa-file-excel"></i></a>
                                 <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar....">
