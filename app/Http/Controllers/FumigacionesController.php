@@ -7,7 +7,9 @@ use App\Models\Cliente;
 use App\Models\Fumigacione;
 use App\Models\Fumigadore;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FumigacionesExport;
+use App\Imports\FumigacionesImport;
 class FumigacionesController extends Controller
 {
     /**
@@ -95,4 +97,13 @@ class FumigacionesController extends Controller
         $fumigacione->delete();
         return redirect()->route('fumigaciones.index');
     }
+    public function export()
+    {
+        return Excel::download(new FumigacionesExport, 'Fumigaciones.xlsx');
+    }
+    /* public function import()
+    {
+        Excel::import(new ClientesImport,request()->file('file'));
+        return back();
+    } */
 }

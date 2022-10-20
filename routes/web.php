@@ -77,3 +77,9 @@ Route::controller(ClientesController::class)->group(function(){
     Route::get('clientes-export', 'export')->name('clientes.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+///--------------------------------------CREAR EXCEL CLIENTES--------------------------------------------------------------------
+Route::controller(FumigacionesController::class)->group(function(){
+    Route::get('fumigaciones-export', 'export')->name('fumigaciones.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+
