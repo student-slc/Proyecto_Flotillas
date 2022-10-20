@@ -82,4 +82,9 @@ Route::controller(FumigacionesController::class)->group(function(){
     Route::get('fumigaciones-export', 'export')->name('fumigaciones.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+///--------------------------------------CREAR EXCEL FUMIGACORES--------------------------------------------------------------------
+Route::controller(FumigadoresController::class)->group(function(){
+    Route::get('fumigadores-export', 'export')->name('fumigadores.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 

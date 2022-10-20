@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FumigadoresRequest;
 use App\Models\Fumigadore;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FumigadoresExport;
 use Illuminate\Http\Request;
 class FumigadoresController extends Controller
 {
@@ -87,5 +89,9 @@ class FumigadoresController extends Controller
     {
         $fumigadore->delete();
         return redirect()->route('fumigadores.index');
+    }
+    public function export()
+    {
+        return Excel::download(new FumigadoresExport, 'Fumigadores.xlsx');
     }
 }
