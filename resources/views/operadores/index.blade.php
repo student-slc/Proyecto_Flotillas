@@ -16,11 +16,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('operadores.crear', $usuario) }}">Nuevo</a>
-                            <div class="form-group">
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar....">
-                                <br>
-                            </div>
                             <table class="table table-striped mt-2" id="tabla">
+                                <a class="btn btn-success" href="{{ route('operadores.export', $usuario) }}"><i
+                                        class="fas fa-file-excel"></i></a>
+                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Operador</th>

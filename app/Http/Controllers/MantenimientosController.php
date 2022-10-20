@@ -109,6 +109,5 @@ class MantenimientosController extends Controller
     public function export($unidad)
     {
         return (new MantenimientosExport($unidad))->download('Mantenimientos_unidad_'.$unidad.'.xlsx');
-        /*         return Excel::download(new MantenimientosExport, 'Mantenimientos.xlsx');*/
     }
 }

@@ -6,7 +6,8 @@ use App\Http\Requests\OperadoresRequest;
 use App\Models\Operadore;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OperadoresExport;
 class OperadoresController extends Controller
 {
     /**
@@ -212,5 +213,9 @@ class OperadoresController extends Controller
         unlink($operadore->examenmedico);
         $operadore->delete();
         return redirect()->route('operadores.show', $usuario);
+    }
+    public function export($usuario)
+    {
+        return (new OperadoresExport($usuario))->download('Operadores_del_usuario_'.$usuario.'.xlsx');
     }
 }

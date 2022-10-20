@@ -93,5 +93,11 @@ Route::controller(MantenimientosController::class)->group(function(){
     Route::get('mantenimientos-export/{unidad}', 'export')->name('mantenimientos.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+///--------------------------------------CREAR EXCEL OPERADORES--------------------------------------------------------------------
+Route::controller(OperadoresController::class)->group(function(){
+    Route::get('operadores-export/{usuario}', 'export')->name('operadores.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+
 
 
