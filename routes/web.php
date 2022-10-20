@@ -14,6 +14,7 @@ use App\Http\Controllers\FumigacionesController;
 use App\Http\Controllers\SegurosController;
 use App\Http\Controllers\VerificacionesController;
 use App\Http\Controllers\MantenimientosController;
+use App\Models\Mantenimiento;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,4 +88,10 @@ Route::controller(FumigadoresController::class)->group(function(){
     Route::get('fumigadores-export', 'export')->name('fumigadores.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+///--------------------------------------CREAR EXCEL FUMIGACORES--------------------------------------------------------------------
+Route::controller(MantenimientosController::class)->group(function(){
+    Route::get('mantenimientos-export/{unidad}', 'export')->name('mantenimientos.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+
 

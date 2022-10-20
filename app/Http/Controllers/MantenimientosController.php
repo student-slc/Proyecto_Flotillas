@@ -6,6 +6,8 @@ use App\Http\Requests\MantenimientosRequest;
 use App\Models\Mantenimiento;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MantenimientosExport;
 
 class MantenimientosController extends Controller
 {
@@ -84,8 +86,8 @@ class MantenimientosController extends Controller
     {
         $unidad = $mantenimiento->id_unidad;
         $mantenimiento->update($request->validated());
-        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento"=>$request->get('nomantenimiento')]);
-        $cambio=Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha"=>$request->get('fecha')]);
+        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento" => $request->get('nomantenimiento')]);
+        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('fecha')]);
         return redirect()->route('mantenimientos.show', $unidad);
     }
 
@@ -98,10 +100,15 @@ class MantenimientosController extends Controller
     public function destroy(Mantenimiento $mantenimiento)
     {
         $unidad = $mantenimiento->id_unidad;
-        $mantenimientos=$mantenimiento->nomantenimiento;
+        $mantenimientos = $mantenimiento->nomantenimiento;
         $mantenimiento->delete();
-        $cambio=Unidade::where('mantenimiento', '=', $mantenimientos)->update(["mantenimiento"=>"Sin Mantenimiento"]);
-        $cambio=Unidade::where('mantenimiento', '=', $mantenimientos)->update(["mantenimiento_fecha"=>"Sin Fecha"]);
+        $cambio = Unidade::where('mantenimiento', '=', $mantenimientos)->update(["mantenimiento" => "Sin Mantenimiento"]);
+        $cambio = Unidade::where('mantenimiento', '=', $mantenimientos)->update(["mantenimiento_fecha" => "Sin Fecha"]);
         return redirect()->route('mantenimientos.show', $unidad);
+    }
+    public function export($unidad)
+    {
+        return (new MantenimientosExport($unidad))->download('Mantenimientos_unidad_'.$unidad.'.xlsx');
+        /*         return Excel::download(new MantenimientosExport, 'Mantenimientos.xlsx');*/
     }
 }
