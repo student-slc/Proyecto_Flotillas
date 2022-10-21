@@ -78,19 +78,14 @@ Route::controller(ClientesController::class)->group(function(){
     Route::get('clientes-export', 'export')->name('clientes.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
-///--------------------------------------CREAR EXCEL CLIENTES--------------------------------------------------------------------
+///--------------------------------------CREAR EXCEL FUMIGACIONES--------------------------------------------------------------------
 Route::controller(FumigacionesController::class)->group(function(){
     Route::get('fumigaciones-export', 'export')->name('fumigaciones.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
-///--------------------------------------CREAR EXCEL FUMIGACORES--------------------------------------------------------------------
+///--------------------------------------CREAR EXCEL FUMIGADORES--------------------------------------------------------------------
 Route::controller(FumigadoresController::class)->group(function(){
     Route::get('fumigadores-export', 'export')->name('fumigadores.export');
-    /* Route::post('log-import', 'import')->name('log.import'); */
-});
-///--------------------------------------CREAR EXCEL FUMIGACORES--------------------------------------------------------------------
-Route::controller(MantenimientosController::class)->group(function(){
-    Route::get('mantenimientos-export/{unidad}', 'export')->name('mantenimientos.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 ///--------------------------------------CREAR EXCEL OPERADORES--------------------------------------------------------------------
@@ -103,5 +98,16 @@ Route::controller(UnidadesController::class)->group(function(){
     Route::get('unidades-export/{usuario}', 'export')->name('unidades.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+///--------------------------------------CREAR EXCEL MANTENIMIENTOS--------------------------------------------------------------------
+Route::controller(MantenimientosController::class)->group(function(){
+    Route::get('mantenimientos-export/{unidad}', 'export')->name('mantenimientos.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+///--------------------------------------CREAR EXCEL SEGUROS--------------------------------------------------------------------
+Route::controller(SegurosController::class)->group(function(){
+    Route::get('seguros-export/{unidad}', 'export')->name('seguros.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+
 
 

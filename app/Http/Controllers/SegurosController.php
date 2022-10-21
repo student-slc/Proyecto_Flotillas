@@ -6,7 +6,8 @@ use App\Http\Requests\SegurosRequest;
 use App\Models\Seguro;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SegurosExport;
 class SegurosController extends Controller
 {
     public function index()
@@ -96,5 +97,9 @@ class SegurosController extends Controller
         $cambio=Unidade::where('seguro', '=', $seguros)->update(["seguro"=>"Sin Seguro"]);
         $cambio=Unidade::where('seguro', '=', $seguros)->update(["seguro_fecha"=>"Sin Fecha"]);
         return redirect()->route('unidades.show',$unidad);
+    }
+    public function export($unidad)
+    {
+        return (new SegurosExport($unidad))->download('Seguros_unidad_'.$unidad.'.xlsx');
     }
 }
