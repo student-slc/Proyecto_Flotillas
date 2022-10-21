@@ -274,8 +274,7 @@
                                                             }
                                                         }
                                                         /* CALCULO DE MESES EXACTOS */
-                                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
-                                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
+
                                                         $dias_resto = $calcular;
                                                         $opc = 2;
                                                         for ($i = 0; $i <= $opc; $i++) {

@@ -57,6 +57,7 @@
                                                     $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
                                                     /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                     $uno = 'nulo';
+                                                    $calcular = 0;
                                                     if ($diferencia_año >= 1) {
                                                         $meses = $diferencia_año * 12 + 12;
                                                         $operacion_1 = $meses - (int) $mes_actual;
@@ -68,6 +69,11 @@
                                                     }
                                                     if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                         $uno = 'uno';
+                                                        $calcular = 0;
+                                                    } else {
+                                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                        $calcular = $direstantes + (int) $vencimiento_dia;
                                                     }
                                                     /* CALCULO DE DIAS EXACTOS */
                                                     $dias_exactos = 0;
@@ -104,9 +110,7 @@
                                                         }
                                                     }
                                                     /* CALCULO DE MESES EXACTOS */
-                                                    $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
-                                                    $direstantes = (int) $cantidaddias - (int) $dia_actual;
-                                                    $calcular = $direstantes + (int) $vencimiento_dia;
+
                                                     $dias_resto = $calcular;
                                                     $opc = 2;
                                                     for ($i = 0; $i <= $opc; $i++) {
@@ -156,10 +160,16 @@
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
-                                                    @if ($mes_contador == 0)
+                                                    @if ($mes_contador == 0 && $dias_exactos > 0)
                                                         <span class="badge badge-danger">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                        <span class="badge badge-danger">
+                                                            MEDICO
+                                                            <br> EXPIRADO
                                                         </span>
                                                     @endif
                                                 </h5>
@@ -180,6 +190,7 @@
                                                     $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
                                                     /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                     $uno = 'nulo';
+                                                    $calcular = 0;
                                                     if ($diferencia_año >= 1) {
                                                         $meses = $diferencia_año * 12 + 12;
                                                         $operacion_1 = $meses - (int) $mes_actual;
@@ -191,6 +202,11 @@
                                                     }
                                                     if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                         $uno = 'uno';
+                                                        $calcular = 0;
+                                                    } else {
+                                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                        $calcular = $direstantes + (int) $vencimiento_dia;
                                                     }
                                                     /* CALCULO DE DIAS EXACTOS */
                                                     $dias_exactos = 0;
@@ -227,9 +243,7 @@
                                                         }
                                                     }
                                                     /* CALCULO DE MESES EXACTOS */
-                                                    $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
-                                                    $direstantes = (int) $cantidaddias - (int) $dia_actual;
-                                                    $calcular = $direstantes + (int) $vencimiento_dia;
+
                                                     $dias_resto = $calcular;
                                                     $opc = 2;
                                                     for ($i = 0; $i <= $opc; $i++) {
@@ -279,10 +293,16 @@
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
-                                                    @if ($mes_contador == 0)
+                                                    @if ($mes_contador == 0 && $dias_exactos > 0)
                                                         <span class="badge badge-danger">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
+                                                        </span>
+                                                    @endif
+                                                    @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                        <span class="badge badge-danger">
+                                                            LICENCIA
+                                                            <br> EXPIRADA
                                                         </span>
                                                     @endif
                                                 </h5>
