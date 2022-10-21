@@ -8,6 +8,8 @@ use App\Models\Seguro;
 use App\Models\Unidade;
 use App\Models\Verificacione;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UnidadesExport;
 
 class UnidadesController extends Controller
 {
@@ -107,5 +109,9 @@ class UnidadesController extends Controller
         $cambio = Verificacione::where('id_unidad', '=', $unidad)->delete();
         $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->delete();
         return redirect()->route('clientes.show', $usuario);
+    }
+    public function export($usuario)
+    {
+        return (new UnidadesExport($usuario))->download('Unidades_del_usuario_'.$usuario.'.xlsx');
     }
 }

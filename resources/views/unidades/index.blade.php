@@ -16,11 +16,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('unidades.crear', $usuario) }}">Nuevo</a>
-                            <div class="form-group">
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar....">
-                                <br>
-                            </div>
                             <table class="table table-striped mt-2" id="tabla">
+                                <a class="btn btn-success" href="{{ route('unidades.export', $usuario) }}"><i
+                                        class="fas fa-file-excel"></i></a>
+                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">No. Serie</th>
@@ -476,7 +476,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a class="btn btn-info" href="{{ route('unidades.edit', $unidade->id) }}">
+                                                <a class="btn btn-info"
+                                                    href="{{ route('unidades.edit', $unidade->id) }}">
                                                     <i class="fas fa-edit"></i></a>
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="$('#delete{{ $a }}').modal('show')">
@@ -491,7 +492,7 @@
                                 </tbody>
                             </table>
                             <!-- Ubicamos la paginacion a la derecha -->
-                           {{--  <div class="pagination justify-content-end">
+                            {{--  <div class="pagination justify-content-end">
                                 {!! $unidades->links() !!}
                             </div> --}}
                         </div>

@@ -98,6 +98,10 @@ Route::controller(OperadoresController::class)->group(function(){
     Route::get('operadores-export/{usuario}', 'export')->name('operadores.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
-
+///--------------------------------------CREAR EXCEL UNIDADES--------------------------------------------------------------------
+Route::controller(UnidadesController::class)->group(function(){
+    Route::get('unidades-export/{usuario}', 'export')->name('unidades.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 
 
