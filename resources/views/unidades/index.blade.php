@@ -66,6 +66,7 @@
                                                         $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
                                                         /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                         $uno = 'nulo';
+                                                        $calcular = 0;
                                                         if ($diferencia_año >= 1) {
                                                             $meses = $diferencia_año * 12 + 12;
                                                             $operacion_1 = $meses - (int) $mes_actual;
@@ -77,6 +78,11 @@
                                                         }
                                                         if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                             $uno = 'uno';
+                                                            $calcular = 0;
+                                                        } else {
+                                                            $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                            $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                            $calcular = $direstantes + (int) $vencimiento_dia;
                                                         }
                                                         /* CALCULO DE DIAS EXACTOS */
                                                         $dias_exactos = 0;
@@ -113,9 +119,6 @@
                                                             }
                                                         }
                                                         /* CALCULO DE MESES EXACTOS */
-                                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
-                                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
-                                                        $calcular = $direstantes + (int) $vencimiento_dia;
                                                         $dias_resto = $calcular;
                                                         $opc = 2;
                                                         for ($i = 0; $i <= $opc; $i++) {
@@ -165,7 +168,8 @@
                                                                     <a class="link-light"
                                                                         href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                         en:
-                                                                        {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                                        {{ $mes_contador }} mes
+                                                                        <br>y {{ $calcular }} dias
                                                                     </a> </span>
                                                             @endif
                                                         @endif
@@ -177,12 +181,20 @@
                                                                     {{ $dias_exactos }} dias
                                                                 </a> </span>
                                                         @endif
-                                                        @if ($mes_contador == 0)
+                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
                                                             <span class="badge badge-danger">
                                                                 <a class="link-light"
                                                                     href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                     en:
                                                                     {{ $dias_exactos }} dias
+                                                                </a> </span>
+                                                        @endif
+                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                            <span class="badge badge-danger">
+                                                                <a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">
+                                                                    SEGURO
+                                                                    <br> EXPIRADO
                                                                 </a> </span>
                                                         @endif
                                                     </h5>
@@ -209,6 +221,7 @@
                                                         $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
                                                         /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                         $uno = 'nulo';
+                                                        $calcular = 0;
                                                         if ($diferencia_año >= 1) {
                                                             $meses = $diferencia_año * 12 + 12;
                                                             $operacion_1 = $meses - (int) $mes_actual;
@@ -220,6 +233,11 @@
                                                         }
                                                         if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                             $uno = 'uno';
+                                                            $calcular = 0;
+                                                        } else {
+                                                            $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                            $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                            $calcular = $direstantes + (int) $vencimiento_dia;
                                                         }
                                                         /* CALCULO DE DIAS EXACTOS */
                                                         $dias_exactos = 0;
@@ -258,7 +276,6 @@
                                                         /* CALCULO DE MESES EXACTOS */
                                                         $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
                                                         $direstantes = (int) $cantidaddias - (int) $dia_actual;
-                                                        $calcular = $direstantes + (int) $vencimiento_dia;
                                                         $dias_resto = $calcular;
                                                         $opc = 2;
                                                         for ($i = 0; $i <= $opc; $i++) {
@@ -309,7 +326,8 @@
                                                                     <a class="link-light"
                                                                         href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                         en:
-                                                                        {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                                        {{ $mes_contador }} mes
+                                                                        <br>y {{ $calcular }} dias
                                                                     </a> </span>
                                                             @endif
                                                         @endif
@@ -321,12 +339,20 @@
                                                                     {{ $dias_exactos }} dias
                                                                 </a> </span>
                                                         @endif
-                                                        @if ($mes_contador == 0)
+                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
                                                             <span class="badge badge-danger">
                                                                 <a class="link-light"
                                                                     href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                     en:
                                                                     {{ $dias_exactos }} dias
+                                                                </a> </span>
+                                                        @endif
+                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                            <span class="badge badge-danger">
+                                                                <a class="link-light"
+                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">
+                                                                    VERIFICACION
+                                                                    <br> EXPIRADA
                                                                 </a> </span>
                                                         @endif
                                                     </h5>
@@ -353,6 +379,7 @@
                                                         $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
                                                         /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                         $uno = 'nulo';
+                                                        $calcular = 0;
                                                         if ($diferencia_año >= 1) {
                                                             $meses = $diferencia_año * 12 + 12;
                                                             $operacion_1 = $meses - (int) $mes_actual;
@@ -364,6 +391,11 @@
                                                         }
                                                         if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                             $uno = 'uno';
+                                                            $calcular = 0;
+                                                        } else {
+                                                            $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                            $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                            $calcular = $direstantes + (int) $vencimiento_dia;
                                                         }
                                                         /* CALCULO DE DIAS EXACTOS */
                                                         $dias_exactos = 0;
@@ -402,7 +434,6 @@
                                                         /* CALCULO DE MESES EXACTOS */
                                                         $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
                                                         $direstantes = (int) $cantidaddias - (int) $dia_actual;
-                                                        $calcular = $direstantes + (int) $vencimiento_dia;
                                                         $dias_resto = $calcular;
                                                         $opc = 2;
                                                         for ($i = 0; $i <= $opc; $i++) {
@@ -452,7 +483,8 @@
                                                                     <a class="link-light"
                                                                         href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                         en:
-                                                                        {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                                        {{ $mes_contador }} mes
+                                                                        <br> y {{ $calcular }} dias
                                                                     </a> </span>
                                                             @endif
                                                         @endif
@@ -461,15 +493,23 @@
                                                                 <a class="link-light"
                                                                     href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                     en:
-                                                                    {{ $dias_exactos }} dias
+                                                                    {{ $dias_exactos }}
                                                                 </a> </span>
                                                         @endif
-                                                        @if ($mes_contador == 0)
+                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
                                                             <span class="badge badge-danger">
                                                                 <a class="link-light"
                                                                     href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                     en:
-                                                                    {{ $dias_exactos }} dias
+                                                                    {{ $dias_exactos }}
+                                                                </a> </span>
+                                                        @endif
+                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                            <span class="badge badge-danger">
+                                                                <a class="link-light"
+                                                                    href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
+                                                                    MANTENIMIENTO
+                                                                    <br> EXPIRADO
                                                                 </a> </span>
                                                         @endif
                                                     </h5>

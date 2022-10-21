@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="fechainicio">Fecha de Inicio</label>
                                         <input type="date" name="fechainicio" class="form-control"
-                                            value="{{ $seguro->fechainicio }}" min="{{ $fecha_actual }}">
+                                            value="{{ $seguro->fechainicio }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

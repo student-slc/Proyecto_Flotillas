@@ -58,8 +58,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechainicio">Fecha de Inicio</label>
-                                            <input type="date" name="fechainicio" class="form-control"
-                                                min="{{ $fecha_actual }}">
+                                            <input type="date" name="fechainicio" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
