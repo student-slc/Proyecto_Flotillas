@@ -6,6 +6,8 @@ use App\Http\Requests\VerificacionesRequest;
 use App\Models\Unidade;
 use App\Models\Verificacione;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\VerificacionesExport;
 class VerificacionesController extends Controller
 {
     /**
@@ -102,5 +104,9 @@ class VerificacionesController extends Controller
         $cambio=Unidade::where('verificacion', '=', $verificacion)->update(["verificacion"=>"Sin Verificación"]);
         $cambio=Unidade::where('verificacion', '=', $verificacion)->update(["verificacion_fecha"=>"Sin Fecha"]);
         return redirect()->route('verificaciones.show',$unidad);
+    }
+    public function export($unidad)
+    {
+        return (new VerificacionesExport($unidad))->download('Verificaciones_unidad_'.$unidad.'.xlsx');
     }
 }

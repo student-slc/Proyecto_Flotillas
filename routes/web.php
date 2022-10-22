@@ -108,6 +108,11 @@ Route::controller(SegurosController::class)->group(function(){
     Route::get('seguros-export/{unidad}', 'export')->name('seguros.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+///--------------------------------------CREAR EXCEL VERIFICACIONES--------------------------------------------------------------------
+Route::controller(VerificacionesController::class)->group(function(){
+    Route::get('verificaciones-export/{unidad}', 'export')->name('verificaciones.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 
 
 
