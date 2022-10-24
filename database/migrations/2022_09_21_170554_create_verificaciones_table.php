@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('verificaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('contenido');
+            $table->string('id_unidad');
+            $table->string('fechavencimiento');
+            $table->string('tipoverificacion');
+            $table->string('subtipoverificacion');
+            $table->string('ultimaverificacion');
+            $table->string('caratulaverificacion');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('_verificaciones');
     }
 };
