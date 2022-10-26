@@ -114,11 +114,6 @@
                             {{ $seguro->tiposeguro }}
                         </li>
                         <br>
-                        <b>Caratula del Seguro:</b>
-                        <li class="list-group-item">
-                            {{ $seguro->caratulaseguro }}
-                        </li>
-                        <br>
                         <b>Proveedor:</b>
                         <li class="list-group-item">
                             {{ $seguro->provedor }}
@@ -137,6 +132,14 @@
                         <b>Costo Total:</b>
                         <li class="list-group-item">
                             {{ $seguro->costototal }}
+                        </li>
+                        <br>
+                        <b>Caratula:</b>
+                        <li class="list-group-item">
+                            <object type="application/pdf" data="{{ asset($seguro->caratulaseguro) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
                         </li>
                         <br>
                     </div>
