@@ -68,9 +68,18 @@ class SegurosController extends Controller
         }
         //-----------------------------------------------------------------------------------------------------------------------
         $unidad = $request->get('id_unidad');
+        //------- CODIGO PARA ELIMINAR LOS SEGUROS VIEJOS Y DEJAR SOLO DOS UNO ACTIVO Y UNO ANTIGUO -------
+        $cambio=Seguro::where('id_unidad', '=', $unidad)->get();
+        foreach ($cambio as $cambios) {
+            if ($cambios->estado=="Inactivo") {
+                unlink($cambios->caratulaseguro);
+                $cambio = Seguro::where('nopoliza', '=', $cambios->nopoliza)->delete();
+            }
+        }
         if ($validacion) {
             $cambio = Seguro::where('id_unidad', '=', $unidad)->update(["estado" => "Inactivo"]);
         }
+        //-------------------------------------------------------------------------------------------------
         $caratula = $destino_p11 . $filename_p11;
         Seguro::create([
             'id_unidad' => $request['id_unidad'],
