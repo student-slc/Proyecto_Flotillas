@@ -124,50 +124,58 @@
                                                 {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                 <h5>
                                                     @if ($mes_contador >= 9)
-                                                        <span class="badge badge-primary">
+                                                        <span class="badge badge-primary"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                        <span class="badge badge-success">
+                                                        <span class="badge badge-success"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                        <span class="badge badge-warning">
+                                                        <span class="badge badge-warning"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
                                                         @if ($calcular == 0)
-                                                            <span class="badge badge-danger">
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                                 Expira en:
                                                                 {{ $mes_contador }} mes
                                                             </span>
                                                         @else
-                                                            <span class="badge badge-danger">
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                                 Expira en:
                                                                 {{ $mes_contador }} mes y {{ $calcular }} dias
                                                             </span>
                                                         @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             MEDICO
                                                             <br> EXPIRADO
                                                         </span>
@@ -257,50 +265,58 @@
                                                 {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                 <h5>
                                                     @if ($mes_contador >= 9)
-                                                        <span class="badge badge-primary">
+                                                        <span class="badge badge-primary"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                        <span class="badge badge-success">
+                                                        <span class="badge badge-success"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                        <span class="badge badge-warning">
+                                                        <span class="badge badge-warning"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
                                                         @if ($calcular == 0)
-                                                            <span class="badge badge-danger">
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                                 Expira en:
                                                                 {{ $mes_contador }} mes y {{ $calcular }} dias
                                                             </span>
                                                         @else
-                                                            <span class="badge badge-danger">
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                                 Expira en:
                                                                 {{ $mes_contador }} mes
                                                             </span>
                                                         @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             Expira en:
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             LICENCIA
                                                             <br> EXPIRADA
                                                         </span>
@@ -440,6 +456,420 @@
                 </div>
             </div>
         </div>
+        {{-- ===================== MODAL_LICENCIA ===================== --}}
+        <div class="modal fade" id="licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}" tabindex="-1"
+            role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>
+                                Licencia del operador
+                                {{ $operadore->nombreoperador }}</b></h5>
+                        <button type="button" class="btn-close"
+                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('operadores.update', $operadore->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cliente">cliente</label>
+                                                <input type="text" name="cliente" class="form-control"
+                                                    value="{{ $operadore->cliente }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="nombreoperador">Nombre del Operador</label>
+                                                <input type="text" name="nombreoperador" class="form-control"
+                                                    value="{{ $operadore->nombreoperador }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechanacimiento">Fecha de Nacimiento</label>
+                                                <input type="date" name="fechanacimiento" class="form-control"
+                                                    value="{{ $operadore->fechanacimiento }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="nolicencia">No Licencia</label>
+                                                <input type="text" name="nolicencia" class="form-control"
+                                                    value="{{ $operadore->nolicencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="tipolicencia">Tipo de Licencia</label>
+                                                <select name="tipolicencia" id="tipolicencia" class=" selectsearch">
+                                                    <option disabled selected value="">Selecciona el Tipo de Licencia
+                                                    </option>
+                                                    @if ($operadore->tipolicencia == 'Federal')
+                                                        <option selected value="Federal">Federal</option>
+                                                    @else
+                                                        <option value="Federal">Federal</option>
+                                                    @endif
+                                                    @if ($operadore->tipolicencia == 'Estatal')
+                                                        <option selected value="Estatal">Estatal</option>
+                                                    @else
+                                                        <option value="Estatal">Estatal</option>
+                                                    @endif
+                                                    {{-- <option value="No Pagado">No Pagado</option>
+                                                    <option value="Pagado">Pagado</option> --}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechavencimientomedico">Fecha de Vencimiento Medico</label>
+                                                <input type="date" name="fechavencimientomedico" class="form-control"
+                                                    value="{{ $operadore->fechavencimientomedico }}"
+                                                    min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="fechavencimientolicencia">Fecha de Vencimiento Licencia</label>
+                                                <input type="date" name="fechavencimientolicencia"
+                                                    class="form-control"
+                                                    value="{{ $operadore->fechavencimientolicencia }}"min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="unidad">unidad</label>
+                                                <input type="text" name="unidad" class="form-control"
+                                                    value="{{ $operadore->unidad }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="licenciaruta">licenciaruta</label>
+                                                <input type="text" name="licenciaruta" class="form-control"
+                                                    value="{{ $operadore->licencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cursoruta">cursoruta</label>
+                                                <input type="text" name="cursoruta" class="form-control"
+                                                    value="{{ $operadore->curso }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="examenmedicoruta">examenmedicoruta</label>
+                                                <input type="text" name="examenmedicoruta" class="form-control"
+                                                    value="{{ $operadore->examenmedico }}">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {{-- ==================================================== SUBIR DOCUMENTOS ======================== --}}
+                                        <div class="form">
+                                            <div class="grid">
+                                                {{-- LICENCIA --}}
+                                                <div class="form-element">
+                                                    <div class="from-group">
+                                                        <input name="licencia" type="file"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label
+                                                            for="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->licencia) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Licencia</label>
+                                                    </div>
+                                                </div>
+                                                {{-- CERTIFICADO --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="curso" type="file" id="curso">
+                                                        <label for="curso" id="curso-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->curso) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="from">
+                                                        <label>Certificado</label>
+                                                    </div>
+                                                </div>
+                                                {{-- EXAMEN MEDICO --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="examenmedico" type="file" id="examenmedico">
+                                                        <label for="examenmedico" id="examenmedico-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->examenmedico) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Examen Medico</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">
+                                            GUARDAR</button>
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                                            CANCELAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+         {{-- ===================== MODAL_MEDICO ===================== --}}
+         <div class="modal fade" id="medico{{ str_replace(' ', '', $operadore->nombreoperador) }}" tabindex="-1"
+            role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>
+                                Medico del operador
+                                {{ $operadore->nombreoperador }}</b></h5>
+                        <button type="button" class="btn-close"
+                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('operadores.update', $operadore->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cliente">cliente</label>
+                                                <input type="text" name="cliente" class="form-control"
+                                                    value="{{ $operadore->cliente }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="nombreoperador">Nombre del Operador</label>
+                                                <input type="text" name="nombreoperador" class="form-control"
+                                                    value="{{ $operadore->nombreoperador }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechanacimiento">Fecha de Nacimiento</label>
+                                                <input type="date" name="fechanacimiento" class="form-control"
+                                                    value="{{ $operadore->fechanacimiento }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="nolicencia">No Licencia</label>
+                                                <input type="text" name="nolicencia" class="form-control"
+                                                    value="{{ $operadore->nolicencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="tipolicencia">Tipo de Licencia</label>
+                                                <select name="tipolicencia" id="tipolicencia" class=" selectsearch">
+                                                    <option disabled selected value="">Selecciona el Tipo de Licencia
+                                                    </option>
+                                                    @if ($operadore->tipolicencia == 'Federal')
+                                                        <option selected value="Federal">Federal</option>
+                                                    @else
+                                                        <option value="Federal">Federal</option>
+                                                    @endif
+                                                    @if ($operadore->tipolicencia == 'Estatal')
+                                                        <option selected value="Estatal">Estatal</option>
+                                                    @else
+                                                        <option value="Estatal">Estatal</option>
+                                                    @endif
+                                                    {{-- <option value="No Pagado">No Pagado</option>
+                                                    <option value="Pagado">Pagado</option> --}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="fechavencimientomedico">Fecha de Vencimiento Medico</label>
+                                                <input type="date" name="fechavencimientomedico" class="form-control"
+                                                    value="{{ $operadore->fechavencimientomedico }}"
+                                                    min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechavencimientolicencia">Fecha de Vencimiento Licencia</label>
+                                                <input type="date" name="fechavencimientolicencia"
+                                                    class="form-control"
+                                                    value="{{ $operadore->fechavencimientolicencia }}"min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="unidad">unidad</label>
+                                                <input type="text" name="unidad" class="form-control"
+                                                    value="{{ $operadore->unidad }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="licenciaruta">licenciaruta</label>
+                                                <input type="text" name="licenciaruta" class="form-control"
+                                                    value="{{ $operadore->licencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cursoruta">cursoruta</label>
+                                                <input type="text" name="cursoruta" class="form-control"
+                                                    value="{{ $operadore->curso }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="examenmedicoruta">examenmedicoruta</label>
+                                                <input type="text" name="examenmedicoruta" class="form-control"
+                                                    value="{{ $operadore->examenmedico }}">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {{-- ==================================================== SUBIR DOCUMENTOS ======================== --}}
+                                        <div class="form">
+                                            <div class="grid">
+                                                {{-- LICENCIA --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="licencia" type="file"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label
+                                                            for="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->licencia) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Licencia</label>
+                                                    </div>
+                                                </div>
+                                                {{-- CERTIFICADO --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="curso" type="file" id="curso">
+                                                        <label for="curso" id="curso-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->curso) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="from">
+                                                        <label>Certificado</label>
+                                                    </div>
+                                                </div>
+                                                {{-- EXAMEN MEDICO --}}
+                                                <div class="form-element">
+                                                    <div class="from-group">
+                                                        <input name="examenmedico" type="file"
+                                                        id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label for="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->examenmedico) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Examen Medico</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">
+                                            GUARDAR</button>
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                                            CANCELAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @endforeach
     {{-- =========================================== --}}
+    <script>
+        //================================================ //BUG: IMAGE PREVIEW ========================================
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview object").data = url;
+            });
+        }
+    </script>
+    @foreach ($operadores as $operadore)
+        <script>
+            previewBeforeUpload("licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}");
+            previewBeforeUpload("examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}");
+        </script>
+    @endforeach
 @endsection
