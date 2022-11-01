@@ -30,6 +30,14 @@ return new class extends Migration
             $table->string('verificacion_fecha');
             $table->string('mantenimiento_fecha');
             $table->string('operador');
+            /* HABITACIONES */
+            $table->string('tipo');
+            $table->string('direccion');
+            $table->string('calle');
+            $table->string('ciudad');
+            $table->string('responsable');
+            $table->string('cp');
+            $table->string('lapsofumigacion');
             $table->timestamps();
         });
     }

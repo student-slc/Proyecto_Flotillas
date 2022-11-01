@@ -91,10 +91,10 @@ class ClientesController extends Controller
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $usuario=$cliente->nombrecompleto;
+        $usuario = $cliente->nombrecompleto;
         $cliente->update($request->validated());
-        $cambio=Operadore::where('cliente', '=', $usuario)->update(["cliente"=>$request->nombrecompleto]);
-        $cambio=Unidade::where('cliente', '=', $usuario)->update(["cliente"=>$request->nombrecompleto]);
+        $cambio = Operadore::where('cliente', '=', $usuario)->update(["cliente" => $request->nombrecompleto]);
+        $cambio = Unidade::where('cliente', '=', $usuario)->update(["cliente" => $request->nombrecompleto]);
         return redirect()->route('clientes.index');
     }
 
@@ -106,7 +106,7 @@ class ClientesController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        $usuario=$cliente->nombrecompleto;
+        $usuario = $cliente->nombrecompleto;
         $cliente->delete();
         $unidades = Unidade::where('cliente', '=', $usuario)->get();
         foreach ($unidades as $unidad) {

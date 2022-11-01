@@ -46,10 +46,50 @@ class UnidadesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UnidadesRequest $request)
+    public function store(Request $request)
     {
+        $tipo = $request->tipo;
+        $vivienda = '';
+        $vehiculo = '';
+        if ($tipo == "Unidad Habitacional o Comercial") {
+            $vivienda = request()->validate([
+                'tipo' => 'required',
+                'direccion' => 'required',
+                'calle' => 'required',
+                'ciudad' => 'required',
+                'responsable' => 'required',
+                'cp' => 'required',
+                'lapsofumigacion' => 'required',
+                'cliente' => 'required',
+            ]);
+        }
+        if ($tipo == "Unidad Vehicular") {
+            $vehiculo = request()->validate([
+                'tipo' => 'required',
+                'serieunidad' => 'required',
+                'marca' => 'required',
+                'submarca' => 'required',
+                'añounidad' => 'required',
+                'tipounidad' => 'required',
+                'razonsocialunidad' => 'required',
+                'placas' => 'required',
+                'status' => 'required',
+                'seguro' => 'required',
+                'verificacion' => 'required',
+                'mantenimiento' => 'required',
+                'cliente' => 'required',
+                'seguro_fecha' => 'required',
+                'verificacion_fecha' => 'required',
+                'mantenimiento_fecha' => 'required',
+            ]);
+        }
         $usuario = $request->cliente;
-        Unidade::create($request->validated());
+        if ($tipo == "Unidad Habitacional o Comercial") {
+            Unidade::create($vivienda);
+        }
+        if ($tipo == "Unidad Vehicular") {
+            Unidade::create($vehiculo);
+        }
         return redirect()->route('clientes.show', $usuario);
     }
 
@@ -83,14 +123,55 @@ class UnidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UnidadesRequest $request, Unidade $unidade)
+    public function update(Request $request, Unidade $unidade)
     {
         $usuario = $unidade->cliente;
         $unidad = $unidade->serieunidad;
-        $unidade->update($request->validated());
-        $cambio = Verificacione::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
-        $cambio = Seguro::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
-        $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+        $tipo = $request->tipo;
+        $vivienda = '';
+        $vehiculo = '';
+        if ($tipo == "Unidad Habitacional o Comercial") {
+            $vivienda = request()->validate([
+                'tipo' => 'required',
+                'direccion' => 'required',
+                'calle' => 'required',
+                'ciudad' => 'required',
+                'responsable' => 'required',
+                'cp' => 'required',
+                'lapsofumigacion' => 'required',
+                'cliente' => 'required',
+            ]);
+        }
+        if ($tipo == "Unidad Vehicular") {
+            $vehiculo = request()->validate([
+                'tipo' => 'required',
+                'serieunidad' => 'required',
+                'marca' => 'required',
+                'submarca' => 'required',
+                'añounidad' => 'required',
+                'tipounidad' => 'required',
+                'razonsocialunidad' => 'required',
+                'placas' => 'required',
+                'status' => 'required',
+                'seguro' => 'required',
+                'verificacion' => 'required',
+                'mantenimiento' => 'required',
+                'cliente' => 'required',
+                'seguro_fecha' => 'required',
+                'verificacion_fecha' => 'required',
+                'mantenimiento_fecha' => 'required',
+            ]);
+        }
+        $usuario = $request->cliente;
+        if ($tipo == "Unidad Habitacional o Comercial") {
+            $unidade->update($vivienda);
+        }
+        if ($tipo == "Unidad Vehicular") {
+            $unidade->update($vehiculo);
+            $cambio = Verificacione::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+            $cambio = Seguro::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+            $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+        }
         return redirect()->route('clientes.show', $usuario);
     }
 
@@ -112,6 +193,6 @@ class UnidadesController extends Controller
     }
     public function export($usuario)
     {
-        return (new UnidadesExport($usuario))->download('Unidades_del_usuario_'.$usuario.'.xlsx');
+        return (new UnidadesExport($usuario))->download('Unidades_del_usuario_' . $usuario . '.xlsx');
     }
 }

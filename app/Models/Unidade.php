@@ -24,5 +24,12 @@ class Unidade extends Model
         'seguro_fecha',
         'mantenimiento_fecha',
         'verificacion_fecha',
+        'tipo',
+        'direccion',
+        'calle',
+        'ciudad',
+        'responsable',
+        'cp',
+        'lapsofumigacion',
     ];
 }
