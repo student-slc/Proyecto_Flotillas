@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use App\Models\Mantenimiento;
+use App\Models\Fumigacione;
 use App\Models\Operadore;
 use App\Models\Seguro;
 use App\Models\Unidade;
@@ -116,6 +117,8 @@ class ClientesController extends Controller
             $cambio = Seguro::where('id_unidad', '=', $unidad->serieunidad)->delete();
             $cambio = Verificacione::where('id_unidad', '=', $unidad->serieunidad)->delete();
             $cambio = Mantenimiento::where('id_unidad', '=', $unidad->serieunidad)->delete();
+            $cambio = Fumigacione::where('unidad', '=', $unidad->serieunidad)->delete();
+            $cambio = Fumigacione::where('unidad', '=', $unidad->direccion)->delete();
         }
         $cambio = Operadore::where('cliente', '=', $usuario)->delete();
         $cambio = Unidade::where('cliente', '=', $usuario)->delete();

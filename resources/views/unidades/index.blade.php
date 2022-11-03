@@ -23,7 +23,7 @@
                                     placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">No. Serie</th>
+                                    <th style="color:#fff;">No. Serie / Dirección</th>
                                     <th style="color:#fff;">Información Unidad</th>
                                     <th style="color:#fff;">Estado Seguro</th>
                                     <th style="color:#fff;">Estado Verificación</th>
@@ -926,6 +926,11 @@
                             <b>Vencimiento Fumigación:</b>
                             <li class="list-group-item">
                                 {{ $unidade->lapsofumigacion }}
+                            </li>
+                            <br>
+                            <b>Cliente:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->cliente }}
                             </li>
                             <br>
                         @endif
