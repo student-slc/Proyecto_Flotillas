@@ -9,7 +9,6 @@ class Fumigacione extends Model
 {
     use HasFactory;
     protected $fillable=[
-        "id_cliente",
         "id_fumigador",
         "fechaprogramada",
         "fechaultimafumigacion",
@@ -18,5 +17,7 @@ class Fumigacione extends Model
         "numerodevisitas",
         "costo",
         "satisfaccionservicio",
+        "unidad",
+        "numerofumigacion",
     ];
 }

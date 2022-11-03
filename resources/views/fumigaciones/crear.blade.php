@@ -5,14 +5,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Agregar Servicio de Fumigacion</h3>
+            <h3 class="page__heading">Agregar Servicio de Fumigación</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-danger" href="{{ route('fumigaciones.index') }}">Regresar</a>
+                            <a class="btn btn-danger" href="{{ route('fumigaciones.show', $unidad) }}">Regresar</a>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -32,13 +32,15 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="id_cliente">Cliente</label>
-                                            <select name="id_cliente" id="id_cliente" class=" selectsearch">
-                                                <option disabled selected value="">Selecciona el Cliente</option>
-                                                @foreach ($clientes as $cliente )
-                                                <option value="{{ $cliente->nombrecompleto }}">{{ $cliente->nombrecompleto }}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="numerofumigacion">Número Fumigación</label>
+                                            <input type="text" name="numerofumigacion" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="unidad">Unidad</label>
+                                            <input type="text" name="unidad" class="form-control"
+                                                value="{{ $unidad }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -46,8 +48,9 @@
                                             <label for="id_fumigador">Fumigador</label>
                                             <select name="id_fumigador" id="id_fumigador" class=" selectsearch">
                                                 <option disabled selected value="">Selecciona el Fumigador</option>
-                                                @foreach ($fumigadores as $fumigadore )
-                                                <option value="{{ $fumigadore->nombrecompleto }}">{{ $fumigadore->nombrecompleto }}</option>
+                                                @foreach ($fumigadores as $fumigadore)
+                                                    <option value="{{ $fumigadore->nombrecompleto }}">
+                                                        {{ $fumigadore->nombrecompleto }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -55,7 +58,8 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechaprogramada">Fecha</label>
-                                            <input type="date" name="fechaprogramada" class="form-control">
+                                            <input type="date" name="fechaprogramada" class="form-control"
+                                            min="{{ date('Y-n-d') }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -82,23 +86,25 @@
                                             <input type="text" name="costo" class="form-control" value="$">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                             <select name="status" id="status" class=" selectsearch">
-                                                <option disabled selected value="">Selecciona un Status</option>
+                                                {{-- <option disabled value="">Selecciona un Status</option>
                                                 <option value="En Proceso">En Proceso</option>
-                                                <option value="Concluido">Concluido</option>
+                                                <option value="Concluido">Concluido</option> --}}
+                                                <option value="Por Confirmar" selected>Por Confirmar</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="satisfaccionservicio">Satisfacción del Servicio</label>
-                                            <select name="satisfaccionservicio" id="satisfaccionservicio" class=" selectsearch">
+                                            <select name="satisfaccionservicio" id="satisfaccionservicio"
+                                                class=" selectsearch">
                                                 <option disabled selected value="">Selecciona una opción</option>
                                                 <option value="En Proceso">En Proceso</option>
-                                               {{--  <option disabled value="Malo">Malo</option>
+                                                {{--  <option disabled value="Malo">Malo</option>
                                                 <option disabled value="Regular">Regular</option>
                                                 <option disabled value="Bueno">Bueno</option>
                                                 <option disabled value="Excelente">Excelente</option> --}}
@@ -108,6 +114,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
+                                </div>
                             </form>
                         </div>
                     </div>

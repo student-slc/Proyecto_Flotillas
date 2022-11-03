@@ -31,5 +31,6 @@ class Unidade extends Model
         'responsable',
         'cp',
         'lapsofumigacion',
+        'fumigacion',
     ];
 }

@@ -63,6 +63,9 @@ class ClientesController extends Controller
         /* ESTE CODIGO ES PARA QUE FUNCIONE EL REGRESO DE SEGUROS, VERIFICACIONES Y MANTENIMIENTO */
         $uni = Unidade::all();
         foreach ($uni as $unis) {
+            if ($unis->direccion == $usuario) {
+                $usuario = $unis->cliente;
+            }
             if ($unis->serieunidad == $usuario) {
                 $usuario = $unis->cliente;
             }

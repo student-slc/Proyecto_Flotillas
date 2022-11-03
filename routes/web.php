@@ -67,6 +67,8 @@ Route::get('/clientes/unidades/operadores/crear/{usuario}','App\Http\Controllers
 Route::get('/clientes/unidades/verificaciones/crear/{unidad}','App\Http\Controllers\VerificacionesController@crear')->name('verificaciones.crear');
 ///--------------------------------------CREAR MANTENIMIENTO--------------------------------------------------------------------
 Route::get('/clientes/unidades/mantenimientos/crear/{unidad}','App\Http\Controllers\MantenimientosController@crear')->name('mantenimientos.crear');
+///--------------------------------------CREAR FUMIGACION--------------------------------------------------------------------
+Route::get('/clientes/unidades/fumigaciones/crear/{unidad}','App\Http\Controllers\FumigacionesController@crear')->name('fumigaciones.crear');
 
 ///--------------------------------------CREAR EXCEL LOG--------------------------------------------------------------------
 Route::controller(ObservadorController::class)->group(function(){

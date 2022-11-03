@@ -28,6 +28,7 @@
                                     <th style="color:#fff;">Estado Seguro</th>
                                     <th style="color:#fff;">Estado Verificación</th>
                                     <th style="color:#fff;">Estado Mantenimiento</th>
+                                    <th style="color:#fff;">Estado Fumigación</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -50,7 +51,7 @@
                                                     Detalles
                                                 </button>
                                             </td>
-                                            {{-- ====================== --}}
+                                            {{-- ================================ //BUG:FECHAS_SEGUROS ================================ --}}
                                             <td>
                                                 @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                                                     <h5><span class="badge badge-dark">
@@ -213,7 +214,7 @@
                                                     @endif
                                                 @endif
                                             </td>
-                                            {{-- ============================================================== --}}
+                                            {{-- ================================ //BUG:FECHAS_VERIFICACIÓN ================================ --}}
                                             <td>
                                                 @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                                                     <h5><span class="badge badge-dark">
@@ -378,7 +379,7 @@
                                                     @endif
                                                 @endif
                                             </td>
-                                            {{-- ============================================================== --}}
+                                            {{-- ================================ //BUG:FECHAS_MANTENIMIENTO ================================ --}}
                                             <td>
                                                 @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                                                     <h5><span class="badge badge-dark">
@@ -543,6 +544,250 @@
                                                     @endif
                                                 @endif
                                             </td>
+                                            {{-- ================================ //BUG:FECHAS_FUMIGACIÓN ================================ --}}
+                                            <td>
+                                                @if ($unidade->fumigacion == 'Sin Fumigación')
+                                                    @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                        <h5><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">{{ $unidade->fumigacion }}</a></span>
+                                                        </h5>
+                                                    @endif
+                                                    @if ($unidade->tipo == 'Unidad Vehicular')
+                                                        <h5><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->fumigacion }}</a></span>
+                                                        </h5>
+                                                    @endif
+                                                @else
+                                                    {{-- ===================== CALCULO_DE_FECHAS_MANTENIMIENTO ===================== --}}
+                                                    @php
+                                                        /* FECHA LICENCIA */
+                                                        $vencimiento_dia = substr($unidade->lapsofumigacion, 8, 2);
+                                                        $vencimiento_mes = substr($unidade->lapsofumigacion, 5, 2);
+                                                        $vencimiento_año = substr($unidade->lapsofumigacion, 0, 4);
+                                                        /* FECHA ACTUAL */
+                                                        $año_actual = date('Y');
+                                                        $mes_actual = date('n');
+                                                        $dia_actual = date('d');
+                                                        /* OBTIENE LA DIFERENCIA DE AÑO ENTRE FECHA ACTUAL Y FECHA A VENCER */
+                                                        $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
+                                                        /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
+                                                        $uno = 'nulo';
+                                                        $calcular = 0;
+                                                        if ($diferencia_año >= 1) {
+                                                            $meses = $diferencia_año * 12 + 12;
+                                                            $operacion_1 = $meses - (int) $mes_actual;
+                                                            $operacion_2 = 12 - (int) $vencimiento_mes;
+                                                            $operacion_3 = $operacion_1 - $operacion_2;
+                                                            $meses = $operacion_3;
+                                                        } else {
+                                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        }
+                                                        if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
+                                                            $uno = 'uno';
+                                                            $calcular = 0;
+                                                        } else {
+                                                            $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                            $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                            $calcular = $direstantes + (int) $vencimiento_dia;
+                                                        }
+                                                        /* CALCULO DE DIAS EXACTOS */
+                                                        $dias_exactos = 0;
+                                                        $contador_1 = 0;
+                                                        $contador_2 = 0;
+                                                        $cuenta_mes = $mes_actual;
+                                                        $operacion_1 = 0;
+                                                        $mes_contador = 0;
+                                                        for ($i = 0; $i <= $meses; $i++) {
+                                                            if ($uno == 'uno') {
+                                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                $i = $meses + 1;
+                                                            } else {
+                                                                if ($contador_1 == 0) {
+                                                                    $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                    $dias_exactos = $dias_exactos + $operacion_2;
+                                                                    $contador_1 = 1;
+                                                                } else {
+                                                                    if ($i == $meses) {
+                                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                    } else {
+                                                                        $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                        $mes_contador = $mes_contador + 1;
+                                                                    }
+                                                                }
+                                                                if ($cuenta_mes == 12) {
+                                                                    $contador_2 = $contador_2 + 1;
+                                                                    $cuenta_mes = 1;
+                                                                } else {
+                                                                    $cuenta_mes = $cuenta_mes + 1;
+                                                                }
+                                                            }
+                                                        }
+                                                        /* CALCULO DE MESES EXACTOS */
+                                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                                        $dias_resto = $calcular;
+                                                        $opc = 2;
+                                                        for ($i = 0; $i <= $opc; $i++) {
+                                                            if ($calcular >= 30) {
+                                                                $mes_contador = $mes_contador + 1;
+                                                                $calcular = $calcular - 30;
+                                                            }
+                                                        }
+                                                    @endphp
+                                                    {{-- ============================================================== --}}
+                                                    {{-- ========================== IF PARA MOSTRAR =================== --}}
+                                                    <h5>
+                                                        @if ($mes_contador >= 9)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en:
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en:
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en:
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 1 && $uno == 'nulo')
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                            en:
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                            en:
+                                                                            {{ $mes_contador }} mes
+                                                                            <br> y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:
+                                                                            {{ $mes_contador }} mes
+                                                                            <br> y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 1 && $uno == 'uno')
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en:
+                                                                        {{ $dias_exactos }}
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:
+                                                                        {{ $dias_exactos }}
+                                                                    </a> </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en:
+                                                                        {{ $dias_exactos }}
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:
+                                                                        {{ $dias_exactos }}
+                                                                    </a> </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">
+                                                                        FUMIGACIÓN
+                                                                        <br> EXPIRADO
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">
+                                                                        FUMIGACIÓN
+                                                                        <br> EXPIRADO
+                                                                    </a> </span>
+                                                            @endif
+                                                        @endif
+                                                    </h5>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <a class="btn btn-info"
                                                     href="{{ route('unidades.edit', $unidade->id) }}">
@@ -636,6 +881,11 @@
                                 {{ $unidade->mantenimiento_fecha }}
                             </li>
                             <br>
+                            <b>Vencimiento Fumigación:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->lapsofumigacion }}
+                            </li>
+                            <br>
                             <b>Status:</b>
                             <li class="list-group-item">
                                 {{ $unidade->status }}
@@ -673,7 +923,7 @@
                                 {{ $unidade->responsable }}
                             </li>
                             <br>
-                            <b>Lapso de Fumigación:</b>
+                            <b>Vencimiento Fumigación:</b>
                             <li class="list-group-item">
                                 {{ $unidade->lapsofumigacion }}
                             </li>

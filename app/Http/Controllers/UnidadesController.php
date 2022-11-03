@@ -10,6 +10,7 @@ use App\Models\Verificacione;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UnidadesExport;
+use App\Models\Fumigacione;
 
 class UnidadesController extends Controller
 {
@@ -59,6 +60,7 @@ class UnidadesController extends Controller
                 'ciudad' => 'required',
                 'responsable' => 'required',
                 'cp' => 'required',
+                'fumigacion' => 'required',
                 'lapsofumigacion' => 'required',
                 'cliente' => 'required',
             ]);
@@ -81,6 +83,8 @@ class UnidadesController extends Controller
                 'seguro_fecha' => 'required',
                 'verificacion_fecha' => 'required',
                 'mantenimiento_fecha' => 'required',
+                'fumigacion' => 'required',
+                'lapsofumigacion' => 'required',
             ]);
         }
         $usuario = $request->cliente;
@@ -127,6 +131,7 @@ class UnidadesController extends Controller
     {
         $usuario = $unidade->cliente;
         $unidad = $unidade->serieunidad;
+        $unidad_v = $unidade->direccion;
         $tipo = $request->tipo;
         $vivienda = '';
         $vehiculo = '';
@@ -165,12 +170,14 @@ class UnidadesController extends Controller
         $usuario = $request->cliente;
         if ($tipo == "Unidad Habitacional o Comercial") {
             $unidade->update($vivienda);
+            $cambio = Fumigacione::where('unidad', '=', $unidad_v)->update(["unidad" => $request->direccion]);
         }
         if ($tipo == "Unidad Vehicular") {
             $unidade->update($vehiculo);
             $cambio = Verificacione::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
             $cambio = Seguro::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
             $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->update(["id_unidad" => $request->serieunidad]);
+            $cambio = Fumigacione::where('unidad', '=', $unidad)->update(["unidad" => $request->serieunidad]);
         }
         return redirect()->route('clientes.show', $usuario);
     }
@@ -185,10 +192,20 @@ class UnidadesController extends Controller
     {
         $usuario = $unidade->cliente;
         $unidad = $unidade->serieunidad;
+        $unidad_v = $unidade->direccion;
+        $tipo = $unidade->tipo;
         $unidade->delete();
         $cambio = Seguro::where('id_unidad', '=', $unidad)->delete();
         $cambio = Verificacione::where('id_unidad', '=', $unidad)->delete();
         $cambio = Mantenimiento::where('id_unidad', '=', $unidad)->delete();
+        if ($tipo == "Unidad Habitacional o Comercial") {
+            $cambio = Fumigacione::where('unidad', '=', $unidad_v)->delete();
+        }
+        if ($tipo == "Unidad Vehicular") {
+            $cambio = Fumigacione::where('unidad', '=', $unidad)->delete();
+        }
+
+
         return redirect()->route('clientes.show', $usuario);
     }
     public function export($usuario)

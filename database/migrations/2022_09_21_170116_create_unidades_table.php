@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('responsable');
             $table->string('cp');
             $table->string('lapsofumigacion');
+            $table->string('fumigacion');
             $table->timestamps();
         });
     }

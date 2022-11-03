@@ -70,6 +70,13 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
+                                        <label for="fumigacion">fumigacion</label>
+                                        <input type="text" name="fumigacion" class="form-control"
+                                        value="Sin Fumigación">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
                                         <label for="seguro_fecha">seguro_fecha</label>
                                         <input type="text" name="seguro_fecha" class="form-control"
                                             value="Sin Fecha de Seguro">
@@ -87,6 +94,13 @@
                                         <label for="mantenimiento_fecha">mantenimiento_fecha</label>
                                         <input type="text" name="mantenimiento_fecha" class="form-control"
                                             value="Sin Fecha de Mantenimiento">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="lapsofumigacion">lapsofumigacion</label>
+                                        <input type="text" name="lapsofumigacion" class="form-control"
+                                            value="Sin Fecha de Fumigación">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
@@ -169,7 +183,7 @@
                                             <div class="form-group">
                                                 <label for="cp">Codigo Postal</label>
                                                 <input type="number" min="10000" max="99999" step="1"
-                                                 name="cp" class="form-control">
+                                                    name="cp" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -194,18 +208,6 @@
                                             <div class="form-group">
                                                 <label for="responsable">Responsable</label>
                                                 <input type="text" name="responsable" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="lapsofumigacion">Lapso de Tiempo para Sig. Fumigacion</label>
-                                                <select name="lapsofumigacion" id="lapsofumigacion" class=" selectsearch">
-                                                    <option disabled selected value="">Selecciona una opción</option>
-                                                    <option value="1">1 Mes</option>
-                                                    <option value="2">2 Mes</option>
-                                                    <option value="3">3 Mes</option>
-                                                    <option value="Tiempo Indefinido">Tiempo Indefinido</option>
-                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
