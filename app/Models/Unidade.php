@@ -32,5 +32,6 @@ class Unidade extends Model
         'cp',
         'lapsofumigacion',
         'fumigacion',
+        'tipomantenimiento',
     ];
 }

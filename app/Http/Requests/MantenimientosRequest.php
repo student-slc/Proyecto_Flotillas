@@ -33,6 +33,7 @@ class MantenimientosRequest extends FormRequest
             "tipomantenimiento" => "required",
             "estado" => "required",
             "nomantenimiento" => "required",
+            "kminiciales" => "required",
         ];
     }
     public function messages()
@@ -47,6 +48,7 @@ class MantenimientosRequest extends FormRequest
             "tipomantenimiento.required" => 'El Tipo de Mantenimiento es Obligatorio',
             'estado.required'=>"El Estado es obligatorio",
             'nomantenimiento.required'=>"El Numero de Mantenimiento es obligatorio",
+            'kminiciales.required'=>"Los Km Iniciales son obligatorios",
         ];
     }
 }

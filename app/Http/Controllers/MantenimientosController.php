@@ -48,7 +48,15 @@ class MantenimientosController extends Controller
         }
         Mantenimiento::create($request->validated());
         $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento" => $request->get('nomantenimiento')]);
-        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('fecha')]);
+        if ($request->get('tipomantenimiento') == 'Fecha') {
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('fecha')]);
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["tipomantenimiento" => $request->get('tipomantenimiento')]);
+        }
+        if ($request->get('tipomantenimiento') == 'Kilometraje') {
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('kmfaltantes')]);
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["tipomantenimiento" => $request->get('tipomantenimiento')]);
+        }
+
         return redirect()->route('mantenimientos.show', $unidad);
     }
 
@@ -87,7 +95,14 @@ class MantenimientosController extends Controller
         $unidad = $mantenimiento->id_unidad;
         $mantenimiento->update($request->validated());
         $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento" => $request->get('nomantenimiento')]);
-        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('fecha')]);
+        if ($request->get('tipomantenimiento') == 'Fecha') {
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('fecha')]);
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["tipomantenimiento" => $request->get('tipomantenimiento')]);
+        }
+        if ($request->get('tipomantenimiento') == 'Kilometraje') {
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["mantenimiento_fecha" => $request->get('kmfaltantes')]);
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["tipomantenimiento" => $request->get('tipomantenimiento')]);
+        }
         return redirect()->route('mantenimientos.show', $unidad);
     }
 
@@ -108,6 +123,6 @@ class MantenimientosController extends Controller
     }
     public function export($unidad)
     {
-        return (new MantenimientosExport($unidad))->download('Mantenimientos_unidad_'.$unidad.'.xlsx');
+        return (new MantenimientosExport($unidad))->download('Mantenimientos_unidad_' . $unidad . '.xlsx');
     }
 }

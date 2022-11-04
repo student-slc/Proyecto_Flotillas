@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('frecuencia');
             $table->string('sigservicio');
             $table->string('kmfaltantes');
+            $table->string('kminiciales');
             $table->string('tipomantenimiento');
             $table->timestamps();
         });

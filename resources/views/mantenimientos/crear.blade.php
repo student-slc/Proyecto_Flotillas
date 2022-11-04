@@ -56,15 +56,29 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
+                                            <label for="kminiciales">Kilometros Iniciales</label>
+                                            <input id="kminiciales" type="text" name="kminiciales" class="form-control"
+                                            onkeyup="calcular(this)">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
                                             <label for="kmfinales">Kilometros Finales</label>
-                                            <input type="text" name="kmfinales" class="form-control">
+                                            <input id="kmfinales" type="text" name="kmfinales" class="form-control"
+                                            onkeyup="calcular(this)">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="kmfaltantes">Kilometros Faltantes</label>
+                                            <input id="kmfaltantes"type="text" name="kmfaltantes" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fecha">Fecha</label>
                                             <input type="date" name="fecha" class="form-control"
-                                            min="{{ $fecha_actual }}">
+                                                min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -81,14 +95,12 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="kmfaltantes">Kilometros Faltantes</label>
-                                            <input type="text" name="kmfaltantes" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
                                             <label for="tipomantenimiento">Tipo De Mantenimiento</label>
-                                            <input type="text" name="tipomantenimiento" class="form-control">
+                                            <select name="tipomantenimiento" id="tipomantenimiento" class=" selectsearch">
+                                                <option disabled selected value="">Selecciona Tipo de Mantenimiento</option>
+                                                <option value="Kilometraje">Mantenimiento por Kilometraje</option>
+                                                <option value="Fecha">Mantenimiento por Fecha de Vencimiento</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -102,4 +114,11 @@
             </div>
         </div>
     </section>
+    <script>
+        function calcular(input) {
+            var kmfinales=document.getElementById("kmfinales").value
+            var kminiciales=document.getElementById("kminiciales").value
+            document.getElementById("kmfaltantes").value = kmfinales-kminiciales;
+        }
+    </script>
 @endsection

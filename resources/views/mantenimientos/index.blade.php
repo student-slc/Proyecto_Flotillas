@@ -100,9 +100,19 @@
                             {{ $mantenimiento->id_unidad }}
                         </li>
                         <br>
+                        <b>Kilometros Iniciales</b>
+                        <li class="list-group-item">
+                            {{ $mantenimiento->kminiciales }}
+                        </li>
+                        <br>
                         <b>Kilometros Finales</b>
                         <li class="list-group-item">
                             {{ $mantenimiento->kmfinales }}
+                        </li>
+                        <br>
+                        <b>Kilometros Faltantes</b>
+                        <li class="list-group-item">
+                            {{ $mantenimiento->kmfaltantes }}
                         </li>
                         <br>
                         <b>Fecha</b>
@@ -120,11 +130,6 @@
                             {{ $mantenimiento->sigservicio }}
                         </li>
                         <br>
-                        <b>Kilometros Faltantes</b>
-                        <li class="list-group-item">
-                            {{ $mantenimiento->kmfaltantes }}
-                        </li>
-                        <br>
                         <b>Tipo de Mantenimiento</b>
                         <li class="list-group-item">
                             {{ $mantenimiento->tipomantenimiento }}
@@ -132,7 +137,6 @@
                         <br>
                     </div>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-danger"
                             onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
                     </div>
