@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Verificaiones
+    Verificaiones Físico-Mecánicas
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Verificación</h3>
+            <h3 class="page__heading">Editar Verificación Físico-Mecánica</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-danger"
-                                href="{{ route('verificaciones.show', $unidad = $verificacione->id_unidad) }}">Regresar</a>
+                                href="{{ route('verificacionesfisicomecanicas.show', $unidad = $verificacionesfisicomecanica->id_unidad) }}">Regresar</a>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -31,7 +31,7 @@
                                 /* FECHA ACTUAL */
                                 $fecha_actual = date('Y-n-d');
                             @endphp
-                            <form action="{{ route('verificaciones.update', $verificacione->id) }}" method="POST">
+                            <form action="{{ route('verificacionesfisicomecanicas.update', $verificacionesfisicomecanica->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 {{-- ========================================= OCULTOS ========================================= --}}
@@ -39,21 +39,21 @@
                                     <div class="form-group">
                                         <label for="id_unidad">id_unidad</label>
                                         <input type="text" name="id_unidad" class="form-control"
-                                            value="{{ $verificacione->id_unidad }}">
+                                            value="{{ $verificacionesfisicomecanica->id_unidad }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label for="estado">estado</label>
                                         <input type="text" name="estado" class="form-control"
-                                            value="{{ $verificacione->estado }}">
+                                            value="{{ $verificacionesfisicomecanica->estado }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
                                         <label for="tipoverificacion">Tipo de Verificación</label>
                                         <input type="text" name="tipoverificacion" class="form-control"
-                                        value="Ambiental">
+                                        value="Fisica">
                                     </div>
                                 </div>
                                 {{-- ========================================================================= --}}
@@ -61,28 +61,28 @@
                                     <div class="form-group">
                                         <label for="noverificacion">Numero de Verificación</label>
                                         <input type="text" name="noverificacion" class="form-control"
-                                        value="{{ $verificacione->noverificacion }}">
+                                        value="{{ $verificacionesfisicomecanica->noverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="subtipoverificacion">Sub Tipo de Verificación</label>
                                         <input type="text" name="subtipoverificacion" class="form-control"
-                                            value="{{ $verificacione->subtipoverificacion }}">
+                                            value="{{ $verificacionesfisicomecanica->subtipoverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="ultimaverificacion">Fecha Ultima Verificación</label>
                                         <input type="date" name="ultimaverificacion" class="form-control"
-                                            value="{{ $verificacione->ultimaverificacion }}">
+                                            value="{{ $verificacionesfisicomecanica->ultimaverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="fechavencimiento">Fecha de Vencimiento</label>
                                         <input type="date" name="fechavencimiento" class="form-control"
-                                            value="{{ $verificacione->fechavencimiento }}" min="{{ $fecha_actual }}">
+                                            value="{{ $verificacionesfisicomecanica->fechavencimiento }}" min="{{ $fecha_actual }}">
                                     </div>
                                 </div>
 
@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="caratulaverificacion">Caratula De Verificación</label>
                                         <input type="text" name="caratulaverificacion" class="form-control"
-                                            value="{{ $verificacione->caratulaverificacion }}">
+                                            value="{{ $verificacionesfisicomecanica->caratulaverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

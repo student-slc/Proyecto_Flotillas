@@ -93,6 +93,13 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
+                                            <label for="verificacion2">verificacion2</label>
+                                            <input type="text" name="verificacion2" class="form-control"
+                                                value="{{ $unidade->verificacion2 }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
                                             <label for="mantenimiento">mantenimiento</label>
                                             <input type="text" name="mantenimiento" class="form-control"
                                                 value="{{ $unidade->mantenimiento }}">
@@ -110,6 +117,13 @@
                                             <label for="verificacion_fecha">verificacion_fecha</label>
                                             <input type="text" name="verificacion_fecha" class="form-control"
                                                 value="{{ $unidade->verificacion_fecha }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="verificacion_fecha2">verificacion_fecha2</label>
+                                            <input type="text" name="verificacion_fecha2" class="form-control"
+                                                value="{{ $unidade->verificacion_fecha2 }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>

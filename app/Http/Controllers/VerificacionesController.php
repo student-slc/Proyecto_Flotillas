@@ -59,7 +59,7 @@ class VerificacionesController extends Controller
      */
     public function show($unidad)
     {
-        $verificaciones = Verificacione::where('id_unidad', '=', $unidad)->get();
+        $verificaciones = Verificacione::where('id_unidad', '=', $unidad)->where('tipoverificacion', '=', "Ambiental")->get();
         return view('verificaciones.index', compact('verificaciones', 'unidad'));
     }
 

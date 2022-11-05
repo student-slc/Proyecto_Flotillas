@@ -5,14 +5,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Verificación para: {{ $unidad }}</h3>
+            <h3 class="page__heading">Verificación Físico-Mecánica para: {{ $unidad }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-danger" href="{{ route('verificaciones.show', $unidad) }}">Regresar</a>
+                            <a class="btn btn-danger" href="{{ route('verificacionesfisicomecanicas.show', $unidad) }}">Regresar</a>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -30,7 +30,7 @@
                                 /* FECHA ACTUAL */
                                 $fecha_actual = date('Y-n-d');
                             @endphp
-                            <form action="{{ route('verificaciones.store') }}" method="POST">
+                            <form action="{{ route('verificacionesfisicomecanicas.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
                                     {{-- ========================================= OCULTOS ========================================= --}}
@@ -51,7 +51,7 @@
                                         <div class="form-group">
                                             <label for="tipoverificacion">Tipo de Verificación</label>
                                             <input type="text" name="tipoverificacion" class="form-control"
-                                            value="Ambiental">
+                                            value="Fisica">
                                         </div>
                                     </div>
                                     {{-- ========================================================================= --}}
@@ -80,7 +80,6 @@
                                                 min="{{ $fecha_actual }}">
                                         </div>
                                     </div>
-
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="caratulaverificacion">Caratula De Verificación</label>

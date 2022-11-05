@@ -63,6 +63,13 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                     <div class="form-group">
+                                        <label for="verificacion2">verificacion</label>
+                                        <input type="text" name="verificacion2" class="form-control"
+                                            value="Sin Verificación">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
                                         <label for="mantenimiento">mantenimiento</label>
                                         <input type="text" name="mantenimiento" class="form-control"
                                             value="Sin Mantenimiento">
@@ -86,6 +93,13 @@
                                     <div class="form-group">
                                         <label for="verificacion_fecha">verificacion_fecha</label>
                                         <input type="text" name="verificacion_fecha" class="form-control"
+                                            value="Sin Fecha de Verificación">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="verificacion_fecha2">verificacion_fecha</label>
+                                        <input type="text" name="verificacion_fecha2" class="form-control"
                                             value="Sin Fecha de Verificación">
                                     </div>
                                 </div>

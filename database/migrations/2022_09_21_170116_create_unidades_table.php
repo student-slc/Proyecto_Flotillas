@@ -25,9 +25,11 @@ return new class extends Migration
             $table->string('status');
             $table->string('seguro');
             $table->string('verificacion');
+            $table->string('verificacion2');
             $table->string('mantenimiento');
             $table->string('seguro_fecha');
             $table->string('verificacion_fecha');
+            $table->string('verificacion_fecha2');
             $table->string('mantenimiento_fecha');
             $table->string('operador');
             /* HABITACIONES */

@@ -13,6 +13,7 @@ use App\Http\Controllers\FumigadoresController;
 use App\Http\Controllers\FumigacionesController;
 use App\Http\Controllers\SegurosController;
 use App\Http\Controllers\VerificacionesController;
+use App\Http\Controllers\Verificaciones2Controller;
 use App\Http\Controllers\MantenimientosController;
 use App\Models\Mantenimiento;
 
@@ -49,6 +50,7 @@ Route::resource('fumigadores', FumigadoresController::class);
 Route::resource('fumigaciones', FumigacionesController::class);
 Route::resource('seguros', SegurosController::class);
 Route::resource('verificaciones', VerificacionesController::class);
+Route::resource('verificacionesfisicomecanicas', Verificaciones2Controller::class);
 Route::resource('mantenimientos', MantenimientosController::class);
 Route::resource('logs', ObservadorController::class);
 });
@@ -69,6 +71,8 @@ Route::get('/clientes/unidades/verificaciones/crear/{unidad}','App\Http\Controll
 Route::get('/clientes/unidades/mantenimientos/crear/{unidad}','App\Http\Controllers\MantenimientosController@crear')->name('mantenimientos.crear');
 ///--------------------------------------CREAR FUMIGACION--------------------------------------------------------------------
 Route::get('/clientes/unidades/fumigaciones/crear/{unidad}','App\Http\Controllers\FumigacionesController@crear')->name('fumigaciones.crear');
+///--------------------------------------CREAR VERIFICACIÓN--------------------------------------------------------------------
+Route::get('/clientes/unidades/verificacionesfisicomecanicas/crear/{unidad}','App\Http\Controllers\Verificaciones2Controller@crear')->name('verificacionesfisicomecanicas.crear');
 
 ///--------------------------------------CREAR EXCEL LOG--------------------------------------------------------------------
 Route::controller(ObservadorController::class)->group(function(){
@@ -113,6 +117,11 @@ Route::controller(SegurosController::class)->group(function(){
 ///--------------------------------------CREAR EXCEL VERIFICACIONES--------------------------------------------------------------------
 Route::controller(VerificacionesController::class)->group(function(){
     Route::get('verificaciones-export/{unidad}', 'export')->name('verificaciones.export');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+///--------------------------------------CREAR EXCEL VERIFICACIONES--------------------------------------------------------------------
+Route::controller(VerificacionesController::class)->group(function(){
+    Route::get('verificacionesfisicomecanicas-export/{unidad}', 'export')->name('verificacionesfisicomecanicas.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 
