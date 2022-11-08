@@ -12,6 +12,7 @@ use App\Http\Controllers\OperadoresController;
 use App\Http\Controllers\FumigadoresController;
 use App\Http\Controllers\FumigacionesController;
 use App\Http\Controllers\SegurosController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\VerificacionesController;
 use App\Http\Controllers\Verificaciones2Controller;
 use App\Http\Controllers\MantenimientosController;
@@ -124,6 +125,18 @@ Route::controller(VerificacionesController::class)->group(function(){
     Route::get('verificacionesfisicomecanicas-export/{unidad}', 'export')->name('verificacionesfisicomecanicas.export');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+
+///--------------------------------------REPORTES SEGUROS--------------------------------------------------------------------
+Route::get('/reportes/seguros', [App\Http\Controllers\ReportesController::class, 'seguros'])->name('reportes.seguros');
+///--------------------------------------REPORTES VERIFICACIONES AMBIENTALES--------------------------------------------------------------------
+Route::get('/reportes/verificaciones_ambientales', [App\Http\Controllers\ReportesController::class, 'vambiental'])->name('reportes.vambiental');
+///--------------------------------------REPORTES VERIFICACIONES FISICO-MECANICAS--------------------------------------------------------------------
+Route::get('/reportes/verificaciones_fisico_mecanicas', [App\Http\Controllers\ReportesController::class, 'vfisicas'])->name('reportes.vfisica');
+///--------------------------------------REPORTES VERIFICACIONES FISICO-MECANICAS--------------------------------------------------------------------
+Route::get('/reportes/mantenimientos', [App\Http\Controllers\ReportesController::class, 'mantenimientos'])->name('reportes.mantenimientos');
+
+
+
 
 
 
