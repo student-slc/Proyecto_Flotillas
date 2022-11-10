@@ -28,7 +28,6 @@
                                     <th style="color:#fff;">Estado Seguro</th>
                                     <th style="color:#fff;">Verificación Ambiental</th>
                                     <th style="color:#fff;">Verificación Físico-Mecánica</th>
-                                    <th style="color:#fff;">Estado Verificación</th>
                                     <th style="color:#fff;">Estado Mantenimiento</th>
                                     <th style="color:#fff;">Estado Fumigación</th>
                                     <th style="color:#fff;">Acciones</th>

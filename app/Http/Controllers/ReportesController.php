@@ -22,4 +22,8 @@ class ReportesController extends Controller
     {
         return view('reportes.mantenimiento');
     }
+    public function fumigaciones()
+    {
+        return view('reportes.fumigaciones');
+    }
 }

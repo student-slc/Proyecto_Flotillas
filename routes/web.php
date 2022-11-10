@@ -132,8 +132,12 @@ Route::get('/reportes/seguros', [App\Http\Controllers\ReportesController::class,
 Route::get('/reportes/verificaciones_ambientales', [App\Http\Controllers\ReportesController::class, 'vambiental'])->name('reportes.vambiental');
 ///--------------------------------------REPORTES VERIFICACIONES FISICO-MECANICAS--------------------------------------------------------------------
 Route::get('/reportes/verificaciones_fisico_mecanicas', [App\Http\Controllers\ReportesController::class, 'vfisicas'])->name('reportes.vfisica');
-///--------------------------------------REPORTES VERIFICACIONES FISICO-MECANICAS--------------------------------------------------------------------
+///--------------------------------------REPORTES VERIFICACIONES MANTENIMIENTOS--------------------------------------------------------------------
 Route::get('/reportes/mantenimientos', [App\Http\Controllers\ReportesController::class, 'mantenimientos'])->name('reportes.mantenimientos');
+///--------------------------------------REPORTES VERIFICACIONES FUMIGACIONES--------------------------------------------------------------------
+Route::get('/reportes/fumigaciones', [App\Http\Controllers\ReportesController::class, 'fumigaciones'])->name('reportes.fumigaciones');
+
+
 
 
 

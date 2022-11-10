@@ -1,6 +1,6 @@
 {{--  --}}
 <li class="side-menus {{-- active --}}">
-    <a class="nav-link" {{-- href="/usuarios" --}}>
+    <a class="nav-link" href="/home" >
         <i class="fas fa-table"></i><span>Dashboard</span>
     </a>
 </li>
