@@ -16,7 +16,6 @@
                         $unidades = Unidade::all();
                         $unidadesk = Unidade::where('tipomantenimiento', '=', 'Kilometraje')->get();
                         $unidadest = Unidade::where('tipomantenimiento', '=', 'Fecha')->get();
-
                     @endphp
                     {{-- --}}
                     {{-- OBTENGO TODAS LAS UNIDADES --}}
@@ -29,6 +28,7 @@
                         $amarillo = 0;
                         $rojo = 0;
                         $expirado = 0;
+                        $color = 'nada';
                     @endphp
                     @foreach ($unidades as $unidade)
                         @if ($unidade->tipo == 'Unidad Vehicular')
@@ -158,87 +158,24 @@
                             @endif
                         @endif
                     @endforeach
+                    @php
+                        $datos_seguro = [$sin_seguro, $azul, $verde, $amarillo, $rojo, $expirado];
+                    @endphp
                     {{--  --}}
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <h5>SEGUROS</h5>
-                                <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-dark order-card">
-                                        <div class="card-block">
-                                            <h5>Unidades sin seguro</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-times-circle f-left"></i><span>{{ $sin_seguro }}</span>
-                                            </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-primary order-card">
-                                        <div class="card-block">
-                                            <h5>9-12 meses a expirar</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-check-circle f-left"></i><span>{{ $azul }}</span>
-                                            </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-success order-card">
-                                        <div class="card-block">
-                                            <h5>5-8 meses para expirar</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-check-circle f-left"></i><span>{{ $verde }}</span>
-                                            </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-warning order-card">
-                                        <div class="card-block">
-                                            <h5>2-4 meses para expirar</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-exclamation-triangle f-left"></i><span>{{ $amarillo }}</span>
-                                            </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-danger order-card">
-                                        <div class="card-block">
-                                            <h5>1-2 meses para expirar</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-exclamation-circle f-left"></i><span>{{ $rojo }}</span>
-                                            </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-xl-4">
-                                    <div class="card bg-dark order-card">
-                                        <div class="card-block">
-                                            <h5>Seguros Expirados</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-times-circle f-left"></i><span>{{ $expirado }}</span>
-                                            </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="card-deck mt-2">
+                        <div class="card text-center chart-container" style="position: center; height:80vh; width:80vw">
+                            <div class="card-body">
+                                <h5 class="card-title">SEGUROS</h5>
+                                <canvas id="seguro"></canvas>
+                            </div>
+                        </div>
+                        <div class="card chart-container" style="position: relative; height:60vh; width:100vw">
+                            <div class="card-body">
+                                <canvas id="verificacion"></canvas>
                             </div>
                         </div>
                     </div>
+                    {{--  --}}
                     {{-- ============================================================================== --}}
                     {{-- ===================//BUG: V.AMBIENTAL =================== --}}
                     {{-- CALCULO DE FECHAS --}}
@@ -439,7 +376,8 @@
                                             <h2 class="text-right"><i
                                                     class="fa fa-exclamation-circle f-left"></i><span>{{ $rojo }}</span>
                                             </h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
+                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver
+                                                    más</a>
                                             </p>
                                         </div>
                                     </div>
@@ -1764,4 +1702,113 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script>
+        /* ================ //BUG:GRAFICA SEGUROS ================*/
+        const data = [
+            @php
+                print '' . $datos_seguro[0] . ',' . $datos_seguro[1] . ',' . $datos_seguro[2] . ',' . $datos_seguro[3] . ',' . $datos_seguro[4] . ',' . $datos_seguro[5];
+            @endphp
+        ];
+        var ctx = document.getElementById("seguro");
+        var myNewChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Sin Seguro', '9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes',
+                    'Seguro Expirado'
+                ],
+                datasets: [{
+                    label: 'No. Unidades: ',
+                    data: data,
+                    backgroundColor: [
+                        'rgb(32,32,32)',
+                        'rgb(60,60,255)',
+                        'rgb(0,153,0)',
+                        'rgb(255, 255, 102)',
+                        'rgb(255,51,51)',
+                        'rgb(255,0,0)',
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+        /* EVENTO */
+        function clickSeguro(click) {
+            var slice = myNewChart.getElementsAtEventForMode(click, 'nearest', {
+                intersect: true
+            }, true);
+            if (slice.length) {
+                const firstPoint = slice[0];
+                const label = myNewChart.data.labels[firstPoint.index];
+                const value = myNewChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
+                /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                if (label=='Sin Seguro') {
+                    window.location.href = "/reportes/seguros/sin%20seguro";
+                }
+                if (label=='9-12 meses') {
+                    window.location.href = "/reportes/seguros/azul";
+                }
+                if (label=='5-8 meses') {
+                    window.location.href = "/reportes/seguros/verde";
+                }
+                if (label=='2-4 meses') {
+                    window.location.href = "/reportes/seguros/amarillo";
+                }
+                if (label=='Sig. mes') {
+                    window.location.href = "/reportes/seguros/rojo";
+                }
+                if (label=='Seguro Expirado') {
+                    window.location.href = "/reportes/seguros/expirado";
+                }
+            }
+        }
+        ctx.onclick = clickSeguro;
+        /*  */
+
+
+        /* ========================================================*/
+        /* ================ //BUG:GRAFICA SEGUROS ================*/
+        const ctxv = document.getElementById('verificacion');
+        /*        chart.canvas.parentNode.style.height = '128px';
+               chart.canvas.parentNode.style.width = '128px'; */
+        new Chart(ctxv, {
+            type: 'pie',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'SEGUROS'
+                    }
+                }
+            }
+        });
+        /* ========================================================*/
+    </script>
 @endsection

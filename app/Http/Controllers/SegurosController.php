@@ -1,14 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Http\Requests\SegurosRequest;
 use App\Models\Seguro;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SegurosExport;
-
 class SegurosController extends Controller
 {
     public function index()
@@ -18,7 +15,6 @@ class SegurosController extends Controller
          return view('clientes.index',compact('clientes')); */
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -28,7 +24,6 @@ class SegurosController extends Controller
     {
         /* return view('seguros.crear'); */
     }
-
     /**
      * Store a newly created resource in storage.
      *
