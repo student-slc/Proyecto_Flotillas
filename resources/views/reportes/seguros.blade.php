@@ -63,17 +63,17 @@
                                     @php
                                         if ($calculo[$pos][0] == 'vacio') {
                                             $cont = 10;
-                                            $opc = 0;
+                                            $opc_2 = 0;
                                         } else {
-                                            $opc = count($calculo[$pos]);
+                                            $opc_2 = count($calculo[$pos]);
                                         }
                                     @endphp
                                     {{--  --}}
                                     @foreach ($unidades as $unidade)
-                                        @if ($opc > $cont && $unidade->tipo == 'Unidad Vehicular')
+                                        @if ($opc_2 > $cont && $unidade->tipo == 'Unidad Vehicular')
                                             @if ($calculo[$pos][$cont] == $unidade->serieunidad)
                                                 @php
-                                                    if ($opc == 1) {
+                                                    if ($opc_2 == 1) {
                                                         $cont = $cont + 10;
                                                     } else {
                                                         $cont = $cont + 1;

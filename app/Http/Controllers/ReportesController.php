@@ -8,7 +8,7 @@ use App\Models\Unidade;
 
 class CalculoFechas  extends Controller
 {
-    public function fechas($color, $fecha, $tipo, $mstipo)
+    public function fechas($color, $fecha, $tipo, $mstipo,$sin)
     {
         /* =============================================== GENERAL =============================================== */
         $sin_seguro = 0;
@@ -27,7 +27,7 @@ class CalculoFechas  extends Controller
         foreach ($unidades as $unidade) {
             if ($unidade->tipo == 'Unidad Vehicular') {
                 if ($unidade->$tipo == $mstipo) {
-                    if ($color == 'sin seguro') {
+                    if ($color == $sin) {
                         $matriz[1][$sin_seguro] = $unidade->serieunidad;
                         $sin_seguro = $sin_seguro + 1;
                     }
@@ -157,23 +157,26 @@ class ReportesController extends CalculoFechas
     public function seguros($color)
     {
         /* $color,$fecha,$tipo,$mstipo */
-        $calculo = CalculoFechas::fechas($color, 'seguro_fecha', 'seguro', 'Sin Seguro');
+        $calculo = CalculoFechas::fechas($color, 'seguro_fecha', 'seguro', 'Sin Seguro','sin seguro');
         $unidades=Unidade::all();
         return view('reportes.seguros', compact('calculo','color','unidades'));
     }
-    public function vambiental()
+    public function vambiental($color)
     {
-        return view('reportes.vambiental');
+        /* $color,$fecha,$tipo,$mstipo */
+        $calculo = CalculoFechas::fechas($color, 'verificacion_fecha', 'verificacion', 'Sin Verificación','sin verificacion');
+        $unidades=Unidade::all();
+        return view('reportes.vambiental', compact('calculo','color','unidades'));
     }
-    public function vfisicas()
+    public function vfisicas($color)
     {
         return view('reportes.vfisicos');
     }
-    public function mantenimientos()
+    public function mantenimientos($color)
     {
         return view('reportes.mantenimiento');
     }
-    public function fumigaciones()
+    public function fumigaciones($color)
     {
         return view('reportes.fumigaciones');
     }

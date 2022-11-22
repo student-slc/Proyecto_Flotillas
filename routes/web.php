@@ -129,10 +129,10 @@ Route::controller(VerificacionesController::class)->group(function(){
 ///--------------------------------------REPORTES SEGUROS--------------------------------------------------------------------
 Route::get('/reportes/seguros/{color}', [App\Http\Controllers\ReportesController::class, 'seguros'])->name('reportes.seguros');
 ///--------------------------------------REPORTES VERIFICACIONES AMBIENTALES--------------------------------------------------------------------
-Route::get('/reportes/verificaciones_ambientales', [App\Http\Controllers\ReportesController::class, 'vambiental'])->name('reportes.vambiental');
+Route::get('/reportes/verificaciones_ambientales/{color}', [App\Http\Controllers\ReportesController::class, 'vambiental'])->name('reportes.vambiental');
 ///--------------------------------------REPORTES VERIFICACIONES FISICO-MECANICAS--------------------------------------------------------------------
-Route::get('/reportes/verificaciones_fisico_mecanicas', [App\Http\Controllers\ReportesController::class, 'vfisicas'])->name('reportes.vfisica');
+Route::get('/reportes/verificaciones_fisico_mecanicas/{color}', [App\Http\Controllers\ReportesController::class, 'vfisicas'])->name('reportes.vfisica');
 ///--------------------------------------REPORTES VERIFICACIONES MANTENIMIENTOS--------------------------------------------------------------------
-Route::get('/reportes/mantenimientos', [App\Http\Controllers\ReportesController::class, 'mantenimientos'])->name('reportes.mantenimientos');
+Route::get('/reportes/mantenimientos/{color}', [App\Http\Controllers\ReportesController::class, 'mantenimientos'])->name('reportes.mantenimientos');
 ///--------------------------------------REPORTES VERIFICACIONES FUMIGACIONES--------------------------------------------------------------------
-Route::get('/reportes/fumigaciones', [App\Http\Controllers\ReportesController::class, 'fumigaciones'])->name('reportes.fumigaciones');
+Route::get('/reportes/fumigaciones/{color}', [App\Http\Controllers\ReportesController::class, 'fumigaciones'])->name('reportes.fumigaciones');
