@@ -157,6 +157,20 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
+                                            <label for="regimen_fiscal">Regimen Fiscal</label>
+                                            <input type="text" name="regimen_fiscal" class="form-control"
+                                            value="{{ $cliente->regimen_fiscal }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="sfdi">SFDI</label>
+                                            <input type="text" name="sfdi" class="form-control"
+                                            value="{{ $cliente->sfdi }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
                                             <label for="observaciones">Observaciones</label>
                                             <textarea name="observaciones" id="observaciones" class="form-control" rows="7"
                                                 >{{ $cliente->observaciones }}</textarea>

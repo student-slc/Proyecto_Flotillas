@@ -163,6 +163,16 @@
                             {{ $cliente->numero }}
                         </li>
                         <br>
+                        <b>Regimen Fiscal:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->regimen_fiscal }}
+                        </li>
+                        <br>
+                        <b>SFDI:</b>
+                        <li class="list-group-item">
+                            {{ $cliente->sfdi }}
+                        </li>
+                        <br>
                         <b>Observaciones:</b>
                         <li class="list-group-item">
                             {{ $cliente->observaciones }}

@@ -1146,6 +1146,11 @@
                                 {{ $unidade->responsable }}
                             </li>
                             <br>
+                            <b>Razon Social:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->razonsocialunidad }}
+                            </li>
+                            <br>
                             <b>Vencimiento Fumigación:</b>
                             <li class="list-group-item">
                                 {{ $unidade->lapsofumigacion }}

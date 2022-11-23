@@ -23,6 +23,8 @@ class Cliente extends Model
         'codigopostal',
         'rfc',
         'numero',
-        'observaciones'
+        'observaciones',
+        'regimen_fiscal',
+        'sfdi'
     ];
 }

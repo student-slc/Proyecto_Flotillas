@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('rfc');
             $table->string('numero');
             $table->string('observaciones');
+            $table->string('regimen_fiscal');
+            $table->string('sfdi');
             $table->timestamps();
         });
     }
