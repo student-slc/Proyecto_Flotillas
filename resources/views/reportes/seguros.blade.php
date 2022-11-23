@@ -1,14 +1,47 @@
 @extends('layouts.app')
 @section('title')
-    Unidades
+    Reportes
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Seguros de Todas Las unidades en {{ $color }}</h3>
+            @if ($color == 'sin seguro')
+            @php
+                $estado = 'Sin Seguro';
+            @endphp
+        @endif
+        @if ($color == 'azul')
+            @php
+                $estado = '9 a 12 meses para expirar';
+            @endphp
+        @endif
+        @if ($color == 'verde')
+            @php
+                $estado = '5 a 8 meses para expirar';
+            @endphp
+        @endif
+        @if ($color == 'amarillo')
+            @php
+                $estado = '2 a 4 meses para expirar';
+            @endphp
+        @endif
+        @if ($color == 'rojo')
+            @php
+                $estado = '1 mes para expirar';
+            @endphp
+        @endif
+        @if ($color == 'expirado')
+            @php
+                $estado = 'Seguro Expirada';
+            @endphp
+        @endif
+            <h3 class="page__heading">Seguros de Todas Las unidades en: {{ $estado }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
+                <div class="card-body">
+                    <a class="btn btn-danger" href="{{ route('home') }}">Regresar</a>
+                </div>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
@@ -18,7 +51,8 @@
                                     placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">No. Serie/<br>Dirección</th>
+                                    <th style="color:#fff;">Cliente</th>
+                                    <th style="color:#fff;">No. Serie</th>
                                     <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Estado Seguro</th>
                                     <th style="color:#fff;">Acciones</th>
@@ -81,6 +115,7 @@
                                                 @endphp
                                                 <tr>
                                                     <td style="display: none;">{{ $unidade->id }}</td>
+                                                    <td>{{ $unidade->cliente }}</td>
                                                     <td>{{ $unidade->serieunidad }}</td>
                                                     {{-- Boton MODAL --}}
                                                     <td>
@@ -92,8 +127,7 @@
                                                     {{-- ================================ //BUG:SEGUROS ================================ --}}
                                                     <td>
                                                         @if ($unidade->seguro == 'Sin Seguro')
-                                                            <h5><span class="badge badge-danger"><a class="link-light"
-                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">{{ $unidade->seguro }}</a></span>
+                                                            <h5><span class="badge badge-danger">{{ $unidade->seguro }}</span>
                                                             </h5>
                                                         @else
                                                             {{-- ===================== CALCULO_DE_FECHAS_SEGURO ===================== --}}
@@ -177,69 +211,60 @@
                                                             <h5>
                                                                 @if ($mes_contador >= 9)
                                                                     <span class="badge badge-primary">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        Expira
                                                                             en:
-                                                                            {{ $mes_contador }} meses</a>
+                                                                            {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                                     <span class="badge badge-success">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        Expira
                                                                             en:
-                                                                            {{ $mes_contador }} meses</a>
+                                                                            {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                                     <span class="badge badge-warning">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        Expira
                                                                             en:
-                                                                            {{ $mes_contador }} meses</a>
+                                                                            {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'nulo')
                                                                     @if ($calcular == 0)
                                                                         <span class="badge badge-danger">
-                                                                            <a class="link-light"
-                                                                                href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            Expira
                                                                                 en:
                                                                                 {{ $mes_contador }} mes
-                                                                            </a> </span>
+                                                                            </span>
                                                                     @else
                                                                         <span class="badge badge-danger">
-                                                                            <a class="link-light"
-                                                                                href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            Expira
                                                                                 en:
                                                                                 {{ $mes_contador }} mes
                                                                                 <br>y {{ $calcular }} dias
-                                                                            </a> </span>
+                                                                            </span>
                                                                     @endif
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'uno')
                                                                     <span class="badge badge-danger">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        Expira
                                                                             en:
                                                                             {{ $dias_exactos }} dias
-                                                                        </a> </span>
+                                                                        </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos > 0)
                                                                     <span class="badge badge-danger">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        Expira
                                                                             en:
                                                                             {{ $dias_exactos }} dias
-                                                                        </a> </span>
+                                                                        </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos <= 0)
                                                                     <span class="badge badge-danger">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">
                                                                             SEGURO
                                                                             <br> EXPIRADO
-                                                                        </a> </span>
+                                                                        </span>
                                                                 @endif
                                                             </h5>
                                                         @endif

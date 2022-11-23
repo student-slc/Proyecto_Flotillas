@@ -170,7 +170,10 @@ class ReportesController extends CalculoFechas
     }
     public function vfisicas($color)
     {
-        return view('reportes.vfisicos');
+        /* $color,$fecha,$tipo,$mstipo */
+        $calculo = CalculoFechas::fechas($color, 'verificacion_fecha2', 'verificacion2', 'Sin Verificación','sin verificacion');
+        $unidades=Unidade::all();
+        return view('reportes.vfisicos', compact('calculo','color','unidades'));
     }
     public function mantenimientos($color)
     {
