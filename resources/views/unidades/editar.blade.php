@@ -69,74 +69,81 @@
                                     @endif
                                 </div>
                                 {{-- ========================================= OCULTOS ========================================= --}}
-                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                    <div class="form-group">
-                                        <label for="cliente">cliente</label>
-                                        <input type="text" name="cliente" class="form-control"
-                                            value="{{ $unidade->cliente }}">
-                                    </div>
-                                </div>
-                                @if ($unidade->tipo == 'Unidad Vehicular')
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="seguro">seguro</label>
-                                            <input type="text" name="seguro" class="form-control"
-                                                value="{{ $unidade->seguro }}">
+                                <div class="form">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cliente">cliente</label>
+                                                <input type="text" name="cliente" class="form-control"
+                                                    value="{{ $unidade->cliente }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="verificacion">verificacion</label>
-                                            <input type="text" name="verificacion" class="form-control"
-                                                value="{{ $unidade->verificacion }}">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="razonsocialunidad">Razon Social</label>
+                                                <input type="text" name="razonsocialunidad" class="form-control"
+                                                    value="{{ $unidade->razonsocialunidad }}">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="verificacion2">verificacion2</label>
-                                            <input type="text" name="verificacion2" class="form-control"
-                                                value="{{ $unidade->verificacion2 }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="mantenimiento">mantenimiento</label>
-                                            <input type="text" name="mantenimiento" class="form-control"
-                                                value="{{ $unidade->mantenimiento }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="seguro_fecha">seguro_fecha</label>
-                                            <input type="text" name="seguro_fecha" class="form-control"
-                                                value="{{ $unidade->seguro_fecha }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="verificacion_fecha">verificacion_fecha</label>
-                                            <input type="text" name="verificacion_fecha" class="form-control"
-                                                value="{{ $unidade->verificacion_fecha }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="verificacion_fecha2">verificacion_fecha2</label>
-                                            <input type="text" name="verificacion_fecha2" class="form-control"
-                                                value="{{ $unidade->verificacion_fecha2 }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                        <div class="form-group">
-                                            <label for="mantenimiento_fecha">mantenimiento_fecha</label>
-                                            <input type="text" name="mantenimiento_fecha" class="form-control"
-                                                value="{{ $unidade->mantenimiento_fecha }}">
-                                        </div>
-                                    </div>
-                                    {{-- ========================================================================= --}}
-                                    {{-- -------------------------- DATOS UNIDADES VEHICULARES -------------------------- --}}
-                                    <div class="form">
-                                        <div class="row">
+                                        @if ($unidade->tipo == 'Unidad Vehicular')
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="seguro">seguro</label>
+                                                    <input type="text" name="seguro" class="form-control"
+                                                        value="{{ $unidade->seguro }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="verificacion">verificacion</label>
+                                                    <input type="text" name="verificacion" class="form-control"
+                                                        value="{{ $unidade->verificacion }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="verificacion2">verificacion2</label>
+                                                    <input type="text" name="verificacion2" class="form-control"
+                                                        value="{{ $unidade->verificacion2 }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="mantenimiento">mantenimiento</label>
+                                                    <input type="text" name="mantenimiento" class="form-control"
+                                                        value="{{ $unidade->mantenimiento }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="seguro_fecha">seguro_fecha</label>
+                                                    <input type="text" name="seguro_fecha" class="form-control"
+                                                        value="{{ $unidade->seguro_fecha }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="verificacion_fecha">verificacion_fecha</label>
+                                                    <input type="text" name="verificacion_fecha" class="form-control"
+                                                        value="{{ $unidade->verificacion_fecha }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="verificacion_fecha2">verificacion_fecha2</label>
+                                                    <input type="text" name="verificacion_fecha2" class="form-control"
+                                                        value="{{ $unidade->verificacion_fecha2 }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="mantenimiento_fecha">mantenimiento_fecha</label>
+                                                    <input type="text" name="mantenimiento_fecha" class="form-control"
+                                                        value="{{ $unidade->mantenimiento_fecha }}">
+                                                </div>
+                                            </div>
+                                            {{-- ========================================================================= --}}
+                                            {{-- -------------------------- DATOS UNIDADES VEHICULARES -------------------------- --}}
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="serieunidad">No. Serie</label>
@@ -175,16 +182,36 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="razonsocialunidad">Razon Social</label>
-                                                    <input type="text" name="razonsocialunidad" class="form-control"
-                                                        value="{{ $unidade->razonsocialunidad }}">
+                                                    <label for="placas">Placas</label>
+                                                    <input type="text" name="placas" class="form-control"
+                                                        value="{{ $unidade->placas }}">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="placas">Placas</label>
-                                                    <input type="text" name="placas" class="form-control"
-                                                        value="{{ $unidade->placas }}">
+                                                    <label for="tipomantenimiento">Tipo de Mantenimiento</label>
+                                                    <select name="tipomantenimiento" id="tipomantenimiento"
+                                                        class=" selectsearch">
+                                                        <option disabled value="">Selecciona Status</option>
+                                                        <option value="Kilometraje"
+                                                            @if ($unidade->tipomantenimiento == 'Kilometraje') selected @endif>Mantenimiento
+                                                            por Kilometraje
+                                                        </option>
+                                                        <option value="Fecha"
+                                                            @if ($unidade->tipomantenimiento == 'Fecha') selected @endif> Mantenimiento
+                                                            por Fecha
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="frecuencia_mante">Frecuencia de Mantenimiento</label>
+                                                    <input type="number" min="1"step="1"
+                                                        name="frecuencia_mante" class="form-control"
+                                                        placeholder="Frecuencia por Meses o Kilometros"
+                                                        value="{{ $unidade->frecuencia_mante }}">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -204,17 +231,11 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                                {{-- ========================================================================= --}}
-                                @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                    {{-- -------------------------- DATOS UNIDADES HABITACIONALES -------------------------- --}}
-                                    <div class="form">
-                                        <div class="row">
+                                        @endif
+                                        {{-- ========================================================================= --}}
+                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                            {{-- -------------------------- DATOS UNIDADES HABITACIONALES -------------------------- --}}
+
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="cp">Codigo Postal</label>
@@ -250,33 +271,28 @@
                                                         value="{{ $unidade->responsable }}">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                                 <div class="form-group">
-                                                    <label for="lapsofumigacion">Lapso de Tiempo para Sig.
-                                                        Fumigacion</label>
-                                                    <select name="lapsofumigacion" id="lapsofumigacion"
-                                                        class=" selectsearch">
-                                                        <option disabled selected value="">Selecciona una opción
-                                                        </option>
-                                                        <option value="1"
-                                                            @if ($unidade->lapsofumigacion == '1') selected @endif>1 Mes</option>
-                                                        <option value="2"
-                                                            @if ($unidade->lapsofumigacion == '2') selected @endif>2 Mes</option>
-                                                        <option value="3"
-                                                            @if ($unidade->lapsofumigacion == '3') selected @endif>3 Mes
-                                                        </option>
-                                                        <option value="Tiempo Indefinido"
-                                                            @if ($unidade->lapsofumigacion == 'Tiempo Indefinido') selected @endif>Tiempo
-                                                            Indefinido</option>
-                                                    </select>
+                                                    <label for="lapsofumigacion">lapsofumigacion</label>
+                                                    <input type="text" name="lapsofumigacion" class="form-control"
+                                                        value="Sin Fecha de Fumigación">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                        @endif
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="frecuencia_fumiga">Frecuencia de Fumigacion</label>
+                                                <input type="number" min="1" step="1"
+                                                    name="frecuencia_fumiga" class="form-control"
+                                                    placeholder="Frecuencia en meses"
+                                                    value="{{ $unidade->frecuencia_fumiga }}">
                                             </div>
                                         </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
                                     </div>
-                                @endif
+                                </div>
                                 {{-- ========================================================================= --}}
                             </form>
                         </div>

@@ -714,7 +714,7 @@
                                                         @if ($unidade->tipomantenimiento == 'Kilometraje')
                                                             @php
                                                                 $km = $unidade->mantenimiento_fecha;
-                                                                $diferencia = 1000 - $km;
+                                                                $diferencia = 100000 - $km;
                                                             @endphp
                                                             @if ($diferencia <= 0)
                                                                 <span class="badge badge-danger">
@@ -732,7 +732,7 @@
                                                                         <br> PARA EXPIRAR
                                                                     </a> </span>
                                                             @endif
-                                                            @if ($diferencia = 1)
+                                                            @if ($diferencia == 1)
                                                                 <span class="badge badge-success">
                                                                     <a class="link-light"
                                                                         href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
@@ -1089,10 +1089,10 @@
                                 <br>
                             @endif
                             @if ($unidade->tipomantenimiento == 'Kilometraje')
-                                @php
+                                {{-- @php
                                     $km = $unidade->mantenimiento_fecha;
-                                    $diferencia = 1000 - $km;
-                                @endphp
+                                    $diferencia = 100000 - $km;
+                                @endphp --}}
                                 <b>Tipo de Mantenimiento:</b>
                                 <li class="list-group-item">
                                     Mantenimiento por Kilometraje
@@ -1100,7 +1100,7 @@
                                 <br>
                                 <b>Vencimiento Mantenimiento:</b>
                                 <li class="list-group-item">
-                                    {{ $diferencia }} Km
+                                    {{ $unidade->mantenimiento_fecha }}
                                 </li>
                                 <br>
                             @endif

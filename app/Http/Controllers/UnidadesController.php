@@ -63,6 +63,8 @@ class UnidadesController extends Controller
                 'fumigacion' => 'required',
                 'lapsofumigacion' => 'required',
                 'cliente' => 'required',
+                'frecuencia_fumiga' => 'required',
+                'razonsocialunidad' => 'required',
             ]);
         }
         if ($tipo == "Unidad Vehicular") {
@@ -87,6 +89,9 @@ class UnidadesController extends Controller
                 'mantenimiento_fecha' => 'required',
                 'fumigacion' => 'required',
                 'lapsofumigacion' => 'required',
+                'tipomantenimiento' => 'required',
+                'frecuencia_mante' => 'required',
+                'frecuencia_fumiga' => 'required',
             ]);
         }
         $usuario = $request->cliente;

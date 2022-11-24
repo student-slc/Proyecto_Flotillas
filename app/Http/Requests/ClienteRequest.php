@@ -38,6 +38,8 @@ class ClienteRequest extends FormRequest
             'rfc' => 'required',
             'numero' => 'required',
             'observaciones' => 'required',
+            'regimen_fiscal' => 'required',
+            'sfdi' => 'required',
         ];
     }
     public function messages()
@@ -57,7 +59,8 @@ class ClienteRequest extends FormRequest
             'rfc.required'=>"El RFC es obligatorio",
             'numero.required'=>"El Numero es obligatorio",
             'observaciones.required'=>"Las Observaciones son obligatorias",
-
+            'regimen_fiscal.required'=>"El Regimen Fiscal es obligatorio",
+            'sfdi.required'=>"El SFDI es obligatorio",
         ];
 
     }

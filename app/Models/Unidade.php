@@ -35,5 +35,7 @@ class Unidade extends Model
         'lapsofumigacion',
         'fumigacion',
         'tipomantenimiento',
+        'frecuencia_mante',
+        'frecuencia_fumiga',
     ];
 }

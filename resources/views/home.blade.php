@@ -603,10 +603,14 @@
                             @endif
                         @endforeach
                         {{--  --}}
+                        @php
+                            $datos_va = [$sin_ambiental, $azul, $verde, $amarillo, $rojo, $expirado];
+                        @endphp
+                        {{--  --}}
                         <div class="card text-center chart-container" style="position: center; height:80vh; width:80vw">
                             <div class="card-body">
-                                <h5 class="card-title">VERIFICACIONES FISICO-MECANICAS</h5>
-                                <canvas id="tmantenimiento"></canvas>
+                                <h5 class="card-title">MANTENIMIENTO POR KILOMETRAJE</h5>
+                                <canvas id="kmante"></canvas>
                             </div>
                         </div>
                     </div>
