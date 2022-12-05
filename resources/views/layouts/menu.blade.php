@@ -14,9 +14,9 @@
     <a class="nav-link" href="/fumigadores">
         <i class=" fas fa-id-card"></i><span>Fumigadores</span>
     </a>
-    <a class="nav-link" href="/fumigaciones">
+    {{-- <a class="nav-link" href="/fumigaciones">
         <i class=" fas fa-bug"></i><span>Fumigaciones</span>
-    </a>
+    </a> --}}
     <a class="nav-link" href="/logs">
         <i class="fas fa-dollar-sign"></i><span>Cotizaciones</span>
     </a>
@@ -25,5 +25,8 @@
     </a>
     <a class="nav-link" href="/arranque_unidad">
         <i class="fas fa-clipboard-list"></i><span>Arranque Unidades</span>
+    </a>
+    <a class="nav-link" href="/regreso_unidad">
+        <i class="fas fa-clipboard-list"></i><span>Regreso Unidades</span>
     </a>
 </li>

@@ -154,3 +154,10 @@ Route::get('/arranque_unidad', [App\Http\Controllers\ChecklistController::class,
 
 ///--------------------------------------CHECKLIST ARRANQUE--------------------------------------------------------------------
 Route::get('/arranque_unidad/guardar', [App\Http\Controllers\ChecklistController::class, 'guardarsalida'])->name('checklist.guardarsalida');
+
+
+///--------------------------------------CHECKLIST REGRESO--------------------------------------------------------------------
+Route::get('/regreso_unidad', [App\Http\Controllers\ChecklistController::class, 'regreso'])->name('checklist.regreso');
+
+///--------------------------------------CHECKLIST REGRESO--------------------------------------------------------------------
+Route::get('/regreso_unidad/guardar', [App\Http\Controllers\ChecklistController::class, 'guardarsalida'])->name('checklist.guardarsalida');

@@ -41,8 +41,9 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success" {{-- href="{{ route('operadores.export', $usuario) }}" --}}><i
-                                        class="fas fa-file-excel"></i></a>
+                                <a class="btn btn-success" {{-- href="{{ route('operadores.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
+                                <a class="btn btn-info" {{-- href="{{ route('operadores.edit', $operadore->id) }}" --}}>
+                                    <i class="fas fa-envelope"></i></a>
                                 <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
@@ -249,12 +250,9 @@
                                                     {{-- ============================================================== --}}
                                                     {{-- ============================================================== --}}
                                                     <td>
-                                                         <a class="btn btn-info"
-                                                            href="{{ route('operadores.edit', $operadore->id) }}">
-                                                            <i class="fas fa-edit"></i></a>
-                                                        <button type="submit" class="btn btn-danger"
+                                                        <button type="submit" class="btn btn-info"
                                                             onclick="$('#delete{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            <i class="fas fa-trash-alt"></i>
+                                                            <i class="fas fa-envelope"></i></a>
                                                         </button>
                                                     </td>
                                                 </tr>

@@ -54,4 +54,8 @@ class ChecklistController extends Controller
         return $arranque;
         /*  return view('checklist.salida'); */
     }
+    public function regreso()
+    {
+        return view('checklist.entrada');
+    }
 }
