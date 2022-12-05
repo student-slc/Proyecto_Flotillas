@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChecklistController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
@@ -132,7 +133,24 @@ Route::get('/reportes/seguros/{color}', [App\Http\Controllers\ReportesController
 Route::get('/reportes/verificaciones_ambientales/{color}', [App\Http\Controllers\ReportesController::class, 'vambiental'])->name('reportes.vambiental');
 ///--------------------------------------REPORTES VERIFICACIONES FISICO-MECANICAS--------------------------------------------------------------------
 Route::get('/reportes/verificaciones_fisico_mecanicas/{color}', [App\Http\Controllers\ReportesController::class, 'vfisicas'])->name('reportes.vfisica');
+///--------------------------------------REPORTES VERIFICACIONES MANTENIMIENTOS_K--------------------------------------------------------------------
+Route::get('/reportes/mantenimientos_kilometraje/{color}', [App\Http\Controllers\ReportesController::class, 'mantenimientosk'])->name('reportes.mantenimientosk');
 ///--------------------------------------REPORTES VERIFICACIONES MANTENIMIENTOS--------------------------------------------------------------------
 Route::get('/reportes/mantenimientos/{color}', [App\Http\Controllers\ReportesController::class, 'mantenimientos'])->name('reportes.mantenimientos');
-///--------------------------------------REPORTES VERIFICACIONES FUMIGACIONES--------------------------------------------------------------------
+///--------------------------------------REPORTES FUMIGACIONES--------------------------------------------------------------------
 Route::get('/reportes/fumigaciones/{color}', [App\Http\Controllers\ReportesController::class, 'fumigaciones'])->name('reportes.fumigaciones');
+///--------------------------------------REPORTES OPERADORES MEDICO--------------------------------------------------------------------
+Route::get('/reportes/operadores/medico/{color}', [App\Http\Controllers\ReportesController::class, 'medico'])->name('reportes.medico');
+///--------------------------------------REPORTES OPERADORES MEDICO--------------------------------------------------------------------
+Route::get('/reportes/operadores/licencia/{color}', [App\Http\Controllers\ReportesController::class, 'licencia'])->name('reportes.licencia');
+
+
+
+
+
+
+///--------------------------------------CHECKLIST ARRANQUE--------------------------------------------------------------------
+Route::get('/arranque_unidad', [App\Http\Controllers\ChecklistController::class, 'arranque'])->name('checklist.arranque');
+
+///--------------------------------------CHECKLIST ARRANQUE--------------------------------------------------------------------
+Route::get('/arranque_unidad/guardar', [App\Http\Controllers\ChecklistController::class, 'guardarsalida'])->name('checklist.guardarsalida');

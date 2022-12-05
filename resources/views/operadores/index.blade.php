@@ -126,21 +126,21 @@
                                                     @if ($mes_contador >= 9)
                                                         <span class="badge badge-primary"
                                                             onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en: <br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                         <span class="badge badge-success"
                                                             onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                         <span class="badge badge-warning"
                                                             onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
@@ -148,28 +148,29 @@
                                                         @if ($calcular == 0)
                                                             <span class="badge badge-danger"
                                                                 onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                                Expira en:
+                                                                Expira en:<br>
                                                                 {{ $mes_contador }} mes
                                                             </span>
                                                         @else
                                                             <span class="badge badge-danger"
                                                                 onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                                Expira en:
-                                                                {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                                Expira en:<br>
+                                                                {{ $mes_contador }} mes
+                                                                <br>y {{ $calcular }} dias
                                                             </span>
                                                         @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
                                                         <span class="badge badge-danger"
                                                             onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos > 0)
                                                         <span class="badge badge-danger"
                                                             onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
@@ -267,21 +268,21 @@
                                                     @if ($mes_contador >= 9)
                                                         <span class="badge badge-primary"
                                                             onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                         <span class="badge badge-success"
                                                             onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                         <span class="badge badge-warning"
                                                             onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
@@ -289,13 +290,14 @@
                                                         @if ($calcular == 0)
                                                             <span class="badge badge-danger"
                                                                 onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                                Expira en:
-                                                                {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                                Expira en:<br>
+                                                                {{ $mes_contador }} mes
+                                                                <br>y {{ $calcular }} dias
                                                             </span>
                                                         @else
                                                             <span class="badge badge-danger"
                                                                 onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                                Expira en:
+                                                                Expira en:<br>
                                                                 {{ $mes_contador }} mes
                                                             </span>
                                                         @endif
@@ -303,14 +305,14 @@
                                                     @if ($mes_contador == 1 && $uno == 'uno')
                                                         <span class="badge badge-danger"
                                                             onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos > 0)
                                                         <span class="badge badge-danger"
                                                             onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            Expira en:
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif

@@ -170,6 +170,30 @@
                                         <br>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
+                                                <label for="kilometraje">Kilometraje</label>
+                                                <input id="kilometraje" type="text" name="kilometraje" class="form-control"
+                                                    laceholder="Kilometraje de la unidad"
+                                                    onkeyup="PasarValor(this);">
+                                            </div>
+                                        </div>
+                                        {{-- 'kilometraje_actual','kilometraje_cont', --}}
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="kilometros_actuales">kilometros_actuales</label>
+                                                <input id="kilometros_actuales" type="text" name="kilometros_actuales"
+                                                class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="kilometros_contador">kilometros_contador</label>
+                                                <input id="kilometros_contador" type="text" name="kilometros_contador"
+                                                class="form-control">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
                                                 <label for="status">Status de Servivio</label>
                                                 <select name="status" id="status" class=" selectsearch">
                                                     <option disabled selected value="">Selecciona Status
@@ -312,5 +336,10 @@
             Fecha.style.display = 'none';
         });
         //------------------------------------------------------------------------------------------------------------
+        function PasarValor(input) {
+            var kilometraje=document.getElementById("kilometraje").value
+            document.getElementById("kilometros_actuales").value = kilometraje;
+            document.getElementById("kilometros_contador").value = kilometraje;
+        }
     </script>
 @endsection

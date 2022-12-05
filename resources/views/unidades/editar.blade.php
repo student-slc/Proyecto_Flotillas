@@ -88,6 +88,28 @@
                                         @if ($unidade->tipo == 'Unidad Vehicular')
                                             <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                                 <div class="form-group">
+                                                    <label for="kilometraje">kilometraje</label>
+                                                    <input type="text" name="kilometraje" class="form-control"
+                                                        value="{{ $unidade->kilometraje }}">
+                                                </div>
+                                            </div>
+                                             {{-- 'kilometraje_actual','kilometraje_cont', --}}
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="kilometros_actuales">kilometros_actuales</label>
+                                                <input id="kilometros_actuales" type="text" name="kilometros_actuales"
+                                                class="form-control" value="{{ $unidade->kilometros_actuales }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="kilometros_contador">kilometros_contador</label>
+                                                <input id="kilometros_contador" type="text" name="kilometros_contador"
+                                                class="form-control" value="{{ $unidade->kilometros_contador }}">
+                                            </div>
+                                        </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
                                                     <label for="seguro">seguro</label>
                                                     <input type="text" name="seguro" class="form-control"
                                                         value="{{ $unidade->seguro }}">
@@ -235,7 +257,6 @@
                                         {{-- ========================================================================= --}}
                                         @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                                             {{-- -------------------------- DATOS UNIDADES HABITACIONALES -------------------------- --}}
-
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="cp">Codigo Postal</label>

@@ -37,5 +37,8 @@ class Unidade extends Model
         'tipomantenimiento',
         'frecuencia_mante',
         'frecuencia_fumiga',
+        'kilometraje',
+        'kilometros_actuales',
+        'kilometros_contador',
     ];
 }

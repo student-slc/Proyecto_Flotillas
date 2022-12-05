@@ -27,6 +27,7 @@
                                 </div>
                             @endif
                             @php
+                                date_default_timezone_set('America/Mexico_City');
                                 /* FECHA ACTUAL */
                                 $fecha_actual = date('Y-n-d');
                             @endphp
@@ -54,53 +55,62 @@
                                             <input type="text" name="nomantenimiento" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="kminiciales">Kilometros Iniciales</label>
                                             <input id="kminiciales" type="text" name="kminiciales" class="form-control"
-                                            onkeyup="calcular(this)">
+                                                value="{{ $actual }}">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="kmfinales">Kilometros Finales</label>
                                             <input id="kmfinales" type="text" name="kmfinales" class="form-control"
-                                            onkeyup="calcular(this)">
+                                                value="{{ $contador }}">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="kmfaltantes">Kilometros Faltantes</label>
-                                            <input id="kmfaltantes"type="text" name="kmfaltantes" class="form-control">
+                                            <input id="kmfaltantes"type="text" name="kmfaltantes" class="form-control"
+                                                value="{{ $actual + $frecuencia - $contador }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="frecuencia">Frecuencia</label>
+                                            <input type="text" name="frecuencia" class="form-control"
+                                                value="{{ $frecuencia }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fecha">Fecha</label>
                                             <input type="date" name="fecha" class="form-control"
-                                                min="{{ $fecha_actual }}">
+                                                min="{{ $fecha_actual }}" value="{{ $fecha_actual }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="frecuencia">Frecuencia</label>
-                                            <input type="text" name="frecuencia" class="form-control">
+                                            <label>Siguiente Servicio</label>
+                                            <input type="text" class="form-control" disabled
+                                                @if ($tipo == 'Kilometraje') value='A {{ $contador + $frecuencia }} Kilometros' @endif
+                                                @if ($tipo == 'Fecha') value='FECHA' @endif>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="sigservicio">Siguiente Servicio</label>
-                                            <input type="text" name="sigservicio" class="form-control">
+                                            <input type="text" name="sigservicio" class="form-control"
+                                                @if ($tipo == 'Kilometraje') value='A {{ $contador + $frecuencia }} Kilometros' @endif
+                                                @if ($tipo == 'Fecha') value='FECHA' @endif>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
-                                            <label for="tipomantenimiento">Tipo De Mantenimiento</label>
-                                            <select name="tipomantenimiento" id="tipomantenimiento" class=" selectsearch">
-                                                <option disabled selected value="">Selecciona Tipo de Mantenimiento</option>
-                                                <option value="Kilometraje">Mantenimiento por Kilometraje</option>
-                                                <option value="Fecha">Mantenimiento por Fecha de Vencimiento</option>
-                                            </select>
+                                            <label for="tipomantenimiento">Tipo de mantenimiento</label>
+                                            <input type="text" name="tipomantenimiento" class="form-control"
+                                                value="{{ $tipo }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -114,11 +124,4 @@
             </div>
         </div>
     </section>
-    <script>
-        function calcular(input) {
-            var kmfinales=document.getElementById("kmfinales").value
-            var kminiciales=document.getElementById("kminiciales").value
-            document.getElementById("kmfaltantes").value = kmfinales-kminiciales;
-        }
-    </script>
 @endsection

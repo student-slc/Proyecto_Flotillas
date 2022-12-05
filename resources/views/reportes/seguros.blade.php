@@ -127,8 +127,8 @@
                                                     {{-- ================================ //BUG:SEGUROS ================================ --}}
                                                     <td>
                                                         @if ($unidade->seguro == 'Sin Seguro')
-                                                            <h5><span class="badge badge-danger">{{ $unidade->seguro }}</span>
-                                                            </h5>
+                                                            <h6><span class="badge badge-danger">Sin <br> Seguro</span>
+                                                            </h6>
                                                         @else
                                                             {{-- ===================== CALCULO_DE_FECHAS_SEGURO ===================== --}}
                                                             @php
@@ -208,39 +208,34 @@
                                                             @endphp
                                                             {{-- ============================================================== --}}
                                                             {{-- ========================== IF PARA MOSTRAR =================== --}}
-                                                            <h5>
+                                                            <h6>
                                                                 @if ($mes_contador >= 9)
                                                                     <span class="badge badge-primary">
-                                                                        Expira
-                                                                            en:
+                                                                        Expira en:<br>
                                                                             {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                                     <span class="badge badge-success">
-                                                                        Expira
-                                                                            en:
+                                                                        Expira en:<br>
                                                                             {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                                     <span class="badge badge-warning">
-                                                                        Expira
-                                                                            en:
+                                                                        Expira en:<br>
                                                                             {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'nulo')
                                                                     @if ($calcular == 0)
                                                                         <span class="badge badge-danger">
-                                                                            Expira
-                                                                                en:
+                                                                            Expira en:<br>
                                                                                 {{ $mes_contador }} mes
                                                                             </span>
                                                                     @else
                                                                         <span class="badge badge-danger">
-                                                                            Expira
-                                                                                en:
+                                                                            Expira en:<br>
                                                                                 {{ $mes_contador }} mes
                                                                                 <br>y {{ $calcular }} dias
                                                                             </span>
@@ -248,15 +243,13 @@
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'uno')
                                                                     <span class="badge badge-danger">
-                                                                        Expira
-                                                                            en:
+                                                                        Expira en:<br>
                                                                             {{ $dias_exactos }} dias
                                                                         </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos > 0)
                                                                     <span class="badge badge-danger">
-                                                                        Expira
-                                                                            en:
+                                                                        Expira en:<br>
                                                                             {{ $dias_exactos }} dias
                                                                         </span>
                                                                 @endif
@@ -266,7 +259,7 @@
                                                                             <br> EXPIRADO
                                                                         </span>
                                                                 @endif
-                                                            </h5>
+                                                            </h6>
                                                         @endif
                                                     </td>
                                                     <td>
@@ -302,8 +295,8 @@
         $a = 'a';
     @endphp
     @foreach ($unidades as $unidade)
-        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog" aria-labelledby="ModalDetallesTitle"
-            aria-hidden="true">
+        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog"
+            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -319,6 +312,11 @@
                     </div>
                     <div class="modal-body">
                         @if ($unidade->tipo == 'Unidad Vehicular')
+                            <b>Cliente:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->cliente }}
+                            </li>
+                            <br>
                             <b>Marca:</b>
                             <li class="list-group-item">
                                 {{ $unidade->marca }}
@@ -332,6 +330,11 @@
                             <b>Año de la Unidad:</b>
                             <li class="list-group-item">
                                 {{ $unidade->añounidad }}
+                            </li>
+                            <br>
+                            <b>Kilometraje:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->kilometros_contador }}
                             </li>
                             <br>
                             <b>Tipo de Unidad:</b>
@@ -365,25 +368,11 @@
                                     Mantenimiento por Fecha de Vencimiento
                                 </li>
                                 <br>
-                                <b>Vencimiento Mantenimiento:</b>
-                                <li class="list-group-item">
-                                    {{ $unidade->mantenimiento_fecha }}
-                                </li>
-                                <br>
                             @endif
                             @if ($unidade->tipomantenimiento == 'Kilometraje')
-                                @php
-                                    $km = $unidade->mantenimiento_fecha;
-                                    $diferencia = 1000 - $km;
-                                @endphp
                                 <b>Tipo de Mantenimiento:</b>
                                 <li class="list-group-item">
                                     Mantenimiento por Kilometraje
-                                </li>
-                                <br>
-                                <b>Vencimiento Mantenimiento:</b>
-                                <li class="list-group-item">
-                                    {{ $diferencia }} Km
                                 </li>
                                 <br>
                             @endif
@@ -397,13 +386,13 @@
                                 {{ $unidade->status }}
                             </li>
                             <br>
+                        @endif
+                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                             <b>Cliente:</b>
                             <li class="list-group-item">
                                 {{ $unidade->cliente }}
                             </li>
                             <br>
-                        @endif
-                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                             <b>Codigo Postal:</b>
                             <li class="list-group-item">
                                 {{ $unidade->cp }}
@@ -429,14 +418,14 @@
                                 {{ $unidade->responsable }}
                             </li>
                             <br>
+                            <b>Razon Social:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->razonsocialunidad }}
+                            </li>
+                            <br>
                             <b>Vencimiento Fumigación:</b>
                             <li class="list-group-item">
                                 {{ $unidade->lapsofumigacion }}
-                            </li>
-                            <br>
-                            <b>Cliente:</b>
-                            <li class="list-group-item">
-                                {{ $unidade->cliente }}
                             </li>
                             <br>
                         @endif
@@ -445,46 +434,6 @@
                         <button type="button" class="btn btn-danger"
                             onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
                     </div>
-                </div>
-            </div>
-        </div>
-        {{-- ===================== MODAL_ELIMINAR ===================== --}}
-        <div class="modal fade" id="delete{{ $a }}" tabindex="-1" role="dialog"
-            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
-                                Eliminar la
-                                @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                    Vivienda {{ $unidade->direccion }}
-                                @endif
-                                @if ($unidade->tipo == 'Unidad Vehicular')
-                                    Unidad {{ $unidade->serieunidad }}
-                                @endif
-                                ?
-                            </b></h5>
-                        <button type="button" class="btn-close"
-                            onclick="$('#delete{{ $a }}').modal('hide')">
-                    </div>
-                    <form action="{{ route('unidades.destroy', $unidade->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <div class="modal-footer">
-                            <div class="container-fluid h-100">
-                                <div class="row w-100 align-items-center ">
-                                    <div class="col text-center">
-                                        <button type="button" class="btn btn-danger"
-                                            onclick="$('#delete{{ $a }}').modal('hide')">
-                                            NO</button>
-                                        <button type="submit" class="btn btn-success">
-                                            SI</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

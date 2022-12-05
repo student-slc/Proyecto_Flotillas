@@ -92,6 +92,9 @@ class UnidadesController extends Controller
                 'tipomantenimiento' => 'required',
                 'frecuencia_mante' => 'required',
                 'frecuencia_fumiga' => 'required',
+                'kilometraje' => 'required',
+                'kilometros_actuales' => 'required',
+                'kilometros_contador' => 'required',
             ]);
         }
         $usuario = $request->cliente;
@@ -174,6 +177,14 @@ class UnidadesController extends Controller
                 'verificacion_fecha' => 'required',
                 'verificacion_fecha2' => 'required',
                 'mantenimiento_fecha' => 'required',
+                'fumigacion' => 'required',
+                'lapsofumigacion' => 'required',
+                'tipomantenimiento' => 'required',
+                'frecuencia_mante' => 'required',
+                'frecuencia_fumiga' => 'required',
+                'kilometraje' => 'required',
+                'kilometros_actuales' => 'required',
+                'kilometros_contador' => 'required',
             ]);
         }
         $usuario = $request->cliente;
