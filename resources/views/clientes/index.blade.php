@@ -12,7 +12,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('clientes.create') }}">Nuevo</a>
+                            @can('general-rol')
+                                <a class="btn btn-warning" href="{{ route('clientes.create') }}">Nuevo</a>
+                            @endcan
                             <table class="table table-striped mt-2" id="tabla">
                                 <a class="btn btn-success" href="{{ route('clientes.export') }}"><i
                                         class="fas fa-file-excel"></i></a>
@@ -25,7 +27,9 @@
                                     <th style="color:#fff;">Unidades</th>
                                     <th style="color:#fff;">Operadores</th>
                                     <th style="color:#fff;">Status de Servicio</th>
-                                    <th style="color:#fff;">Acciones</th>
+                                    @can('general-rol')
+                                        <th style="color:#fff;">Acciones</th>
+                                    @endcan
                                 </thead>
                                 <tbody>
                                     @foreach ($clientes as $cliente)
@@ -74,14 +78,17 @@
                                                     </h5>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a class="btn btn-info" href="{{ route('clientes.edit', $cliente->id) }}">
-                                                    <i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
+                                            @can('general-rol')
+                                                <td>
+
+                                                    <a class="btn btn-info" href="{{ route('clientes.edit', $cliente->id) }}">
+                                                        <i class="fas fa-edit"></i></a>
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </td>
+                                            @endcan
                                         </tr>
                                     @endforeach
                                 </tbody>

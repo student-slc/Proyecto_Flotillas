@@ -15,7 +15,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('unidades.crear', $usuario) }}">Nuevo</a>
+                            @can('general-rol')
+                                <a class="btn btn-warning" href="{{ route('unidades.crear', $usuario) }}">Nuevo</a>
+                            @endcan
                             <table class="table table-striped mt-2" id="tabla">
                                 <a class="btn btn-success" href="{{ route('unidades.export', $usuario) }}"><i
                                         class="fas fa-file-excel"></i></a>
@@ -144,7 +146,7 @@
                                                         @endphp
                                                         {{-- ============================================================== --}}
                                                         {{-- ========================== IF PARA MOSTRAR =================== --}}
-                                                        <h5>
+                                                        <h6>
                                                             @if ($mes_contador >= 9)
                                                                 <span class="badge badge-primary">
                                                                     <a class="link-light"
@@ -207,11 +209,11 @@
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">
-                                                                        SEGURO
-                                                                        <br> EXPIRADO
+                                                                        Seguro
+                                                                        <br> Expirado
                                                                     </a> </span>
                                                             @endif
-                                                        </h5>
+                                                        </h6>
                                                     @endif
                                                 @endif
                                             </td>
@@ -372,8 +374,8 @@
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">
-                                                                        VERIFICACION
-                                                                        <br> EXPIRADA
+                                                                        Verificación
+                                                                        <br> Expirada
                                                                     </a> </span>
                                                             @endif
                                                         </h6>
@@ -537,8 +539,8 @@
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">
-                                                                        VERIFICACION
-                                                                        <br> EXPIRADA
+                                                                        Verificación
+                                                                        <br> Expirada
                                                                     </a> </span>
                                                             @endif
                                                         </h6>
@@ -708,8 +710,8 @@
                                                                     <span class="badge badge-danger">
                                                                         <a class="link-light"
                                                                             href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                            MANTENIMIENTO
-                                                                            <br> EXPIRADO
+                                                                            Mantenimiento
+                                                                            <br> Expirado
                                                                         </a> </span>
                                                                 @endif
                                                             </h6>
@@ -728,8 +730,8 @@
                                                                     <span class="badge badge-danger">
                                                                         <a class="link-light"
                                                                             href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                            MANTENIMIENTO
-                                                                            <br> EXPIRADO
+                                                                            Mantenimiento
+                                                                            <br> Expirado
                                                                         </a> </span>
                                                                 @endif
                                                                 @if ($km_contador < $frecuencia + $km_actual)
@@ -1009,16 +1011,16 @@
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">
-                                                                        FUMIGACIÓN
-                                                                        <br> EXPIRADA
+                                                                        Fumigación
+                                                                        <br> Expirada
                                                                     </a> </span>
                                                             @endif
                                                             @if ($unidade->tipo == 'Unidad Vehicular')
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">
-                                                                        FUMIGACIÓN
-                                                                        <br> EXPIRADA
+                                                                        Fumigación
+                                                                        <br> Expirada
                                                                     </a> </span>
                                                             @endif
                                                         @endif

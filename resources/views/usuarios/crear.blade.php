@@ -10,7 +10,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-danger" href="{{ route('usuarios.index') }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-dark alert-dismissible fade show" role="alert">
                             <strong>¡Revise los campos!</strong>
@@ -52,7 +54,13 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Roles</label>
-                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}
+                                    {!! Form::select('roles[]', $roles,[], array('class' => 'selectsearch')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Cliente</label>
+                                    {!! Form::select('clientes[]', $clientes,[], array('class' => 'selectsearch')) !!}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

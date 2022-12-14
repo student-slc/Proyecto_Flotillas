@@ -26,6 +26,6 @@ class Arranqueunidade extends Model
         'fecha',
         'hora',
         'respuestas',
-        'status',
+        'placas',
     ];
 }

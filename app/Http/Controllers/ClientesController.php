@@ -25,8 +25,20 @@ class ClientesController extends Controller
      */
     public function index()
     {
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user=$usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes=Cliente::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes=Cliente::all();
+        }
+        if ($rol == 'Usuario'){
+            $cliente=$usuario->clientes;
+            $clientes= Cliente::where('nombrecompleto', '=', $cliente)->get();
+        }
         //Con paginación
-        $clientes = Cliente::all();
         return view('clientes.index', compact('clientes'));
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }

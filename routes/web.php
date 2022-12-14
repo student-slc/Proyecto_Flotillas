@@ -161,3 +161,13 @@ Route::get('/regreso_unidad', [App\Http\Controllers\ChecklistController::class, 
 
 ///--------------------------------------CHECKLIST REGRESO--------------------------------------------------------------------
 Route::get('/regreso_unidad/guardar', [App\Http\Controllers\ChecklistController::class, 'guardarsalida'])->name('checklist.guardarsalida');
+
+
+///--------------------------------------CHECKLIST DATOS_UNIDADES--------------------------------------------------------------------
+Route::post('/datos_unidades',function(){return view('checklist.datos_unidades');})->name('checklist.datos_unidades');
+///--------------------------------------CHECKLIST DATOS_OPERADORES--------------------------------------------------------------------
+Route::post('/datos_operadores',function(){return view('checklist.datos_operadores');})->name('checklist.datos_operadores');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::post('/informacion_unidades',function(){return view('checklist.unidades');})->name('checklist.infounidades');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::post('/informacion_operadores',function(){return view('checklist.operadores');})->name('checklist.infooperadores');

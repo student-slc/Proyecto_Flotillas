@@ -10,7 +10,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
+                            <a class="btn btn-danger" href="{{ route('usuarios.index') }}">Regresar</a>
+                        </div>
+                        <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-dark alert-dismissible fade show" role="alert">
                             <strong>¡Revise los campos!</strong>
@@ -49,10 +51,16 @@
                                     {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                 <div class="form-group">
-                                    <label for="">Roles</label>
-                                    {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control')) !!}
+                                    <label for="clientes">Clientes</label>
+                                    {!! Form::text('clientes', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                <div class="form-group">
+                                    <label for="rol">rol</label>
+                                    {!! Form::text('rol', null, array('class' => 'form-control')) !!}
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
