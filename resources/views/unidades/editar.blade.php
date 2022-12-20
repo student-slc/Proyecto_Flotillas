@@ -164,6 +164,20 @@
                                                         value="{{ $unidade->mantenimiento_fecha }}">
                                                 </div>
                                             </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="lapsofumigacion">lapsofumigacion</label>
+                                                    <input type="text" name="lapsofumigacion" class="form-control"
+                                                    value="{{ $unidade->lapsofumigacion }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="fumigacion">fumigacion</label>
+                                                    <input type="text" name="fumigacion" class="form-control"
+                                                    value="{{ $unidade->fumigacion }}">
+                                                </div>
+                                            </div>
                                             {{-- ========================================================================= --}}
                                             {{-- -------------------------- DATOS UNIDADES VEHICULARES -------------------------- --}}
                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -296,7 +310,14 @@
                                                 <div class="form-group">
                                                     <label for="lapsofumigacion">lapsofumigacion</label>
                                                     <input type="text" name="lapsofumigacion" class="form-control"
-                                                        value="Sin Fecha de Fumigación">
+                                                    value="{{ $unidade->lapsofumigacion }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="fumigacion">fumigacion</label>
+                                                    <input type="text" name="fumigacion" class="form-control"
+                                                    value="{{ $unidade->fumigacion }}">
                                                 </div>
                                             </div>
                                         @endif

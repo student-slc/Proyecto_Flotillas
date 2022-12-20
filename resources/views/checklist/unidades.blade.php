@@ -1,50 +1,51 @@
 @php
     /*
-                                                                =========================== VERDE ===========================
-                                                                    <div class="col-2">
-                                                                        <div class="input-group">
-                                                                            <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                                                            style="font-size: 2rem; color: rgb(0, 128, 55);"></span>CON
-                                                                            VERIFICACION</label>
+                                                                    =========================== VERDE ===========================
+                                                                        <div class="col-2">
+                                                                            <div class="input-group">
+                                                                                <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
+                                                                                style="font-size: 2rem; color: rgb(0, 128, 55);"></span>CON
+                                                                                VERIFICACION</label>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                =========================== ROJO ===========================
-                                                                    <div class="col-2">
-                                                                        <div class="input-group">
-                                                                            <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
-                                                                            style="font-size: 2rem; color: rgb(255, 0, 0);"></span> SIN
-                                                                            VERIFICACION</label>
+                                                                    =========================== ROJO ===========================
+                                                                        <div class="col-2">
+                                                                            <div class="input-group">
+                                                                                <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
+                                                                                style="font-size: 2rem; color: rgb(255, 0, 0);"></span> SIN
+                                                                                VERIFICACION</label>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                =========================== AMARILLO ===========================
-                                                                    <div class="col-2">
-                                                                        <div class="input-group">
-                                                                            <label class="label"> <span id="boot-icon" class="bi bi-check-circle-fill"
-                                                                                 style="font-size: 2rem; color: rgb(255, 210, 48);"></span> SIN
-                                                                            VERIFICACION</label>
+                                                                    =========================== AMARILLO ===========================
+                                                                        <div class="col-2">
+                                                                            <div class="input-group">
+                                                                                <label class="label"> <span id="boot-icon" class="bi bi-check-circle-fill"
+                                                                                     style="font-size: 2rem; color: rgb(255, 210, 48);"></span> SIN
+                                                                                VERIFICACION</label>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                =========================== AZUL ===========================
-                                                                    <div class="col-2">
-                                                                        <div class="input-group">
-                                                                            <label class="label"> <span id="boot-icon" class="bi bi-check-circle-fill"
-                                                                                style="font-size: 2rem; color: rgb(0, 0, 255);"></span> SIN
-                                                                            VERIFICACION</label>
+                                                                    =========================== AZUL ===========================
+                                                                        <div class="col-2">
+                                                                            <div class="input-group">
+                                                                                <label class="label"> <span id="boot-icon" class="bi bi-check-circle-fill"
+                                                                                    style="font-size: 2rem; color: rgb(0, 0, 255);"></span> SIN
+                                                                                VERIFICACION</label>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                */
+                                                                    */
 
     $unidad = $_POST['unidad_change'];
-    $cadena_1 = ' ';
+    $cadena_unidad = ' ';
     use App\Models\Unidade;
-    $unidades = Unidade::where('serieunidad', '=', $unidad)->get();
+    $unidades = Unidade::where('id', '=', $unidad)->get();
     /* ========================= //BUG: SEGUROS ========================= */
     foreach ($unidades as $unidade) {
+        $cadena_unidad = $cadena_unidad . '<h2 style="text-align: center" class="title">No. Serie: ' . $unidade->serieunidad . '</h2><div class="row row-space">';
         if ($unidade->seguro == 'Sin Seguro') {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -125,50 +126,9 @@
                     $calcular = $calcular - 30;
                 }
             }
-        }
-        if ($mes_contador >= 9) {
-            $cadena_1 =
-                $cadena_1 .
-                '<div class="col-2">
-                                    <div class="input-group">
-                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
-                                    </div>
-                                </div>';
-        }
-        if ($mes_contador >= 5 && $mes_contador <= 8) {
-            $cadena_1 =
-                $cadena_1 .
-                '<div class="col-2">
-                                    <div class="input-group">
-                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
-                                    </div>
-                                </div>';
-        }
-        if ($mes_contador >= 2 && $mes_contador <= 4) {
-            $cadena_1 =
-                $cadena_1 .
-                '<div class="col-2">
-                                    <div class="input-group">
-                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
-                                    </div>
-                                </div>';
-        }
-        if ($mes_contador == 1 && $uno == 'nulo') {
-            if ($calcular == 0) {
-                $cadena_1 =
-                    $cadena_1 .
-                    '<div class="col-2">
-                                    <div class="input-group">
-                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
-                                    </div>
-                                </div>';
-            } else {
-                $cadena_1 =
-                    $cadena_1 .
+            if ($mes_contador >= 9) {
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -176,44 +136,85 @@
                                     </div>
                                 </div>';
             }
-        }
-        if ($mes_contador == 1 && $uno == 'uno') {
-            $cadena_1 =
-                $cadena_1 .
-                '<div class="col-2">
+            if ($mes_contador >= 5 && $mes_contador <= 8) {
+                $cadena_unidad =
+                    $cadena_unidad .
+                    '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
                                         style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
                                     </div>
                                 </div>';
-        }
-        if ($mes_contador == 0 && $dias_exactos > 0) {
-            $cadena_1 =
-                $cadena_1 .
-                '<div class="col-2">
+            }
+            if ($mes_contador >= 2 && $mes_contador <= 4) {
+                $cadena_unidad =
+                    $cadena_unidad .
+                    '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
                                         style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
                                     </div>
                                 </div>';
-        }
-        if ($mes_contador == 0 && $dias_exactos <= 0) {
-            $cadena_1 =
-                $cadena_1 .
-                '<div class="col-2">
+            }
+            if ($mes_contador == 1 && $uno == 'nulo') {
+                if ($calcular == 0) {
+                    $cadena_unidad =
+                        $cadena_unidad .
+                        '<div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                    </div>
+                                </div>';
+                } else {
+                    $cadena_unidad =
+                        $cadena_unidad .
+                        '<div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                    </div>
+                                </div>';
+                }
+            }
+            if ($mes_contador == 1 && $uno == 'uno') {
+                $cadena_unidad =
+                    $cadena_unidad .
+                    '<div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                    </div>
+                                </div>';
+            }
+            if ($mes_contador == 0 && $dias_exactos > 0) {
+                $cadena_unidad =
+                    $cadena_unidad .
+                    '<div class="col-2">
+                                    <div class="input-group">
+                                        <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                    </div>
+                                </div>';
+            }
+            if ($mes_contador == 0 && $dias_exactos <= 0) {
+                $cadena_unidad =
+                    $cadena_unidad .
+                    '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
                         style="font-size: 2rem; color: rgb(255, 0, 0);"></span>Sin Seguro</label>
                     </div>
                 </div>';
+            }
         }
     }
     /* ========================================================================== */
 
     /* ========================= //BUG: V.AMBIENTAL ========================= */
     if ($unidade->verificacion == 'Sin Verificación') {
-        $cadena_1 =
-            $cadena_1 .
+        $cadena_unidad =
+            $cadena_unidad .
             '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -296,8 +297,8 @@
         }
 
         if ($mes_contador >= 9) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -306,8 +307,8 @@
                                 </div>';
         }
         if ($mes_contador >= 5 && $mes_contador <= 8) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -316,8 +317,8 @@
                                 </div>';
         }
         if ($mes_contador >= 2 && $mes_contador <= 4) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -327,8 +328,8 @@
         }
         if ($mes_contador == 1 && $uno == 'nulo') {
             if ($calcular == 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -336,8 +337,8 @@
                                     </div>
                                 </div>';
             } else {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -347,8 +348,8 @@
             }
         }
         if ($mes_contador == 1 && $uno == 'uno') {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -357,8 +358,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos > 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -367,8 +368,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos <= 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -381,8 +382,8 @@
     /* ========================================================================== */
     /* ========================= //BUG: V.FISICOMECANICA ========================= */
     if ($unidade->verificacion2 == 'Sin Verificación') {
-        $cadena_1 =
-            $cadena_1 .
+        $cadena_unidad =
+            $cadena_unidad .
             '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -465,8 +466,8 @@
         }
 
         if ($mes_contador >= 9) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -475,8 +476,8 @@
                                 </div>';
         }
         if ($mes_contador >= 5 && $mes_contador <= 8) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -485,8 +486,8 @@
                                 </div>';
         }
         if ($mes_contador >= 2 && $mes_contador <= 4) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -496,8 +497,8 @@
         }
         if ($mes_contador == 1 && $uno == 'nulo') {
             if ($calcular == 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -505,8 +506,8 @@
                                     </div>
                                 </div>';
             } else {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -516,8 +517,8 @@
             }
         }
         if ($mes_contador == 1 && $uno == 'uno') {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -526,8 +527,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos > 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -536,8 +537,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos <= 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -549,8 +550,8 @@
     /* ========================================================================== */
     /* ========================= //BUG: MANTENIMIENTO ========================= */
     if ($unidade->mantenimiento == 'Sin Mantenimiento') {
-        $cadena_1 =
-            $cadena_1 .
+        $cadena_unidad =
+            $cadena_unidad .
             '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -642,8 +643,8 @@
                 }
             }
             if ($mes_contador >= 9) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -652,8 +653,8 @@
                                 </div>';
             }
             if ($mes_contador >= 5 && $mes_contador <= 8) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -662,8 +663,8 @@
                                 </div>';
             }
             if ($mes_contador >= 2 && $mes_contador <= 4) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -673,8 +674,8 @@
             }
             if ($mes_contador == 1 && $uno == 'nulo') {
                 if ($calcular == 0) {
-                    $cadena_1 =
-                        $cadena_1 .
+                    $cadena_unidad =
+                        $cadena_unidad .
                         '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -682,8 +683,8 @@
                                     </div>
                                 </div>';
                 } else {
-                    $cadena_1 =
-                        $cadena_1 .
+                    $cadena_unidad =
+                        $cadena_unidad .
                         '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -693,8 +694,8 @@
                 }
             }
             if ($mes_contador == 1 && $uno == 'uno') {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -703,8 +704,8 @@
                                 </div>';
             }
             if ($mes_contador == 0 && $dias_exactos > 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -713,8 +714,8 @@
                                 </div>';
             }
             if ($mes_contador == 0 && $dias_exactos <= 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -730,8 +731,8 @@
             $km_actual = $unidade->kilometros_actuales;
             $diferencia = $frecuencia + $km_actual - $km_contador;
             if ($km_contador >= $frecuencia + $km_actual) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -742,8 +743,8 @@
             if ($km_contador < $frecuencia + $km_actual) {
                 $diferencia = $frecuencia + $km_actual - $km_contador;
                 if ($diferencia >= 1 && $diferencia < 100) {
-                    $cadena_1 =
-                        $cadena_1 .
+                    $cadena_unidad =
+                        $cadena_unidad .
                         '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -752,8 +753,8 @@
                                 </div>';
                 }
                 if ($diferencia >= 100 && $diferencia < 300) {
-                    $cadena_1 =
-                        $cadena_1 .
+                    $cadena_unidad =
+                        $cadena_unidad .
                         '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -762,8 +763,8 @@
                                 </div>';
                 }
                 if ($diferencia >= 300 && $diferencia < 500) {
-                    $cadena_1 =
-                        $cadena_1 .
+                    $cadena_unidad =
+                        $cadena_unidad .
                         '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -772,8 +773,8 @@
                                 </div>';
                 }
                 if ($diferencia >= 500) {
-                    $cadena_1 =
-                        $cadena_1 .
+                    $cadena_unidad =
+                        $cadena_unidad .
                         '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -789,8 +790,8 @@
     /* ========================================================================== */
     /* ========================= //BUG: FUMIGACION ========================= */
     if ($unidade->fumigacion == 'Sin Fumigación') {
-        $cadena_1 =
-            $cadena_1 .
+        $cadena_unidad =
+            $cadena_unidad .
             '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -879,8 +880,8 @@
             }
         }
         if ($mes_contador >= 9) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -889,8 +890,8 @@
                                 </div>';
         }
         if ($mes_contador >= 5 && $mes_contador <= 8) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -899,8 +900,8 @@
                                 </div>';
         }
         if ($mes_contador >= 2 && $mes_contador <= 4) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -910,8 +911,8 @@
         }
         if ($mes_contador == 1 && $uno == 'nulo') {
             if ($calcular == 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -919,8 +920,8 @@
                                     </div>
                                 </div>';
             } else {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_unidad =
+                    $cadena_unidad .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -930,8 +931,8 @@
             }
         }
         if ($mes_contador == 1 && $uno == 'uno') {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -940,8 +941,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos > 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -950,8 +951,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos <= 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_unidad =
+                $cadena_unidad .
                 '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -960,6 +961,5 @@
                 </div>';
         }
     }
-
-    echo $cadena_1;
+    echo $cadena_unidad.'</div>';
 @endphp

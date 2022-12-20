@@ -695,7 +695,7 @@
                                                                         <a class="link-light"
                                                                             href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                             en: <br>
-                                                                            {{ $dias_exactos }}
+                                                                            {{ $dias_exactos }} dias
                                                                         </a> </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos > 0)
@@ -703,7 +703,7 @@
                                                                         <a class="link-light"
                                                                             href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                             en: <br>
-                                                                            {{ $dias_exactos }}
+                                                                            {{ $dias_exactos }} dias
                                                                         </a> </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos <= 0)

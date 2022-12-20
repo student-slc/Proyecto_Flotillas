@@ -1,9 +1,10 @@
 @php
-    $operador = '' . $_POST['operador_change'];
-    $cadena_1 = ' ';
+    $operador =$_POST['operador_change'];
+    $cadena_operador = ' ';
     use App\Models\Operadore;
-    $operadores = Operadore::where('nombreoperador', '=', $operador)->get();
+    $operadores = Operadore::where('id', '=', $operador)->get();
     foreach ($operadores as $operadore) {
+        $cadena_operador=$cadena_operador.'<h2 style="text-align: center" class="title">Nombre del operador: '.$operadore->nombreoperador.'</h2><div class="row row-space">';
         /* ========================= //BUG: MEDICO ========================= */
         /* FECHA LICENCIA */
         $vencimiento_dia = substr($operadore->fechavencimientomedico, 8, 2);
@@ -81,8 +82,8 @@
         }
 
         if ($mes_contador >= 9) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -91,8 +92,8 @@
                                 </div>';
         }
         if ($mes_contador >= 5 && $mes_contador <= 8) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -101,8 +102,8 @@
                                 </div>';
         }
         if ($mes_contador >= 2 && $mes_contador <= 4) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -112,8 +113,8 @@
         }
         if ($mes_contador == 1 && $uno == 'nulo') {
             if ($calcular == 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_operador =
+                    $cadena_operador .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -121,8 +122,8 @@
                                     </div>
                                 </div>';
             } else {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_operador =
+                    $cadena_operador .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -132,8 +133,8 @@
             }
         }
         if ($mes_contador == 1 && $uno == 'uno') {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -142,8 +143,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos > 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
@@ -152,8 +153,8 @@
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos <= 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
@@ -238,86 +239,86 @@
         }
 
         if ($mes_contador >= 9) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
         }
         if ($mes_contador >= 5 && $mes_contador <= 8) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
         }
         if ($mes_contador >= 2 && $mes_contador <= 4) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
         }
         if ($mes_contador == 1 && $uno == 'nulo') {
             if ($calcular == 0) {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_operador =
+                    $cadena_operador .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
             } else {
-                $cadena_1 =
-                    $cadena_1 .
+                $cadena_operador =
+                    $cadena_operador .
                     '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
             }
         }
         if ($mes_contador == 1 && $uno == 'uno') {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos > 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                                     <div class="input-group">
                                         <label class="label"><span id="boot-icon" class="bi bi-check-circle-fill"
-                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Seguro</label>
+                                        style="font-size: 2rem; color: rgb(0, 128, 55);"></span>Con Licencia</label>
                                     </div>
                                 </div>';
         }
         if ($mes_contador == 0 && $dias_exactos <= 0) {
-            $cadena_1 =
-                $cadena_1 .
+            $cadena_operador =
+                $cadena_operador .
                 '<div class="col-2">
                     <div class="input-group">
                         <label class="label"><span id="boot-icon" class="bi bi-x-circle-fill"
-                        style="font-size: 2rem; color: rgb(255, 0, 0);"></span>Sin Seguro</label>
+                        style="font-size: 2rem; color: rgb(255, 0, 0);"></span>Sin Licencia</label>
                     </div>
                 </div>';
         }
     }
-    echo $candena_1;
+    echo $cadena_operador.'</div>';
 @endphp

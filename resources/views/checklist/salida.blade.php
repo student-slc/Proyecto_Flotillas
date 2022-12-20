@@ -111,7 +111,7 @@
                             @can('particular-rol')
                                 <div class="col-2">
                                     <div class="input-group">
-                                        <label class="label">CLIENTE:</label>
+                                        <label class="label" for="id_cliente">CLIENTE:</label>
                                         <input id="id_cliente" name="id_cliente" readonly="readonly" class="input--style-4"
                                             type="text" size="10" value='{{ $clientes }}'>
                                     </div>
@@ -122,8 +122,7 @@
                                         <select name="id_unidad" id="id_unidad" readonly="readonly" class=" selectsearch">
                                             <option disabled selected value="">SELECCIONA UNA UNIDAD</option>
                                             @foreach ($unidades as $unidade)
-                                                <option value="{{ $unidade->serieunidad }}">
-                                                    {{ $unidade->serieunidad }}</option>
+                                                <option value="{{ $unidade->id }}">{{ $unidade->serieunidad }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -135,7 +134,7 @@
                                             class=" selectsearch">
                                             <option disabled selected value="">SELECCIONA UN OPERADOR</option>
                                             @foreach ($operadores as $operador)
-                                                <option value="{{ $operador->nombreoperador }}">
+                                                <option value="{{ $operador->id }}">
                                                     {{ $operador->nombreoperador }}</option>
                                             @endforeach
                                         </select>
@@ -176,7 +175,7 @@
                         <hr style="border-color:red;">
                         <br>
                         <h2 style="text-align: center" class="title">INFORMACION DE OPERADOR</h2>
-                        <div class="row row-space" id='info_operadores'>
+                        <div class="row row-space" id="info_operadores">
                         </div>
                         <br>
                         <hr style="border-color:red;">
@@ -310,8 +309,8 @@
                         <div class="form">
                             <div class="grid">
                                 <div class="form-element">
-                                    <input name="evidencia_1" type="file" id="evidencia_1"
-                                        accept="image/*" capture="camera">
+                                    <input name="evidencia_1" type="file" id="evidencia_1" accept="image/*"
+                                        capture="camera">
                                     <label for="evidencia_1" id="evidencia_1-preview">
                                         <img src="https://bit.ly/3ubuq5o" alt="" width="100px">
                                         <div>
@@ -322,8 +321,8 @@
                                 {{-- </div>
                             <div class="grid"> --}}
                                 <div class="form-element">
-                                    <input name="evidencia_2" type="file" id="evidencia_2"
-                                        accept="image/*" capture="camera">
+                                    <input name="evidencia_2" type="file" id="evidencia_2" accept="image/*"
+                                        capture="camera">
                                     <label for="evidencia_2" id="evidencia_2-preview">
                                         <img src="https://bit.ly/3ubuq5o" alt="" width="100px">
                                         <div>
@@ -341,8 +340,8 @@
                         <div class="form">
                             <div class="grid">
                                 <div class="form-element">
-                                    <input name="evidencia_3" type="file" id="evidencia_3"
-                                        accept="image/*" capture="camera">
+                                    <input name="evidencia_3" type="file" id="evidencia_3" accept="image/*"
+                                        capture="camera">
                                     <label for="evidencia_3" id="evidencia_3-preview">
                                         <img src="https://bit.ly/3ubuq5o" alt="" width="100px">
                                         <div>
@@ -353,8 +352,8 @@
                                 {{-- </div>
                             <div class="grid"> --}}
                                 <div class="form-element">
-                                    <input name="evidencia_4" type="file" id="evidencia_4"
-                                        accept="image/*" capture="camera">
+                                    <input name="evidencia_4" type="file" id="evidencia_4" accept="image/*"
+                                        capture="camera">
                                     <label for="evidencia_4" id="evidencia_4-preview">
                                         <img src="https://bit.ly/3ubuq5o" alt="" width="100px">
                                         <div>
@@ -409,6 +408,8 @@
         setTimeout("mueveReloj()", 1000)
     }
     /* =============================================== */
+</script>
+<script type="text/javascript">
     /* ==================== AJAX_UNIDADES ==================== */
     function recargarLista() {
         $.ajax({
@@ -422,11 +423,13 @@
                 $('#unidades_opciones').html(r);
             },
             error: function() {
-                alert("ERROR AL CARGAR UNIDADES");
+                /* alert("ERROR AL CARGAR UNIDADES"); */
             }
         });
     }
     /* =============================================== */
+</script>
+<script type="text/javascript">
     /* ==================== AJAX_OPERADORES ==================== */
     function recargarLista_2() {
         $.ajax({
@@ -440,11 +443,15 @@
                 $('#operadores_opciones').html(r);
             },
             error: function() {
-                alert("ERROR AL CARGAR LOS OPERADORES");
+                /* alert("ERROR AL CARGAR LOS OPERADORES"); */
             }
         });
     }
+    /*  console.log('fuera: '+$('#id_unidad').val());
+                 alert("ERROR AL CARGAR INFORMACION UNIDADES"); */
     /* =============================================== */
+</script>
+<script type="text/javascript">
     /* ==================== AJAX_UNIDADES_INFORMACION ==================== */
     function recargarLista_3() {
         $.ajax({
@@ -456,15 +463,15 @@
             data: 'unidad_change=' + $('#id_unidad').val(),
             success: function(r) {
                 $('#info_unidades').html(r);
-                /* console.log('dentro: '+$('#id_unidad').val()); */
             },
             error: function() {
-                /*  console.log('fuera: '+$('#id_unidad').val());
-                 alert("ERROR AL CARGAR INFORMACION UNIDADES"); */
+                /*  alert("ERROR AL CARGAR LAS UNIDADES"); */
             }
         });
     }
     /* =============================================== */
+</script>
+<script type="text/javascript">
     /* ==================== AJAX_OPERADORES_INFORMACION ==================== */
     function recargarLista_4() {
         $.ajax({
@@ -473,18 +480,20 @@
             },
             type: "POST",
             url: "{{ route('checklist.infooperadores') }}",
-            data: 'operador_change=' + $('#id_operador').val() + '',
+            data: 'operador_change=' + $('#id_operador').val(),
             success: function(r) {
+                /* console.log('ENTRE'); */
                 $('#info_operadores').html(r);
-                /* console.log('dentro: '+$('#id_operador').val()); */
             },
             error: function() {
-                /* console.log('fuera: '+$('#id_operador').val());
-                alert("ERROR AL CARGAR INFORMACION DE OPERADORES"); */
+               /*  console.log('AFUERA');
+                alert("ERROR AL CARGAR LOS OPERADORES"); */
             }
         });
     }
     /* =============================================== */
+</script>
+<script type="text/javascript">
     $(document).ready(function() {
         /* ------------------ CARGAR UNIDADES ------------------------------------------- */
         $('#id_cliente').val();
@@ -498,22 +507,46 @@
         $('#id_cliente').change(function() {
             recargarLista_2();
         });
-        /* ------------------ CARGAR INFORMACION DE UNIDADES ---------------------------- */
-        $('#id_unidad').val();
-        recargarLista_3();
-        $('#id_unidad').change(function() {
-            recargarLista_3();
-        });
-        /* ------------------------------------------------------------------------------ */
-        /* ------------------ CARGAR INFORMACION DE OPERADORES ---------------------------- */
-        $('#id_operador').val();
-        recargarLista_4();
-        $('#id_operador').change(function() {
-            recargarLista_4();
-        });
-        /* ------------------------------------------------------------------------------ */
     })
 </script>
+@can('particular-rol')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /* ------------------ CARGAR INFORMACION DE UNIDADES ---------------------------- */
+            $('#id_unidad').val();
+            recargarLista_3();
+            $('#id_unidad').change(function() {
+                recargarLista_3();
+            });
+            /* ------------------ CARGAR INFORMACION DE OPERADORES ---------------------------- */
+            $('#id_operador').val();
+            recargarLista_4();
+            $('#id_operador').change(function() {
+                recargarLista_4();
+            });
+            /* ------------------------------------------------------------------------------ */
+        })
+    </script>
+@endcan
+@can('general-rol')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /* ------------------ CARGAR INFORMACION DE UNIDADES ---------------------------- */
+            $('#unidades_opciones').val();
+            recargarLista_3();
+            $('#unidades_opciones').change(function() {
+                recargarLista_3();
+            });
+            /* ------------------ CARGAR INFORMACION DE OPERADORES ---------------------------- */
+            $('#operadores_opciones').val();
+            recargarLista_4();
+            $('#operadores_opciones').change(function() {
+                recargarLista_4();
+            });
+            /* ------------------------------------------------------------------------------ */
+        })
+    </script>
+@endcan
 <script>
     //================================================ //BUG: IMAGE PREVIEW ========================================
     function previewBeforeUpload(id) {
@@ -532,5 +565,6 @@
     previewBeforeUpload("evidencia_3");
     previewBeforeUpload("evidencia_4");
 </script>
+
 </html>
 <!-- end document-->
