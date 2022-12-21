@@ -171,3 +171,41 @@ Route::post('/datos_operadores',function(){return view('checklist.datos_operador
 Route::post('/informacion_unidades',function(){return view('checklist.unidades');})->name('checklist.infounidades');
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::post('/informacion_operadores',function(){return view('checklist.operadores');})->name('checklist.infooperadores');
+
+///--------------------------------------REPORTES--------------------------------------------------------------------
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_flotillas', [App\Http\Controllers\ReportesController::class, 'reporte_flotilla'])->name('tabla_reportes.reporte_flotilla');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_seguros', [App\Http\Controllers\ReportesController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_verificaciones', [App\Http\Controllers\ReportesController::class, 'reporte_veri'])->name('tabla_reportes.reporte_veri');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_preventivo', [App\Http\Controllers\ReportesController::class, 'reporte_preventivo'])->name('tabla_reportes.reporte_preventivo');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_fumigaciones', [App\Http\Controllers\ReportesController::class, 'reporte_fumigaciones'])->name('tabla_reportes.reporte_fumigaciones');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_operadores', [App\Http\Controllers\ReportesController::class, 'reporte_operadores'])->name('tabla_reportes.reporte_operadores');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_semanal', [App\Http\Controllers\ReportesController::class, 'reporte_semanal'])->name('tabla_reportes.reporte_semanal');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_dia', [App\Http\Controllers\ReportesController::class, 'reporte_dia'])->name('tabla_reportes.reporte_dia');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_servicios', [App\Http\Controllers\ReportesController::class, 'reporte_servicios'])->name('tabla_reportes.reporte_servicios');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_individual', [App\Http\Controllers\ReportesController::class, 'reporte_individual'])->name('tabla_reportes.reporte_individual');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_satisfaccion', [App\Http\Controllers\ReportesController::class, 'reporte_satisfaccion'])->name('tabla_reportes.reporte_satisfaccion');
+
+
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_bd', [App\Http\Controllers\ReportesController::class, 'reporte_bd'])->name('tabla_reportes.reporte_bd');
+
+
+
+
+
+
+
+
+
+

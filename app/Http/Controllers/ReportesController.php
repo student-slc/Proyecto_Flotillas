@@ -6,6 +6,7 @@ use App\Models\Operadore;
 use Illuminate\Http\Request;
 use App\Models\Seguro;
 use App\Models\Unidade;
+use App\Models\Verificacione;
 
 class CalculoFechas  extends Controller
 {
@@ -517,5 +518,67 @@ class ReportesController extends CalculoFechas
         $calculo = CalculoFechas::operadores($color, 'fechavencimientolicencia');
         $operadores = Operadore::all();
         return view('reportes.licencias', compact('calculo', 'color', 'operadores'));
+    }
+    /* ------------------- REPORTES TABLAS ------------------- */
+    public function reporte_flotilla()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_flotilla', compact('unidades'));
+    }
+    public function reporte_seguros()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_seguros', compact('unidades'));
+    }
+    public function reporte_veri()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_veri', compact('unidades'));
+    }
+    public function reporte_preventivo()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_preventivo', compact('unidades'));
+    }
+    public function reporte_fumigaciones()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_fumigaciones', compact('unidades'));
+    }
+    public function reporte_operadores()
+    {
+        $operadores = Operadore::all();
+        return view('tabla_reportes.reporte_operador', compact('operadores'));
+    }
+    public function reporte_semanal()
+    {
+        $unidades = Unidade::all();
+        return view('tabla_reportes.reporte_semanal', compact('unidades'));
+    }
+    public function reporte_dia()
+    {
+        $unidades = Unidade::all();
+        return view('tabla_reportes.reporte_dia', compact('unidades'));
+    }
+    public function reporte_servicios()
+    {
+        $unidades = Unidade::all();
+        return view('tabla_reportes.reporte_servicios', compact('unidades'));
+    }
+    public function reporte_individual()
+    {
+        $operadores = Operadore::all();
+        return view('tabla_reportes.reporte_individual', compact('operadores'));
+    }
+    public function reporte_satisfaccion()
+    {
+        $unidades = Unidade::all();
+        return view('tabla_reportes.reporte_satisfaccion', compact('unidades'));
+    }
+
+    public function reporte_bd()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_bd', compact('unidades'));
     }
 }
