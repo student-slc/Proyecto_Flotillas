@@ -2,7 +2,7 @@
     display: none;
 }
 /* STILOS DE TABLA CON SCROLL */
-tr {
+/* tr {
     width: 100%;
     display: inline-table;
     table-layout: fixed;
@@ -18,7 +18,7 @@ tbody {
     display: inline-block;
     max-height: 500px;
     min-height: 0px;
-}
+} */
 /* - */
 * {
     margin: 0px;

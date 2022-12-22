@@ -2,6 +2,9 @@
 @section('title')
     REPORTE FLOTILLAS
 @endsection
+@section('css')
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+@endsection
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -12,10 +15,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success"{{--  href="{{ route('unidades.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
+                                <a class="btn btn-success"  {{-- href="{{ route('tabla_reportes.reporte_flotillasexcel') }}" --}}><i class="fas fa-file-excel"></i></a>
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -28,6 +31,7 @@
                                     <th style="color:#fff;">Subtipo Verificación</th>
                                     <th style="color:#fff;">Ultima Verificación</th>
                                     <th style="color:#fff;">Mas Información</th>
+
                                 </thead>
                                 <tbody>
                                     @php
@@ -136,4 +140,14 @@
         @endphp
     @endforeach
     {{-- =========================================== --}}
+@endsection
+@section('scripts')
+    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
+    <script>
+        $(document).ready(function() {
+            $('#tablas-style').DataTable();
+        });
+    </script>
 @endsection

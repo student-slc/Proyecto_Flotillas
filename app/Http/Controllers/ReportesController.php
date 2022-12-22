@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Seguro;
 use App\Models\Unidade;
 use App\Models\Verificacione;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ReporteFlotillasExport;
+use App\Exports\ReposteSegurosExport;
+
 
 class CalculoFechas  extends Controller
 {
@@ -575,10 +579,24 @@ class ReportesController extends CalculoFechas
         $unidades = Unidade::all();
         return view('tabla_reportes.reporte_satisfaccion', compact('unidades'));
     }
-
+    public function reporte_individualv()
+    {
+        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        return view('tabla_reportes.reporte_individualv', compact('unidades'));
+    }
     public function reporte_bd()
     {
         $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
         return view('tabla_reportes.reporte_bd', compact('unidades'));
+    }
+    /* EXCELES */
+    public function reporte_flotillasexcel()
+    {
+        return Excel::download(new ReporteFlotillasExport, 'Reporte_Flotillas.xlsx');
+    }
+
+    public function reporte_segurosexcel()
+    {
+        return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx');
     }
 }

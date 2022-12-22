@@ -1,21 +1,24 @@
 @extends('layouts.app')
+@section('css')
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+@endsection
 @section('title')
     REPORTE SEGUROS
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Reporte Seguros</h3>
+            <h3 class="page__heading">Reporte Seguros de Resp. Civil</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success"{{--  href="{{ route('unidades.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
+                                <a class="btn btn-success" href="{{ route('tabla_reportes.reporte_segurosexcel') }}"><i class="fas fa-file-excel"></i></a>
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -24,6 +27,7 @@
                                     <th style="color:#fff;">Año Unidad</th>
                                     <th style="color:#fff;">Tipo Unidad</th>
                                     <th style="color:#fff;">Razon Social</th>
+                                    <th style="color:#fff;">Fecha vencimiento Seguro</th>
                                 </thead>
                                 <tbody>
                                     @php
@@ -40,6 +44,7 @@
                                             <td>{{ $unidade->añounidad }}</td>
                                             <td>{{ $unidade->tipounidad }}</td>
                                             <td>{{ $unidade->razonsocialunidad }}</td>
+                                            <td>{{ $unidade->seguro_fecha }}</td>
                                             {{-- Boton MODAL --}}
                                             {{-- AQUI VA --}}
 
@@ -61,4 +66,14 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
+    <script>
+        $(document).ready(function() {
+            $('#tablas-style').DataTable();
+        });
+    </script>
 @endsection

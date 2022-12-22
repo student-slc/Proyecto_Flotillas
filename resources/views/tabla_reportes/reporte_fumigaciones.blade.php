@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('css')
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+@endsection
 @section('title')
     REPORTE FUMIGACIONES
 @endsection
@@ -12,10 +15,10 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <table class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
                                 <a class="btn btn-success"{{--  href="{{ route('unidades.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -60,3 +63,14 @@
         </div>
     </section>
 @endsection
+@section('scripts')
+    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
+    <script>
+        $(document).ready(function() {
+            $('#tablas-style').DataTable();
+        });
+    </script>
+@endsection
+

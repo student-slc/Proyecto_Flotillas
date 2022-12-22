@@ -175,8 +175,16 @@ Route::post('/informacion_operadores',function(){return view('checklist.operador
 ///--------------------------------------REPORTES--------------------------------------------------------------------
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_flotillas', [App\Http\Controllers\ReportesController::class, 'reporte_flotilla'])->name('tabla_reportes.reporte_flotilla');
+Route::controller(ReportesController::class)->group(function(){
+    Route::get('/reportes_flotillas/excel', 'reporte_flotillasexcel')->name('tabla_reportes.reporte_flotillasexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
+Route::controller(ReportesController::class)->group(function(){
+    Route::get('/reportes_seguros/excel', 'reporte_segurosexcel')->name('tabla_reportes.reporte_segurosexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_verificaciones', [App\Http\Controllers\ReportesController::class, 'reporte_veri'])->name('tabla_reportes.reporte_veri');
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
@@ -195,6 +203,9 @@ Route::get('/reportes_servicios', [App\Http\Controllers\ReportesController::clas
 Route::get('/reportes_individual', [App\Http\Controllers\ReportesController::class, 'reporte_individual'])->name('tabla_reportes.reporte_individual');
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_satisfaccion', [App\Http\Controllers\ReportesController::class, 'reporte_satisfaccion'])->name('tabla_reportes.reporte_satisfaccion');
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/reportes_individualv', [App\Http\Controllers\ReportesController::class, 'reporte_individualv'])->name('tabla_reportes.reporte_individualv');
+
 
 
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------

@@ -25,7 +25,7 @@
                                     placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">No. Serie/<br>Dirección</th>
+                                    <th style="color:#fff;">Placas/<br>Dirección</th>
                                     <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Estado Seguro</th>
                                     <th style="color:#fff;">Verificación Ambiental</th>
@@ -45,7 +45,7 @@
                                                 <td>{{ $unidade->direccion }}</td>
                                             @endif
                                             @if ($unidade->tipo == 'Unidad Vehicular')
-                                                <td>{{ $unidade->serieunidad }}</td>
+                                                <td>{{ $unidade->placas }}</td>
                                             @endif
                                             {{-- Boton MODAL --}}
                                             <td>
@@ -1068,7 +1068,7 @@
                                     {{ $unidade->direccion }}
                                 @endif
                                 @if ($unidade->tipo == 'Unidad Vehicular')
-                                    {{ $unidade->serieunidad }}
+                                    {{ $unidade->placas }}
                                 @endif
                             </b></h5>
                         <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
@@ -1110,9 +1110,9 @@
                                 {{ $unidade->razonsocialunidad }}
                             </li>
                             <br>
-                            <b>Placas:</b>
+                            <b>Serie de la unidad:</b>
                             <li class="list-group-item">
-                                {{ $unidade->placas }}
+                                {{ $unidade->serieunidad }}
                             </li>
                             <br>
                             <b>Vencimiento Seguro:</b>
