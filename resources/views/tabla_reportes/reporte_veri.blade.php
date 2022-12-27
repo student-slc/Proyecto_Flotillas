@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <table  id='tablas-style' class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
                                 <a class="btn btn-success"{{--  href="{{ route('unidades.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
@@ -66,7 +66,6 @@
     </section>
 @endsection
 @section('scripts')
-    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
     <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
     <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
     <script>
@@ -75,4 +74,3 @@
         });
     </script>
 @endsection
-

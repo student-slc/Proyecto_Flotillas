@@ -55,6 +55,9 @@ Route::resource('verificaciones', VerificacionesController::class);
 Route::resource('verificacionesfisicomecanicas', Verificaciones2Controller::class);
 Route::resource('mantenimientos', MantenimientosController::class);
 Route::resource('logs', ObservadorController::class);
+Route::resource('reportes', ReportesController::class);
+Route::resource('tabla_reportes', ReportesController::class);
+Route::resource('checklist', ChecklistController::class);
 });
 /* Route::controller(ExcelLogController::class)->group(function(){
     Route::get('log-export', 'export')->name('log.export');
@@ -216,6 +219,8 @@ Route::get('/reportes_bd', [App\Http\Controllers\ReportesController::class, 'rep
 
 
 
+///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
+Route::get('/welcome',function(){return view('welcome');})->name('welcome');
 
 
 
