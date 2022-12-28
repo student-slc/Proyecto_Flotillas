@@ -25,6 +25,6 @@ class Cliente extends Model
         'numero',
         'observaciones',
         'regimen_fiscal',
-        'sfdi'
+        'sfdi',
     ];
 }

@@ -40,5 +40,7 @@ class Unidade extends Model
         'kilometraje',
         'kilometros_actuales',
         'kilometros_contador',
+        'economico',
+        'digitoplaca',
     ];
 }

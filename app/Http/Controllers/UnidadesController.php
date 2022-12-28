@@ -95,6 +95,8 @@ class UnidadesController extends Controller
                 'kilometraje' => 'required',
                 'kilometros_actuales' => 'required',
                 'kilometros_contador' => 'required',
+                'economico' => 'required',
+                'digitoplaca' => 'required',
             ]);
         }
         $usuario = $request->cliente;
@@ -185,6 +187,8 @@ class UnidadesController extends Controller
                 'kilometraje' => 'required',
                 'kilometros_actuales' => 'required',
                 'kilometros_contador' => 'required',
+                'economico' => 'required',
+                'digitoplaca' => 'required',
             ]);
         }
         $usuario = $request->cliente;

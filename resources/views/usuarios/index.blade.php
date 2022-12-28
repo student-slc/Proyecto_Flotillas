@@ -15,6 +15,7 @@
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre</th>
+                                    <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">E-mail</th>
                                     <th style="color:#fff;">Rol</th>
                                     <th style="color:#fff;">Acciones</th>
@@ -27,6 +28,7 @@
                                         <tr>
                                             <td style="display: none;">{{ $usuario->id }}</td>
                                             <td>{{ $usuario->name }}</td>
+                                            <td>{{ $usuario->clientes }}</td>
                                             <td>{{ $usuario->email }}</td>
                                             <td>
                                                 @if (!empty($usuario->getRoleNames()))

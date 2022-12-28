@@ -189,6 +189,13 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
+                                                    <label for="economico">No. Economico</label>
+                                                    <input type="text" name="economico" class="form-control"
+                                                    value="{{ $unidade->economico }}">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
                                                     <label for="marca">Marca</label>
                                                     <input type="text" name="marca" class="form-control"
                                                         value="{{ $unidade->marca }}">
@@ -219,10 +226,18 @@
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="placas">Placas</label>
-                                                    <input type="text" name="placas" class="form-control"
-                                                        value="{{ $unidade->placas }}">
+                                                    <input id="placas" type="text" name="placas" class="form-control"
+                                                        value="{{ $unidade->placas }}" onkeyup="PasarValorP(this);">
                                                 </div>
                                             </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="digitoplaca">digitoplaca</label>
+                                                    <input id="digitoplaca" type="text" name="digitoplaca" class="form-control"
+                                                    value="{{ $unidade->digitoplaca }}">
+                                                </div>
+                                            </div>
+                                            <br>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="tipomantenimiento">Tipo de Mantenimiento</label>
@@ -360,5 +375,10 @@
         document.getElementById('vehiculo').addEventListener('click', function(e) {
             vehiculo.style.display = 'none';
         });
+        //------------------------------------------------------------------------------------------------------------
+        function PasarValorP(input) {
+            var placas=document.getElementById("placas").value
+            document.getElementById("digitoplaca").value = placas.substr(3,1);
+        }
     </script>
 @endsection

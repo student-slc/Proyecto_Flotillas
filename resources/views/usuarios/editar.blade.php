@@ -63,6 +63,12 @@
                                     {!! Form::text('rol', null, array('class' => 'form-control')) !!}
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                <div class="form-group">
+                                    <label for="economico">Mostrar Datos Unidad Vehicular</label>
+                                    {!! Form::text('economico', null, array('class' => 'form-control')) !!}
+                                </div>
+                            </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </div>

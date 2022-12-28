@@ -1080,6 +1080,16 @@
                                 {{ $unidade->cliente }}
                             </li>
                             <br>
+                            <b>No. Economico:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->economico }}
+                            </li>
+                            <br>
+                            <b>Digito Placa:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->digitoplaca }}
+                            </li>
+                            <br>
                             <b>Marca:</b>
                             <li class="list-group-item">
                                 {{ $unidade->marca }}

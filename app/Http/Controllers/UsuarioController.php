@@ -59,7 +59,8 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
-            'clientes' => 'required'
+            'clientes' => 'required',
+            'economico' => 'required',
         ]);
 
         $input = $request->all();
@@ -70,6 +71,7 @@ class UsuarioController extends Controller
             'password' => $input['password'],
             'rol' => implode($input['roles']),
             'clientes' => implode($input['clientes']),
+            'economico' =>$input['economico'],
         ]);
         $user->assignRole($request->input('roles'));
 
@@ -99,7 +101,6 @@ class UsuarioController extends Controller
         $user = User::find($id);
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
-
         return view('usuarios.editar', compact('user', 'roles', 'userRole', 'clientes'));
     }
 
@@ -118,7 +119,8 @@ class UsuarioController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'rol' => 'required',
-            'clientes' => 'required'
+            'clientes' => 'required',
+            'economico' => 'required',
         ]);
         $input = $request->all();
         $user = User::find($id);
@@ -131,6 +133,7 @@ class UsuarioController extends Controller
                     'password' => $input['password'],
                     'rol' => $input['rol'],
                     'clientes' => $input['clientes'],
+                    'economico' => $input['economico'],
                 ]
             );
         } else {
@@ -141,6 +144,7 @@ class UsuarioController extends Controller
                     'email' => $input['email'],
                     'rol' => $input['rol'],
                     'clientes' => $input['clientes'],
+                    'economico' => $input['economico'],
                 ]
             );
         }
