@@ -467,6 +467,13 @@ class CalculoFechas  extends Controller
 }
 class ReportesController extends CalculoFechas
 {
+    /* ============================================= DASHBOARD ==================================================== */
+    public function dashboard()
+    {
+        return view('tabla_reportes.dashboard');
+    }
+    /* ============================================================================================================= */
+    /* ============================================= REPORTES GRAFICAS ============================================= */
     public function seguros($color)
     {
         /* $color,$fecha,$tipo,$mstipo */
@@ -523,7 +530,8 @@ class ReportesController extends CalculoFechas
         $operadores = Operadore::all();
         return view('reportes.licencias', compact('calculo', 'color', 'operadores'));
     }
-    /* ------------------- REPORTES TABLAS ------------------- */
+    /* ============================================================================================================= */
+    /* ============================================= REPORTES EXCEL================================================= */
     public function reporte_flotilla()
     {
         $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
@@ -589,14 +597,26 @@ class ReportesController extends CalculoFechas
         $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
         return view('tabla_reportes.reporte_bd', compact('unidades'));
     }
-    /* EXCELES */
-    public function reporte_flotillasexcel()
+    /* ============================================================================================================= */
+    /* ============================================= EXCELES FUNCIONES ============================================= */
+    public function reporte_flotillasexcel(Request $request)
     {
-        return Excel::download(new ReporteFlotillasExport, 'Reporte_Flotillas.xlsx');
+        /* return (new SegurosExport($unidad))->download('Seguros_unidad_' . $unidad . '.xlsx'); */
+        $tipo = $request['filtroveri'];
+        if ($tipo == 'Ambiental') {
+            return (new ReporteFlotillasExport($tipo))->download('Reporte_Flotillas_Ambientales.xlsx');
+        }
+        if ($tipo == 'Fisica') {
+            return (new ReporteFlotillasExport($tipo))->download('Reporte_Flotillas_F-Mecanicas.xlsx');
+        }
+        if ($tipo == 'Ambas') {
+            return (new ReporteFlotillasExport($tipo))->download('Reporte_Flotillas_Ambas.xlsx');
+        }
     }
 
     public function reporte_segurosexcel()
     {
         return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx');
     }
+    /* ============================================================================================================= */
 }

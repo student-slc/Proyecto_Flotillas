@@ -13,12 +13,34 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
+                    <div class="card-body">
+                        <a class="btn btn-danger" href="{{ route('tabla_reportes.dashboard') }}">Regresar</a>
+                    </div>
                     <div class="card">
                         <div class="card-body">
+                            <form action="{{ route('tabla_reportes.reporte_flotillasexcel') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-file-excel"></i></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <label for="filtroveri">Filtro Verificaciones</label>
+                                        <select name="filtroveri" id="filtroveri" class=" selectsearch" style="width:30%">
+                                            <option selected value="Ambas">Ambas Verificaciones</option>
+                                            <option value="Ambiental">Verificaciones Ambientales</option>
+                                            <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
+                                        </select>
+                                        </ div>
+                                    </div>
+                            </form>
                             <table id='tablas-style' class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success"  {{-- href="{{ route('tabla_reportes.reporte_flotillasexcel') }}" --}}><i class="fas fa-file-excel"></i></a>
-                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar...."> --}}
+                                <br>
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -38,6 +60,13 @@
                                         $a = 'a';
                                         use App\Models\Verificacione;
                                         $verificaciones = Verificacione::all();
+                                        /* use App\Models\Unidade;
+                                        echo Unidade::query()
+                                            ->join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                            ->where('tipo', '=', 'Unidad Vehicular')
+                                            ->select('unidades.cliente', 'verificaciones.tipoverificacion', 'verificaciones.subtipoverificacion', 'verificaciones.ultimaverificacion', 'unidades.marca', 'unidades.serieunidad', 'unidades.añounidad', 'unidades.placas', 'unidades.tipounidad', 'unidades.razonsocialunidad', 'unidades.digitoplaca')
+                                            ->get(); */
+                                        /*  echo $unidades; */
                                     @endphp
                                     @foreach ($unidades as $unidade)
                                         <tr>

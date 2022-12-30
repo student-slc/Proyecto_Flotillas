@@ -2,6 +2,9 @@
     <a class="nav-link" href="/home">
         <i class="fas fa-table"></i><span>Dashboard</span>
     </a>
+    <a class="nav-link" href="/dashboard">
+        <i class="fas fa-table"></i><span>Reportes</span>
+    </a>
     @can('general-rol')
         <a class="nav-link" href="/usuarios">
             <i class=" fas fa-users"></i><span>Usuarios</span>
