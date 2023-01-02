@@ -603,14 +603,15 @@ class ReportesController extends CalculoFechas
     {
         /* return (new SegurosExport($unidad))->download('Seguros_unidad_' . $unidad . '.xlsx'); */
         $tipo = $request['filtroveri'];
+        $cli=$request['filtrocli'];
         if ($tipo == 'Ambiental') {
-            return (new ReporteFlotillasExport($tipo))->download('Reporte_Flotillas_Ambientales.xlsx');
+            return (new ReporteFlotillasExport($tipo,$cli))->download('Reporte_Flotillas_Ambientales.xlsx');
         }
         if ($tipo == 'Fisica') {
-            return (new ReporteFlotillasExport($tipo))->download('Reporte_Flotillas_F-Mecanicas.xlsx');
+            return (new ReporteFlotillasExport($tipo,$cli))->download('Reporte_Flotillas_F-Mecanicas.xlsx');
         }
         if ($tipo == 'Ambas') {
-            return (new ReporteFlotillasExport($tipo))->download('Reporte_Flotillas_Ambas.xlsx');
+            return (new ReporteFlotillasExport($tipo,$cli))->download('Reporte_Flotillas_Ambas.xlsx');
         }
     }
 

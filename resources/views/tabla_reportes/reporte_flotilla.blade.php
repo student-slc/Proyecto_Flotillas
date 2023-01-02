@@ -18,29 +18,51 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+                            @php
+                                use App\Models\Cliente;
+                                $clientes = Cliente::all();
+                            @endphp
                             <form action="{{ route('tabla_reportes.reporte_flotillasexcel') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success">
-                                            <i class="fas fa-file-excel"></i></i>
+                                            <i class="fas fa-file-excel"></i> Excel
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="filtroveri">Filtro Verificaciones</label>
-                                        <select name="filtroveri" id="filtroveri" class=" selectsearch" style="width:30%">
-                                            <option selected value="Ambas">Ambas Verificaciones</option>
-                                            <option value="Ambiental">Verificaciones Ambientales</option>
-                                            <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                        </select>
-                                        </ div>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtroveri">Filtro Verificaciones</label>
+                                                <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                    style="width:60%">
+                                                    <option selected value="Ambas">Ambas Verificaciones</option>
+                                                    <option value="Ambiental">Verificaciones Ambientales</option>
+                                                    <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrocli">Filtro Clientes</label>
+                                                <select name="filtrocli" id="filtrocli" class=" selectsearch"
+                                                    style="width:60%">
+                                                    <option selected value="todos">Todos los Clientes</option>
+                                                    @foreach ($clientes as $cliente)
+                                                        <option value="{{ $cliente->nombrecompleto }}">
+                                                            {{ $cliente->nombrecompleto }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
                             </form>
+                            <br>
                             <table id='tablas-style' class="table table-striped mt-2" id="tabla">
-                                <br>
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -60,13 +82,6 @@
                                         $a = 'a';
                                         use App\Models\Verificacione;
                                         $verificaciones = Verificacione::all();
-                                        /* use App\Models\Unidade;
-                                        echo Unidade::query()
-                                            ->join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                            ->where('tipo', '=', 'Unidad Vehicular')
-                                            ->select('unidades.cliente', 'verificaciones.tipoverificacion', 'verificaciones.subtipoverificacion', 'verificaciones.ultimaverificacion', 'unidades.marca', 'unidades.serieunidad', 'unidades.añounidad', 'unidades.placas', 'unidades.tipounidad', 'unidades.razonsocialunidad', 'unidades.digitoplaca')
-                                            ->get(); */
-                                        /*  echo $unidades; */
                                     @endphp
                                     @foreach ($unidades as $unidade)
                                         <tr>
@@ -79,18 +94,61 @@
                                             <td>{{ $unidade->razonsocialunidad }}</td>
                                             {{-- Boton MODAL --}}
                                             @php
+                                                $noaplica = 0;
                                                 foreach ($verificaciones as $verificacione) {
-                                                    if ($verificacione->id_unidad == $unidade->serieunidad && $verificacione->estado == 'Inactivo') {
+                                                    if ($verificacione->noverificacion == $unidade->verificacion) {
                                                         echo '<td>' . $verificacione->tipoverificacion . '</td>';
                                                         echo '<td>' . $verificacione->subtipoverificacion . '</td>';
                                                         echo '<td>' . $verificacione->fechavencimiento . '</td>';
-                                                        break;
-                                                    } else {
-                                                        echo '<td>No aplica</td>';
-                                                        echo '<td>No aplica</td>';
-                                                        echo '<td>No aplica</td>';
+                                                        $noaplica = 1;
                                                         break;
                                                     }
+                                                }
+                                                if ($noaplica == 0) {
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>Sin Ambiental</td>';
+                                                }
+                                            @endphp
+                                            <td>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$('#{{ $a }}').modal('show')">
+                                                    Detalles
+                                                </button>
+                                            </td>
+                                            {{-- AQUI VA --}}
+
+                                            {{--  --}}
+                                        </tr>
+                                        @php
+                                            $a = $a . 'a';
+                                        @endphp
+                                    @endforeach
+                                    @foreach ($unidades as $unidade)
+                                        <tr>
+                                            <td>{{ $unidade->placas }}</td>
+                                            <td>{{ $unidade->cliente }}</td>
+                                            <td>{{ $unidade->serieunidad }}</td>
+                                            {{-- <td>{{ $unidade->marca }}</td>
+                                            <td>{{ $unidade->añounidad }}</td> --}}
+                                            {{-- <td>{{ $unidade->tipounidad }}</td> --}}
+                                            <td>{{ $unidade->razonsocialunidad }}</td>
+                                            {{-- Boton MODAL --}}
+                                            @php
+                                                $noaplica = 0;
+                                                foreach ($verificaciones as $verificacione) {
+                                                    if ($verificacione->noverificacion == $unidade->verificacion2) {
+                                                        echo '<td>' . $verificacione->tipoverificacion . '</td>';
+                                                        echo '<td>' . $verificacione->subtipoverificacion . '</td>';
+                                                        echo '<td>' . $verificacione->fechavencimiento . '</td>';
+                                                        $noaplica = 1;
+                                                        break;
+                                                    }
+                                                }
+                                                if ($noaplica == 0) {
+                                                    echo '<td>Sin F.Mecanica</td>';
+                                                    echo '<td>Sin F.Mecanica</td>';
+                                                    echo '<td>Sin F.Mecanica</td>';
                                                 }
                                             @endphp
                                             <td>
