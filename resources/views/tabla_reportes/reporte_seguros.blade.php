@@ -18,10 +18,51 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+                            @php
+                                use App\Models\Cliente;
+                                $clientes = Cliente::all();
+                            @endphp
+                            <form action="{{ route('tabla_reportes.reporte_segurosexcel') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtroveri">Filtro Verificaciones</label>
+                                                <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                    style="width:60%">
+                                                    <option selected value="Ambas">Ambas Verificaciones</option>
+                                                    <option value="Ambiental">Verificaciones Ambientales</option>
+                                                    <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrocli">Filtro Clientes</label>
+                                                <select name="filtrocli" id="filtrocli" class=" selectsearch"
+                                                    style="width:60%">
+                                                    <option selected value="todos">Todos los Clientes</option>
+                                                    @foreach ($clientes as $cliente)
+                                                        <option value="{{ $cliente->nombrecompleto }}">
+                                                            {{ $cliente->nombrecompleto }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
                             <table id='tablas-style' class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success" href="{{ route('tabla_reportes.reporte_segurosexcel') }}"><i class="fas fa-file-excel"></i></a>
-                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -71,7 +112,7 @@
     </section>
 @endsection
 @section('scripts')
-   {{--  <script src='https://code.jquery.com/jquery-3.5.1.js'></script> --}}
+    {{--  <script src='https://code.jquery.com/jquery-3.5.1.js'></script> --}}
     <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
     <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
     <script>

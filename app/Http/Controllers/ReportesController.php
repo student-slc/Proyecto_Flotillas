@@ -603,15 +603,29 @@ class ReportesController extends CalculoFechas
     {
         /* return (new SegurosExport($unidad))->download('Seguros_unidad_' . $unidad . '.xlsx'); */
         $tipo = $request['filtroveri'];
-        $cli=$request['filtrocli'];
-        if ($tipo == 'Ambiental') {
-            return (new ReporteFlotillasExport($tipo,$cli))->download('Reporte_Flotillas_Ambientales.xlsx');
-        }
-        if ($tipo == 'Fisica') {
-            return (new ReporteFlotillasExport($tipo,$cli))->download('Reporte_Flotillas_F-Mecanicas.xlsx');
-        }
-        if ($tipo == 'Ambas') {
-            return (new ReporteFlotillasExport($tipo,$cli))->download('Reporte_Flotillas_Ambas.xlsx');
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        if ($cli == 'todos') {
+            if ($tipo == 'Ambiental') {
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambientales.xlsx');
+            }
+            if ($tipo == 'Fisica') {
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_F_Mecanicas.xlsx');
+            }
+            if ($tipo == 'Ambas') {
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambas_Veri.xlsx');
+            }
+        } else {
+            if ($tipo == 'Ambiental') {
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
+            }
+            if ($tipo == 'Fisica') {
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
+            }
+            if ($tipo == 'Ambas') {
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
+            }
         }
     }
 
