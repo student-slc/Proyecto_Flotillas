@@ -4,11 +4,10 @@ namespace App\Exports;
 
 use App\Models\Unidade;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ReposteSegurosExport implements FromCollection, WithHeadings
+class ReporteFumigacionesExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -33,12 +32,11 @@ class ReposteSegurosExport implements FromCollection, WithHeadings
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 } else {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
@@ -46,41 +44,38 @@ class ReposteSegurosExport implements FromCollection, WithHeadings
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 }
             } else {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->whereDate('lapsofumigacion', '<=', $final)
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 } else {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->whereDate('lapsofumigacion', '<=', $final)
                         ->where('cliente', '=', $cli)
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 }
             }
@@ -88,61 +83,57 @@ class ReposteSegurosExport implements FromCollection, WithHeadings
             if ($final == null) {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '>=', $inicio)
+                        ->whereDate('lapsofumigacion', '>=', $inicio)
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 } else {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
                         ->where('cliente', '=', $cli)
-                        ->whereDate('seguro_fecha', '>=', $inicio)
+                        ->whereDate('lapsofumigacion', '>=', $inicio)
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 }
             } else {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '>=', $inicio)
-                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->whereDate('lapsofumigacion', '>=', $inicio)
+                        ->whereDate('lapsofumigacion', '<=', $final)
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 } else {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '>=', $inicio)
-                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->whereDate('lapsofumigacion', '>=', $inicio)
+                        ->whereDate('lapsofumigacion', '<=', $final)
                         ->where('cliente', '=', $cli)
                         ->select(
                             'cliente',
                             'marca',
-                            'serieunidad',
                             'añounidad',
                             'placas',
                             'tipounidad',
                             'razonsocialunidad',
-                            'seguro_fecha'
+                            'lapsofumigacion'
                         )->get();
                 }
             }
@@ -152,7 +143,7 @@ class ReposteSegurosExport implements FromCollection, WithHeadings
     {
         return [
             "CLIENTE",
-            "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO UNIDAD", "RAZON SOCIAL UNIDAD", "FECHA DE VENCIMIENTO"
+            "MARCA", "AÑO UNIDAD", "PLACAS", "TIPO UNIDAD", "RAZON SOCIAL UNIDAD", "FECHA ULTIMA FUMIGACIÓN"
         ];
     }
 }

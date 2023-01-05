@@ -189,25 +189,50 @@ Route::controller(ReportesController::class)->group(function(){
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
 ///EXCEL SEGUROS
 Route::controller(ReportesController::class)->group(function(){
-    Route::get('/reportes_seguros/excel', 'reporte_segurosexcel')->name('tabla_reportes.reporte_segurosexcel');
+    Route::post('/reportes_seguros/excel', 'reporte_segurosexcel')->name('tabla_reportes.reporte_segurosexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_verificaciones', [App\Http\Controllers\ReportesController::class, 'reporte_veri'])->name('tabla_reportes.reporte_veri');
+///EXCEL SEGUROS
+Route::controller(ReportesController::class)->group(function(){
+    Route::post('/reportes_verificaciones/excel', 'reporte_veriexcel')->name('tabla_reportes.reporte_veriexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_preventivo', [App\Http\Controllers\ReportesController::class, 'reporte_preventivo'])->name('tabla_reportes.reporte_preventivo');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_fumigaciones', [App\Http\Controllers\ReportesController::class, 'reporte_fumigaciones'])->name('tabla_reportes.reporte_fumigaciones');
+Route::controller(ReportesController::class)->group(function(){
+    Route::post('/reportes_fumigaciones/excel', 'reporte_fumigacionesexcel')->name('tabla_reportes.reporte_fumigacionesexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_operadores', [App\Http\Controllers\ReportesController::class, 'reporte_operadores'])->name('tabla_reportes.reporte_operadores');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_semanal', [App\Http\Controllers\ReportesController::class, 'reporte_semanal'])->name('tabla_reportes.reporte_semanal');
+Route::controller(ReportesController::class)->group(function(){
+    Route::post('/reportes_semanal/excel', 'reporte_semanalexcel')->name('tabla_reportes.reporte_semanalexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_dia', [App\Http\Controllers\ReportesController::class, 'reporte_dia'])->name('tabla_reportes.reporte_dia');
+Route::controller(ReportesController::class)->group(function(){
+    Route::post('/reportes_dia/excel', 'reporte_diaexcel')->name('tabla_reportes.reporte_diaexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_servicios', [App\Http\Controllers\ReportesController::class, 'reporte_servicios'])->name('tabla_reportes.reporte_servicios');
+Route::controller(ReportesController::class)->group(function(){
+    Route::post('/reportes_servicios/excel', 'reporte_serviciosexcel')->name('tabla_reportes.reporte_serviciosexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_individual', [App\Http\Controllers\ReportesController::class, 'reporte_individual'])->name('tabla_reportes.reporte_individual');
+Route::controller(ReportesController::class)->group(function(){
+    Route::post('/reportes_individual/excel', 'reporte_individualexcel')->name('tabla_reportes.reporte_individualexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_satisfaccion', [App\Http\Controllers\ReportesController::class, 'reporte_satisfaccion'])->name('tabla_reportes.reporte_satisfaccion');
 /// ================================================== REPORTE ==================================================

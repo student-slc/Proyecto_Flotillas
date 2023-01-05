@@ -18,10 +18,73 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
+                            @php
+                                use App\Models\Cliente;
+                                $clientesf = Cliente::all();
+                            @endphp
+                            <form action="{{ route('tabla_reportes.reporte_serviciosexcel') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group ">
+                                                <label>Filtro por Fechas</label>
+                                                <div class="input-group">
+                                                    <label for="filtrofechainicio" style="width:55%">Fecha Inicio</label>
+                                                    <label for="filtrofechafinal" style="width:45%">Fecha Final</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <input type="date" name="filtrofechainicio" class="form-control"
+                                                        style="width:40%">
+                                                    <span id="boot-icon" class="bi bi-dash-square-fill"
+                                                        style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
+                                                    <input type="date" name="filtrofechafinal" class="form-control"
+                                                        style="width:40%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrounidad">Filtro Tipo Unidades</label>
+                                                <select name="filtrounidad" id="filtrounidad" class=" selectsearch"
+                                                    style="width:80%">
+                                                    <option selected value="Ambas">Ambas Unidadades</option>
+                                                    <option value="Habitacional">Unidad Habitacional</option>
+                                                    <option value="Vehicular">Unidad Vehicular</option>
+                                                </select>
+                                            </div>
+                                        </div> --}}
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrocli">Filtro Clientes</label>
+                                                <select name="filtrocli" id="filtrocli" class=" selectsearch"
+                                                    style="width:80%">
+                                                    <option selected value="todos">Todos los Clientes</option>
+                                                    @foreach ($clientesf as $cliente)
+                                                        <option value="{{ $cliente->nombrecompleto }}">
+                                                            {{ $cliente->nombrecompleto }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
                             <table id='tablas-style' class="table table-striped mt-2"{{--  id="tabla" --}}>
-                                <a class="btn btn-success"{{--  href="{{ route('unidades.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
-                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -39,7 +102,6 @@
                                     @php
                                         $a = 'a';
                                         use App\Models\Fumigacione;
-                                        use App\Models\Cliente;
                                         $clientes = Cliente::all();
                                         $fumigaciones = Fumigacione::all();
                                     @endphp

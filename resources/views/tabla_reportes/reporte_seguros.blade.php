@@ -35,21 +35,43 @@
                                 <div class="row">
                                     <div class="card-deck mt-6">
                                         <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group ">
+                                                <label>Filtro por Fechas</label>
+                                                <div class="input-group">
+                                                    <label for="filtrofechainicio" style="width:55%">Fecha Inicio</label>
+                                                    <label for="filtrofechafinal" style="width:45%">Fecha Final</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <input type="date" name="filtrofechainicio" class="form-control"
+                                                        style="width:40%">
+                                                    <span id="boot-icon" class="bi bi-dash-square-fill"
+                                                        style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
+                                                    <input type="date" name="filtrofechafinal" class="form-control"
+                                                        style="width:40%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                       {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="filtroveri">Filtro Verificaciones</label>
                                                 <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                    style="width:60%">
+                                                    style="width:80%">
                                                     <option selected value="Ambas">Ambas Verificaciones</option>
                                                     <option value="Ambiental">Verificaciones Ambientales</option>
                                                     <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="filtrocli">Filtro Clientes</label>
                                                 <select name="filtrocli" id="filtrocli" class=" selectsearch"
-                                                    style="width:60%">
+                                                    style="width:40%">
                                                     <option selected value="todos">Todos los Clientes</option>
                                                     @foreach ($clientes as $cliente)
                                                         <option value="{{ $cliente->nombrecompleto }}">
