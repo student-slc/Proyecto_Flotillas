@@ -58,6 +58,9 @@
                                                     /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                     $uno = 'nulo';
                                                     $calcular = 0;
+                                                    $mes_contador = 1;
+                                                    $dias_exactos = 1;
+                                                    //cambio
                                                     if ($diferencia_año >= 1) {
                                                         $meses = $diferencia_año * 12 + 12;
                                                         $operacion_1 = $meses - (int) $mes_actual;
@@ -65,7 +68,12 @@
                                                         $operacion_3 = $operacion_1 - $operacion_2;
                                                         $meses = $operacion_3;
                                                     } else {
-                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        if ($diferencia_año == 0) {
+                                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        } else {
+                                                            $mes_contador = 0;
+                                                            $dias_exactos = 0;
+                                                        }
                                                     }
                                                     if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                         $uno = 'uno';
@@ -76,47 +84,49 @@
                                                         $calcular = $direstantes + (int) $vencimiento_dia;
                                                     }
                                                     /* CALCULO DE DIAS EXACTOS */
-                                                    $dias_exactos = 0;
                                                     $contador_1 = 0;
                                                     $contador_2 = 0;
                                                     $cuenta_mes = $mes_actual;
                                                     $operacion_1 = 0;
-                                                    $mes_contador = 0;
-                                                    for ($i = 0; $i <= $meses; $i++) {
-                                                        if ($uno == 'uno') {
-                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
-                                                            $i = $meses + 1;
-                                                        } else {
-                                                            if ($contador_1 == 0) {
-                                                                $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
-                                                                $dias_exactos = $dias_exactos + $operacion_2;
-                                                                $contador_1 = 1;
+                                                    if ($mes_contador == 1 && $dias_exactos == 1) {
+                                                        $mes_contador = 0;
+                                                        $dias_exactos = 0;
+                                                        for ($i = 0; $i <= $meses; $i++) {
+                                                            if ($uno == 'uno') {
+                                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                $i = $meses + 1;
                                                             } else {
-                                                                if ($i == $meses) {
-                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
-                                                                } else {
+                                                                if ($contador_1 == 0) {
                                                                     $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
-                                                                    $mes_contador = $mes_contador + 1;
+                                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                    $dias_exactos = $dias_exactos + $operacion_2;
+                                                                    $contador_1 = 1;
+                                                                } else {
+                                                                    if ($i == $meses) {
+                                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                    } else {
+                                                                        $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                        $mes_contador = $mes_contador + 1;
+                                                                    }
+                                                                }
+                                                                if ($cuenta_mes == 12) {
+                                                                    $contador_2 = $contador_2 + 1;
+                                                                    $cuenta_mes = 1;
+                                                                } else {
+                                                                    $cuenta_mes = $cuenta_mes + 1;
                                                                 }
                                                             }
-                                                            if ($cuenta_mes == 12) {
-                                                                $contador_2 = $contador_2 + 1;
-                                                                $cuenta_mes = 1;
-                                                            } else {
-                                                                $cuenta_mes = $cuenta_mes + 1;
-                                                            }
                                                         }
-                                                    }
-                                                    /* CALCULO DE MESES EXACTOS */
+                                                        /* CALCULO DE MESES EXACTOS */
 
-                                                    $dias_resto = $calcular;
-                                                    $opc = 2;
-                                                    for ($i = 0; $i <= $opc; $i++) {
-                                                        if ($calcular >= 30) {
-                                                            $mes_contador = $mes_contador + 1;
-                                                            $calcular = $calcular - 29;
+                                                        $dias_resto = $calcular;
+                                                        $opc = 2;
+                                                        for ($i = 0; $i <= $opc; $i++) {
+                                                            if ($calcular >= 30) {
+                                                                $mes_contador = $mes_contador + 1;
+                                                                $calcular = $calcular - 30;
+                                                            }
                                                         }
                                                     }
                                                 @endphp
@@ -200,6 +210,9 @@
                                                     /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                     $uno = 'nulo';
                                                     $calcular = 0;
+                                                    $mes_contador = 1;
+                                                    $dias_exactos = 1;
+                                                    //cambio
                                                     if ($diferencia_año >= 1) {
                                                         $meses = $diferencia_año * 12 + 12;
                                                         $operacion_1 = $meses - (int) $mes_actual;
@@ -207,7 +220,12 @@
                                                         $operacion_3 = $operacion_1 - $operacion_2;
                                                         $meses = $operacion_3;
                                                     } else {
-                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        if ($diferencia_año == 0) {
+                                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        } else {
+                                                            $mes_contador = 0;
+                                                            $dias_exactos = 0;
+                                                        }
                                                     }
                                                     if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                         $uno = 'uno';
@@ -218,47 +236,49 @@
                                                         $calcular = $direstantes + (int) $vencimiento_dia;
                                                     }
                                                     /* CALCULO DE DIAS EXACTOS */
-                                                    $dias_exactos = 0;
                                                     $contador_1 = 0;
                                                     $contador_2 = 0;
                                                     $cuenta_mes = $mes_actual;
                                                     $operacion_1 = 0;
-                                                    $mes_contador = 0;
-                                                    for ($i = 0; $i <= $meses; $i++) {
-                                                        if ($uno == 'uno') {
-                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
-                                                            $i = $meses + 1;
-                                                        } else {
-                                                            if ($contador_1 == 0) {
-                                                                $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
-                                                                $dias_exactos = $dias_exactos + $operacion_2;
-                                                                $contador_1 = 1;
+                                                    if ($mes_contador == 1 && $dias_exactos == 1) {
+                                                        $mes_contador = 0;
+                                                        $dias_exactos = 0;
+                                                        for ($i = 0; $i <= $meses; $i++) {
+                                                            if ($uno == 'uno') {
+                                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                $i = $meses + 1;
                                                             } else {
-                                                                if ($i == $meses) {
-                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
-                                                                } else {
+                                                                if ($contador_1 == 0) {
                                                                     $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
-                                                                    $mes_contador = $mes_contador + 1;
+                                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                    $dias_exactos = $dias_exactos + $operacion_2;
+                                                                    $contador_1 = 1;
+                                                                } else {
+                                                                    if ($i == $meses) {
+                                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                    } else {
+                                                                        $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                        $mes_contador = $mes_contador + 1;
+                                                                    }
+                                                                }
+                                                                if ($cuenta_mes == 12) {
+                                                                    $contador_2 = $contador_2 + 1;
+                                                                    $cuenta_mes = 1;
+                                                                } else {
+                                                                    $cuenta_mes = $cuenta_mes + 1;
                                                                 }
                                                             }
-                                                            if ($cuenta_mes == 12) {
-                                                                $contador_2 = $contador_2 + 1;
-                                                                $cuenta_mes = 1;
-                                                            } else {
-                                                                $cuenta_mes = $cuenta_mes + 1;
-                                                            }
                                                         }
-                                                    }
-                                                    /* CALCULO DE MESES EXACTOS */
+                                                        /* CALCULO DE MESES EXACTOS */
 
-                                                    $dias_resto = $calcular;
-                                                    $opc = 2;
-                                                    for ($i = 0; $i <= $opc; $i++) {
-                                                        if ($calcular >= 30) {
-                                                            $mes_contador = $mes_contador + 1;
-                                                            $calcular = $calcular - 29;
+                                                        $dias_resto = $calcular;
+                                                        $opc = 2;
+                                                        for ($i = 0; $i <= $opc; $i++) {
+                                                            if ($calcular >= 30) {
+                                                                $mes_contador = $mes_contador + 1;
+                                                                $calcular = $calcular - 30;
+                                                            }
                                                         }
                                                     }
                                                 @endphp
@@ -654,8 +674,8 @@
                 </div>
             </div>
         </div>
-         {{-- ===================== MODAL_MEDICO ===================== --}}
-         <div class="modal fade" id="medico{{ str_replace(' ', '', $operadore->nombreoperador) }}" tabindex="-1"
+        {{-- ===================== MODAL_MEDICO ===================== --}}
+        <div class="modal fade" id="medico{{ str_replace(' ', '', $operadore->nombreoperador) }}" tabindex="-1"
             role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -816,8 +836,9 @@
                                                 <div class="form-element">
                                                     <div class="from-group">
                                                         <input name="examenmedico" type="file"
-                                                        id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
-                                                        <label for="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label
+                                                            for="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
                                                             id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
                                                             <object type="application/pdf"
                                                                 data="{{ asset($operadore->examenmedico) }}"

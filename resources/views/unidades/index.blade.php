@@ -84,6 +84,8 @@
                                                             /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                             $uno = 'nulo';
                                                             $calcular = 0;
+                                                            $mes_contador = 1;
+                                                            $dias_exactos = 1;
                                                             //cambio
                                                             if ($diferencia_año >= 1) {
                                                                 $meses = $diferencia_año * 12 + 12;
@@ -257,6 +259,8 @@
                                                             /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                             $uno = 'nulo';
                                                             $calcular = 0;
+                                                            $mes_contador = 1;
+                                                            $dias_exactos = 1;
                                                             //cambio
                                                             if ($diferencia_año >= 1) {
                                                                 $meses = $diferencia_año * 12 + 12;
@@ -611,6 +615,8 @@
                                                                 /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                                 $uno = 'nulo';
                                                                 $calcular = 0;
+                                                                $mes_contador = 1;
+                                                                $dias_exactos = 1;
                                                                 //cambio
                                                                 if ($diferencia_año >= 1) {
                                                                     $meses = $diferencia_año * 12 + 12;
@@ -848,6 +854,8 @@
                                                         /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                         $uno = 'nulo';
                                                         $calcular = 0;
+                                                        $mes_contador = 1;
+                                                        $dias_exactos = 1;
                                                         //cambio
                                                         if ($diferencia_año >= 1) {
                                                             $meses = $diferencia_año * 12 + 12;

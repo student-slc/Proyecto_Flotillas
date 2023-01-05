@@ -6,35 +6,35 @@
     <section class="section">
         <div class="section-header">
             @if ($color == 'sin seguro')
-            @php
-                $estado = 'Sin Seguro';
-            @endphp
-        @endif
-        @if ($color == 'azul')
-            @php
-                $estado = '9 a 12 meses para expirar';
-            @endphp
-        @endif
-        @if ($color == 'verde')
-            @php
-                $estado = '5 a 8 meses para expirar';
-            @endphp
-        @endif
-        @if ($color == 'amarillo')
-            @php
-                $estado = '2 a 4 meses para expirar';
-            @endphp
-        @endif
-        @if ($color == 'rojo')
-            @php
-                $estado = '1 mes para expirar';
-            @endphp
-        @endif
-        @if ($color == 'expirado')
-            @php
-                $estado = 'Seguro Expirada';
-            @endphp
-        @endif
+                @php
+                    $estado = 'Sin Seguro';
+                @endphp
+            @endif
+            @if ($color == 'azul')
+                @php
+                    $estado = '9 a 12 meses para expirar';
+                @endphp
+            @endif
+            @if ($color == 'verde')
+                @php
+                    $estado = '5 a 8 meses para expirar';
+                @endphp
+            @endif
+            @if ($color == 'amarillo')
+                @php
+                    $estado = '2 a 4 meses para expirar';
+                @endphp
+            @endif
+            @if ($color == 'rojo')
+                @php
+                    $estado = '1 mes para expirar';
+                @endphp
+            @endif
+            @if ($color == 'expirado')
+                @php
+                    $estado = 'Seguro Expirada';
+                @endphp
+            @endif
             <h3 class="page__heading">Seguros de Todas Las unidades en: {{ $estado }}</h3>
         </div>
         <div class="section-body">
@@ -145,6 +145,9 @@
                                                                 /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                                 $uno = 'nulo';
                                                                 $calcular = 0;
+                                                                $mes_contador = 1;
+                                                                $dias_exactos = 1;
+                                                                //cambio
                                                                 if ($diferencia_año >= 1) {
                                                                     $meses = $diferencia_año * 12 + 12;
                                                                     $operacion_1 = $meses - (int) $mes_actual;
@@ -152,7 +155,12 @@
                                                                     $operacion_3 = $operacion_1 - $operacion_2;
                                                                     $meses = $operacion_3;
                                                                 } else {
-                                                                    $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                                    if ($diferencia_año == 0) {
+                                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                                    } else {
+                                                                        $mes_contador = 0;
+                                                                        $dias_exactos = 0;
+                                                                    }
                                                                 }
                                                                 if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                                     $uno = 'uno';
@@ -163,46 +171,49 @@
                                                                     $calcular = $direstantes + (int) $vencimiento_dia;
                                                                 }
                                                                 /* CALCULO DE DIAS EXACTOS */
-                                                                $dias_exactos = 0;
                                                                 $contador_1 = 0;
                                                                 $contador_2 = 0;
                                                                 $cuenta_mes = $mes_actual;
                                                                 $operacion_1 = 0;
-                                                                $mes_contador = 0;
-                                                                for ($i = 0; $i <= $meses; $i++) {
-                                                                    if ($uno == 'uno') {
-                                                                        $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
-                                                                        $i = $meses + 1;
-                                                                    } else {
-                                                                        if ($contador_1 == 0) {
-                                                                            $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                            $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
-                                                                            $dias_exactos = $dias_exactos + $operacion_2;
-                                                                            $contador_1 = 1;
+                                                                if ($mes_contador == 1 && $dias_exactos == 1) {
+                                                                    $mes_contador = 0;
+                                                                    $dias_exactos = 0;
+                                                                    for ($i = 0; $i <= $meses; $i++) {
+                                                                        if ($uno == 'uno') {
+                                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                            $i = $meses + 1;
                                                                         } else {
-                                                                            if ($i == $meses) {
-                                                                                $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
-                                                                            } else {
+                                                                            if ($contador_1 == 0) {
                                                                                 $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                                $dias_exactos = $dias_exactos + (int) $operacion_1;
-                                                                                $mes_contador = $mes_contador + 1;
+                                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                                $dias_exactos = $dias_exactos + $operacion_2;
+                                                                                $contador_1 = 1;
+                                                                            } else {
+                                                                                if ($i == $meses) {
+                                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                                } else {
+                                                                                    $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                                    $mes_contador = $mes_contador + 1;
+                                                                                }
+                                                                            }
+                                                                            if ($cuenta_mes == 12) {
+                                                                                $contador_2 = $contador_2 + 1;
+                                                                                $cuenta_mes = 1;
+                                                                            } else {
+                                                                                $cuenta_mes = $cuenta_mes + 1;
                                                                             }
                                                                         }
-                                                                        if ($cuenta_mes == 12) {
-                                                                            $contador_2 = $contador_2 + 1;
-                                                                            $cuenta_mes = 1;
-                                                                        } else {
-                                                                            $cuenta_mes = $cuenta_mes + 1;
-                                                                        }
                                                                     }
-                                                                }
-                                                                /* CALCULO DE MESES EXACTOS */
-                                                                $dias_resto = $calcular;
-                                                                $opc = 2;
-                                                                for ($i = 0; $i <= $opc; $i++) {
-                                                                    if ($calcular >= 30) {
-                                                                        $mes_contador = $mes_contador + 1;
-                                                                        $calcular = $calcular - 30;
+                                                                    /* CALCULO DE MESES EXACTOS */
+
+                                                                    $dias_resto = $calcular;
+                                                                    $opc = 2;
+                                                                    for ($i = 0; $i <= $opc; $i++) {
+                                                                        if ($calcular >= 30) {
+                                                                            $mes_contador = $mes_contador + 1;
+                                                                            $calcular = $calcular - 30;
+                                                                        }
                                                                     }
                                                                 }
                                                             @endphp
@@ -212,52 +223,52 @@
                                                                 @if ($mes_contador >= 9)
                                                                     <span class="badge badge-primary">
                                                                         Expira en:<br>
-                                                                            {{ $mes_contador }} meses
+                                                                        {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                                     <span class="badge badge-success">
                                                                         Expira en:<br>
-                                                                            {{ $mes_contador }} meses
+                                                                        {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                                     <span class="badge badge-warning">
                                                                         Expira en:<br>
-                                                                            {{ $mes_contador }} meses
+                                                                        {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'nulo')
                                                                     @if ($calcular == 0)
                                                                         <span class="badge badge-danger">
                                                                             Expira en:<br>
-                                                                                {{ $mes_contador }} mes
-                                                                            </span>
+                                                                            {{ $mes_contador }} mes
+                                                                        </span>
                                                                     @else
                                                                         <span class="badge badge-danger">
                                                                             Expira en:<br>
-                                                                                {{ $mes_contador }} mes
-                                                                                <br>y {{ $calcular }} dias
-                                                                            </span>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </span>
                                                                     @endif
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'uno')
                                                                     <span class="badge badge-danger">
                                                                         Expira en:<br>
-                                                                            {{ $dias_exactos }} dias
-                                                                        </span>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos > 0)
                                                                     <span class="badge badge-danger">
                                                                         Expira en:<br>
-                                                                            {{ $dias_exactos }} dias
-                                                                        </span>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos <= 0)
                                                                     <span class="badge badge-danger">
-                                                                            SEGURO
-                                                                            <br> EXPIRADO
-                                                                        </span>
+                                                                        SEGURO
+                                                                        <br> EXPIRADO
+                                                                    </span>
                                                                 @endif
                                                             </h6>
                                                         @endif
@@ -295,8 +306,8 @@
         $a = 'a';
     @endphp
     @foreach ($unidades as $unidade)
-        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog"
-            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog" aria-labelledby="ModalDetallesTitle"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
