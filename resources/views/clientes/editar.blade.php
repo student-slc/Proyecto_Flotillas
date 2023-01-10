@@ -47,6 +47,20 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
+                                                <label for="nombrecompletoc">Nombre del Contacto</label>
+                                                <input type="text" name="nombrecompletoc" class="form-control"
+                                                value="{{ $cliente->nombrecompletoc }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="telefonoc">Telefono Contacto</label>
+                                                <input type="text" name="telefonoc" class="form-control"
+                                                value="{{ $cliente->telefonoc }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
                                                 <label for="codigopostal">Codigo Postal</label>
                                                 <input type="text" name="codigopostal" class="form-control"
                                                     value="{{ $cliente->codigopostal }}">

@@ -12,6 +12,8 @@ class Cliente extends Model
         'nombrecompleto',
         'razonsocial',
         'telefono',
+        'nombrecompletoc',
+        'telefonoc',
         'direccionfisica',
         'correo',
         'statuspago',
