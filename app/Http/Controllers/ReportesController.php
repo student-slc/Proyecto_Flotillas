@@ -548,8 +548,9 @@ class ReportesController extends CalculoFechas
     /* ============================================= REPORTES EXCEL================================================= */
     public function reporte_flotilla()
     {
+        $verificaciones = Verificacione::all();
         $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_flotilla', compact('unidades'));
+        return view('tabla_reportes.reporte_flotilla', compact('unidades','verificaciones'));
     }
     public function reporte_seguros()
     {

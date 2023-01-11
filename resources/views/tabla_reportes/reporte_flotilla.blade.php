@@ -39,10 +39,12 @@
                                                     <label for="filtrofechafinal" style="width:45%">Fecha Final</label>
                                                 </div>
                                                 <div class="input-group">
-                                                    <input type="date" name="filtrofechainicio" class="form-control" style="width:40%">
+                                                    <input type="date" name="filtrofechainicio" class="form-control"
+                                                        style="width:40%">
                                                     <span id="boot-icon" class="bi bi-dash-square-fill"
-                                                    style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
-                                                    <input type="date" name="filtrofechafinal" class="form-control" style="width:40%">
+                                                        style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
+                                                    <input type="date" name="filtrofechafinal" class="form-control"
+                                                        style="width:40%">
                                                 </div>
                                             </div>
                                         </div>
@@ -100,43 +102,52 @@
                                         use App\Models\Verificacione;
                                         $verificaciones = Verificacione::all();
                                     @endphp
-                                    @foreach ($unidades as $unidade)
-                                        <tr>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->cliente }}</td>
-                                            <td>{{ $unidade->serieunidad }}</td>
-                                            {{-- <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td> --}}
-                                            {{-- <td>{{ $unidade->tipounidad }}</td> --}}
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            {{-- Boton MODAL --}}
-                                            @php
-                                                $noaplica = 0;
-                                                foreach ($verificaciones as $verificacione) {
-                                                    if ($verificacione->noverificacion == $unidade->verificacion) {
-                                                        echo '<td>' . $verificacione->tipoverificacion . '</td>';
-                                                        echo '<td>' . $verificacione->subtipoverificacion . '</td>';
-                                                        echo '<td>' . $verificacione->ultimaverificacion . '</td>';
-                                                        $noaplica = 1;
-                                                        break;
-                                                    }
-                                                }
-                                                if ($noaplica == 0) {
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>Sin Ambiental</td>';
-                                                }
-                                            @endphp
-                                            <td>
+                                    @foreach ($verificaciones as $verificacione)
+                                        @php
+                                            $noaplica = 0;
+                                            foreach ($unidades as $unidade) {
+                                                if ($verificacione->noverificacion == $unidade->verificacion) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
+
+                                                    echo '<td>' . $verificacione->tipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->subtipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->ultimaverificacion . '</td>';
+
+                                                    echo '<td>
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="$('#{{ $a }}').modal('show')">
+                                                    onclick="$("#{{ $a }}").modal("show")">
                                                     Detalles
                                                 </button>
-                                            </td>
-                                            {{-- AQUI VA --}}
+                                            </td>';
+                                                    echo '</tr>';
+                                                    $noaplica = 1;
+                                                    break;
+                                                }
+                                            }
+                                            /* if ($noaplica == 0) {
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
 
-                                            {{--  --}}
-                                        </tr>
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$("#{{ $a }}").modal("show")">
+                                                    Detalles
+                                                </button>
+                                            </td>';
+                                                } */
+                                        @endphp
+                                        {{-- AQUI VA --}}
+
+                                        {{--  --}}
                                         @php
                                             $a = $a . 'a';
                                         @endphp
