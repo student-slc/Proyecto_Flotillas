@@ -53,7 +53,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="card-deck mt-6">
-                                       {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
+                                        {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="filtroveri">Filtro Verificaciones</label>
                                                 <select name="filtroveri" id="filtroveri" class=" selectsearch"
@@ -99,20 +99,22 @@
                                         $verificaciones = Verificacione::all();
                                     @endphp
                                     @foreach ($unidades as $unidade)
-                                        <tr>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->cliente }}</td>
-                                            <td>{{ $unidade->serieunidad }}</td>
-                                            <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td>
-                                            <td>{{ $unidade->tipounidad }}</td>
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            <td>{{ $unidade->seguro_fecha }}</td>
-                                            {{-- Boton MODAL --}}
-                                            {{-- AQUI VA --}}
+                                        @if ($unidade->seguro_fecha != 'Sin Fecha de Seguro')
+                                            <tr>
+                                                <td>{{ $unidade->placas }}</td>
+                                                <td>{{ $unidade->cliente }}</td>
+                                                <td>{{ $unidade->serieunidad }}</td>
+                                                <td>{{ $unidade->marca }}</td>
+                                                <td>{{ $unidade->añounidad }}</td>
+                                                <td>{{ $unidade->tipounidad }}</td>
+                                                <td>{{ $unidade->razonsocialunidad }}</td>
+                                                <td>{{ $unidade->seguro_fecha }}</td>
+                                                {{-- Boton MODAL --}}
+                                                {{-- AQUI VA --}}
 
-                                            {{--  --}}
-                                        </tr>
+                                                {{--  --}}
+                                            </tr>
+                                        @endif
                                         @php
                                             $a = $a . 'a';
                                         @endphp
