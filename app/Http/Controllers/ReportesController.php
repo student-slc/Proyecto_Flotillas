@@ -15,7 +15,7 @@ use App\Exports\ReporteIndividualExport;
 use App\Exports\ReporteSemanalExport;
 use App\Exports\ReporteVeriExport;
 use App\Exports\ReposteSegurosExport;
-
+use App\Models\Fumigacione;
 
 class CalculoFechas  extends Controller
 {
@@ -569,7 +569,7 @@ class ReportesController extends CalculoFechas
     }
     public function reporte_fumigaciones()
     {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        $unidades = Unidade::all();
         return view('tabla_reportes.reporte_fumigaciones', compact('unidades'));
     }
     public function reporte_operadores()
@@ -579,8 +579,9 @@ class ReportesController extends CalculoFechas
     }
     public function reporte_semanal()
     {
+        $fumigaciones= Fumigacione::all();
         $unidades = Unidade::all();
-        return view('tabla_reportes.reporte_semanal', compact('unidades'));
+        return view('tabla_reportes.reporte_semanal', compact('unidades','fumigaciones'));
     }
     public function reporte_dia()
     {

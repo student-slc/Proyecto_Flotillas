@@ -53,7 +53,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="card-deck mt-6">
-                                       {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
+                                        {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="filtroveri">Filtro Verificaciones</label>
                                                 <select name="filtroveri" id="filtroveri" class=" selectsearch"
@@ -83,7 +83,7 @@
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">
-                                    <th style="color:#fff;">Placas</th>
+                                    <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">Marca</th>
                                     <th style="color:#fff;">Año Unidad</th>
@@ -98,18 +98,33 @@
                                         $verificaciones = Verificacione::all();
                                     @endphp
                                     @foreach ($unidades as $unidade)
-                                        <tr>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->cliente }}</td>
-                                            <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td>
-                                            <td>{{ $unidade->tipounidad }}</td>
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            <td>{{ $unidade->lapsofumigacion }}</td>
-                                            {{-- Boton MODAL --}}
-                                            {{-- AQUI VA --}}
-                                            {{--  --}}
-                                        </tr>
+                                        @if ($unidade->lapsofumigacion != 'Sin Fecha de Fumigación')
+                                            <tr>
+                                                @php
+                                                    if ($unidade->tipo == 'Unidad Vehicular') {
+                                                        echo '<td>' . $unidade->placas . '</td>';
+                                                        echo '<td>' . $unidade->cliente . '</td>';
+                                                        echo '<td>' . $unidade->marca . '</td>';
+                                                        echo '<td>' . $unidade->añounidad . '</td>';
+                                                        echo '<td>' . $unidade->tipounidad . '</td>';
+                                                        echo '<td>' . $unidade->razonsocialunidad . '</td>';
+                                                        echo '<td>' . $unidade->lapsofumigacion . '</td>';
+                                                    }
+                                                    if ($unidade->tipo == 'Unidad Habitacional o Comercial') {
+                                                        echo '<td>' . $unidade->direccion . '</td>';
+                                                        echo '<td>' . $unidade->cliente . '</td>';
+                                                        echo '<td>NO APLICA</td>';
+                                                        echo '<td>NO APLICA</td>';
+                                                        echo '<td>NO APLICA</td>';
+                                                        echo '<td>' . $unidade->razonsocialunidad . '</td>';
+                                                        echo '<td>' . $unidade->lapsofumigacion . '</td>';
+                                                    }
+                                                @endphp
+                                                {{-- Boton MODAL --}}
+                                                {{-- AQUI VA --}}
+                                                {{--  --}}
+                                            </tr>
+                                        @endif
                                         @php
                                             $a = $a . 'a';
                                         @endphp
@@ -127,4 +142,3 @@
         </div>
     </section>
 @endsection
-
