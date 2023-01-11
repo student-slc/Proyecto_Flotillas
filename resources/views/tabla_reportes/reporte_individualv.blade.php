@@ -2,9 +2,6 @@
 @section('title')
     REPORTE INDIVIDUAL VEHICULAR
 @endsection
-@section('css')
-    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-@endsection
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -18,7 +15,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" {{-- href="{{ route('tabla_reportes.reporte_flotillasexcel') }}" --}}><i class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
@@ -183,13 +180,4 @@
         @endphp
     @endforeach
     {{-- =========================================== --}}
-@endsection
-@section('scripts')
-    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
-    <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
-    <script>
-        $(document).ready(function() {
-            $('#tablas-style').DataTable();
-        });
-    </script>
 @endsection

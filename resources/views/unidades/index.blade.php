@@ -18,11 +18,11 @@
                             @can('general-rol')
                                 <a class="btn btn-warning" href="{{ route('unidades.crear', $usuario) }}">Nuevo</a>
                             @endcan
-                            <table class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" href="{{ route('unidades.export', $usuario) }}"><i
                                         class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Placas/<br>Dirección</th>

@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@section('css')
-    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-@endsection
 @section('title')
     REPORTE SATISFACCION
 @endsection
@@ -18,7 +15,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success"{{--  href="{{ route('unidades.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
@@ -193,14 +190,5 @@
         @endphp
     @endforeach
     {{-- =========================================== --}}
-@endsection
-@section('scripts')
-    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
-    <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
-    <script>
-        $(document).ready(function() {
-            $('#tablas-style').DataTable();
-        });
-    </script>
 @endsection
 

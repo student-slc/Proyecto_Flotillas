@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -29,7 +30,9 @@
     <meta name="theme-color" content="#6777ef" />
     <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
-
+    {{-- DATATABLES --}}
+    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    {{--  --}}
     @yield('page_css')
 
     <!-- Template CSS -->
@@ -49,6 +52,7 @@
 </script> --}}
 
 {{--  --}}
+
 <body>
 
     <div id="app">
@@ -100,6 +104,15 @@
 </script>
 @yield('page_js')
 @yield('scripts')
+{{-- DATATABLES --}}
+<script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
+<script>
+    $(document).ready(function() {
+        $('#tablas-style').DataTable();
+    });
+</script>
+{{--  --}}
 <script>
     let loggedInUser = @json(\Illuminate\Support\Facades\Auth::user());
     let loginUrl = '{{ route('login') }}';
@@ -117,4 +130,5 @@
     }(jQuery));
 </script>
 @yield('modal')
+
 </html>

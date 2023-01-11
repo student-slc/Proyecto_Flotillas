@@ -2,9 +2,6 @@
 @section('title')
     REPORTE FLOTILLAS
 @endsection
-@section('css')
-    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-@endsection
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -82,7 +79,7 @@
                                 </div>
                             </form>
                             <br>
-                            <table id='tablas-style' class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -247,13 +244,4 @@
         @endphp
     @endforeach
     {{-- =========================================== --}}
-@endsection
-@section('scripts')
-    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
-    <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
-    <script>
-        $(document).ready(function() {
-            $('#tablas-style').DataTable();
-        });
-    </script>
 @endsection
