@@ -117,42 +117,35 @@
                                                     echo '<td>' . $fumigacione->fechaultimafumigacion . '</td>';
                                                     echo '<td>' . $fumigacione->id_fumigador . '</td>';
                                                     echo '<td>' . $fumigacione->status . '</td>';
-                                                    echo '<td>' . $cliente->razonsocial . '</td>';
+                                                    break;
+                                                }
+                                            }
+                                            foreach ($clientes as $cliente) {
+                                                if ($cliente->nombrecompleto == $unidade->cliente) {
                                                     echo '<td>' . $cliente->direccionfisica . '</td>';
+                                                    echo '<td>' . $cliente->razonsocial . '</td>';
                                                     echo '<td>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="$("#{{ $a }}").modal("show")">
-                                                    Detalles
-                                                </button>
-                                            </td>';
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="$("#{{ $a }}").modal("show")">
+                                            Detalles
+                                        </button>
+                                    </td>';
                                                     echo '</tr>';
                                                     break;
-                                                } /* else {
-                                                    if ($fumigacione->numerofumigacion == $unidade->fumigacion && $fumigacione->unidad == $unidade->direccion) {
-                                                        echo '<td>' . $fumigacione->fechaultimafumigacion . '</td>';
-                                                        echo '<td>' . $fumigacione->id_fumigador . '</td>';
-                                                        echo '<td>' . $fumigacione->status . '</td>';
-                                                        break;
-                                                    } else {
-                                                        echo '<td>No aplica</td>';
-                                                        echo '<td>No aplica</td>';
-                                                        echo '<td>No aplica</td>';
-                                                        break;
-                                                    }
-                                                } */
+                                                }
                                             }
                                         @endphp
                                         @php
                                             /* foreach ($clientes as $cliente) {
-                                                if ($cliente->nombrecompleto == $unidade->cliente) {
+                                        if ($cliente->nombrecompleto == $unidade->cliente) {
 
-                                                    break;
-                                                } else {
-                                                    echo '<td>No aplica</td>';
-                                                    echo '<td>No aplica</td>';
-                                                    break;
-                                                }
-                                            } */
+                                            break;
+                                        } else {
+                                            echo '<td>No aplica</td>';
+                                            echo '<td>No aplica</td>';
+                                            break;
+                                        }
+                                    } */
                                         @endphp
                                         @php
                                             $a = $a . 'a';
