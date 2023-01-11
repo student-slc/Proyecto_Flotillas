@@ -39,45 +39,73 @@
                                         use App\Models\Verificacione;
                                         $verificaciones = Verificacione::all();
                                     @endphp
+                                    {{--  --}}
                                     @foreach ($unidades as $unidade)
-                                        <tr>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->cliente }}</td>
-                                            <td>{{ $unidade->serieunidad }}</td>
-                                            {{-- <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td> --}}
-                                            {{-- <td>{{ $unidade->tipounidad }}</td> --}}
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            {{-- Boton MODAL --}}
-                                            @php
-                                                foreach ($verificaciones as $verificacione) {
-                                                    if ($verificacione->id_unidad == $unidade->serieunidad && $verificacione->estado == 'Inactivo') {
-                                                        echo '<td>' . $verificacione->tipoverificacion . '</td>';
-                                                        echo '<td>' . $verificacione->subtipoverificacion . '</td>';
-                                                        echo '<td>' . $verificacione->fechavencimiento . '</td>';
-                                                        break;
-                                                    } else {
-                                                        echo '<td>No aplica</td>';
-                                                        echo '<td>No aplica</td>';
-                                                        echo '<td>No aplica</td>';
-                                                        break;
-                                                    }
-                                                }
-                                            @endphp
-                                            <td>
+                                        @php
+                                            foreach ($verificaciones as $verificacione) {
+                                                if ($verificacione->noverificacion == $unidade->verificacion) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
+                                                    echo '<td>' . $verificacione->tipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->subtipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->fechavencimiento . '</td>';
+                                                    echo '<td>
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="$('#{{ $a }}').modal('show')">
+                                                    onclick="$("#{{ $a }}").modal("show")">
                                                     Detalles
                                                 </button>
-                                            </td>
-                                            {{-- AQUI VA --}}
-
-                                            {{--  --}}
-                                        </tr>
+                                            </td>';
+                                                    echo '</tr>';
+                                                    break;
+                                                } /*  else {
+                                                    echo '<td>No aplica</td>';
+                                                    echo '<td>No aplica</td>';
+                                                    echo '<td>No aplica</td>';
+                                                    break;
+                                                } */
+                                            }
+                                        @endphp
                                         @php
                                             $a = $a . 'a';
                                         @endphp
                                     @endforeach
+                                    {{--  --}}
+                                    @foreach ($unidades as $unidade)
+                                        @php
+                                            foreach ($verificaciones as $verificacione) {
+                                                if ($verificacione->noverificacion == $unidade->verificacion2) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
+                                                    echo '<td>' . $verificacione->tipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->subtipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->fechavencimiento . '</td>';
+                                                    echo '<td>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$("#{{ $a }}").modal("show")">
+                                                    Detalles
+                                                </button>
+                                            </td>';
+                                                    echo '</tr>';
+                                                    break;
+                                                } /*  else {
+                                                    echo '<td>No aplica</td>';
+                                                    echo '<td>No aplica</td>';
+                                                    echo '<td>No aplica</td>';
+                                                    break;
+                                                } */
+                                            }
+                                        @endphp
+                                        @php
+                                            $a = $a . 'a';
+                                        @endphp
+                                    @endforeach
+                                    {{--  --}}
                                 </tbody>
                             </table>
                             <!-- Ubicamos la paginacion a la derecha -->
