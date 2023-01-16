@@ -188,6 +188,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_flotillas/excel', 'reporte_flotillasexcel')->name('tabla_reportes.reporte_flotillasexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_flotillas', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFlotillaPDF'])->name('pdf.reporte_flotillaspdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesTablasController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
 ///EXCEL SEGUROS

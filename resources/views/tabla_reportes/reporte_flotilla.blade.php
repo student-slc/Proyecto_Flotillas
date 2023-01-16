@@ -19,13 +19,18 @@
                                 use App\Models\Cliente;
                                 $clientes = Cliente::all();
                             @endphp
-                            <form action="{{ route('tabla_reportes.reporte_flotillasexcel') }}" method="POST"
+                            <form action="" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success"
+                                        dir="{{ route('tabla_reportes.reporte_flotillasexcel') }}">
                                             <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                        <button type="submit" class="btn btn-danger"
+                                        dir="{{ route('pdf.reporte_flotillaspdf') }}">
+                                            <i class="fas fa-file-pdf"></i> PDF
                                         </button>
                                     </div>
                                 </div>
@@ -152,43 +157,52 @@
                                             $a = $a . 'a';
                                         @endphp
                                     @endforeach
-                                    @foreach ($unidades as $unidade)
-                                        <tr>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->cliente }}</td>
-                                            <td>{{ $unidade->serieunidad }}</td>
-                                            {{-- <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td> --}}
-                                            {{-- <td>{{ $unidade->tipounidad }}</td> --}}
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            {{-- Boton MODAL --}}
-                                            @php
-                                                $noaplica = 0;
-                                                foreach ($verificaciones as $verificacione) {
-                                                    if ($verificacione->noverificacion == $unidade->verificacion2) {
-                                                        echo '<td>' . $verificacione->tipoverificacion . '</td>';
-                                                        echo '<td>' . $verificacione->subtipoverificacion . '</td>';
-                                                        echo '<td>' . $verificacione->ultimaverificacion . '</td>';
-                                                        $noaplica = 1;
-                                                        break;
-                                                    }
-                                                }
-                                                if ($noaplica == 0) {
-                                                    echo '<td>Sin F.Mecanica</td>';
-                                                    echo '<td>Sin F.Mecanica</td>';
-                                                    echo '<td>Sin F.Mecanica</td>';
-                                                }
-                                            @endphp
-                                            <td>
+                                    @foreach ($verificaciones as $verificacione)
+                                        @php
+                                            $noaplica = 0;
+                                            foreach ($unidades as $unidade) {
+                                                if ($verificacione->noverificacion == $unidade->verificacion2) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
+
+                                                    echo '<td>' . $verificacione->tipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->subtipoverificacion . '</td>';
+                                                    echo '<td>' . $verificacione->ultimaverificacion . '</td>';
+
+                                                    echo '<td>
                                                 <button type="button" class="btn btn-primary"
-                                                    onclick="$('#{{ $a }}').modal('show')">
+                                                    onclick="$("#{{ $a }}").modal("show")">
                                                     Detalles
                                                 </button>
-                                            </td>
-                                            {{-- AQUI VA --}}
+                                            </td>';
+                                                    echo '</tr>';
+                                                    $noaplica = 1;
+                                                    break;
+                                                }
+                                            }
+                                            /* if ($noaplica == 0) {
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
 
-                                            {{--  --}}
-                                        </tr>
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>Sin Ambiental</td>';
+                                                    echo '<td>
+                                                <button type="button" class="btn btn-primary"
+                                                    onclick="$("#{{ $a }}").modal("show")">
+                                                    Detalles
+                                                </button>
+                                            </td>';
+                                                } */
+                                        @endphp
+                                        {{-- AQUI VA --}}
+
+                                        {{--  --}}
                                         @php
                                             $a = $a . 'a';
                                         @endphp
@@ -255,4 +269,19 @@
         @endphp
     @endforeach
     {{-- =========================================== --}}
+@endsection
+@section('scripts')
+<script>
+   $(document).ready(function(){
+    $("button[type=submit]").click(function(e) {
+        e.preventDefault();
+        var accion = $(this).attr('dir'),
+            $form = $(this).closest('form');
+        if(typeof accion !== 'undefined'){
+            $form.attr('action', accion);
+        }
+        $form.submit();
+    });
+});
+</script>
 @endsection
