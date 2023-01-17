@@ -24,8 +24,13 @@
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success"
+                                        dir="{{ route('tabla_reportes.reporte_segurosexcel') }}">
                                             <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                        <button type="submit" class="btn btn-danger"
+                                        dir="{{ route('pdf.reporte_segurospdf') }}">
+                                            <i class="fas fa-file-pdf"></i> PDF
                                         </button>
                                     </div>
                                 </div>
@@ -131,4 +136,19 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+<script>
+   $(document).ready(function(){
+    $("button[type=submit]").click(function(e) {
+        e.preventDefault();
+        var accion = $(this).attr('dir'),
+            $form = $(this).closest('form');
+        if(typeof accion !== 'undefined'){
+            $form.attr('action', accion);
+        }
+        $form.submit();
+    });
+});
+</script>
 @endsection

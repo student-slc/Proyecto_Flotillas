@@ -197,6 +197,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_seguros/excel', 'reporte_segurosexcel')->name('tabla_reportes.reporte_segurosexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_seguros', [App\Http\Controllers\ReportesPDFController::class, 'ReporteSegurosPDF'])->name('pdf.reporte_segurospdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_verificaciones', [App\Http\Controllers\ReportesTablasController::class, 'reporte_veri'])->name('tabla_reportes.reporte_veri');
 ///EXCEL SEGUROS

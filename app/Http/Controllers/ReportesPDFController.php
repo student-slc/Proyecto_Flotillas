@@ -535,6 +535,129 @@ class Metodos extends Controller
         }
         /* ============================================================================== */
     }
+    public function UnidadesCFI($cli, $final, $inicio){
+        if ($inicio == null) {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                } else {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->where('cliente', '=', $cli)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                } else {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->where('cliente', '=', $cli)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                }
+            }
+        } else {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereDate('seguro_fecha', '>=', $inicio)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                } else {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->where('cliente', '=', $cli)
+                        ->whereDate('seguro_fecha', '>=', $inicio)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereDate('seguro_fecha', '>=', $inicio)
+                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                } else {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereDate('seguro_fecha', '>=', $inicio)
+                        ->whereDate('seguro_fecha', '<=', $final)
+                        ->where('cliente', '=', $cli)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'seguro_fecha'
+                        )->get();
+                }
+            }
+        }
+    }
 }
 class ReportesPDFController extends Metodos
 {
@@ -545,7 +668,6 @@ class ReportesPDFController extends Metodos
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidades = Metodos::UnidadesTCFI($tipo, $cli, $final, $inicio);
-        $verificaciones = Verificacione::all();
         $pdf = PDF::loadView('pdf.ReporteFlotillas', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Flotillas',
@@ -555,5 +677,22 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
         return $pdf->download('Reporte_Flotillas.pdf');
+    }
+    public function ReporteSegurosPDF(Request $request)
+    {
+        /* $tipo = $request['filtroveri']; */
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidades = Metodos::UnidadesCFI($cli, $final, $inicio);
+        $pdf = PDF::loadView('pdf.ReporteSeguros', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Seguros',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
+        return $pdf->download('Reporte_Seguros.pdf');
     }
 }
