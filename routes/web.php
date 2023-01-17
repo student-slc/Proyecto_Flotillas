@@ -8,6 +8,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ExcelLogController;
+use App\Http\Controllers\FoliosController;
 use App\Http\Controllers\ObservadorController;
 use App\Http\Controllers\OperadoresController;
 use App\Http\Controllers\FumigadoresController;
@@ -42,7 +43,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 /* Route::get('/welcome',function(){return view('welcome');})->name('welcome'); */
 
-
 Route::group(['middleware' =>['auth']],function(){
 Route::resource('roles', RolController::class);
 Route::resource('usuarios', UsuarioController::class);
@@ -59,6 +59,7 @@ Route::resource('logs', ObservadorController::class);
 Route::resource('reportes', ReportesController::class);
 Route::resource('tabla_reportes', ReportesController::class);
 Route::resource('checklist', ChecklistController::class);
+Route::resource('folios', FoliosController::class);
 });
 /* Route::controller(ExcelLogController::class)->group(function(){
     Route::get('log-export', 'export')->name('log.export');

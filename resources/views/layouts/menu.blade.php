@@ -20,6 +20,11 @@
             <i class=" fas fa-user-tie"></i><span>Clientes</span>
         </a>
     @endcan
+    @can('general-rol')
+        <a class="nav-link" href="/folios">
+            <i class=" fas fa-file-text"></i><span>Folios</span>
+        </a>
+    @endcan
     @can('particular-rol')
         <a class="nav-link" href="/clientes">
             <i class=" fas fa-user-tie"></i><span>Mi Información</span>
