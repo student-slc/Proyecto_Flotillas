@@ -93,21 +93,23 @@
                                                         value="{{ $unidade->kilometraje }}">
                                                 </div>
                                             </div>
-                                             {{-- 'kilometraje_actual','kilometraje_cont', --}}
-                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                            <div class="form-group">
-                                                <label for="kilometros_actuales">kilometros_actuales</label>
-                                                <input id="kilometros_actuales" type="text" name="kilometros_actuales"
-                                                class="form-control" value="{{ $unidade->kilometros_actuales }}">
+                                            {{-- 'kilometraje_actual','kilometraje_cont', --}}
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="kilometros_actuales">kilometros_actuales</label>
+                                                    <input id="kilometros_actuales" type="text"
+                                                        name="kilometros_actuales" class="form-control"
+                                                        value="{{ $unidade->kilometros_actuales }}">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
-                                            <div class="form-group">
-                                                <label for="kilometros_contador">kilometros_contador</label>
-                                                <input id="kilometros_contador" type="text" name="kilometros_contador"
-                                                class="form-control" value="{{ $unidade->kilometros_contador }}">
+                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                                <div class="form-group">
+                                                    <label for="kilometros_contador">kilometros_contador</label>
+                                                    <input id="kilometros_contador" type="text"
+                                                        name="kilometros_contador" class="form-control"
+                                                        value="{{ $unidade->kilometros_contador }}">
+                                                </div>
                                             </div>
-                                        </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                                 <div class="form-group">
                                                     <label for="seguro">seguro</label>
@@ -168,14 +170,14 @@
                                                 <div class="form-group">
                                                     <label for="lapsofumigacion">lapsofumigacion</label>
                                                     <input type="text" name="lapsofumigacion" class="form-control"
-                                                    value="{{ $unidade->lapsofumigacion }}">
+                                                        value="{{ $unidade->lapsofumigacion }}">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                                 <div class="form-group">
                                                     <label for="fumigacion">fumigacion</label>
                                                     <input type="text" name="fumigacion" class="form-control"
-                                                    value="{{ $unidade->fumigacion }}">
+                                                        value="{{ $unidade->fumigacion }}">
                                                 </div>
                                             </div>
                                             {{-- ========================================================================= --}}
@@ -191,7 +193,7 @@
                                                 <div class="form-group">
                                                     <label for="economico">No. Economico</label>
                                                     <input type="text" name="economico" class="form-control"
-                                                    value="{{ $unidade->economico }}">
+                                                        value="{{ $unidade->economico }}">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -226,15 +228,16 @@
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="placas">Placas</label>
-                                                    <input id="placas" type="text" name="placas" class="form-control"
-                                                        value="{{ $unidade->placas }}" onkeyup="PasarValorP(this);">
+                                                    <input id="placas" type="text" name="placas"
+                                                        class="form-control" value="{{ $unidade->placas }}"
+                                                        onkeyup="PasarValorP(this);">
                                                 </div>
                                             </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="digitoplaca">digitoplaca</label>
-                                                    <input id="digitoplaca" type="text" name="digitoplaca" class="form-control"
-                                                    value="{{ $unidade->digitoplaca }}">
+                                                    <input id="digitoplaca" type="text" name="digitoplaca"
+                                                        class="form-control" value="{{ $unidade->digitoplaca }}">
                                                 </div>
                                             </div>
                                             <br>
@@ -325,14 +328,14 @@
                                                 <div class="form-group">
                                                     <label for="lapsofumigacion">lapsofumigacion</label>
                                                     <input type="text" name="lapsofumigacion" class="form-control"
-                                                    value="{{ $unidade->lapsofumigacion }}">
+                                                        value="{{ $unidade->lapsofumigacion }}">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                                 <div class="form-group">
                                                     <label for="fumigacion">fumigacion</label>
                                                     <input type="text" name="fumigacion" class="form-control"
-                                                    value="{{ $unidade->fumigacion }}">
+                                                        value="{{ $unidade->fumigacion }}">
                                                 </div>
                                             </div>
                                         @endif
@@ -377,8 +380,16 @@
         });
         //------------------------------------------------------------------------------------------------------------
         function PasarValorP(input) {
-            var placas=document.getElementById("placas").value
-            document.getElementById("digitoplaca").value = placas.substr(3,1);
+            var regex = /(\d+)/g;
+            var expresion = /(,+)/g;
+            /* var name = "i_txt_7_14"; */
+            /* console.log(name.match(regex)); */
+            var placas = document.getElementById("placas").value
+            var digito = placas.match(regex);
+            var cadena = digito.toString();
+            var remplazo = cadena.replace(expresion, "");
+            document.getElementById("digitoplaca").value = remplazo.substr(3, 1);;
+            /* document.getElementById("digitoplaca").value = placas.substr(3, 1); */
         }
     </script>
 @endsection

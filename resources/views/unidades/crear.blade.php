@@ -170,21 +170,22 @@
                                             <div class="form-group">
                                                 <label for="placas">Placas</label>
                                                 <input id="placas" type="text" name="placas" class="form-control"
-                                                onkeyup="PasarValorP(this);">
+                                                    onkeyup="PasarValorP(this);">
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="digitoplaca">digitoplaca</label>
-                                                <input id="digitoplaca" type="text" name="digitoplaca" class="form-control">
+                                                <input id="digitoplaca" type="text" name="digitoplaca"
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <br>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="kilometraje">Kilometraje</label>
-                                                <input id="kilometraje" type="text" name="kilometraje" class="form-control"
-                                                    laceholder="Kilometraje de la unidad"
+                                                <input id="kilometraje" type="text" name="kilometraje"
+                                                    class="form-control" laceholder="Kilometraje de la unidad"
                                                     onkeyup="PasarValor(this);">
                                             </div>
                                         </div>
@@ -193,14 +194,14 @@
                                             <div class="form-group">
                                                 <label for="kilometros_actuales">kilometros_actuales</label>
                                                 <input id="kilometros_actuales" type="text" name="kilometros_actuales"
-                                                class="form-control">
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                             <div class="form-group">
                                                 <label for="kilometros_contador">kilometros_contador</label>
                                                 <input id="kilometros_contador" type="text" name="kilometros_contador"
-                                                class="form-control">
+                                                    class="form-control">
                                             </div>
                                         </div>
                                         <br>
@@ -349,14 +350,22 @@
         });
         //------------------------------------------------------------------------------------------------------------
         function PasarValor(input) {
-            var kilometraje=document.getElementById("kilometraje").value
+            var kilometraje = document.getElementById("kilometraje").value
             document.getElementById("kilometros_actuales").value = kilometraje;
             document.getElementById("kilometros_contador").value = kilometraje;
         }
         //------------------------------------------------------------------------------------------------------------
         function PasarValorP(input) {
-            var placas=document.getElementById("placas").value
-            document.getElementById("digitoplaca").value = placas.substr(3,1);
+            var regex = /(\d+)/g;
+            var expresion = /(,+)/g;
+            /* var name = "i_txt_7_14"; */
+            /* console.log(name.match(regex)); */
+            var placas = document.getElementById("placas").value
+            var digito = placas.match(regex);
+            var cadena = digito.toString();
+            var remplazo = cadena.replace(expresion, "");
+            document.getElementById("digitoplaca").value = remplazo.substr(3, 1);;
+            /* document.getElementById("digitoplaca").value = placas.substr(3, 1); */
         }
     </script>
 @endsection
