@@ -27,25 +27,26 @@ class ReportesExcelController extends Controller
          $cli = $request['filtrocli'];
          $final = "" . $request['filtrofechafinal'];
          $inicio = "" . $request['filtrofechainicio'];
+         $unidad = "" . $request['filtrounid'];
          if ($cli == 'todos') {
              if ($tipo == 'Ambiental') {
-                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambientales.xlsx');
+                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final,$unidad))->download('Reporte_Flotillas_Ambientales.xlsx');
              }
              if ($tipo == 'Fisica') {
-                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_F_Mecanicas.xlsx');
+                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final,$unidad))->download('Reporte_Flotillas_F_Mecanicas.xlsx');
              }
              if ($tipo == 'Ambas') {
-                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambas_Veri.xlsx');
+                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final,$unidad))->download('Reporte_Flotillas_Ambas_Veri.xlsx');
              }
          } else {
              if ($tipo == 'Ambiental') {
-                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
+                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final,$unidad))->download('Reporte_Flotillas_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
              }
              if ($tipo == 'Fisica') {
-                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
+                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final,$unidad))->download('Reporte_Flotillas_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
              }
              if ($tipo == 'Ambas') {
-                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final))->download('Reporte_Flotillas_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
+                 return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final,$unidad))->download('Reporte_Flotillas_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
              }
          }
      }

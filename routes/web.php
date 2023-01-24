@@ -190,6 +190,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 Route::post('pdf/reportes_flotillas', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFlotillaPDF'])->name('pdf.reporte_flotillaspdf');
+Route::post('pdf/datos_unidades',function(){return view('pdf.datos_unidades');})->name('pdf.datos_unidades');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesTablasController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
 ///EXCEL SEGUROS
