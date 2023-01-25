@@ -21,11 +21,12 @@
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Folio</th>
-                                    <th style="color:#fff;">Fecha Creación</th>
-                                    <th style="color:#fff;">Folio Inicial</th>
-                                    <th style="color:#fff;">Folio Final</th>
-                                    <th style="color:#fff;">Folio Actual</th>
                                     <th style="color:#fff;">Tipo de Folio</th>
+                                    {{-- <th style="color:#fff;">Fecha Creación</th> --}}
+                                    <th style="color:#fff;">Folio Inicial</th>
+                                    <th style="color:#fff;">Folio Actual</th>
+                                    <th style="color:#fff;">Folio Final</th>
+                                    <th style="color:#fff;">Folios Disponibles</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -33,11 +34,65 @@
                                         <tr>
                                             <td style="display: none;">{{ $folio->id }}</td>
                                             <td>{{ $folio->nombre }}</td>
-                                            <td>{{ $folio->fecha_update }}</td>
-                                            <td>{{ $folio->folio }}</td>
-                                            <td>{{ $folio->folio }}</td>
-                                            <td>{{ $folio->folio }}</td>
                                             <td>{{ $folio->tipo }}</td>
+                                            {{-- <td>{{ $folio->fecha_update }}</td> --}}
+                                            <td>{{ $folio->folio }}</td>
+                                            <td>
+                                                @php
+                                                    $string = $folio->folio;
+                                                    $inicio = preg_replace('/[^0-9]/', '', $string);
+                                                    $numeros = (int) $inicio + (int) $folio->contador;
+                                                    if ($folio->tipo == 'Ambiental') {
+                                                        echo $numeros;
+                                                    }
+                                                    if ($folio->tipo == 'Fisico-Mecanica-Arrastre') {
+                                                        echo 'A-' . $numeros;
+                                                    }
+                                                    if ($folio->tipo == 'Fisico-Mecanica-Motriz') {
+                                                        echo 'M-' . $numeros;
+                                                    }
+                                                @endphp
+                                            </td>
+                                            <td>{{ $folio->rango }}</td>
+                                            {{--  --}}
+                                            <td>
+                                                @php
+                                                    $string_1 = $folio->folio;
+                                                    $inicial = preg_replace('/[^0-9]/', '', $string_1);
+                                                    $string_2 = $folio->rango;
+                                                    $final = preg_replace('/[^0-9]/', '', $string_2);
+                                                    $numeros = (int) $final - (int) $inicial - (int) $folio->contador;
+                                                    /* echo $numeros; */
+                                                @endphp
+                                                <h5>
+                                                    @if ($numeros >= 50)
+                                                        <span class="badge badge-primary">
+                                                            {{ $numeros }}
+                                                        </span>
+                                                    @endif
+                                                    @if ($numeros > 30 && $numeros < 50)
+                                                        <span class="badge badge-success">
+                                                            {{ $numeros }}
+                                                        </span>
+                                                    @endif
+                                                    @if ($numeros > 10 && $numeros <= 30)
+                                                        <span class="badge badge-warning">
+                                                            {{ $numeros }}
+                                                        </span>
+                                                    @endif
+                                                    @if ($numeros >= 1 && $numeros <= 10)
+                                                        <span class="badge badge-danger">
+                                                            {{ $numeros }}
+                                                        </span>
+                                                    @endif
+                                                    @if ($numeros == 0)
+                                                        <span class="badge badge-danger">
+                                                            SIN FOLIOS
+                                                        </span>
+                                                    @endif
+                                                </h5>
+                                            </td>
+                                            {{--  --}}
                                             {{-- ====================== --}}
                                             <td>
                                                 <button type="submit" class="btn btn-info"

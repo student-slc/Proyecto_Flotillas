@@ -43,13 +43,13 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="folio">Folio</label>
+                                            <label for="folio">Folio Inicial</label>
                                             <input type="text" name="folio" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="rango">Numero de Folios</label>
+                                            <label for="rango">Folio Final</label>
                                             <input type="text" name="rango" class="form-control">
                                         </div>
                                     </div>
@@ -66,7 +66,8 @@
                                                 <option disabled selected value="">Selecciona el Tipo de Folio
                                                 </option>
                                                 <option selected value="Ambiental">Ambiental</option>
-                                                <option value="Fisico-Mecanica">Fisico-Mecanica</option>
+                                                <option value="Fisico-Mecanica-Arrastre">Fisico-Mecanica Arrastre</option>
+                                                <option value="Fisico-Mecanica-Motriz">Fisico-Mecanica Motriz</option>
                                                 {{-- <option value="No Pagado">No Pagado</option>
                                                 <option value="Pagado">Pagado</option> --}}
                                             </select>
