@@ -18,7 +18,7 @@
                                         class="fas fa-file-excel"></i></a> --}}
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                <thead style="background-color:#6777ef">
+                                <thead  style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Folio</th>
                                     <th style="color:#fff;">Tipo de Folio</th>

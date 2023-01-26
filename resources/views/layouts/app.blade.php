@@ -60,7 +60,7 @@
             date_default_timezone_set('America/Mexico_City');
         @endphp
         <div class="main-wrapper main-wrapper-1">
-            <div class="navbar-bg"></div>
+            <div class="navbar-bg" style="background-color: #769ecb"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
                 @include('layouts.header')
 
@@ -109,7 +109,26 @@
 <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
 <script>
     $(document).ready(function() {
-        $('#tablas-style').DataTable();
+        $('#tablas-style').DataTable({
+            "responsive": true,
+
+            "language": {
+                "lengthMenu": "Mostrar _MENU_ registros ",
+                "zeroRecords": "No se encontraron datos",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay datos disponibles",
+                "infoFiltered": "(filtrado de  _MAX_ registros totales)",
+                "search": "Buscar:",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            "paging": {{ $paging ?? 'true' }},
+            "searching": true,
+            "info": true,
+            "autoWidth": false,
+        });
     });
 </script>
 {{--  --}}

@@ -16,11 +16,13 @@
                                 <a class="btn btn-warning" href="{{ route('clientes.create') }}">Nuevo</a>
                             @endcan
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-success" href="{{ route('clientes.export') }}"><i
+                                <a class="btn btn-md" style="background-color: #7caa98" href="{{ route('clientes.export') }}"><i
                                         class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                <thead style="background-color:#6777ef">
+                                    <br>
+                                    <br>
+                                <thead style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Cliente</th>
                                     <th style="color:#fff;">Información completa</th>
@@ -38,20 +40,20 @@
                                             <td>{{ $cliente->nombrecompleto }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-primary"
+                                                <button type="button" class="btn btn-md text-dark" style="background-color: #9dbad5"
                                                     onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <a class="btn btn-dark"
+                                                <a  class="btn btn-md" style="background-color: #7caa98"
                                                     href="{{ route('clientes.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-bus"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-dark"
+                                                <a  class="btn btn-md" style="background-color: #7caa98"
                                                     href="{{ route('operadores.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-address-card"></i>
                                                 </a>
@@ -66,11 +68,11 @@
                                                     </h5>
                                                 @endif
                                                 @if ($cliente->statuspago == 'En Ejecucion')
-                                                    <h5><span class="badge badge-primary">{{ $cliente->statuspago }}</span>
-                                                    </h5>
+                                                    <h6><span class="badge badge-primary">{{ $cliente->statuspago }}</span>
+                                                    </h6>
                                                 @endif
                                                 @if ($cliente->statuspago == 'No Pagado')
-                                                    <h5><span class="badge badge-danger">{{ $cliente->statuspago }}</span>
+                                                    <h5><span class="badge badge-pill badge-danger">{{ $cliente->statuspago }}</span>
                                                     </h5>
                                                 @endif
                                                 @if ($cliente->statuspago == 'Pagado')
@@ -81,9 +83,9 @@
                                             @can('general-rol')
                                                 <td>
 
-                                                    <a class="btn btn-info" href="{{ route('clientes.edit', $cliente->id) }}">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <button type="submit" class="btn btn-danger"
+                                                    <a class="btn btn-sm" style="background-color: #9dbad5" href="{{ route('clientes.edit', $cliente->id) }}">
+                                                        <i class="fas fa-pencil-alt"></i></a>
+                                                    <button type="submit" class="btn btn-sm" style="background-color: #ff8097"
                                                         onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
