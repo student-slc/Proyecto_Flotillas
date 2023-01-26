@@ -12,7 +12,8 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-danger" href="{{ route('fumigaciones.index') }}">Regresar</a>
+                            <a class="btn btn-danger"
+                                href="{{ route('fumigaciones.show', $unidad = $fumigacione->unidad) }}">Regresar</a>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -29,126 +30,104 @@
                             <form action="{{ route('fumigaciones.update', $fumigacione->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="id_cliente">Cliente</label>
-                                        <select name="id_cliente" id="id_cliente" class=" selectsearch">
-                                            <option disabled selected value="">Selecciona el Cliente</option>
-                                            @foreach ($clientes as $cliente)
-                                                @if ($cliente->nombrecompleto == $fumigacione->id_cliente)
-                                                    <option selected value="{{ $cliente->nombrecompleto }}">
-                                                        {{ $cliente->nombrecompleto }}</option>
-                                                @endif
-                                                <option value="{{ $cliente->nombrecompleto }}">
-                                                    {{ $cliente->nombrecompleto }}</option>
-                                            @endforeach
-                                        </select>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="numerofumigacion">Número Fumigación</label>
+                                            <input type="text" name="numerofumigacion" class="form-control"
+                                                value="{{ $fumigacione->numerofumigacion }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="id_fumigador">Fumigador</label>
-                                        <select name="id_fumigador" id="id_fumigador" class=" selectsearch">
-                                            <option disabled selected value="">Selecciona el Fumigador</option>
-                                            @foreach ($fumigadores as $fumigadore)
-                                                @if ($fumigadore->nombrecompleto == $fumigacione->id_fumigador)
-                                                    <option selected value="{{ $fumigadore->nombrecompleto }}">
-                                                        {{ $fumigadore->nombrecompleto }}</option>
-                                                @endif
-                                                <option value="{{ $fumigadore->nombrecompleto }}">
-                                                    {{ $fumigadore->nombrecompleto }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="unidad">Unidad</label>
+                                            <input type="text" name="unidad" class="form-control"
+                                                value="{{ $fumigacione->unidad }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="fechaprogramada">Fecha</label>
-                                        <input type="date" name="fechaprogramada" class="form-control"
-                                            value="{{ $fumigacione->fechaprogramada }}">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="id_fumigador">Fumigador</label>
+                                            <select name="id_fumigador" id="id_fumigador" class=" selectsearch">
+                                                <option disabled value="">Selecciona el Fumigador</option>
+                                                @foreach ($fumigadores as $fumigadore)
+                                                    @if ($fumigacione->id_fumigador == $fumigadore->nombrecompleto)
+                                                        <option value="{{ $fumigadore->nombrecompleto }}" selected>
+                                                            {{ $fumigadore->nombrecompleto }}</option>
+                                                    @else
+                                                        <option value="{{ $fumigadore->nombrecompleto }}">
+                                                            {{ $fumigadore->nombrecompleto }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="fechaultimafumigacion">Fecha ultima fumigacion</label>
-                                        <input type="date" name="fechaultimafumigacion" class="form-control"
-                                            value="{{ $fumigacione->fechaultimafumigacion }}">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="fechaprogramada">Fecha</label>
+                                            <input type="date" name="fechaprogramada" class="form-control"
+                                                value="{{ $fumigacione->fechaprogramada }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="lugardelservicio">Lugar</label>
-                                        <input type="text" name="lugardelservicio" class="form-control"
-                                            value="{{ $fumigacione->lugardelservicio }}">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="fechaultimafumigacion">Fecha ultima fumigacion</label>
+                                            <input type="date" name="fechaultimafumigacion" class="form-control"
+                                                value="{{ $fumigacione->fechaultimafumigacion }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="numerodevisitas">Numero de Visitas</label>
-                                        <input type="text" name="numerodevisitas" class="form-control"
-                                            value="{{ $fumigacione->numerodevisitas }}">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="lugardelservicio">Lugar</label>
+                                            <input type="text" name="lugardelservicio" class="form-control"
+                                                value="{{ $fumigacione->lugardelservicio }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="costo">Costo</label>
-                                        <input type="text" name="costo" class="form-control"
-                                            value="{{ $fumigacione->costo }}">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="numerodevisitas">Numero de Visitas</label>
+                                            <input type="text" name="numerodevisitas" class="form-control"
+                                                value="{{ $fumigacione->numerodevisitas }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="status">Status</label>
-                                        <select name="status" id="status" class=" selectsearch">
-                                            <option disabled selected value="">Selecciona un Status</option>
-                                            @if ($fumigacione->status == 'En Proceso')
-                                                <option selected value="En Proceso">En Proceso</option>
-                                                <option value="Concluido">Concluido</option>
-                                            @else
-                                                <option value="En Proceso">En Proceso</option>
-                                                <option selected value="Concluido">Concluido</option>
-                                            @endif
-                                        </select>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="costo">Costo</label>
+                                            <input type="text" name="costo" class="form-control"
+                                                value="{{ $fumigacione->costo }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="satisfaccionservicio">Satisfacción del Servicio</label>
-                                        <select name="satisfaccionservicio" id="satisfaccionservicio" class=" selectsearch">
-                                            @if ($fumigacione->satisfaccionservicio == 'En proceso')
-                                                <option selected value="En Proceso">En Proceso</option>
-                                            @else
-                                                <option value="En Proceso">En Proceso</option>
-                                            @endif
-
-                                            @if ($fumigacione->satisfaccionservicio == 'Malo')
-                                                <option selected value="Malo">Malo</option>
-                                            @else
-                                                <option value="Malo">Malo</option>
-                                            @endif
-
-                                            @if ($fumigacione->satisfaccionservicio == 'Regular')
-                                                <option selected value="Regular">Regular</option>
-                                            @else
-                                                <option value="Regular">Regular</option>
-                                            @endif
-
-                                            @if ($fumigacione->satisfaccionservicio == 'Bueno')
-                                                <option selected value="Bueno">Bueno</option>
-                                            @else
-                                                <option value="Bueno">Bueno</option>
-                                            @endif
-
-                                            @if ($fumigacione->satisfaccionservicio == 'Excelente')
-                                                <option selected value="Excelente">Excelente</option>
-                                            @else
-                                                <option value="Excelente">Excelente</option>
-                                            @endif
-                                        </select>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="status">Status</label>
+                                            <select name="status" id="status" class=" selectsearch">
+                                                <option disabled value="">Selecciona un Status</option>
+                                                <option value="En Proceso"
+                                                    @if ($fumigacione->status == 'En Proceso') selected @endif>En Proceso</option>
+                                                <option value="Concluido" @if ($fumigacione->status == 'Concluido') selected @endif>
+                                                    Concluido</option>
+                                                <option value="Por Confirmar"
+                                                    @if ($fumigacione->status == 'Por Confirmar') selected @endif>Por Confirmar</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="satisfaccionservicio">Satisfacción del Servicio</label>
+                                            <select name="satisfaccionservicio" id="satisfaccionservicio"
+                                                class=" selectsearch">
+                                                {{-- <option disabled selected value="">Selecciona una opción</option> --}}
+                                                <option value="En Proceso" selected>En Proceso</option>
+                                                {{--  <option disabled value="Malo">Malo</option>
+                                                <option disabled value="Regular">Regular</option>
+                                                <option disabled value="Bueno">Bueno</option>
+                                                <option disabled value="Excelente">Excelente</option> --}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -30,7 +30,7 @@
                                 /* FECHA ACTUAL */
                                 $fecha_actual = date('Y-n-d');
                             @endphp
-                            <form action="{{ route('seguros.store') }}" method="POST">
+                            <form action="{{ route('seguros.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     {{-- ========================================= OCULTOS ========================================= --}}
@@ -44,8 +44,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="estado">estado</label>
-                                            <input type="text" name="estado" class="form-control"
-                                                value="Activo">
+                                            <input type="text" name="estado" class="form-control" value="Activo">
                                         </div>
                                     </div>
                                     {{-- ========================================================================= --}}
@@ -76,12 +75,6 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="caratulaseguro">Caratula Seguro</label>
-                                            <input type="text" name="caratulaseguro" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
                                             <label for="provedor">Proveedor</label>
                                             <input type="text" name="provedor" class="form-control">
                                         </div>
@@ -104,6 +97,31 @@
                                             <input type="text" name="costototal" class="form-control">
                                         </div>
                                     </div>
+                                    <br>
+                                    <div class="form">
+                                        <div class="grid">
+                                            {{-- CARATULA --}}
+                                            <div class="form-element">
+                                                <div class="from-group">
+                                                    <input name="caratulaseguro" type="file" id="caratulaseguro">
+                                                    <label for="caratulaseguro" id="caratulaseguro-preview">
+                                                        <object type="application/pdf" data="https://bit.ly/3ubuq5o"
+                                                            style="width: 200px; height: 250px;">
+                                                            ERROR (no puede mostrarse el objeto)
+                                                        </object>
+                                                        <div>
+                                                            <span>+</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="form">
+                                                    <label>Caratula</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
@@ -114,4 +132,19 @@
             </div>
         </div>
     </section>
+    <script>
+        //================================================ //BUG: IMAGE PREVIEW ========================================
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview object").data = url;
+            });
+        }
+        previewBeforeUpload("caratulaseguro");
+    </script>
 @endsection

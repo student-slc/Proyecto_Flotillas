@@ -49,19 +49,19 @@
                                             value="{{ $verificacione->estado }}">
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="form-group">
+                                        <label for="tipoverificacion">Tipo de Verificación</label>
+                                        <input type="text" name="tipoverificacion" class="form-control"
+                                        value="Ambiental">
+                                    </div>
+                                </div>
                                 {{-- ========================================================================= --}}
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="noverificacion">Numero de Verificación</label>
                                         <input type="text" name="noverificacion" class="form-control"
                                         value="{{ $verificacione->noverificacion }}">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="tipoverificacion">Tipo de Verificación</label>
-                                        <input type="text" name="tipoverificacion" class="form-control"
-                                            value="{{ $verificacione->tipoverificacion }}">
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">

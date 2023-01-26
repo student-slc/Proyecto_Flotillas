@@ -16,11 +16,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('mantenimientos.crear', $unidad) }}">Nuevo</a>
-                            <table class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" href="{{ route('mantenimientos.export', $unidad) }}"><i
                                         class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Identificador</th>
@@ -100,9 +100,19 @@
                             {{ $mantenimiento->id_unidad }}
                         </li>
                         <br>
+                        <b>Kilometros Iniciales</b>
+                        <li class="list-group-item">
+                            {{ $mantenimiento->kminiciales }}
+                        </li>
+                        <br>
                         <b>Kilometros Finales</b>
                         <li class="list-group-item">
                             {{ $mantenimiento->kmfinales }}
+                        </li>
+                        <br>
+                        <b>Kilometros Faltantes</b>
+                        <li class="list-group-item">
+                            {{ $mantenimiento->kmfaltantes }}
                         </li>
                         <br>
                         <b>Fecha</b>
@@ -120,11 +130,6 @@
                             {{ $mantenimiento->sigservicio }}
                         </li>
                         <br>
-                        <b>Kilometros Faltantes</b>
-                        <li class="list-group-item">
-                            {{ $mantenimiento->kmfaltantes }}
-                        </li>
-                        <br>
                         <b>Tipo de Mantenimiento</b>
                         <li class="list-group-item">
                             {{ $mantenimiento->tipomantenimiento }}
@@ -132,7 +137,6 @@
                         <br>
                     </div>
                     <div class="modal-footer">
-
                         <button type="button" class="btn btn-danger"
                             onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
                     </div>

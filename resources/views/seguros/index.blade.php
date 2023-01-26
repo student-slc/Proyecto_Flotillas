@@ -16,11 +16,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('seguros.show', $unidad) }}">Nuevo</a>
-                            <table class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" href="{{ route('seguros.export', $unidad) }}"><i
                                         class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">No. Poliza</th>
@@ -114,11 +114,6 @@
                             {{ $seguro->tiposeguro }}
                         </li>
                         <br>
-                        <b>Caratula del Seguro:</b>
-                        <li class="list-group-item">
-                            {{ $seguro->caratulaseguro }}
-                        </li>
-                        <br>
                         <b>Proveedor:</b>
                         <li class="list-group-item">
                             {{ $seguro->provedor }}
@@ -137,6 +132,14 @@
                         <b>Costo Total:</b>
                         <li class="list-group-item">
                             {{ $seguro->costototal }}
+                        </li>
+                        <br>
+                        <b>Caratula:</b>
+                        <li class="list-group-item">
+                            <object type="application/pdf" data="{{ asset($seguro->caratulaseguro) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
                         </li>
                         <br>
                     </div>

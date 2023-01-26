@@ -32,7 +32,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="nombrecompleto">Nombre Completo</label>
+                                                <label for="nombrecompleto">Nombre del Cliente</label>
                                                 <input type="text" name="nombrecompleto" class="form-control">
                                             </div>
                                         </div>
@@ -40,6 +40,18 @@
                                             <div class="form-group">
                                                 <label for="telefono">Telefono</label>
                                                 <input type="text" name="telefono" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="nombrecompletoc">Nombre del Contacto</label>
+                                                <input type="text" name="nombrecompletoc" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="telefonoc">Telefono Contacto</label>
+                                                <input type="text" name="telefonoc" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -86,6 +98,12 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
+                                                <label for="observaciones">Observaciones</label>
+                                                <textarea name="observaciones" id="observaciones" class="form-control" rows="7"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
                                                 <label for="statuspago">Status de Servivio</label>
                                                 <select name="statuspago" id="statuspago" class=" selectsearch">
                                                     <option disabled selected value="">Selecciona Status</option>
@@ -125,8 +143,14 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="observaciones">Observaciones</label>
-                                            <textarea name="observaciones" id="observaciones" class="form-control" rows="7"></textarea>
+                                            <label for="regimen_fiscal">Regimen Fiscal</label>
+                                            <input type="text" name="regimen_fiscal" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="sfdi">SFDI</label>
+                                            <input type="text" name="sfdi" class="form-control">
                                         </div>
                                     </div>
                                 </div>

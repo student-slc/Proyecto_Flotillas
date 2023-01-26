@@ -16,11 +16,11 @@
                     <div class="card">
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('operadores.crear', $usuario) }}">Nuevo</a>
-                            <table class="table table-striped mt-2" id="tabla">
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" href="{{ route('operadores.export', $usuario) }}"><i
                                         class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Operador</th>
@@ -58,6 +58,9 @@
                                                     /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                     $uno = 'nulo';
                                                     $calcular = 0;
+                                                    $mes_contador = 1;
+                                                    $dias_exactos = 1;
+                                                    //cambio
                                                     if ($diferencia_año >= 1) {
                                                         $meses = $diferencia_año * 12 + 12;
                                                         $operacion_1 = $meses - (int) $mes_actual;
@@ -65,7 +68,12 @@
                                                         $operacion_3 = $operacion_1 - $operacion_2;
                                                         $meses = $operacion_3;
                                                     } else {
-                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        if ($diferencia_año == 0) {
+                                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        } else {
+                                                            $mes_contador = 0;
+                                                            $dias_exactos = 0;
+                                                        }
                                                     }
                                                     if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                         $uno = 'uno';
@@ -76,47 +84,49 @@
                                                         $calcular = $direstantes + (int) $vencimiento_dia;
                                                     }
                                                     /* CALCULO DE DIAS EXACTOS */
-                                                    $dias_exactos = 0;
                                                     $contador_1 = 0;
                                                     $contador_2 = 0;
                                                     $cuenta_mes = $mes_actual;
                                                     $operacion_1 = 0;
-                                                    $mes_contador = 0;
-                                                    for ($i = 0; $i <= $meses; $i++) {
-                                                        if ($uno == 'uno') {
-                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
-                                                            $i = $meses + 1;
-                                                        } else {
-                                                            if ($contador_1 == 0) {
-                                                                $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
-                                                                $dias_exactos = $dias_exactos + $operacion_2;
-                                                                $contador_1 = 1;
+                                                    if ($mes_contador == 1 && $dias_exactos == 1) {
+                                                        $mes_contador = 0;
+                                                        $dias_exactos = 0;
+                                                        for ($i = 0; $i <= $meses; $i++) {
+                                                            if ($uno == 'uno') {
+                                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                $i = $meses + 1;
                                                             } else {
-                                                                if ($i == $meses) {
-                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
-                                                                } else {
+                                                                if ($contador_1 == 0) {
                                                                     $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
-                                                                    $mes_contador = $mes_contador + 1;
+                                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                    $dias_exactos = $dias_exactos + $operacion_2;
+                                                                    $contador_1 = 1;
+                                                                } else {
+                                                                    if ($i == $meses) {
+                                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                    } else {
+                                                                        $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                        $mes_contador = $mes_contador + 1;
+                                                                    }
+                                                                }
+                                                                if ($cuenta_mes == 12) {
+                                                                    $contador_2 = $contador_2 + 1;
+                                                                    $cuenta_mes = 1;
+                                                                } else {
+                                                                    $cuenta_mes = $cuenta_mes + 1;
                                                                 }
                                                             }
-                                                            if ($cuenta_mes == 12) {
-                                                                $contador_2 = $contador_2 + 1;
-                                                                $cuenta_mes = 1;
-                                                            } else {
-                                                                $cuenta_mes = $cuenta_mes + 1;
-                                                            }
                                                         }
-                                                    }
-                                                    /* CALCULO DE MESES EXACTOS */
+                                                        /* CALCULO DE MESES EXACTOS */
 
-                                                    $dias_resto = $calcular;
-                                                    $opc = 2;
-                                                    for ($i = 0; $i <= $opc; $i++) {
-                                                        if ($calcular >= 30) {
-                                                            $mes_contador = $mes_contador + 1;
-                                                            $calcular = $calcular - 29;
+                                                        $dias_resto = $calcular;
+                                                        $opc = 2;
+                                                        for ($i = 0; $i <= $opc; $i++) {
+                                                            if ($calcular >= 30) {
+                                                                $mes_contador = $mes_contador + 1;
+                                                                $calcular = $calcular - 30;
+                                                            }
                                                         }
                                                     }
                                                 @endphp
@@ -124,50 +134,59 @@
                                                 {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                 <h5>
                                                     @if ($mes_contador >= 9)
-                                                        <span class="badge badge-primary">
-                                                            Expira en:
+                                                        <span class="badge badge-primary"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en: <br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                        <span class="badge badge-success">
-                                                            Expira en:
+                                                        <span class="badge badge-success"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                        <span class="badge badge-warning">
-                                                            Expira en:
+                                                        <span class="badge badge-warning"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
                                                         @if ($calcular == 0)
-                                                            <span class="badge badge-danger">
-                                                                Expira en:
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                                Expira en:<br>
                                                                 {{ $mes_contador }} mes
                                                             </span>
                                                         @else
-                                                            <span class="badge badge-danger">
-                                                                Expira en:
-                                                                {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                                Expira en:<br>
+                                                                {{ $mes_contador }} mes
+                                                                <br>y {{ $calcular }} dias
                                                             </span>
                                                         @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
-                                                        <span class="badge badge-danger">
-                                                            Expira en:
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                        <span class="badge badge-danger">
-                                                            Expira en:
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             MEDICO
                                                             <br> EXPIRADO
                                                         </span>
@@ -191,6 +210,9 @@
                                                     /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                                                     $uno = 'nulo';
                                                     $calcular = 0;
+                                                    $mes_contador = 1;
+                                                    $dias_exactos = 1;
+                                                    //cambio
                                                     if ($diferencia_año >= 1) {
                                                         $meses = $diferencia_año * 12 + 12;
                                                         $operacion_1 = $meses - (int) $mes_actual;
@@ -198,7 +220,12 @@
                                                         $operacion_3 = $operacion_1 - $operacion_2;
                                                         $meses = $operacion_3;
                                                     } else {
-                                                        $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        if ($diferencia_año == 0) {
+                                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                                        } else {
+                                                            $mes_contador = 0;
+                                                            $dias_exactos = 0;
+                                                        }
                                                     }
                                                     if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
                                                         $uno = 'uno';
@@ -209,47 +236,49 @@
                                                         $calcular = $direstantes + (int) $vencimiento_dia;
                                                     }
                                                     /* CALCULO DE DIAS EXACTOS */
-                                                    $dias_exactos = 0;
                                                     $contador_1 = 0;
                                                     $contador_2 = 0;
                                                     $cuenta_mes = $mes_actual;
                                                     $operacion_1 = 0;
-                                                    $mes_contador = 0;
-                                                    for ($i = 0; $i <= $meses; $i++) {
-                                                        if ($uno == 'uno') {
-                                                            $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
-                                                            $i = $meses + 1;
-                                                        } else {
-                                                            if ($contador_1 == 0) {
-                                                                $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
-                                                                $dias_exactos = $dias_exactos + $operacion_2;
-                                                                $contador_1 = 1;
+                                                    if ($mes_contador == 1 && $dias_exactos == 1) {
+                                                        $mes_contador = 0;
+                                                        $dias_exactos = 0;
+                                                        for ($i = 0; $i <= $meses; $i++) {
+                                                            if ($uno == 'uno') {
+                                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                                $i = $meses + 1;
                                                             } else {
-                                                                if ($i == $meses) {
-                                                                    $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
-                                                                } else {
+                                                                if ($contador_1 == 0) {
                                                                     $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                                    $dias_exactos = $dias_exactos + (int) $operacion_1;
-                                                                    $mes_contador = $mes_contador + 1;
+                                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                                    $dias_exactos = $dias_exactos + $operacion_2;
+                                                                    $contador_1 = 1;
+                                                                } else {
+                                                                    if ($i == $meses) {
+                                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                                    } else {
+                                                                        $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                                        $mes_contador = $mes_contador + 1;
+                                                                    }
+                                                                }
+                                                                if ($cuenta_mes == 12) {
+                                                                    $contador_2 = $contador_2 + 1;
+                                                                    $cuenta_mes = 1;
+                                                                } else {
+                                                                    $cuenta_mes = $cuenta_mes + 1;
                                                                 }
                                                             }
-                                                            if ($cuenta_mes == 12) {
-                                                                $contador_2 = $contador_2 + 1;
-                                                                $cuenta_mes = 1;
-                                                            } else {
-                                                                $cuenta_mes = $cuenta_mes + 1;
-                                                            }
                                                         }
-                                                    }
-                                                    /* CALCULO DE MESES EXACTOS */
+                                                        /* CALCULO DE MESES EXACTOS */
 
-                                                    $dias_resto = $calcular;
-                                                    $opc = 2;
-                                                    for ($i = 0; $i <= $opc; $i++) {
-                                                        if ($calcular >= 30) {
-                                                            $mes_contador = $mes_contador + 1;
-                                                            $calcular = $calcular - 29;
+                                                        $dias_resto = $calcular;
+                                                        $opc = 2;
+                                                        for ($i = 0; $i <= $opc; $i++) {
+                                                            if ($calcular >= 30) {
+                                                                $mes_contador = $mes_contador + 1;
+                                                                $calcular = $calcular - 30;
+                                                            }
                                                         }
                                                     }
                                                 @endphp
@@ -257,50 +286,59 @@
                                                 {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                 <h5>
                                                     @if ($mes_contador >= 9)
-                                                        <span class="badge badge-primary">
-                                                            Expira en:
+                                                        <span class="badge badge-primary"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                        <span class="badge badge-success">
-                                                            Expira en:
+                                                        <span class="badge badge-success"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                        <span class="badge badge-warning">
-                                                            Expira en:
+                                                        <span class="badge badge-warning"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $mes_contador }} meses
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'nulo')
                                                         @if ($calcular == 0)
-                                                            <span class="badge badge-danger">
-                                                                Expira en:
-                                                                {{ $mes_contador }} mes y {{ $calcular }} dias
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                                Expira en:<br>
+                                                                {{ $mes_contador }} mes
+                                                                <br>y {{ $calcular }} dias
                                                             </span>
                                                         @else
-                                                            <span class="badge badge-danger">
-                                                                Expira en:
+                                                            <span class="badge badge-danger"
+                                                                onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                                Expira en:<br>
                                                                 {{ $mes_contador }} mes
                                                             </span>
                                                         @endif
                                                     @endif
                                                     @if ($mes_contador == 1 && $uno == 'uno')
-                                                        <span class="badge badge-danger">
-                                                            Expira en:
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                        <span class="badge badge-danger">
-                                                            Expira en:
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
+                                                            Expira en:<br>
                                                             {{ $dias_exactos }} dias
                                                         </span>
                                                     @endif
                                                     @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                        <span class="badge badge-danger">
+                                                        <span class="badge badge-danger"
+                                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
                                                             LICENCIA
                                                             <br> EXPIRADA
                                                         </span>
@@ -440,6 +478,421 @@
                 </div>
             </div>
         </div>
+        {{-- ===================== MODAL_LICENCIA ===================== --}}
+        <div class="modal fade" id="licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}" tabindex="-1"
+            role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>
+                                Licencia del operador
+                                {{ $operadore->nombreoperador }}</b></h5>
+                        <button type="button" class="btn-close"
+                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('operadores.update', $operadore->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cliente">cliente</label>
+                                                <input type="text" name="cliente" class="form-control"
+                                                    value="{{ $operadore->cliente }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="nombreoperador">Nombre del Operador</label>
+                                                <input type="text" name="nombreoperador" class="form-control"
+                                                    value="{{ $operadore->nombreoperador }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechanacimiento">Fecha de Nacimiento</label>
+                                                <input type="date" name="fechanacimiento" class="form-control"
+                                                    value="{{ $operadore->fechanacimiento }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="nolicencia">No Licencia</label>
+                                                <input type="text" name="nolicencia" class="form-control"
+                                                    value="{{ $operadore->nolicencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="tipolicencia">Tipo de Licencia</label>
+                                                <select name="tipolicencia" id="tipolicencia" class=" selectsearch">
+                                                    <option disabled selected value="">Selecciona el Tipo de Licencia
+                                                    </option>
+                                                    @if ($operadore->tipolicencia == 'Federal')
+                                                        <option selected value="Federal">Federal</option>
+                                                    @else
+                                                        <option value="Federal">Federal</option>
+                                                    @endif
+                                                    @if ($operadore->tipolicencia == 'Estatal')
+                                                        <option selected value="Estatal">Estatal</option>
+                                                    @else
+                                                        <option value="Estatal">Estatal</option>
+                                                    @endif
+                                                    {{-- <option value="No Pagado">No Pagado</option>
+                                                    <option value="Pagado">Pagado</option> --}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechavencimientomedico">Fecha de Vencimiento Medico</label>
+                                                <input type="date" name="fechavencimientomedico" class="form-control"
+                                                    value="{{ $operadore->fechavencimientomedico }}"
+                                                    min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="fechavencimientolicencia">Fecha de Vencimiento Licencia</label>
+                                                <input type="date" name="fechavencimientolicencia"
+                                                    class="form-control"
+                                                    value="{{ $operadore->fechavencimientolicencia }}"min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="unidad">unidad</label>
+                                                <input type="text" name="unidad" class="form-control"
+                                                    value="{{ $operadore->unidad }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="licenciaruta">licenciaruta</label>
+                                                <input type="text" name="licenciaruta" class="form-control"
+                                                    value="{{ $operadore->licencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cursoruta">cursoruta</label>
+                                                <input type="text" name="cursoruta" class="form-control"
+                                                    value="{{ $operadore->curso }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="examenmedicoruta">examenmedicoruta</label>
+                                                <input type="text" name="examenmedicoruta" class="form-control"
+                                                    value="{{ $operadore->examenmedico }}">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {{-- ==================================================== SUBIR DOCUMENTOS ======================== --}}
+                                        <div class="form">
+                                            <div class="grid">
+                                                {{-- LICENCIA --}}
+                                                <div class="form-element">
+                                                    <div class="from-group">
+                                                        <input name="licencia" type="file"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label
+                                                            for="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->licencia) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Licencia</label>
+                                                    </div>
+                                                </div>
+                                                {{-- CERTIFICADO --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="curso" type="file" id="curso">
+                                                        <label for="curso" id="curso-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->curso) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="from">
+                                                        <label>Certificado</label>
+                                                    </div>
+                                                </div>
+                                                {{-- EXAMEN MEDICO --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="examenmedico" type="file" id="examenmedico">
+                                                        <label for="examenmedico" id="examenmedico-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->examenmedico) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Examen Medico</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">
+                                            GUARDAR</button>
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                                            CANCELAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- ===================== MODAL_MEDICO ===================== --}}
+        <div class="modal fade" id="medico{{ str_replace(' ', '', $operadore->nombreoperador) }}" tabindex="-1"
+            role="dialog" aria-labelledby="ModalDetallesTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>
+                                Medico del operador
+                                {{ $operadore->nombreoperador }}</b></h5>
+                        <button type="button" class="btn-close"
+                            onclick="$('#medico{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                    </div>
+                    <form action="{{ route('operadores.update', $operadore->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-footer">
+                            <div class="container-fluid h-100">
+                                <div class="row w-100 align-items-center ">
+                                    <div class="col text-center">
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cliente">cliente</label>
+                                                <input type="text" name="cliente" class="form-control"
+                                                    value="{{ $operadore->cliente }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="nombreoperador">Nombre del Operador</label>
+                                                <input type="text" name="nombreoperador" class="form-control"
+                                                    value="{{ $operadore->nombreoperador }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechanacimiento">Fecha de Nacimiento</label>
+                                                <input type="date" name="fechanacimiento" class="form-control"
+                                                    value="{{ $operadore->fechanacimiento }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="nolicencia">No Licencia</label>
+                                                <input type="text" name="nolicencia" class="form-control"
+                                                    value="{{ $operadore->nolicencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="tipolicencia">Tipo de Licencia</label>
+                                                <select name="tipolicencia" id="tipolicencia" class=" selectsearch">
+                                                    <option disabled selected value="">Selecciona el Tipo de Licencia
+                                                    </option>
+                                                    @if ($operadore->tipolicencia == 'Federal')
+                                                        <option selected value="Federal">Federal</option>
+                                                    @else
+                                                        <option value="Federal">Federal</option>
+                                                    @endif
+                                                    @if ($operadore->tipolicencia == 'Estatal')
+                                                        <option selected value="Estatal">Estatal</option>
+                                                    @else
+                                                        <option value="Estatal">Estatal</option>
+                                                    @endif
+                                                    {{-- <option value="No Pagado">No Pagado</option>
+                                                    <option value="Pagado">Pagado</option> --}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="fechavencimientomedico">Fecha de Vencimiento Medico</label>
+                                                <input type="date" name="fechavencimientomedico" class="form-control"
+                                                    value="{{ $operadore->fechavencimientomedico }}"
+                                                    min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12"hidden>
+                                            <div class="form-group">
+                                                <label for="fechavencimientolicencia">Fecha de Vencimiento Licencia</label>
+                                                <input type="date" name="fechavencimientolicencia"
+                                                    class="form-control"
+                                                    value="{{ $operadore->fechavencimientolicencia }}"min="{{ date('Y-n-d') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="unidad">unidad</label>
+                                                <input type="text" name="unidad" class="form-control"
+                                                    value="{{ $operadore->unidad }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="licenciaruta">licenciaruta</label>
+                                                <input type="text" name="licenciaruta" class="form-control"
+                                                    value="{{ $operadore->licencia }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="cursoruta">cursoruta</label>
+                                                <input type="text" name="cursoruta" class="form-control"
+                                                    value="{{ $operadore->curso }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                            <div class="form-group">
+                                                <label for="examenmedicoruta">examenmedicoruta</label>
+                                                <input type="text" name="examenmedicoruta" class="form-control"
+                                                    value="{{ $operadore->examenmedico }}">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {{-- ==================================================== SUBIR DOCUMENTOS ======================== --}}
+                                        <div class="form">
+                                            <div class="grid">
+                                                {{-- LICENCIA --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="licencia" type="file"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label
+                                                            for="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->licencia) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Licencia</label>
+                                                    </div>
+                                                </div>
+                                                {{-- CERTIFICADO --}}
+                                                <div class="form-element"hidden>
+                                                    <div class="from-group">
+                                                        <input name="curso" type="file" id="curso">
+                                                        <label for="curso" id="curso-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->curso) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="from">
+                                                        <label>Certificado</label>
+                                                    </div>
+                                                </div>
+                                                {{-- EXAMEN MEDICO --}}
+                                                <div class="form-element">
+                                                    <div class="from-group">
+                                                        <input name="examenmedico" type="file"
+                                                            id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}">
+                                                        <label
+                                                            for="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}"
+                                                            id="examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}-preview">
+                                                            <object type="application/pdf"
+                                                                data="{{ asset($operadore->examenmedico) }}"
+                                                                style="width: 200px; height: 250px;">
+                                                                ERROR (no puede mostrarse el objeto)
+                                                            </object>
+                                                            <div>
+                                                                <span>+</span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form">
+                                                        <label>Examen Medico</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">
+                                            GUARDAR</button>
+                                        <button type="button" class="btn btn-danger"
+                                            onclick="$('#licencia{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('hide')">
+                                            CANCELAR</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @endforeach
     {{-- =========================================== --}}
+    <script>
+        //================================================ //BUG: IMAGE PREVIEW ========================================
+        function previewBeforeUpload(id) {
+            document.querySelector("#" + id).addEventListener("change", function(e) {
+                if (e.target.files.length == 0) {
+                    return;
+                }
+                let file = e.target.files[0];
+                let url = URL.createObjectURL(file);
+                document.querySelector("#" + id + "-preview div").innerText = file.name;
+                document.querySelector("#" + id + "-preview object").data = url;
+            });
+        }
+    </script>
+    @foreach ($operadores as $operadore)
+        <script>
+            previewBeforeUpload("licencia_img{{ str_replace(' ', '', $operadore->nombreoperador) }}");
+            previewBeforeUpload("examenmedico_img{{ str_replace(' ', '', $operadore->nombreoperador) }}");
+        </script>
+    @endforeach
 @endsection

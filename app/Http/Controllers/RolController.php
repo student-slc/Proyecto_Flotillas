@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 
 class RolController extends Controller
 {
+    /*
+    $usuario = \Auth::user();
+        $rol = $usuario-> rol;
+        if($rol=='SuperAdministrador'){
+            $usuario = User::paginate(5);
+        }else{
+            $usuario = User::where('hotel', '=', $usuario->hotel)->paginate(5);
+        } */
     function __construct()
     {
          $this->middleware('permission:ver-rol|crear-rol|editar-rol|borrar-rol', ['only' => ['index']]);

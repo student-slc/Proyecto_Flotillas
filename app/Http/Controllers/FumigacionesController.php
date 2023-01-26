@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FumigacionesExport;
 use App\Imports\FumigacionesImport;
+use App\Models\Unidade;
+
 class FumigacionesController extends Controller
 {
     /**
@@ -19,10 +21,10 @@ class FumigacionesController extends Controller
      */
     public function index()
     {
-        //Con paginación
+        /* //Con paginación
         $fumigaciones = Fumigacione::all();
         return view('fumigaciones.index', compact('fumigaciones'));
-        //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
+        //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!} */
     }
 
     /**
@@ -32,9 +34,14 @@ class FumigacionesController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::all();
+        /* $clientes = Cliente::all();
         $fumigadores = Fumigadore::all();
-        return view('fumigaciones.crear',compact('clientes','fumigadores'));
+        return view('fumigaciones.crear',compact('clientes','fumigadores')); */
+    }
+    public function crear($unidad)
+    {
+        $fumigadores = Fumigadore::all();
+        return view('fumigaciones.crear', compact('unidad','fumigadores'));
     }
 
     /**
@@ -45,21 +52,28 @@ class FumigacionesController extends Controller
      */
     public function store(FumigacionesRequest $request)
     {
+        $unidad = $request->unidad;
+        if ($request->validated()) {
+            $cambio = Fumigacione::where('unidad', '=', $unidad)->update(["status" => "Inactivo"]);
+        }
         Fumigacione::create($request->validated());
-        return redirect()->route('fumigaciones.index');
+        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]);
+        $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => $request->get('fechaprogramada')]);
+        $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]);
+        $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $request->get('fechaprogramada')]);
+        return redirect()->route('fumigaciones.show', $unidad);
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($unidad)
     {
-        //
+        $fumigaciones = Fumigacione::where('unidad', '=', $unidad)->get();
+        return view('fumigaciones.index', compact('fumigaciones', 'unidad'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -68,11 +82,9 @@ class FumigacionesController extends Controller
      */
     public function edit(Fumigacione $fumigacione)
     {
-        $clientes = Cliente::all();
         $fumigadores = Fumigadore::all();
-        return view('fumigaciones.editar', compact('fumigacione','clientes','fumigadores'));
+        return view('fumigaciones.editar', compact('fumigacione', 'fumigadores'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -82,10 +94,13 @@ class FumigacionesController extends Controller
      */
     public function update(FumigacionesRequest $request, Fumigacione $fumigacione)
     {
+        $unidad = $fumigacione->unidad;
+        $fumigacion = $fumigacione->numerofumigacion;
         $fumigacione->update($request->validated());
-        return redirect()->route('fumigaciones.index');
+        $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["fumigacion" => $request->get('numerofumigacion')]);
+        $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["lapsofumigacion" => $request->get('fechaprogramada')]);
+        return redirect()->route('fumigaciones.show', $unidad);
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -94,8 +109,12 @@ class FumigacionesController extends Controller
      */
     public function destroy(Fumigacione $fumigacione)
     {
+        $unidad = $fumigacione->unidad;
+        $fumigacion = $fumigacione->numerofumigacion;
         $fumigacione->delete();
-        return redirect()->route('fumigaciones.index');
+        $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
+        $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["fumigacion" => "Sin Fumigación"]);
+        return redirect()->route('fumigaciones.show', $unidad);
     }
     public function export()
     {

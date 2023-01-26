@@ -27,6 +27,8 @@ class ClienteRequest extends FormRequest
             'nombrecompleto' => 'required',
             'razonsocial' => 'required',
             'telefono' => 'required',
+            'nombrecompletoc' => 'required',
+            'telefonoc' => 'required',
             'direccionfisica' => 'required',
             'correo' => 'required',
             'statuspago' => 'required',
@@ -38,6 +40,8 @@ class ClienteRequest extends FormRequest
             'rfc' => 'required',
             'numero' => 'required',
             'observaciones' => 'required',
+            'regimen_fiscal' => 'required',
+            'sfdi' => 'required',
         ];
     }
     public function messages()
@@ -46,6 +50,8 @@ class ClienteRequest extends FormRequest
             'nombrecompleto.required'=>"El Nombre es obligatorio",
             'razonsocial.required'=>"La Razon Social es obligatoria",
             'telefono.required'=>"La Razon Social es obligatoria",
+            'nombrecompletoc.required' => 'El Nombre del contacto es obligatorio',
+            'telefonoc.required' => 'El Telefono del contacto es obligatorio',
             'direccionfisica.required'=>"La Direccion Fisica es obligatoria",
             'correo.required'=>"La Razon Social es obligatoria",
             'statuspago.required'=>"El Status es obligatorio",
@@ -57,7 +63,8 @@ class ClienteRequest extends FormRequest
             'rfc.required'=>"El RFC es obligatorio",
             'numero.required'=>"El Numero es obligatorio",
             'observaciones.required'=>"Las Observaciones son obligatorias",
-
+            'regimen_fiscal.required'=>"El Regimen Fiscal es obligatorio",
+            'sfdi.required'=>"El SFDI es obligatorio",
         ];
 
     }

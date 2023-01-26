@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use App\Models\Mantenimiento;
+use App\Models\Fumigacione;
 use App\Models\Operadore;
 use App\Models\Seguro;
 use App\Models\Unidade;
@@ -24,8 +25,20 @@ class ClientesController extends Controller
      */
     public function index()
     {
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user=$usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes=Cliente::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes=Cliente::all();
+        }
+        if ($rol == 'Usuario'){
+            $cliente=$usuario->clientes;
+            $clientes= Cliente::where('nombrecompleto', '=', $cliente)->get();
+        }
         //Con paginación
-        $clientes = Cliente::all();
         return view('clientes.index', compact('clientes'));
         //al usar esta paginacion, recordar poner en el el index.blade.php este codigo  {!! $clientes->links() !!}
     }
@@ -63,6 +76,9 @@ class ClientesController extends Controller
         /* ESTE CODIGO ES PARA QUE FUNCIONE EL REGRESO DE SEGUROS, VERIFICACIONES Y MANTENIMIENTO */
         $uni = Unidade::all();
         foreach ($uni as $unis) {
+            if ($unis->direccion == $usuario) {
+                $usuario = $unis->cliente;
+            }
             if ($unis->serieunidad == $usuario) {
                 $usuario = $unis->cliente;
             }
@@ -91,10 +107,10 @@ class ClientesController extends Controller
      */
     public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $usuario=$cliente->nombrecompleto;
+        $usuario = $cliente->nombrecompleto;
         $cliente->update($request->validated());
-        $cambio=Operadore::where('cliente', '=', $usuario)->update(["cliente"=>$request->nombrecompleto]);
-        $cambio=Unidade::where('cliente', '=', $usuario)->update(["cliente"=>$request->nombrecompleto]);
+        $cambio = Operadore::where('cliente', '=', $usuario)->update(["cliente" => $request->nombrecompleto]);
+        $cambio = Unidade::where('cliente', '=', $usuario)->update(["cliente" => $request->nombrecompleto]);
         return redirect()->route('clientes.index');
     }
 
@@ -106,13 +122,15 @@ class ClientesController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        $usuario=$cliente->nombrecompleto;
+        $usuario = $cliente->nombrecompleto;
         $cliente->delete();
         $unidades = Unidade::where('cliente', '=', $usuario)->get();
         foreach ($unidades as $unidad) {
             $cambio = Seguro::where('id_unidad', '=', $unidad->serieunidad)->delete();
             $cambio = Verificacione::where('id_unidad', '=', $unidad->serieunidad)->delete();
             $cambio = Mantenimiento::where('id_unidad', '=', $unidad->serieunidad)->delete();
+            $cambio = Fumigacione::where('unidad', '=', $unidad->serieunidad)->delete();
+            $cambio = Fumigacione::where('unidad', '=', $unidad->direccion)->delete();
         }
         $cambio = Operadore::where('cliente', '=', $usuario)->delete();
         $cambio = Unidade::where('cliente', '=', $usuario)->delete();

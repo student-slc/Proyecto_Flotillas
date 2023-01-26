@@ -47,6 +47,20 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
+                                                <label for="nombrecompletoc">Nombre del Contacto</label>
+                                                <input type="text" name="nombrecompletoc" class="form-control"
+                                                value="{{ $cliente->nombrecompletoc }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="telefonoc">Telefono Contacto</label>
+                                                <input type="text" name="telefonoc" class="form-control"
+                                                value="{{ $cliente->telefonoc }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
                                                 <label for="codigopostal">Codigo Postal</label>
                                                 <input type="text" name="codigopostal" class="form-control"
                                                     value="{{ $cliente->codigopostal }}">
@@ -153,6 +167,20 @@
                                             <label for="numero">Número</label>
                                             <input type="text" name="numero" class="form-control"
                                                 value="{{ $cliente->numero }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="regimen_fiscal">Regimen Fiscal</label>
+                                            <input type="text" name="regimen_fiscal" class="form-control"
+                                            value="{{ $cliente->regimen_fiscal }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="sfdi">SFDI</label>
+                                            <input type="text" name="sfdi" class="form-control"
+                                            value="{{ $cliente->sfdi }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

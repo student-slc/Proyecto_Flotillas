@@ -5,22 +5,25 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Fumigaciones</h3>
+            <h3 class="page__heading">Fumigaciones de {{ $unidad }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
+                <div class="card-body">
+                    <a class="btn btn-danger" href="{{ route('clientes.show', $usuario = $unidad) }}">Regresar</a>
+                </div>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('fumigaciones.create') }}">Nuevo</a>
-                            <table class="table table-striped mt-2" id="tabla">
+                            <a class="btn btn-warning" href="{{ route('fumigaciones.crear',$unidad) }}">Nuevo</a>
+                            <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" href="{{ route('fumigaciones.export') }}"><i
                                         class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
+                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
+                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Cliente</th>
+                                    <th style="color:#fff;">Identificador Fumigación</th>
                                     <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Acciones</th>
@@ -32,7 +35,7 @@
                                     @foreach ($fumigaciones as $fumigacione)
                                         <tr>
                                             <td style="display: none;">{{ $fumigacione->id }}</td>
-                                            <td>{{ $fumigacione->id_cliente }}</td>
+                                            <td>{{ $fumigacione->numerofumigacion }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
                                                 <button type="button" class="btn btn-primary"
@@ -48,6 +51,10 @@
                                                 @endif
                                                 @if ($fumigacione->status == 'Concluido')
                                                     <h5><span class="badge badge-success">{{ $fumigacione->status }}</span>
+                                                    </h5>
+                                                @endif
+                                                @if ($fumigacione->status == 'Por Confirmar')
+                                                    <h5><span class="badge badge-warning">{{ $fumigacione->status }}</span>
                                                     </h5>
                                                 @endif
                                             </td>
@@ -67,10 +74,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <!-- Ubicamos la paginacion a la derecha -->
-                            {{--  <div class="pagination justify-content-end">
-                                {!! $fumigaciones->links() !!}
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -88,13 +91,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>
-                                Informacion de la Fumigación</b></h5>
+                                Información de la Fumigación: {{ $fumigacione->numerofumigacion }}</b></h5>
                         <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
                     </div>
                     <div class="modal-body">
-                        <b>Cliente:</b>
+                        <b>Unidad:</b>
                         <li class="list-group-item">
-                            {{ $fumigacione->id_cliente }}
+                            {{ $fumigacione->unidad }}
                         </li>
                         <br>
                         <b>Fumigador:</b>
@@ -150,7 +153,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
                                 Eliminar la Fumigación
-                                {{ $fumigacione->id }}?</b></h5>
+                                {{ $fumigacione->numerofumigacion }}?</b></h5>
                         <button type="button" class="btn-close" onclick="$('#delete{{ $a }}').modal('hide')">
                     </div>
                     <form action="{{ route('fumigaciones.destroy', $fumigacione->id) }}"method="POST">

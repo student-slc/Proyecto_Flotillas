@@ -12,6 +12,8 @@ class Cliente extends Model
         'nombrecompleto',
         'razonsocial',
         'telefono',
+        'nombrecompletoc',
+        'telefonoc',
         'direccionfisica',
         'correo',
         'statuspago',
@@ -23,6 +25,8 @@ class Cliente extends Model
         'codigopostal',
         'rfc',
         'numero',
-        'observaciones'
+        'observaciones',
+        'regimen_fiscal',
+        'sfdi',
     ];
 }
