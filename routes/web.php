@@ -74,6 +74,8 @@ Route::get('/clientes/unidades/operadores/crear/{usuario}','App\Http\Controllers
 
 ///--------------------------------------CREAR VERIFICACIÓN--------------------------------------------------------------------
 Route::get('/clientes/unidades/verificaciones/crear/{unidad}','App\Http\Controllers\VerificacionesController@crear')->name('verificaciones.crear');
+///--------------------------------------CHECKLIST DATOS_UNIDADES--------------------------------------------------------------------
+Route::post('/verificaciones/datos',function(){return view('verificaciones.datos');})->name('verificaciones.datos');
 ///--------------------------------------CREAR MANTENIMIENTO--------------------------------------------------------------------
 Route::get('/clientes/unidades/mantenimientos/crear/{unidad}','App\Http\Controllers\MantenimientosController@crear')->name('mantenimientos.crear');
 ///--------------------------------------CREAR FUMIGACION--------------------------------------------------------------------

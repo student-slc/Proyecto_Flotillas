@@ -184,14 +184,14 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="folio">Folio</label>
+                                                <label for="folio">Folio inicial</label>
                                                 <input type="text" name="folio" class="form-control"
                                                     value="{{ $folio->folio }}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="rango">Numero de Folios</label>
+                                                <label for="rango">Folio Final</label>
                                                 <input type="text" name="rango" class="form-control"
                                                     value="{{ $folio->rango }}">
                                             </div>
@@ -213,13 +213,20 @@
                                                     @else
                                                         <option value="Ambiental">Ambiental</option>
                                                     @endif
-                                                    @if ($folio->tipo == 'Fisico-Mecanica')
-                                                        <option selected value="Fisico-Mecanica">Fisico-Mecanica</option>
+                                                    @if ($folio->tipo == 'FFisico-Mecanica-Arrastre')
+                                                        <option selected value="Fisico-Mecanica-Arrastre">Fisico-Mecanica
+                                                            Arrastre</option>
                                                     @else
-                                                        <option value="Fisico-Mecanica">Fisico-Mecanica</option>
+                                                        <option value="Fisico-Mecanica-Arrastre">Fisico-Mecanica
+                                                            Arrastre</option>
                                                     @endif
-                                                    {{-- <option value="No Pagado">No Pagado</option>
-                                                    <option value="Pagado">Pagado</option> --}}
+                                                    @if ($folio->tipo == 'Fisico-Mecanica-Motriz')
+                                                        <option selected value="Fisico-Mecanica-Motriz">Fisico-Mecanica
+                                                            Motriz</option>
+                                                    @else
+                                                        <option value="Fisico-Mecanica-Motriz">Fisico-Mecanica
+                                                            Motriz</option>
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>
