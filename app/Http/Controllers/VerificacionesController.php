@@ -34,7 +34,12 @@ class VerificacionesController extends Controller
     public function crear($unidad)
     {
         $folios = Folio::where('tipo', '=', 'Ambiental')->get();
-        return view('verificaciones.crear', compact('unidad', 'folios'));
+        $verificacion=Verificacione::where('id_unidad','=',$unidad)
+        ->where('estado','=','Activo')->get();
+        foreach ($verificacion as $veri) {
+            $ultima=$veri->ultimaverificacion;
+        }
+        return view('verificaciones.crear', compact('unidad', 'folios','ultima'));
     }
     /**
      * Store a newly created resource in storage.
@@ -42,24 +47,58 @@ class VerificacionesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(VerificacionesRequest $request)
+    public function store(Request $request)
     {
         $unidad = $request->id_unidad;
         $folio_actual = $request->noverificacion;
         $folios = Folio::where('id', '=', $folio_actual)->get();
+        $ruta = "img/evidencia/verificaciones_ambientales";
+        if (is_dir($ruta)) {
+        } else {
+            $ruta = "img/evidencia/verificaciones_ambientales";
+            \File::makeDirectory($ruta, 0775, true);
+        }
         foreach ($folios as $folio) {
             $contador = $folio->contador;
             $string = $folio->folio;
             $inicio = preg_replace('/[^0-9]/', '', $string);
-            $string_2 = $folio->rango;
-            $final = preg_replace('/[^0-9]/', '', $string_2);
-            $fin = (int) $final;
+            $fin = (int) $inicio + (int) $contador;
         }
-        $request->merge(['noverificacion' => '' . (int) $inicio + (int) $folio->contador]);
-        if ($request->validated()) {
+        $request->merge(['noverificacion' => '' . $fin]);
+        //------------------------------------------------ ARCHIVO ------------------------------------------------
+        $caratula = 'sin evidencia';
+        if ($request->hasfile('caratulaverificacion')) {
+            $file = $request->file('caratulaverificacion');
+            $destino = 'img/evidencia/verificaciones_ambientales/';
+            $filename =  $fin . '_' . str_replace(' ', '_', $unidad) . '_' . $file->getClientOriginalName();
+            $cargar = $request->file('caratulaverificacion')->move($destino, $filename);
+            $caratula =  $destino . $filename;
+        }
+        /* ======================================================== */
+        $validacion =request()->validate([
+            "noverificacion" => 'required',
+            "id_unidad" => 'required',
+            "fechavencimiento" => 'required',
+            "tipoverificacion" => 'required',
+            "subtipoverificacion" => 'required',
+            "ultimaverificacion" => 'required',
+            "estado" => 'required',
+        ]);
+        if ($validacion) {
             $cambio = Verificacione::where('id_unidad', '=', $unidad)->update(["estado" => "Inactivo"]);
         }
-        Verificacione::create($request->all());
+        Verificacione::create(
+            [
+                'noverificacion' => $request['noverificacion'],
+                'id_unidad' => $request['id_unidad'],
+                'fechavencimiento' => $request['fechavencimiento'],
+                'tipoverificacion' => $request['tipoverificacion'],
+                'subtipoverificacion' => $request['subtipoverificacion'],
+                'ultimaverificacion' => $request['ultimaverificacion'],
+                'estado' => $request['estado'],
+                'caratulaverificacion' => $caratula,
+            ]
+        );
         $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["verificacion" => $request->get('noverificacion')]);
         $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["verificacion_fecha" => $request->get('fechavencimiento')]);
         $cambio = Folio::where('id', '=', $folio_actual)->update(["contador" => $contador + 1]);

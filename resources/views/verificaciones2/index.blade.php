@@ -5,7 +5,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Verificaciones Físico-Mecánicas de : {{ $unidad }}</h3>
+            @php
+                use App\Models\Unidade;
+                $todo = Unidade::where('serieunidad', '=', $unidad)->get();
+                foreach ($todo as $todos) {
+                    $placas = $todos->placas;
+                }
+            @endphp
+            <h3 class="page__heading">Verificaciones Físico-Mecánicas de : {{ $unidad }} / {{ $placas }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -15,9 +22,11 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('verificacionesfisicomecanicas.crear', $unidad) }}">Nuevo</a>
+                            <a class="btn btn-warning"
+                                href="{{ route('verificacionesfisicomecanicas.crear', $unidad) }}">Nuevo</a>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-success" href="{{ route('verificacionesfisicomecanicas.export', $unidad) }}"><i
+                                <a class="btn btn-success"
+                                    href="{{ route('verificacionesfisicomecanicas.export', $unidad) }}"><i
                                         class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
@@ -55,7 +64,7 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-info"
-                                                    href="{{ route('verificacionesfisicomecanicas.edit', $verificacionesfisicomecanica=$verificacione->id) }}">
+                                                    href="{{ route('verificacionesfisicomecanicas.edit', $verificacionesfisicomecanica = $verificacione->id) }}">
                                                     <i class="fas fa-edit"></i></a>
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="$('#delete{{ $a }}').modal('show')">
@@ -115,9 +124,12 @@
                             {{ $verificacione->ultimaverificacion }}
                         </li>
                         <br>
-                        <b>Caratula de Verificación</b>
+                        <b>Archivo Escaneado:</b>
                         <li class="list-group-item">
-                            {{ $verificacione->caratulaverificacion }}
+                            <object type="application/pdf" data="{{ asset($verificacione->caratulaverificacion) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
                         </li>
                         <br>
                     </div>
@@ -139,7 +151,9 @@
                                 {{ $verificacione->id }}?</b></h5>
                         <button type="button" class="btn-close" onclick="$('#delete{{ $a }}').modal('hide')">
                     </div>
-                    <form action="{{ route('verificacionesfisicomecanicas.destroy', $verificacionesfisicomecanica=$verificacione->id) }}" method="POST">
+                    <form
+                        action="{{ route('verificacionesfisicomecanicas.destroy', $verificacionesfisicomecanica = $verificacione->id) }}"
+                        method="POST">
                         @csrf
                         @method('DELETE')
                         <div class="modal-footer">
