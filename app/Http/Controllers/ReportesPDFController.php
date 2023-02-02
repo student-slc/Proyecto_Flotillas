@@ -9,7 +9,7 @@ use PDF;
 
 class Metodos extends Controller
 {
-    public function UnidadesTCFIU($tipo, $cli, $final, $inicio,$unidad)
+    public function UnidadesTCFIU($tipo, $cli, $final, $inicio, $unidad)
     {
         /* ============================================================================== */
         if ($inicio == null) {
@@ -791,12 +791,13 @@ class Metodos extends Controller
         }
         /* ============================================================================== */
     }
-    public function UnidadesCFI($cli, $final, $inicio)
+    public function UnidadesCFIU($cli, $final, $inicio, $unidad)
     {
         if ($inicio == null) {
             if ($final == null) {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
                         ->select(
                             'cliente',
                             'marca',
@@ -808,22 +809,41 @@ class Metodos extends Controller
                             'seguro_fecha'
                         )->get();
                 } else {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->where('cliente', '=', $cli)
-                        ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
-                        )->get();
+                    if ($unidad == 'todos') {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    }
                 }
             } else {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
                         ->whereDate('seguro_fecha', '<=', $final)
                         ->select(
                             'cliente',
@@ -836,25 +856,44 @@ class Metodos extends Controller
                             'seguro_fecha'
                         )->get();
                 } else {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '<=', $final)
-                        ->where('cliente', '=', $cli)
-                        ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
-                        )->get();
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->whereDate('seguro_fecha', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    }
                 }
             }
         } else {
             if ($final == null) {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
                         ->whereDate('seguro_fecha', '>=', $inicio)
                         ->select(
                             'cliente',
@@ -867,23 +906,42 @@ class Metodos extends Controller
                             'seguro_fecha'
                         )->get();
                 } else {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->where('cliente', '=', $cli)
-                        ->whereDate('seguro_fecha', '>=', $inicio)
-                        ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
-                        )->get();
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('cliente', '=', $cli)
+                            ->whereDate('seguro_fecha', '>=', $inicio)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    }
                 }
             } else {
                 if ($cli == 'todos') {
                     return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
                         ->whereDate('seguro_fecha', '>=', $inicio)
                         ->whereDate('seguro_fecha', '<=', $final)
                         ->select(
@@ -897,20 +955,38 @@ class Metodos extends Controller
                             'seguro_fecha'
                         )->get();
                 } else {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereDate('seguro_fecha', '>=', $inicio)
-                        ->whereDate('seguro_fecha', '<=', $final)
-                        ->where('cliente', '=', $cli)
-                        ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
-                        )->get();
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->whereDate('seguro_fecha', '>=', $inicio)
+                            ->whereDate('seguro_fecha', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'seguro_fecha'
+                            )->get();
+                    }
                 }
             }
         }
@@ -925,7 +1001,7 @@ class ReportesPDFController extends Metodos
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
-        $unidades = Metodos::UnidadesTCFIU($tipo, $cli, $final, $inicio,$unidad);
+        $unidades = Metodos::UnidadesTCFIU($tipo, $cli, $final, $inicio, $unidad);
         $pdf = PDF::loadView('pdf.ReporteFlotillas', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Flotillas',
@@ -942,7 +1018,8 @@ class ReportesPDFController extends Metodos
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
-        $unidades = Metodos::UnidadesCFI($cli, $final, $inicio);
+        $unidad = "" . $request['filtrounid'];
+        $unidades = Metodos::UnidadesCFIU($cli, $final, $inicio, $unidad);
         $pdf = PDF::loadView('pdf.ReporteSeguros', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Seguros',

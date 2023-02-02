@@ -30,12 +30,26 @@ class ReportesTablasController extends Controller
             $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
         }
         $verificaciones = Verificacione::all();
-        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'verificaciones','clientes'));
+        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'verificaciones', 'clientes'));
     }
     public function reporte_seguros()
     {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_seguros', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        return view('tabla_reportes.reporte_seguros', compact('unidades', 'clientes'));
     }
     public function reporte_veri()
     {

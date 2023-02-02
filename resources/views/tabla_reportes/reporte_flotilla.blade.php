@@ -2,11 +2,6 @@
 @section('title')
     REPORTE FLOTILLAS
 @endsection
-@section('css')
-    {{-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
-@endsection
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -62,25 +57,37 @@
                                         <div class="card-deck mt-6">
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                        style="width:80%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
-                                                        <option value="Ambiental">Verificaciones Ambientales</option>
-                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                                    </select>
+                                                    <label for="filtrocli">Filtro Clientes:</label>
+                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                        value="{{ $clientes }}" readonly="readonly" style="width:100%">
                                                 </div>
                                             </div>
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrounid">Filtro Unidades</label>
                                                     <select name="filtrounid" id="filtrounid" readonly="readonly"
-                                                        class=" selectsearch" style="width:80%">
+                                                        class=" selectsearch" style="width:100%">
                                                         <option selected value="todos">Todas Las Unidades</option>
                                                         @foreach ($unidades as $unidade)
                                                             <option value="{{ $unidade->id }}">{{ $unidade->serieunidad }}
                                                             </option>
                                                         @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtroveri">Filtro Verificaciones</label>
+                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                        style="width:100%">
+                                                        <option selected value="Ambas">Ambas Verificaciones</option>
+                                                        <option value="Ambiental">Verificaciones Ambientales</option>
+                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -95,7 +102,8 @@
                                                 <div class="input-group">
                                                     <label class="label" for="filtrocli">Filtro Clientes</label>
                                                     <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
-                                                    class="form-select form-select-sm mb-3" aria-label=".form-select-sm example" style="width:100%">
+                                                        class="form-select form-select-sm mb-3"
+                                                        aria-label=".form-select-sm example" style="width:100%">
                                                         <option value="todos">Todos los Clientes</option>
                                                         @foreach ($clientes as $cliente)
                                                             <option value="{{ $cliente->nombrecompleto }}">
@@ -118,7 +126,7 @@
                                                 <div class="form-group">
                                                     <label for="filtroveri">Filtro Verificaciones</label>
                                                     <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                        style="width:80%">
+                                                        style="width:100%">
                                                         <option selected value="Ambas">Ambas Verificaciones</option>
                                                         <option value="Ambiental">Verificaciones Ambientales</option>
                                                         <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
