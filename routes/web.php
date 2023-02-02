@@ -178,11 +178,6 @@ Route::post('/datos_operadores',function(){return view('checklist.datos_operador
 Route::post('/informacion_unidades',function(){return view('checklist.unidades');})->name('checklist.infounidades');
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::post('/informacion_operadores',function(){return view('checklist.operadores');})->name('checklist.infooperadores');
-
-
-/// ================================================== REPORTE GRAFICAS ==================================================
-Route::get('/dashboard', [App\Http\Controllers\ReportesController::class, 'dashboard'])->name('tabla_reportes.dashboard');
-
 /* -------------------------------------------------------- //BUG: REPORTES_Y_EXCELES -------------------------------------------------------- */
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_flotillas', [App\Http\Controllers\ReportesTablasController::class, 'reporte_flotilla'])->name('tabla_reportes.reporte_flotilla');

@@ -481,11 +481,6 @@ class CalculoFechas  extends Controller
 }
 class ReportesController extends CalculoFechas
 {
-    /* ============================================= DASHBOARD ==================================================== */
-    public function dashboard()
-    {
-        return view('tabla_reportes.dashboard');
-    }
     /* ============================================================================================================= */
     /* ============================================= REPORTES GRAFICAS ============================================= */
     public function seguros($color)
