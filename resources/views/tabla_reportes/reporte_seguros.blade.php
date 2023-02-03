@@ -12,8 +12,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('tabla_reportes.reporte_segurosexcel') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">

@@ -203,6 +203,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_verificaciones/excel', 'reporte_veriexcel')->name('tabla_reportes.reporte_veriexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_veri', [App\Http\Controllers\ReportesPDFController::class, 'ReporteVeriPDF'])->name('pdf.reporte_veripdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_preventivo', [App\Http\Controllers\ReportesTablasController::class, 'reporte_preventivo'])->name('tabla_reportes.reporte_preventivo');
 /// ================================================== REPORTE ==================================================

@@ -182,26 +182,7 @@
                                                     break;
                                                 }
                                             }
-                                            /* if ($noaplica == 0) {
-                                                    echo '<td>' . $unidade->placas . '</td>';
-                                                    echo '<td>' . $unidade->cliente . '</td>';
-                                                    echo '<td>' . $unidade->serieunidad . '</td>';
-                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
-
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="$("#{{ $a }}").modal("show")">
-                                                    Detalles
-                                                </button>
-                                            </td>';
-                                                } */
                                         @endphp
-                                        {{-- AQUI VA --}}
-
-                                        {{--  --}}
                                         @php
                                             $a = $a . 'a';
                                         @endphp
@@ -232,26 +213,7 @@
                                                     break;
                                                 }
                                             }
-                                            /* if ($noaplica == 0) {
-                                                    echo '<td>' . $unidade->placas . '</td>';
-                                                    echo '<td>' . $unidade->cliente . '</td>';
-                                                    echo '<td>' . $unidade->serieunidad . '</td>';
-                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
-
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>Sin Ambiental</td>';
-                                                    echo '<td>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="$("#{{ $a }}").modal("show")">
-                                                    Detalles
-                                                </button>
-                                            </td>';
-                                                } */
                                         @endphp
-                                        {{-- AQUI VA --}}
-
-                                        {{--  --}}
                                         @php
                                             $a = $a . 'a';
                                         @endphp

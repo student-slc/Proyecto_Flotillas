@@ -67,12 +67,13 @@ class ReportesExcelController extends Controller
     {
         /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
         $cli = $request['filtrocli'];
-        /* $final = "" . $request['filtrofechafinal']; */
-        /* $inicio = "" . $request['filtrofechainicio']; */
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
-            return (new ReporteVeriExport($cli))->download('Reporte_Verificaciones.xlsx');
+            return (new ReporteVeriExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones.xlsx');
         } else {
-            return (new ReporteVeriExport($cli))->download('Reporte_Verificaciones_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteVeriExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_fumigacionesexcel(Request $request)

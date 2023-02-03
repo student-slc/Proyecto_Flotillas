@@ -991,6 +991,194 @@ class Metodos extends Controller
             }
         }
     }
+    public function VeriUnidadesCFIU($cli, $final, $inicio, $unidad)
+    {
+        if ($inicio == null) {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                        )->get();
+                } else {
+                    if ($unidad == 'todos') {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                        ->whereDate('verificacion_fecha', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                        )->get();
+                } else {
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->whereDate('verificacion_fecha', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    }
+                }
+            }
+        } else {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                        ->whereDate('verificacion_fecha', '>=', $inicio)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                        )->get();
+                } else {
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->where('cliente', '=', $cli)
+                            ->whereDate('verificacion_fecha', '>=', $inicio)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                        ->whereDate('verificacion_fecha', '>=', $inicio)
+                        ->whereDate('verificacion_fecha', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'serieunidad',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                        )->get();
+                } else {
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->whereDate('verificacion_fecha', '>=', $inicio)
+                            ->whereDate('verificacion_fecha', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'serieunidad',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                            )->get();
+                    }
+                }
+            }
+        }
+    }
 }
 class ReportesPDFController extends Metodos
 {
@@ -1029,5 +1217,23 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
         return $pdf->download('Reporte_Seguros.pdf');
+    }
+    public function ReporteVeriPDF(Request $request)
+    {
+        /* $tipo = $request['filtroveri']; */
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $unidades = Metodos::VeriUnidadesCFIU($cli, $final, $inicio, $unidad);
+        $pdf = PDF::loadView('pdf.ReporteVeri', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Verificaciones',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
+        return $pdf->download('Reporte_Veri.pdf');
     }
 }

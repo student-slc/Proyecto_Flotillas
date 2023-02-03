@@ -53,8 +53,23 @@ class ReportesTablasController extends Controller
     }
     public function reporte_veri()
     {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_veri', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        $verificaciones = Verificacione::all();
+        return view('tabla_reportes.reporte_veri', compact('unidades', 'verificaciones', 'clientes'));
     }
     public function reporte_preventivo()
     {
