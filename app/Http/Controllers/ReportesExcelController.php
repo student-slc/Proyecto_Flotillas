@@ -82,10 +82,11 @@ class ReportesExcelController extends Controller
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
-            return (new ReporteFumigacionesExport($cli, $inicio, $final))->download('Reporte_Verificaciones.xlsx');
+            return (new ReporteFumigacionesExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones.xlsx');
         } else {
-            return (new ReporteFumigacionesExport($cli, $inicio, $final))->download('Reporte_Verificaciones_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteFumigacionesExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_semanalexcel(Request $request)

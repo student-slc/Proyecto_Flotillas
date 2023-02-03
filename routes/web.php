@@ -212,6 +212,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_fumigaciones/excel', 'reporte_fumigacionesexcel')->name('tabla_reportes.reporte_fumigacionesexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_fumigaciones', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFumigacionesPDF'])->name('pdf.reporte_fumigacionespdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_operadores', [App\Http\Controllers\ReportesTablasController::class, 'reporte_operadores'])->name('tabla_reportes.reporte_operadores');
 /// ================================================== REPORTE ==================================================

@@ -116,11 +116,6 @@
                                     <th style="color:#fff;">Fecha vencimiento Seguro</th>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $a = 'a';
-                                        use App\Models\Verificacione;
-                                        $verificaciones = Verificacione::all();
-                                    @endphp
                                     @foreach ($unidades as $unidade)
                                         @if ($unidade->seguro_fecha != 'Sin Fecha de Seguro')
                                             <tr>
@@ -138,9 +133,6 @@
                                                 {{--  --}}
                                             </tr>
                                         @endif
-                                        @php
-                                            $a = $a . 'a';
-                                        @endphp
                                     @endforeach
                                 </tbody>
                             </table>

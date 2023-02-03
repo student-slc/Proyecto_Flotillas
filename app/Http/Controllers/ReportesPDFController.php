@@ -1179,6 +1179,194 @@ class Metodos extends Controller
             }
         }
     }
+    public function FumigacionesUnidadesCFIU($cli, $final, $inicio, $unidad)
+    {
+        if ($inicio == null) {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'lapsofumigacion'
+                        )->get();
+                } else {
+                    if ($unidad == 'todos') {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                        ->whereDate('lapsofumigacion', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'lapsofumigacion'
+                        )->get();
+                } else {
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->whereDate('lapsofumigacion', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    }
+                }
+            }
+        } else {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                        ->whereDate('lapsofumigacion', '>=', $inicio)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'lapsofumigacion'
+                        )->get();
+                } else {
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->where('cliente', '=', $cli)
+                            ->whereDate('lapsofumigacion', '>=', $inicio)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                        ->whereDate('lapsofumigacion', '>=', $inicio)
+                        ->whereDate('lapsofumigacion', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'marca',
+                            'añounidad',
+                            'placas',
+                            'tipounidad',
+                            'razonsocialunidad',
+                            'lapsofumigacion'
+                        )->get();
+                } else {
+                    if ($unidad == "todos") {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->whereDate('lapsofumigacion', '>=', $inicio)
+                            ->whereDate('lapsofumigacion', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    } else {
+                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                            ->where('cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'cliente',
+                                'marca',
+                                'añounidad',
+                                'placas',
+                                'tipounidad',
+                                'razonsocialunidad',
+                                'lapsofumigacion'
+                            )->get();
+                    }
+                }
+            }
+        }
+    }
 }
 class ReportesPDFController extends Metodos
 {
@@ -1235,5 +1423,23 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
         return $pdf->download('Reporte_Veri.pdf');
+    }
+    public function ReporteFumigacionesPDF(Request $request)
+    {
+        /* $tipo = $request['filtroveri']; */
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $unidades = Metodos::FumigacionesUnidadesCFIU($cli, $final, $inicio, $unidad);
+        $pdf = PDF::loadView('pdf.ReporteFumigaciones', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Fumigaciones',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
+        return $pdf->download('Reporte_Fumigaciones.pdf');
     }
 }

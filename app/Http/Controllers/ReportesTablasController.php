@@ -78,8 +78,22 @@ class ReportesTablasController extends Controller
     }
     public function reporte_fumigaciones()
     {
-        $unidades = Unidade::all();
-        return view('tabla_reportes.reporte_fumigaciones', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        return view('tabla_reportes.reporte_fumigaciones', compact('unidades', 'clientes'));
     }
     public function reporte_operadores()
     {
