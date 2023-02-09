@@ -26,9 +26,7 @@
                                     </button>
                                 </div>
                             @endif
-
                             <form action="{{ route('unidades.store') }}" method="POST">
-
                                 @csrf
                                 {{-- TIPO DE UNIDAD --}}
                                 <div class="row">
@@ -281,7 +279,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {{-- \\\\\\\\\\\\\\\\\\' DATOS QUE SON PARA AMBAS UNIDADES VAN AQUI '\\\\\\\\\\\\\\\\\\ --}}
                                     <div class="form no_mostrar" id="guardar">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="razonsocialunidad">Razon Social</label>
+                                                <input type="text" name="razonsocialunidad" class="form-control">
+                                            </div>
+                                        </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="frecuencia_fumiga">Frecuencia de Fumigacion</label>
@@ -292,8 +297,24 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="razonsocialunidad">Razon Social</label>
-                                                <input type="text" name="razonsocialunidad" class="form-control">
+                                                <label for="comisionfumigacion">Comisión por Fumigación</label>
+                                                <input type="number" min="1" step="1"
+                                                    name="comisionfumigacion" class="form-control"
+                                                    placeholder="Datos en % Porcentaje">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="distanciakm">Distancia Fumigación</label>
+                                                <input type="number" min="1" step="1" name="distanciakm"
+                                                    class="form-control" placeholder="Datos en Kilometros (KM)">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="ltrsgasolina">Litros Gasolina</label>
+                                                <input type="number" min="1" step="1" name="ltrsgasolina"
+                                                    class="form-control" placeholder="Datos en Litros (Ltrs)">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -303,6 +324,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
                                 {{-- ========================================================================= --}}
                             </form>
                         </div>

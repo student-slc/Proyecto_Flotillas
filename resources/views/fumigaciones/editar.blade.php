@@ -33,54 +33,65 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="numerofumigacion">Número Fumigación</label>
+                                            <label for="numerofumigacion">Folio de Fumigación</label>
                                             <input type="text" name="numerofumigacion" class="form-control"
                                                 value="{{ $fumigacione->numerofumigacion }}">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="unidad">Unidad</label>
                                             <input type="text" name="unidad" class="form-control"
-                                                value="{{ $fumigacione->unidad }}">
+                                                value="{{ $fumigacione->unidad }}" readonly="readonly">
                                         </div>
                                     </div>
+                                    {{--  --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="id_fumigador">Fumigador</label>
                                             <select name="id_fumigador" id="id_fumigador" class=" selectsearch">
                                                 <option disabled value="">Selecciona el Fumigador</option>
                                                 @foreach ($fumigadores as $fumigadore)
-                                                    @if ($fumigacione->id_fumigador == $fumigadore->nombrecompleto)
-                                                        <option value="{{ $fumigadore->nombrecompleto }}" selected>
-                                                            {{ $fumigadore->nombrecompleto }}</option>
-                                                    @else
-                                                        <option value="{{ $fumigadore->nombrecompleto }}">
-                                                            {{ $fumigadore->nombrecompleto }}</option>
-                                                    @endif
+                                                    <option value="{{ $fumigadore->nombrecompleto }}"
+                                                        @if ($fumigacione->id_fumigador == $fumigadore->nombrecompleto) selected @endif>
+                                                        {{ $fumigadore->nombrecompleto }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+                                    @php
+                                        /* FECHA ACTUAL */
+                                        $fecha_actual = date('Y-n-d');
+                                    @endphp
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="fechaprogramada">Fecha</label>
-                                            <input type="date" name="fechaprogramada" class="form-control"
-                                                value="{{ $fumigacione->fechaprogramada }}">
+                                            <label for="fechaprogramada">Fecha de Servicio</label>
+                                            <input type="datetime-local" name="fechaprogramada" class="form-control"
+                                                value="{{ $fumigacione->fechaprogramada }}" min="{{ date('Y-n-d') }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechaultimafumigacion">Fecha ultima fumigacion</label>
-                                            <input type="date" name="fechaultimafumigacion" class="form-control"
-                                                value="{{ $fumigacione->fechaultimafumigacion }}">
+                                            <input type="text" name="fechaultimafumigacion" class="form-control"
+                                                value="{{ $fumigacione->fechaultimafumigacion }}" readonly="readonly">
                                         </div>
                                     </div>
+                                    {{-- MOSTRAR SI ES V O H --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="lugardelservicio">Lugar</label>
+                                            <label for="lugardelservicio">Lugar de Servicio</label>
                                             <input type="text" name="lugardelservicio" class="form-control"
-                                                value="{{ $fumigacione->lugardelservicio }}">
+                                                readonly="readonly" value="{{ $fumigacione->lugardelservicio }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="tipo">Tipo</label>
+                                            <select name="tipo" id="tipo" class=" selectsearch">
+                                                <option value="Por Confirmar" selected>Tipos</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -94,39 +105,242 @@
                                         <div class="form-group">
                                             <label for="costo">Costo</label>
                                             <input type="text" name="costo" class="form-control"
-                                                value="{{ $fumigacione->costo }}">
+                                                value="${{ $fumigacione->costo }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="producto">Producto Utilizado</label>
+                                            <select name="producto" id="producto" class=" selectsearch">
+                                                <option value="Productos" selected>Productos</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{-- \\\\\\\\\\\ valor no PLAGAS \\\\\\\\\\\ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 card-deck" hidden>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="insectosvoladores" name="insectosvoladores">
+                                                <label class="form-check-label" for="insectosvoladores">
+                                                    Insectos Voladores
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="insectosrastreros" name="insectosrastreros">
+                                                <label class="form-check-label" for="insectosrastreros">
+                                                    Insectos Rastreros
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="cucaracha" name="cucaracha">
+                                                <label class="form-check-label" for="cucaracha">
+                                                    Cucaracha (Ger/Ori/Ame)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="pulgas" name="pulgas">
+                                                <label class="form-check-label" for="pulgas">
+                                                    Pulgas
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="mosca" name="mosca">
+                                                <label class="form-check-label" for="mosca">
+                                                    Mosca
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="chinches" name="chinches">
+                                                <label class="form-check-label" for="chinches">
+                                                    Chinches
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="aracnidos" name="aracnidos">
+                                                <label class="form-check-label" for="aracnidos">
+                                                    Aracnidos
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="hormigas" name="hormigas">
+                                                <label class="form-check-label" for="hormigas">
+                                                    Hormigas
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="termitas" name="termitas">
+                                                <label class="form-check-label" for="termitas">
+                                                    Termitas
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="roedores" name="roedores">
+                                                <label class="form-check-label" for="roedores">
+                                                    Roedores
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="alacranes" name="alacranes">
+                                                <label class="form-check-label" for="alacranes">
+                                                    Alacranes
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="carcamo" name="carcamo">
+                                                <label class="form-check-label" for="carcamo">
+                                                    Carcamo
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    {{-- \\\\\\\\\\\ PLAGAS \\\\\\\\\\\ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 card-deck">
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="insectosvoladores" name="insectosvoladores"
+                                                    @if ($fumigacione->insectosvoladores == 'Si') checked @endif>
+                                                <label class="form-check-label" for="insectosvoladores">
+                                                    Insectos Voladores
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="insectosrastreros" name="insectosrastreros"
+                                                    @if ($fumigacione->insectosrastreros == 'Si') checked @endif>
+                                                <label class="form-check-label" for="insectosrastreros">
+                                                    Insectos Rastreros
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="cucaracha" name="cucaracha"
+                                                    @if ($fumigacione->cucaracha == 'Si') checked @endif>
+                                                <label class="form-check-label" for="cucaracha">
+                                                    Cucaracha (Ger/Ori/Ame)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="pulgas" name="pulgas"
+                                                    @if ($fumigacione->pulgas == 'Si') checked @endif>
+                                                <label class="form-check-label" for="pulgas">
+                                                    Pulgas
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="mosca" name="mosca"
+                                                    @if ($fumigacione->mosca == 'Si') checked @endif>
+                                                <label class="form-check-label" for="mosca">
+                                                    Mosca
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="chinches" name="chinches"
+                                                    @if ($fumigacione->chinches == 'Si') checked @endif>
+                                                <label class="form-check-label" for="chinches">
+                                                    Chinches
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="aracnidos" name="aracnidos"
+                                                    @if ($fumigacione->aracnidos == 'Si') checked @endif>
+                                                <label class="form-check-label" for="aracnidos">
+                                                    Aracnidos
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="hormigas" name="hormigas"
+                                                    @if ($fumigacione->hormigas == 'Si') checked @endif>
+                                                <label class="form-check-label" for="hormigas">
+                                                    Hormigas
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="termitas" name="termitas"
+                                                    @if ($fumigacione->termitas == 'Si') checked @endif>
+                                                <label class="form-check-label" for="termitas">
+                                                    Termitas
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="roedores" name="roedores"
+                                                    @if ($fumigacione->roedores == 'Si') checked @endif>
+                                                <label class="form-check-label" for="roedores">
+                                                    Roedores
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="alacranes" name="alacranes"
+                                                    @if ($fumigacione->alacranes == 'Si') checked @endif>
+                                                <label class="form-check-label" for="alacranes">
+                                                    Alacranes
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="carcamo" name="carcamo"
+                                                    @if ($fumigacione->carcamo == 'Si') checked @endif>
+                                                <label class="form-check-label" for="carcamo">
+                                                    Carcamo
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                             <select name="status" id="status" class=" selectsearch">
-                                                <option disabled value="">Selecciona un Status</option>
-                                                <option value="En Proceso"
-                                                    @if ($fumigacione->status == 'En Proceso') selected @endif>En Proceso</option>
-                                                <option value="Concluido" @if ($fumigacione->status == 'Concluido') selected @endif>
-                                                    Concluido</option>
-                                                <option value="Por Confirmar"
-                                                    @if ($fumigacione->status == 'Por Confirmar') selected @endif>Por Confirmar</option>
+                                                {{-- <option disabled value="">Selecciona un Status</option>
+                                                <option value="En Proceso">En Proceso</option>
+                                                <option value="Concluido">Concluido</option> --}}
+                                                <option value="Por Confirmar" selected>Por Confirmar</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="satisfaccionservicio">Satisfacción del Servicio</label>
-                                            <select name="satisfaccionservicio" id="satisfaccionservicio"
-                                                class=" selectsearch">
-                                                {{-- <option disabled selected value="">Selecciona una opción</option> --}}
-                                                <option value="En Proceso" selected>En Proceso</option>
-                                                {{--  <option disabled value="Malo">Malo</option>
-                                                <option disabled value="Regular">Regular</option>
-                                                <option disabled value="Bueno">Bueno</option>
-                                                <option disabled value="Excelente">Excelente</option> --}}
-                                            </select>
+                                            <label for="observaciones">Observaciones</label>
+                                            <textarea name="observaciones" id="observaciones" class="form-control" rows="7">{{ $fumigacione->observaciones }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

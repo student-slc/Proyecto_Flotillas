@@ -1205,6 +1205,21 @@
                                 {{ $unidade->lapsofumigacion }}
                             </li>
                             <br>
+                            <b>Comisión Fumigación:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->comisionfumigacion }}%
+                            </li>
+                            <br>
+                            <b>Distancia Fumigación:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->distanciakm }} km
+                            </li>
+                            <br>
+                            <b>Ltrs Gasolina:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->ltrsgasolina }} Ltrs
+                            </li>
+                            <br>
                             <b>Status:</b>
                             <li class="list-group-item">
                                 {{ $unidade->status }}
@@ -1250,6 +1265,21 @@
                             <b>Vencimiento Fumigación:</b>
                             <li class="list-group-item">
                                 {{ $unidade->lapsofumigacion }}
+                            </li>
+                            <br>
+                            <b>Comisión Fumigación:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->comisionfumigacion }}%
+                            </li>
+                            <br>
+                            <b>Distancia Fumigación:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->distanciakm }} km
+                            </li>
+                            <br>
+                            <b>Ltrs Gasolina:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->ltrsgasolina }} Ltrs
                             </li>
                             <br>
                         @endif
