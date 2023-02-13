@@ -1367,6 +1367,966 @@ class Metodos extends Controller
             }
         }
     }
+    public function IndividualVTCFIU($tipo, $cli, $final, $inicio, $unidad)
+    {
+        if ($inicio == null) {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    if ($tipo == 'Ambiental') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Fisica') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Ambas') {
+                        return Unidade::join(
+                            'verificaciones',
+                            function ($join) {
+                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                            }
+                        )
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                } else {
+                    if ($unidad == 'todos') {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    } else {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    if ($tipo == 'Ambiental') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Fisica') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Ambas') {
+                        return Unidade::join(
+                            'verificaciones',
+                            function ($join) {
+                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                            }
+                        )
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                } else {
+                    if ($unidad == 'todos') {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    } else {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    }
+                }
+            }
+        } else {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    if ($tipo == 'Ambiental') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Fisica') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Ambas') {
+                        return Unidade::join(
+                            'verificaciones',
+                            function ($join) {
+                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                            }
+                        )
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                } else {
+                    if ($unidad == 'todos') {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    } else {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    if ($tipo == 'Ambiental') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
+                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Fisica') {
+                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
+                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                    if ($tipo == 'Ambas') {
+                        return Unidade::join(
+                            'verificaciones',
+                            function ($join) {
+                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                            }
+                        )
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
+                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
+                            ->select(
+                                'unidades.cliente',
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.tipomantenimiento',
+                                'unidades.frecuencia_mante',
+                                'unidades.seguro_fecha',
+                                'unidades.lapsofumigacion',
+                            )->get();
+                    }
+                } else {
+                    if ($unidad == 'todos') {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    } else {
+                        if ($tipo == 'Ambiental') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Fisica') {
+                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                        if ($tipo == 'Ambas') {
+                            return Unidade::join(
+                                'verificaciones',
+                                function ($join) {
+                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                                }
+                            )
+                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->where('unidades.cliente', '=', $cli)
+                                ->where('unidades.id', '=', $unidad)
+                                ->select(
+                                    'unidades.cliente',
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
+                                    'unidades.marca',
+                                    'unidades.serieunidad',
+                                    'unidades.añounidad',
+                                    'unidades.placas',
+                                    'unidades.tipounidad',
+                                    'unidades.razonsocialunidad',
+                                    'unidades.digitoplaca',
+                                    'unidades.kilometros_contador',
+                                    'unidades.tipomantenimiento',
+                                    'unidades.frecuencia_mante',
+                                    'unidades.seguro_fecha',
+                                    'unidades.lapsofumigacion',
+                                )->get();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 class ReportesPDFController extends Metodos
 {
@@ -1441,5 +2401,24 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
         return $pdf->download('Reporte_Fumigaciones.pdf');
+    }
+    public function ReporteIndividualVPDF(Request $request)
+    {
+        /* $tipo = $request['filtroveri']; */
+        $tipo = $request['filtroveri'];
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $unidades = Metodos::IndividualVTCFIU($tipo, $cli, $final, $inicio, $unidad);
+        $pdf = PDF::loadView('pdf.ReporteIndividualv', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Individual Vehicular',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
+        return $pdf->download('Reporte_Individual_Vehicular.pdf');
     }
 }

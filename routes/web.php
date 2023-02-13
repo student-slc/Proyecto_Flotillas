@@ -240,12 +240,15 @@ Route::controller(ReportesExcelController::class)->group(function(){
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 /// ================================================== REPORTE ==================================================
+Route::get('/reportes_individualv', [App\Http\Controllers\ReportesTablasController::class, 'reporte_individualv'])->name('tabla_reportes.reporte_individualv');
+Route::controller(ReportesExcelController::class)->group(function(){
+    Route::post('/reportes_individualv/excel', 'reportes_individualvexcel')->name('tabla_reportes.reportes_individualvexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+Route::post('pdf/reportes_individualv', [App\Http\Controllers\ReportesPDFController::class, 'ReporteIndividualVPDF'])->name('pdf.reportes_individualvpdf');
+/// ================================================== REPORTE ==================================================
 Route::get('/reportes_satisfaccion', [App\Http\Controllers\ReportesTablasController::class, 'reporte_satisfaccion'])->name('tabla_reportes.reporte_satisfaccion');
 /// ================================================== REPORTE ==================================================
-Route::get('/reportes_individualv', [App\Http\Controllers\ReportesTablasController::class, 'reporte_individualv'])->name('tabla_reportes.reporte_individualv');
-/// ================================================== REPORTE ==================================================
-
-
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_bd', [App\Http\Controllers\ReportesController::class, 'reporte_bd'])->name('tabla_reportes.reporte_bd');
 

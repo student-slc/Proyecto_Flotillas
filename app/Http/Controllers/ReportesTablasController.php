@@ -121,15 +121,30 @@ class ReportesTablasController extends Controller
         $operadores = Operadore::all();
         return view('tabla_reportes.reporte_individual', compact('operadores'));
     }
+    public function reporte_individualv()
+    {
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        $verificaciones = Verificacione::all();
+        return view('tabla_reportes.reporte_individualv', compact('unidades','clientes','verificaciones'));
+    }
     public function reporte_satisfaccion()
     {
         $unidades = Unidade::all();
         return view('tabla_reportes.reporte_satisfaccion', compact('unidades'));
-    }
-    public function reporte_individualv()
-    {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_individualv', compact('unidades'));
     }
     public function reporte_bd()
     {

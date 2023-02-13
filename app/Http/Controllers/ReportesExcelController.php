@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ReporteFlotillasExport;
 use App\Exports\ReporteFumigacionesExport;
 use App\Exports\ReporteIndividualExport;
+use App\Exports\ReporteIndividualVExport;
 use App\Exports\ReporteSemanalExport;
 use App\Exports\ReporteVeriExport;
 use App\Exports\ReposteSegurosExport;
@@ -135,6 +136,36 @@ class ReportesExcelController extends Controller
             return (new ReporteIndividualExport($cli, $inicio, $final))->download('Reporte_individual.xlsx');
         } else {
             return (new ReporteIndividualExport($cli, $inicio, $final))->download('Reporte_individual_' . str_replace(' ', '_', $cli) . '.xlsx');
+        }
+    }
+    public function reportes_individualvexcel(Request $request)
+    {
+        /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
+        $tipo = $request['filtroveri'];
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        if ($cli == 'todos') {
+            if ($tipo == 'Ambiental') {
+                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambientales.xlsx');
+            }
+            if ($tipo == 'Fisica') {
+                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_F_Mecanicas.xlsx');
+            }
+            if ($tipo == 'Ambas') {
+                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambas_Veri.xlsx');
+            }
+        } else {
+            if ($tipo == 'Ambiental') {
+                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
+            }
+            if ($tipo == 'Fisica') {
+                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
+            }
+            if ($tipo == 'Ambas') {
+                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
+            }
         }
     }
     /* ============================================================================================================= */
