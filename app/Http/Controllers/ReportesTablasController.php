@@ -118,8 +118,22 @@ class ReportesTablasController extends Controller
     }
     public function reporte_individual()
     {
-        $operadores = Operadore::all();
-        return view('tabla_reportes.reporte_individual', compact('operadores'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $operadores = Operadore::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $operadores = Operadore::all();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $operadores = Operadore::where('cliente', '=', $clientes)->get();
+        }
+        return view('tabla_reportes.reporte_individual', compact('clientes', 'operadores'));
     }
     public function reporte_individualv()
     {
@@ -139,7 +153,7 @@ class ReportesTablasController extends Controller
             $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
         }
         $verificaciones = Verificacione::all();
-        return view('tabla_reportes.reporte_individualv', compact('unidades','clientes','verificaciones'));
+        return view('tabla_reportes.reporte_individualv', compact('unidades', 'clientes', 'verificaciones'));
     }
     public function reporte_satisfaccion()
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unidade;
 use App\Models\Verificacione;
+use App\Models\Operadore;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -2327,6 +2328,161 @@ class Metodos extends Controller
             }
         }
     }
+    public function IndividualCFIO($cli, $final, $inicio, $operador){
+        if ($inicio == null) {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Operadore::select(
+                        'cliente',
+                        'nombreoperador',
+                        'nolicencia',
+                        'fechavencimientolicencia',
+                        'fechavencimientomedico',
+                    )->get();
+                } else {
+                    if ($operador == 'todos') {
+                        return Operadore::where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    } else {
+                        return Operadore::where('cliente', '=', $cli)
+                            ->where('nombreoperador', '=', $operador)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
+                        ->whereDate('fechavencimientomedico', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'nombreoperador',
+                            'nolicencia',
+                            'fechavencimientolicencia',
+                            'fechavencimientomedico',
+                        )->get();
+                } else {
+                    if ($operador == 'todos') {
+                        return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
+                            ->whereDate('fechavencimientomedico', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    } else {
+                        return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
+                            ->whereDate('fechavencimientomedico', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->where('nombreoperador', '=', $operador)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    }
+                }
+            }
+        } else {
+            if ($final == null) {
+                if ($cli == 'todos') {
+                    return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
+                        ->whereDate('fechavencimientomedico', '>=', $inicio)
+                        ->select(
+                            'cliente',
+                            'nombreoperador',
+                            'nolicencia',
+                            'fechavencimientolicencia',
+                            'fechavencimientomedico',
+                        )->get();
+                } else {
+                    if ($operador == 'todos') {
+                        return Operadore::where('cliente', '=', $cli)
+                            ->whereDate('fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    } else {
+                        return Operadore::where('cliente', '=', $cli)
+                            ->where('nombreoperador', '=', $operador)
+                            ->whereDate('fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    }
+                }
+            } else {
+                if ($cli == 'todos') {
+                    return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
+                        ->whereDate('fechavencimientomedico', '>=', $inicio)
+                        ->whereDate('fechavencimientolicencia', '<=', $final)
+                        ->whereDate('fechavencimientomedico', '<=', $final)
+                        ->select(
+                            'cliente',
+                            'nombreoperador',
+                            'nolicencia',
+                            'fechavencimientolicencia',
+                            'fechavencimientomedico',
+                        )->get();
+                } else {
+                    if ($operador == 'todos') {
+                        return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                            ->whereDate('fechavencimientolicencia', '<=', $final)
+                            ->whereDate('fechavencimientomedico', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    } else {
+                        return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                            ->whereDate('fechavencimientolicencia', '<=', $final)
+                            ->whereDate('fechavencimientomedico', '<=', $final)
+                            ->where('cliente', '=', $cli)
+                            ->where('nombreoperador', '=', $operador)
+                            ->select(
+                                'cliente',
+                                'nombreoperador',
+                                'nolicencia',
+                                'fechavencimientolicencia',
+                                'fechavencimientomedico',
+                            )->get();
+                    }
+                }
+            }
+        }
+    }
 }
 class ReportesPDFController extends Metodos
 {
@@ -2420,5 +2576,23 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
         return $pdf->download('Reporte_Individual_Vehicular.pdf');
+    }
+    public function ReporteIndividualPDF(Request $request)
+    {
+        /* $tipo = $request['filtroveri']; */
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $operador = "" . $request['filtrooper'];
+        $unidades = Metodos::IndividualCFIO($cli, $final, $inicio, $operador);
+        $pdf = PDF::loadView('pdf.ReporteIndividual', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Individual Operador',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
+        return $pdf->download('Reporte_Individual_Operador.pdf');
     }
 }

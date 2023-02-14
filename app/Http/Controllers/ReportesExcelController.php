@@ -132,10 +132,11 @@ class ReportesExcelController extends Controller
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
+        $operador = "" . $request['filtrooper'];
         if ($cli == 'todos') {
-            return (new ReporteIndividualExport($cli, $inicio, $final))->download('Reporte_individual.xlsx');
+            return (new ReporteIndividualExport($cli, $inicio, $final, $operador))->download('Reporte_individual.xlsx');
         } else {
-            return (new ReporteIndividualExport($cli, $inicio, $final))->download('Reporte_individual_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteIndividualExport($cli, $inicio, $final, $operador))->download('Reporte_individual_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reportes_individualvexcel(Request $request)

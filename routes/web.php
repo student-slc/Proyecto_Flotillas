@@ -188,6 +188,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
 });
 Route::post('pdf/reportes_flotillas', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFlotillaPDF'])->name('pdf.reporte_flotillaspdf');
 Route::post('pdf/datos_unidades',function(){return view('pdf.datos_unidades');})->name('pdf.datos_unidades');
+Route::post('pdf/datos_operadores',function(){return view('pdf.datos_operadores');})->name('pdf.datos_operadores');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesTablasController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
 ///EXCEL SEGUROS
@@ -239,6 +240,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_individual/excel', 'reporte_individualexcel')->name('tabla_reportes.reporte_individualexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_individual', [App\Http\Controllers\ReportesPDFController::class, 'ReporteIndividualPDF'])->name('pdf.reportes_individualpdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_individualv', [App\Http\Controllers\ReportesTablasController::class, 'reporte_individualv'])->name('tabla_reportes.reporte_individualv');
 Route::controller(ReportesExcelController::class)->group(function(){
