@@ -349,6 +349,31 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="comisionfumigacion">Comisión por Fumigación</label>
+                                                <input type="number" min="1" step="1"
+                                                    name="comisionfumigacion" class="form-control"
+                                                    placeholder="Datos en % Porcentaje"
+                                                    value="{{ $unidade->comisionfumigacion }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="distanciakm">Distancia Fumigación</label>
+                                                <input type="number" min="1" step="1" name="distanciakm"
+                                                    class="form-control" placeholder="Datos en Kilometros (KM)"
+                                                    value="{{ $unidade->distanciakm }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="ltrsgasolina">Litros Gasolina</label>
+                                                <input type="number" min="1" step="1" name="ltrsgasolina"
+                                                    class="form-control" placeholder="Datos en Litros (Ltrs)"
+                                                    value="{{ $unidade->ltrsgasolina }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </div>

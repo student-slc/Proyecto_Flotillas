@@ -40,8 +40,21 @@ class FumigacionesController extends Controller
     }
     public function crear($unidad)
     {
+        $unidades = Unidade::orWhere('direccion', '=', $unidad)
+            ->orWhere('serieunidad', '=', $unidad)
+            ->get();
+        foreach ($unidades as $unidade) {
+            $tipo = $unidade->tipo;
+            $lugar = $unidade->direccion;
+            $cliente = $unidade->cliente;
+        }
+        $clientes = Cliente::where('nombrecompleto', '=', $cliente)->get();
+        foreach ($clientes as $cliente) {
+            $pcliente = $cliente->nombrecompleto;
+            $direccion = $cliente->direccionfisica;
+        }
         $fumigadores = Fumigadore::all();
-        return view('fumigaciones.crear', compact('unidad','fumigadores'));
+        return view('fumigaciones.crear', compact('unidad', 'fumigadores', 'tipo', 'lugar', 'pcliente', 'direccion'));
     }
 
     /**

@@ -56,15 +56,11 @@
 </head>
 
 <body>
-
     <div style="overflow-x:auto;">
-
         <div class="angled-gradient">
-
             <img src="https://0201.nccdn.net/1_2/000/000/14b/70b/5b99725845e97.png#RDAMDAID16968973" alt="">
             <div style="float:left">
                 <h3 style="color:white; margin-left:20px">{{ $nombre }}</h3>
-
             </div>
             <div style="text-align:right;">
                 @php
@@ -75,29 +71,22 @@
                 </p>
             </div>
         </div>
-
         <table id="customers">
             <thead>
                 <th>Cliente</th>
-                <th>Marca</th>
-                <th>Serie Unidad</th>
-                <th>Año Unidad</th>
-                <th>Placas</th>
-                <th>Tipo Unidad</th>
-                <th>Razon Social</th>
-                <th>Fecha Seguro Vencimiento</th>
+                <th>Nombre Operador</th>
+                <th>No. Licencia</th>
+                <th>Vencimiento Licencia</th>
+                <th>Vencimiento Medico</th>
             </thead>
             <tbody>
                 @foreach ($unidades as $unidade)
                     <tr>
-                        <td>{{ $unidade->cliente }} </td>
-                        <td>{{ $unidade->marca }} </td>
-                        <td>{{ $unidade->serieunidad }} </td>
-                        <td>{{ $unidade->añounidad }} </td>
-                        <td>{{ $unidade->placas }} </td>
-                        <td>{{ $unidade->tipounidad }} </td>
-                        <td>{{ $unidade->razonsocialunidad }} </td>
-                        <td>{{ $unidade->seguro_fecha }} </td>
+                        <td>{{ $unidade->cliente }}</td>
+                        <td>{{ $unidade->nombreoperador }}</td>
+                        <td>{{ $unidade->nolicencia }}</td>
+                        <td>{{ $unidade->fechavencimientolicencia }}</td>
+                        <td>{{ $unidade->fechavencimientomedico }}</td>
                     </tr>
                 @endforeach
             </tbody>

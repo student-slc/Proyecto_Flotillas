@@ -10,15 +10,133 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card-body">
-                        <a class="btn btn-danger" href="{{ route('tabla_reportes.dashboard') }}">Regresar</a>
-                    </div>
                     <div class="card">
                         <div class="card-body">
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success"
+                                            dir="{{ route('tabla_reportes.reportes_individualvexcel') }}">
+                                            <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                        <button type="submit" class="btn btn-danger"
+                                            dir="{{ route('pdf.reportes_individualvpdf') }}">
+                                            <i class="fas fa-file-pdf"></i> PDF
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group ">
+                                                <label>Filtro por Fechas</label>
+                                                <div class="input-group">
+                                                    <label for="filtrofechainicio" style="width:55%">Fecha
+                                                        Inicio</label>
+                                                    <label for="filtrofechafinal" style="width:45%">Fecha Final</label>
+                                                </div>
+                                                <div class="input-group">
+                                                    <input type="date" name="filtrofechainicio" class="form-control"
+                                                        style="width:40%">
+                                                    <span id="boot-icon" class="bi bi-dash-square-fill"
+                                                        style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
+                                                    <input type="date" name="filtrofechafinal" class="form-control"
+                                                        style="width:40%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                {{-- PARTICULAR --}}
+                                @can('particular-rol')
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtrocli">Filtro Clientes:</label>
+                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                        value="{{ $clientes }}" readonly="readonly" style="width:100%">
+                                                </div>
+                                            </div>
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtrounid">Filtro Unidades</label>
+                                                    <select name="filtrounid" id="filtrounid" readonly="readonly"
+                                                        class=" selectsearch" style="width:100%">
+                                                        <option selected value="todos">Todas Las Unidades</option>
+                                                        @foreach ($unidades as $unidade)
+                                                            <option value="{{ $unidade->id }}">{{ $unidade->serieunidad }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtroveri">Filtro Verificaciones</label>
+                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                        style="width:100%">
+                                                        <option selected value="Ambas">Ambas Verificaciones</option>
+                                                        <option value="Ambiental">Verificaciones Ambientales</option>
+                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endcan
+                                {{-- GENERAL --}}
+                                @can('general-rol')
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="input-group">
+                                                    <label class="label" for="filtrocli">Filtro Clientes</label>
+                                                    <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
+                                                        class="form-select form-select-sm mb-3"
+                                                        aria-label=".form-select-sm example" style="width:100%">
+                                                        <option value="todos">Todos los Clientes</option>
+                                                        @foreach ($clientes as $cliente)
+                                                            <option value="{{ $cliente->nombrecompleto }}">
+                                                                {{ $cliente->nombrecompleto }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="input-group" id="unidades_opciones">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtroveri">Filtro Verificaciones</label>
+                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                        style="width:100%">
+                                                        <option selected value="Ambas">Ambas Verificaciones</option>
+                                                        <option value="Ambiental">Verificaciones Ambientales</option>
+                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endcan
+                            </form>
+                            <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-success" {{-- href="{{ route('tabla_reportes.reporte_flotillasexcel') }}" --}}><i class="fas fa-file-excel"></i></a>
-                                {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
@@ -123,8 +241,8 @@
         $a = 'a';
     @endphp
     @foreach ($unidades as $unidade)
-        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog" aria-labelledby="ModalDetallesTitle"
-            aria-hidden="true">
+        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog"
+            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -208,4 +326,48 @@
         @endphp
     @endforeach
     {{-- =========================================== --}}
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        /* ==================== AJAX_UNIDADES ==================== */
+        function recargarLista() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "{{ route('pdf.datos_unidades') }}",
+                data: 'datos_unidad=' + $('#filtrocli').val(),
+                success: function(r) {
+                    $('#unidades_opciones').html(r);
+                },
+                error: function() {
+                    alert("ERROR AL CARGAR UNIDADES");
+                }
+            });
+        }
+        /* =============================================== */
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /* ------------------ CARGAR UNIDADES ------------------------------------------- */
+            recargarLista();
+            $('#filtrocli').change(function() {
+                recargarLista();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("button[type=submit]").click(function(e) {
+                e.preventDefault();
+                var accion = $(this).attr('dir'),
+                    $form = $(this).closest('form');
+                if (typeof accion !== 'undefined') {
+                    $form.attr('action', accion);
+                }
+                $form.submit();
+            });
+        });
+    </script>
 @endsection

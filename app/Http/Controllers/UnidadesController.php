@@ -65,6 +65,9 @@ class UnidadesController extends Controller
                 'cliente' => 'required',
                 'frecuencia_fumiga' => 'required',
                 'razonsocialunidad' => 'required',
+                'comisionfumigacion' => 'required',
+                'distanciakm' => 'required',
+                'ltrsgasolina' => 'required',
             ]);
         }
         if ($tipo == "Unidad Vehicular") {
@@ -97,6 +100,9 @@ class UnidadesController extends Controller
                 'kilometros_contador' => 'required',
                 'economico' => 'required',
                 'digitoplaca' => 'required',
+                'comisionfumigacion' => 'required',
+                'distanciakm' => 'required',
+                'ltrsgasolina' => 'required',
             ]);
         }
         $usuario = $request->cliente;
@@ -157,6 +163,9 @@ class UnidadesController extends Controller
                 'cp' => 'required',
                 'lapsofumigacion' => 'required',
                 'cliente' => 'required',
+                'comisionfumigacion' => 'required',
+                'distanciakm' => 'required',
+                'ltrsgasolina' => 'required',
             ]);
         }
         if ($tipo == "Unidad Vehicular") {
@@ -189,6 +198,9 @@ class UnidadesController extends Controller
                 'kilometros_contador' => 'required',
                 'economico' => 'required',
                 'digitoplaca' => 'required',
+                'comisionfumigacion' => 'required',
+                'distanciakm' => 'required',
+                'ltrsgasolina' => 'required',
             ]);
         }
         $usuario = $request->cliente;

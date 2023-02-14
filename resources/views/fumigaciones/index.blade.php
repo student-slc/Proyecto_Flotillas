@@ -15,7 +15,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-warning" href="{{ route('fumigaciones.crear',$unidad) }}">Nuevo</a>
+                            <a class="btn btn-warning" href="{{ route('fumigaciones.crear', $unidad) }}">Nuevo</a>
                             <table id='tablas-style' class="table table-striped mt-2">
                                 <a class="btn btn-success" href="{{ route('fumigaciones.export') }}"><i
                                         class="fas fa-file-excel"></i></a>
@@ -23,7 +23,7 @@
                                     placeholder="Buscar...."> --}}
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Identificador Fumigación</th>
+                                    <th style="color:#fff;">Folio Fumigación</th>
                                     <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Acciones</th>
@@ -91,7 +91,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalDetallesTitle"><b>
-                                Información de la Fumigación: {{ $fumigacione->numerofumigacion }}</b></h5>
+                                Información del Folio de Fumigación: {{ $fumigacione->numerofumigacion }}</b></h5>
                         <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
                     </div>
                     <div class="modal-body">
@@ -105,7 +105,7 @@
                             {{ $fumigacione->id_fumigador }}
                         </li>
                         <br>
-                        <b>Fecha Programada:</b>
+                        <b>Fecha De Fumigación:</b>
                         <li class="list-group-item">
                             {{ $fumigacione->fechaprogramada }}
                         </li>
@@ -130,12 +130,116 @@
                             {{ $fumigacione->costo }}
                         </li>
                         <br>
-                        <b>Satisfacciòn del Servicio:</b>
+                        <b>Producto Utilizado:</b>
                         <li class="list-group-item">
-                            {{ $fumigacione->satisfaccionservicio }}
+                            {{ $fumigacione->producto }}
                         </li>
                         <br>
-
+                        <b>Tipo:</b>
+                        <li class="list-group-item">
+                            {{ $fumigacione->tipo }}
+                        </li>
+                        <br>
+                        <b>Bichos Fumigados:</b>
+                        <div class="card-deck">
+                            <div class="card">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->insectosvoladores == 'Si') checked @endif id="insectosvoladores"
+                                        name="insectosvoladores">
+                                    <label class="form-check-label" for="insectosvoladores">
+                                        Insectos Voladores
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->insectosrastreros == 'Si') checked @endif id="insectosrastreros"
+                                        name="insectosrastreros">
+                                    <label class="form-check-label" for="insectosrastreros">
+                                        Insectos Rastreros
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->cucaracha == 'Si') checked @endif id="cucaracha" name="cucaracha">
+                                    <label class="form-check-label" for="cucaracha">
+                                        Cucaracha (Ger/Ori/Ame)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->pulgas == 'Si') checked @endif id="pulgas" name="pulgas">
+                                    <label class="form-check-label" for="pulgas">
+                                        Pulgas
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->mosca == 'Si') checked @endif id="mosca" name="mosca">
+                                    <label class="form-check-label" for="mosca">
+                                        Mosca
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->chinches == 'Si') checked @endif id="chinches" name="chinches">
+                                    <label class="form-check-label" for="chinches">
+                                        Chinches
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->aracnidos == 'Si') checked @endif id="aracnidos" name="aracnidos">
+                                    <label class="form-check-label" for="aracnidos">
+                                        Aracnidos
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->hormigas == 'Si') checked @endif id="hormigas"name="hormigas">
+                                    <label class="form-check-label" for="hormigas">
+                                        Hormigas
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->termitas == 'Si') checked @endif id="termitas" name="termitas">
+                                    <label class="form-check-label" for="termitas">
+                                        Termitas
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->roedores == 'Si') checked @endif id="roedores" name="roedores">
+                                    <label class="form-check-label" for="roedores">
+                                        Roedores
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->alacranes == 'Si') checked @endif id="alacranes"
+                                        name="alacranes">
+                                    <label class="form-check-label" for="alacranes">
+                                        Alacranes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" disabled
+                                        @if ($fumigacione->carcamo == 'Si') checked @endif id="carcamo" name="carcamo">
+                                    <label class="form-check-label" for="carcamo">
+                                        Carcamo
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <b>Observaciones:</b>
+                        <li class="list-group-item">
+                            {{ $fumigacione->observaciones }}
+                        </li>
+                        <br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger"
@@ -154,7 +258,8 @@
                         <h5 class="modal-title" id="ModalDetallesTitle" style="text-align: center"><b>¿Estas Seguro de
                                 Eliminar la Fumigación
                                 {{ $fumigacione->numerofumigacion }}?</b></h5>
-                        <button type="button" class="btn-close" onclick="$('#delete{{ $a }}').modal('hide')">
+                        <button type="button" class="btn-close"
+                            onclick="$('#delete{{ $a }}').modal('hide')">
                     </div>
                     <form action="{{ route('fumigaciones.destroy', $fumigacione->id) }}"method="POST">
                         @csrf

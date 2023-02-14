@@ -80,24 +80,22 @@
             <thead>
                 <th>Cliente</th>
                 <th>Marca</th>
-                <th>Serie Unidad</th>
                 <th>Año Unidad</th>
                 <th>Placas</th>
                 <th>Tipo Unidad</th>
                 <th>Razon Social</th>
-                <th>Fecha Seguro Vencimiento</th>
+                <th>Fecha Ultima Fumigacion</th>
             </thead>
             <tbody>
                 @foreach ($unidades as $unidade)
                     <tr>
                         <td>{{ $unidade->cliente }} </td>
                         <td>{{ $unidade->marca }} </td>
-                        <td>{{ $unidade->serieunidad }} </td>
                         <td>{{ $unidade->añounidad }} </td>
                         <td>{{ $unidade->placas }} </td>
                         <td>{{ $unidade->tipounidad }} </td>
                         <td>{{ $unidade->razonsocialunidad }} </td>
-                        <td>{{ $unidade->seguro_fecha }} </td>
+                        <td>{{ $unidade->lapsofumigacion }} </td>
                     </tr>
                 @endforeach
             </tbody>

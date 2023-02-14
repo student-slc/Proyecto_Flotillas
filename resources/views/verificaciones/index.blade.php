@@ -5,7 +5,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Verificaciones Ambientales de: {{ $unidad }}</h3>
+            @php
+                use App\Models\Unidade;
+                $todo = Unidade::where('serieunidad', '=', $unidad)->get();
+                foreach ($todo as $todos) {
+                    $placas = $todos->placas;
+                }
+            @endphp
+            <h3 class="page__heading">Verificaciones Ambientales de: {{ $unidad }} / {{ $placas }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -115,9 +122,12 @@
                             {{ $verificacione->ultimaverificacion }}
                         </li>
                         <br>
-                        <b>Caratula de Verificación</b>
+                        <b>Archivo Escaneado:</b>
                         <li class="list-group-item">
-                            {{ $verificacione->caratulaverificacion }}
+                            <object type="application/pdf" data="{{ asset($verificacione->caratulaverificacion) }}"
+                                style="width: 400px; height: 300px;">
+                                ERROR (no puede mostrarse el objeto)
+                            </object>
                         </li>
                         <br>
                     </div>

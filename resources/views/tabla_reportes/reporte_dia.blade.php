@@ -10,9 +10,6 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card-body">
-                        <a class="btn btn-danger" href="{{ route('tabla_reportes.dashboard') }}">Regresar</a>
-                    </div>
                     <div class="card">
                         <div class="card-body">
                             @php

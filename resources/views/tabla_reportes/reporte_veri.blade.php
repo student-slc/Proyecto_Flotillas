@@ -10,26 +10,23 @@
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card-body">
-                        <a class="btn btn-danger" href="{{ route('tabla_reportes.dashboard') }}">Regresar</a>
-                    </div>
                     <div class="card">
                         <div class="card-body">
-                            @php
-                                use App\Models\Cliente;
-                                $clientes = Cliente::all();
-                            @endphp
-                            <form action="{{ route('tabla_reportes.reporte_veriexcel') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <form action="" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success"
+                                            dir="{{ route('tabla_reportes.reporte_veriexcel') }}">
                                             <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                        <button type="submit" class="btn btn-danger"
+                                            dir="{{ route('pdf.reporte_veripdf') }}">
+                                            <i class="fas fa-file-pdf"></i> PDF
                                         </button>
                                     </div>
                                 </div>
-                               {{--  <div class="row">
+                                <div class="row">
                                     <div class="card-deck mt-6">
                                         <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group ">
@@ -49,70 +46,114 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> --}}
+                                </div>
                                 <br>
-                                <div class="row">
-                                    <div class="card-deck mt-6">
-                                       {{--  <div class="card col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="filtroveri">Filtro Verificaciones</label>
-                                                <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                    style="width:80%">
-                                                    <option selected value="Ambas">Ambas Verificaciones</option>
-                                                    <option value="Ambiental">Verificaciones Ambientales</option>
-                                                    <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                                </select>
+                                @can('particular-rol')
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtrocli">Filtro Clientes:</label>
+                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                        value="{{ $clientes }}" readonly="readonly" style="width:100%">
+                                                </div>
                                             </div>
-                                        </div> --}}
-                                        <div class="card col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="filtrocli">Filtro Clientes</label>
-                                                <select name="filtrocli" id="filtrocli" class=" selectsearch"
-                                                    style="width:40%">
-                                                    <option selected value="todos">Todos los Clientes</option>
-                                                    @foreach ($clientes as $cliente)
-                                                        <option value="{{ $cliente->nombrecompleto }}">
-                                                            {{ $cliente->nombrecompleto }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="filtrounid">Filtro Unidades</label>
+                                                    <select name="filtrounid" id="filtrounid" readonly="readonly"
+                                                        class=" selectsearch" style="width:100%">
+                                                        <option selected value="todos">Todas Las Unidades</option>
+                                                        @foreach ($unidades as $unidade)
+                                                            <option value="{{ $unidade->id }}">{{ $unidade->serieunidad }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <br>
+                                @endcan
+                                {{-- GENERAL --}}
+                                @can('general-rol')
+                                    <div class="row">
+                                        <div class="card-deck mt-6">
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="input-group">
+                                                    <label class="label" for="filtrocli">Filtro Clientes</label>
+                                                    <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
+                                                        class="form-select form-select-sm mb-3"
+                                                        aria-label=".form-select-sm example" style="width:100%">
+                                                        <option value="todos">Todos los Clientes</option>
+                                                        @foreach ($clientes as $cliente)
+                                                            <option value="{{ $cliente->nombrecompleto }}">
+                                                                {{ $cliente->nombrecompleto }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="card col-xs-12 col-sm-12 col-md-12">
+                                                <div class="input-group" id="unidades_opciones">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                @endcan
                             </form>
+                            <br>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Cliente</th>
-                                    <th style="color:#fff;">Serie Unidad</th>
                                     <th style="color:#fff;">Marca</th>
+                                    <th style="color:#fff;">Serie Unidad</th>
                                     <th style="color:#fff;">Año Unidad</th>
+                                    <th style="color:#fff;">Razon Social Unidad</th>
                                     <th style="color:#fff;">Tipo Unidad</th>
-                                    <th style="color:#fff;">Razon Social</th>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $a = 'a';
-                                        use App\Models\Verificacione;
-                                        $verificaciones = Verificacione::all();
-                                    @endphp
-                                    @foreach ($unidades as $unidade)
-                                        <tr>
-                                            <td>{{ $unidade->placas }}</td>
-                                            <td>{{ $unidade->cliente }}</td>
-                                            <td>{{ $unidade->serieunidad }}</td>
-                                            <td>{{ $unidade->marca }}</td>
-                                            <td>{{ $unidade->añounidad }}</td>
-                                            <td>{{ $unidade->tipounidad }}</td>
-                                            <td>{{ $unidade->razonsocialunidad }}</td>
-                                            {{-- Boton MODAL --}}
-                                            {{-- AQUI VA --}}
-
-                                            {{--  --}}
-                                        </tr>
+                                    @foreach ($verificaciones as $verificacione)
                                         @php
-                                            $a = $a . 'a';
+                                            $noaplica = 0;
+                                            foreach ($unidades as $unidade) {
+                                                if ($verificacione->noverificacion == $unidade->verificacion) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->marca . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->añounidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
+                                                    echo '<td>' . $unidade->tipounidad . '</td>';
+                                                    echo '</tr>';
+                                                    $noaplica = 1;
+                                                    break;
+                                                }
+                                            }
+                                        @endphp
+                                    @endforeach
+                                    @foreach ($verificaciones as $verificacione)
+                                        @php
+                                            $noaplica = 0;
+                                            foreach ($unidades as $unidade) {
+                                                if ($verificacione->noverificacion == $unidade->verificacion2) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $unidade->placas . '</td>';
+                                                    echo '<td>' . $unidade->cliente . '</td>';
+                                                    echo '<td>' . $unidade->marca . '</td>';
+                                                    echo '<td>' . $unidade->serieunidad . '</td>';
+                                                    echo '<td>' . $unidade->añounidad . '</td>';
+                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
+                                                    echo '<td>' . $unidade->tipounidad . '</td>';
+                                                    echo '</tr>';
+                                                    $noaplica = 1;
+                                                    break;
+                                                }
+                                            }
                                         @endphp
                                     @endforeach
                                 </tbody>
@@ -127,4 +168,48 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        /* ==================== AJAX_UNIDADES ==================== */
+        function recargarLista() {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "POST",
+                url: "{{ route('pdf.datos_unidades') }}",
+                data: 'datos_unidad=' + $('#filtrocli').val(),
+                success: function(r) {
+                    $('#unidades_opciones').html(r);
+                },
+                error: function() {
+                    alert("ERROR AL CARGAR UNIDADES");
+                }
+            });
+        }
+        /* =============================================== */
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /* ------------------ CARGAR UNIDADES ------------------------------------------- */
+            recargarLista();
+            $('#filtrocli').change(function() {
+                recargarLista();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("button[type=submit]").click(function(e) {
+                e.preventDefault();
+                var accion = $(this).attr('dir'),
+                    $form = $(this).closest('form');
+                if (typeof accion !== 'undefined') {
+                    $form.attr('action', accion);
+                }
+                $form.submit();
+            });
+        });
+    </script>
 @endsection

@@ -5,7 +5,7 @@
 @section('css')
     <script>
         function toggleButton() {
-            var caratula = document.getElementById('caratula').value;
+            var caratula = document.getElementById('caratulaverificacion').value;
             if (caratula) {
                 document.getElementById('Boton').disabled = false;
             } else {
@@ -26,7 +26,14 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Verificación para: {{ $unidad }}</h3>
+            @php
+                use App\Models\Unidade;
+                $todo = Unidade::where('serieunidad', '=', $unidad)->get();
+                foreach ($todo as $todos) {
+                    $placas = $todos->placas;
+                }
+            @endphp
+            <h3 class="page__heading">Verificación Ambienta para: {{ $unidad }} / {{ $placas }}</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -60,7 +67,7 @@
                                 /* FECHA ACTUAL */
                                 $fecha_actual = date('Y-n-d');
                             @endphp
-                            <form {{-- action="{{ route('verificaciones.store') }}" --}} method="POST">
+                            <form action="{{ route('verificaciones.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row" id="cambios">
                                     {{-- ========================================= OCULTOS ========================================= --}}
@@ -120,13 +127,23 @@
                                                 class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="ultimaverificacion">Fecha Ultima Verificación</label>
-                                            <input type="date" name="ultimaverificacion" id="ultimaverificacion"
-                                                class="form-control">
+                                    @if ($ultima == null)
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="ultimaverificacion">Fecha Ultima Verificación</label>
+                                                <input type="date" name="ultimaverificacion" id="ultimaverificacion"
+                                                    class="form-control">
+                                            </div>
                                         </div>
-                                    </div>
+                                    @else
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="ultimaverificacion">Fecha Ultima Verificación</label>
+                                                <input type="text" name="ultimaverificacion" id="ultimaverificacion"
+                                                    class="form-control" value="{{ $ultima }}" readonly="readonly">
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="fechavencimiento">Fecha de Vencimiento</label>
@@ -148,9 +165,9 @@
                                             {{-- LICENCIA --}}
                                             <div class="form-element">
                                                 <div class="from-group">
-                                                    <input name="caratula" type="file" id="caratula"
-                                                        onchange="toggleButton()">
-                                                    <label for="caratula" id="caratula-preview">
+                                                    <input name="caratulaverificacion" type="file"
+                                                        id="caratulaverificacion" onchange="toggleButton()">
+                                                    <label for="caratulaverificacion" id="caratulaverificacion-preview">
                                                         <object type="application/pdf" data="https://bit.ly/3ubuq5o"
                                                             style="width: 200px; height: 250px;">
                                                             ERROR (no puede mostrarse el objeto)
@@ -233,7 +250,7 @@
                 document.querySelector("#" + id + "-preview object").data = url;
             });
         }
-        previewBeforeUpload("caratula");
+        previewBeforeUpload("caratulaverificacion");
     </script>
     <script>
         function modal() {

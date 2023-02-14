@@ -178,11 +178,6 @@ Route::post('/datos_operadores',function(){return view('checklist.datos_operador
 Route::post('/informacion_unidades',function(){return view('checklist.unidades');})->name('checklist.infounidades');
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::post('/informacion_operadores',function(){return view('checklist.operadores');})->name('checklist.infooperadores');
-
-
-/// ================================================== REPORTE GRAFICAS ==================================================
-Route::get('/dashboard', [App\Http\Controllers\ReportesController::class, 'dashboard'])->name('tabla_reportes.dashboard');
-
 /* -------------------------------------------------------- //BUG: REPORTES_Y_EXCELES -------------------------------------------------------- */
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_flotillas', [App\Http\Controllers\ReportesTablasController::class, 'reporte_flotilla'])->name('tabla_reportes.reporte_flotilla');
@@ -193,6 +188,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
 });
 Route::post('pdf/reportes_flotillas', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFlotillaPDF'])->name('pdf.reporte_flotillaspdf');
 Route::post('pdf/datos_unidades',function(){return view('pdf.datos_unidades');})->name('pdf.datos_unidades');
+Route::post('pdf/datos_operadores',function(){return view('pdf.datos_operadores');})->name('pdf.datos_operadores');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesTablasController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
 ///EXCEL SEGUROS
@@ -208,6 +204,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_verificaciones/excel', 'reporte_veriexcel')->name('tabla_reportes.reporte_veriexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_veri', [App\Http\Controllers\ReportesPDFController::class, 'ReporteVeriPDF'])->name('pdf.reporte_veripdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_preventivo', [App\Http\Controllers\ReportesTablasController::class, 'reporte_preventivo'])->name('tabla_reportes.reporte_preventivo');
 /// ================================================== REPORTE ==================================================
@@ -216,6 +213,7 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_fumigaciones/excel', 'reporte_fumigacionesexcel')->name('tabla_reportes.reporte_fumigacionesexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_fumigaciones', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFumigacionesPDF'])->name('pdf.reporte_fumigacionespdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_operadores', [App\Http\Controllers\ReportesTablasController::class, 'reporte_operadores'])->name('tabla_reportes.reporte_operadores');
 /// ================================================== REPORTE ==================================================
@@ -242,13 +240,17 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_individual/excel', 'reporte_individualexcel')->name('tabla_reportes.reporte_individualexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_individual', [App\Http\Controllers\ReportesPDFController::class, 'ReporteIndividualPDF'])->name('pdf.reportes_individualpdf');
+/// ================================================== REPORTE ==================================================
+Route::get('/reportes_individualv', [App\Http\Controllers\ReportesTablasController::class, 'reporte_individualv'])->name('tabla_reportes.reporte_individualv');
+Route::controller(ReportesExcelController::class)->group(function(){
+    Route::post('/reportes_individualv/excel', 'reportes_individualvexcel')->name('tabla_reportes.reportes_individualvexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+Route::post('pdf/reportes_individualv', [App\Http\Controllers\ReportesPDFController::class, 'ReporteIndividualVPDF'])->name('pdf.reportes_individualvpdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_satisfaccion', [App\Http\Controllers\ReportesTablasController::class, 'reporte_satisfaccion'])->name('tabla_reportes.reporte_satisfaccion');
 /// ================================================== REPORTE ==================================================
-Route::get('/reportes_individualv', [App\Http\Controllers\ReportesTablasController::class, 'reporte_individualv'])->name('tabla_reportes.reporte_individualv');
-/// ================================================== REPORTE ==================================================
-
-
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_bd', [App\Http\Controllers\ReportesController::class, 'reporte_bd'])->name('tabla_reportes.reporte_bd');
 

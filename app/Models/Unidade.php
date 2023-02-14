@@ -42,5 +42,8 @@ class Unidade extends Model
         'kilometros_contador',
         'economico',
         'digitoplaca',
+        'comisionfumigacion',
+        'distanciakm',
+        'ltrsgasolina',
     ];
 }

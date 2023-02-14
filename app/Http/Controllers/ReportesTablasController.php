@@ -30,17 +30,46 @@ class ReportesTablasController extends Controller
             $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
         }
         $verificaciones = Verificacione::all();
-        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'verificaciones','clientes'));
+        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'verificaciones', 'clientes'));
     }
     public function reporte_seguros()
     {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_seguros', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        return view('tabla_reportes.reporte_seguros', compact('unidades', 'clientes'));
     }
     public function reporte_veri()
     {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_veri', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        $verificaciones = Verificacione::all();
+        return view('tabla_reportes.reporte_veri', compact('unidades', 'verificaciones', 'clientes'));
     }
     public function reporte_preventivo()
     {
@@ -49,8 +78,22 @@ class ReportesTablasController extends Controller
     }
     public function reporte_fumigaciones()
     {
-        $unidades = Unidade::all();
-        return view('tabla_reportes.reporte_fumigaciones', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        return view('tabla_reportes.reporte_fumigaciones', compact('unidades', 'clientes'));
     }
     public function reporte_operadores()
     {
@@ -75,18 +118,47 @@ class ReportesTablasController extends Controller
     }
     public function reporte_individual()
     {
-        $operadores = Operadore::all();
-        return view('tabla_reportes.reporte_individual', compact('operadores'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $operadores = Operadore::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $operadores = Operadore::all();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $operadores = Operadore::where('cliente', '=', $clientes)->get();
+        }
+        return view('tabla_reportes.reporte_individual', compact('clientes', 'operadores'));
+    }
+    public function reporte_individualv()
+    {
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+        }
+        $verificaciones = Verificacione::all();
+        return view('tabla_reportes.reporte_individualv', compact('unidades', 'clientes', 'verificaciones'));
     }
     public function reporte_satisfaccion()
     {
         $unidades = Unidade::all();
         return view('tabla_reportes.reporte_satisfaccion', compact('unidades'));
-    }
-    public function reporte_individualv()
-    {
-        $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        return view('tabla_reportes.reporte_individualv', compact('unidades'));
     }
     public function reporte_bd()
     {
