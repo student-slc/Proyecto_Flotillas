@@ -93,38 +93,41 @@ class ReportesExcelController extends Controller
     }
     public function reporte_semanalexcel(Request $request)
     {
-        /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
         if ($cli == 'todos') {
-            return (new ReporteSemanalExport($cli, $inicio, $final))->download('Reporte_Semanal.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Semanal.xlsx');
         } else {
-            return (new ReporteSemanalExport($cli, $inicio, $final))->download('Reporte_Semanal_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Semanal_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_diaexcel(Request $request)
     {
-        /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
         if ($cli == 'todos') {
-            return (new ReporteDiaExport($cli, $inicio, $final))->download('Reporte_Dia.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Dia.xlsx');
         } else {
-            return (new ReporteDiaExport($cli, $inicio, $final))->download('Reporte_Dia_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Dia_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_serviciosexcel(Request $request)
     {
-        /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
         if ($cli == 'todos') {
-            return (new ReporteDiaExport($cli, $inicio, $final))->download('Reporte_Servicios.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Servicio.xlsx');
         } else {
-            return (new ReporteDiaExport($cli, $inicio, $final))->download('Reporte_Servicios_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Servicio_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_individualexcel(Request $request)
