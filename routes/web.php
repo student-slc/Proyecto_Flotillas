@@ -223,18 +223,21 @@ Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_semanal/excel', 'reporte_semanalexcel')->name('tabla_reportes.reporte_semanalexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_semanal', [App\Http\Controllers\ReportesPDFController::class, 'ReporteSemanalPDF'])->name('pdf.reportes_semanalpdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_dia', [App\Http\Controllers\ReportesTablasController::class, 'reporte_dia'])->name('tabla_reportes.reporte_dia');
 Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_dia/excel', 'reporte_diaexcel')->name('tabla_reportes.reporte_diaexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_dia', [App\Http\Controllers\ReportesPDFController::class, 'ReporteDiaPDF'])->name('pdf.reportes_diapdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_servicios', [App\Http\Controllers\ReportesTablasController::class, 'reporte_servicios'])->name('tabla_reportes.reporte_servicios');
 Route::controller(ReportesExcelController::class)->group(function(){
     Route::post('/reportes_servicios/excel', 'reporte_serviciosexcel')->name('tabla_reportes.reporte_serviciosexcel');
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
+Route::post('pdf/reportes_servicios', [App\Http\Controllers\ReportesPDFController::class, 'ReporteServicioPDF'])->name('pdf.reportes_serviciospdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_individual', [App\Http\Controllers\ReportesTablasController::class, 'reporte_individual'])->name('tabla_reportes.reporte_individual');
 Route::controller(ReportesExcelController::class)->group(function(){

@@ -102,19 +102,69 @@ class ReportesTablasController extends Controller
     }
     public function reporte_semanal()
     {
-        $fumigaciones = Fumigacione::all();
-        $unidades = Unidade::all();
-        return view('tabla_reportes.reporte_semanal', compact('unidades', 'fumigaciones'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = Cliente::where('nombrecompleto', '=', $usuario->clientes)->get();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::where('cliente', '=', $clientes)->get();
+        }
+        return view('tabla_reportes.reporte_semanal',  compact('unidades', 'fumigaciones', 'clientes'));
     }
     public function reporte_dia()
     {
-        $unidades = Unidade::all();
-        return view('tabla_reportes.reporte_dia', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = Cliente::where('nombrecompleto', '=', $usuario->clientes)->get();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::where('cliente', '=', $clientes)->get();
+        }
+        return view('tabla_reportes.reporte_dia', compact('unidades', 'fumigaciones', 'clientes'));
     }
     public function reporte_servicios()
     {
-        $unidades = Unidade::all();
-        return view('tabla_reportes.reporte_servicios', compact('unidades'));
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = Cliente::where('nombrecompleto', '=', $usuario->clientes)->get();
+            $fumigaciones = Fumigacione::all();
+            $unidades = Unidade::where('cliente', '=', $clientes)->get();
+        }
+        return view('tabla_reportes.reporte_servicios', compact('unidades', 'fumigaciones', 'clientes'));
     }
     public function reporte_individual()
     {
@@ -162,20 +212,20 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $fumigaciones=Fumigacione::all();
+            $fumigaciones = Fumigacione::all();
             $unidades = Unidade::all();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $fumigaciones=Fumigacione::all();
+            $fumigaciones = Fumigacione::all();
             $unidades = Unidade::all();
         }
         if ($rol == 'Usuario') {
-            $clientes = Cliente::where('nombrecompleto','=',$usuario->clientes)->get();
-            $fumigaciones=Fumigacione::all();
+            $clientes = Cliente::where('nombrecompleto', '=', $usuario->clientes)->get();
+            $fumigaciones = Fumigacione::all();
             $unidades = Unidade::where('cliente', '=', $clientes)->get();
         }
-        return view('tabla_reportes.reporte_satisfaccion', compact('unidades','fumigaciones','clientes'));
+        return view('tabla_reportes.reporte_satisfaccion', compact('unidades', 'fumigaciones', 'clientes'));
     }
     public function reporte_bd()
     {
