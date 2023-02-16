@@ -21,7 +21,7 @@
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-md" style="background-color: #7caa98">
                                             <i class="fas fa-file-excel"></i> Excel
                                         </button>
                                     </div>
@@ -79,7 +79,7 @@
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <thead style="background-color:#6777ef">
+                                <thead style="background-color: #9dbad5">
                                     <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>
                                     {{-- <th style="color:#fff;">Serie Unidad</th> --}}
@@ -122,7 +122,7 @@
                                                     echo '<td>' . $cliente->direccionfisica . '</td>';
                                                     echo '<td>' . $cliente->razonsocial . '</td>';
                                                     echo '<td>
-                                        <button type="button" class="btn btn-primary"
+                                        <button type="button" class="btn btn-sm" style="background-color: #9dbad5"
                                             onclick="$("#{{ $a }}").modal("show")">
                                             Detalles
                                         </button>

@@ -5,7 +5,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Clientes 2</h3>
+            <h3 class="page__heading">Clientes</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -40,20 +40,20 @@
                                             <td>{{ $cliente->nombrecompleto }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-md text-dark" style="background-color: #9dbad5"
+                                                <button type="button" class="btn btn-sm text-dark" style="background-color: #9dbad5"
                                                     onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <a  class="btn btn-md" style="background-color: #7caa98"
+                                                <a  class="btn btn-sm" style="background-color: #7caa98"
                                                     href="{{ route('clientes.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-bus"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a  class="btn btn-md" style="background-color: #7caa98"
+                                                <a  class="btn btn-sm" style="background-color: #7caa98"
                                                     href="{{ route('operadores.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-address-card"></i>
                                                 </a>

@@ -16,11 +16,11 @@
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success"
+                                        <button type="submit" class="btn btn-md" style="background-color: #7caa98"
                                             dir="{{ route('tabla_reportes.reporte_fumigacionesexcel') }}">
                                             <i class="fas fa-file-excel"></i> Excel
                                         </button>
-                                        <button type="submit" class="btn btn-danger"
+                                        <button type="submit" class="btn btn-md" style="background-color: #ff8097"
                                             dir="{{ route('pdf.reporte_fumigacionespdf') }}">
                                             <i class="fas fa-file-pdf"></i> PDF
                                         </button>
@@ -105,7 +105,7 @@
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <thead style="background-color:#6777ef">
+                                <thead  style="background-color: #9dbad5">
                                     <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">Marca</th>
