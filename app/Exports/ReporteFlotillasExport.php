@@ -10,7 +10,12 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ReporteFlotillasExport implements FromCollection, WithHeadings
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+
+class ReporteFlotillasExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -818,6 +823,21 @@ class ReporteFlotillasExport implements FromCollection, WithHeadings
             "TIPO VERIFICACION",
             "SUB TIPO VERIFICACION", "ULTIMA VERIFICACION",
             "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO UNIDAD", "RAZON SOCIAL UNIDAD", "DIGITO PLACA"
+        ];
+    }
+    public function styles(Worksheet $sheet)
+    {
+        $sheet->getStyle('A1:k1')->applyFromArray(array(
+            'fill' => array(
+                'fillType' => Fill::FILL_SOLID,
+                'color' => array('rgb' => '9dbad5')
+            )
+            ));
+        return [
+
+
+            // Style the first row as bold text.
+            1    => ['font' => ['bold' => true]],
         ];
     }
 }

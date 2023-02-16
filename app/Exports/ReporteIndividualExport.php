@@ -7,7 +7,11 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ReporteIndividualExport implements FromCollection, WithHeadings
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+class ReporteIndividualExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -186,6 +190,21 @@ class ReporteIndividualExport implements FromCollection, WithHeadings
         return [
             "CLIENTE",
             "NOMBRE OPERADOR", "NO. LICENCIA", "VENCIMIENTO LICENCIA", "VENCIMIENTO MEDICO"
+        ];
+    }
+    public function styles(Worksheet $sheet)
+    {
+        $sheet->getStyle('A1:E1')->applyFromArray(array(
+            'fill' => array(
+                'fillType' => Fill::FILL_SOLID,
+                'color' => array('rgb' => '9dbad5')
+            )
+            ));
+        return [
+
+
+            // Style the first row as bold text.
+            1    => ['font' => ['bold' => true]],
         ];
     }
 }

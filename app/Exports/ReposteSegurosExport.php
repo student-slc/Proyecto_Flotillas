@@ -8,7 +8,11 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ReposteSegurosExport implements FromCollection, WithHeadings
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+class ReposteSegurosExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -231,6 +235,21 @@ class ReposteSegurosExport implements FromCollection, WithHeadings
         return [
             "CLIENTE",
             "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO UNIDAD", "RAZON SOCIAL UNIDAD", "FECHA DE VENCIMIENTO"
+        ];
+    }
+    public function styles(Worksheet $sheet)
+    {
+        $sheet->getStyle('A1:H1')->applyFromArray(array(
+            'fill' => array(
+                'fillType' => Fill::FILL_SOLID,
+                'color' => array('rgb' => '9dbad5')
+            )
+            ));
+        return [
+
+
+            // Style the first row as bold text.
+            1    => ['font' => ['bold' => true]],
         ];
     }
 }

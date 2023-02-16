@@ -10,8 +10,11 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Models\Verificacione;
 
-
-class ReporteIndividualVExport implements FromCollection, WithHeadings
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -1000,6 +1003,21 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings
             "SUB TIPO VERIFICACION", "ULTIMA VERIFICACION",
             "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO UNIDAD", "RAZON SOCIAL UNIDAD", "DIGITO PLACA"
             , "KILOMETROS", "TIPO MANTENIMIENTO", "FRECUENCIA MANTENIMIENTO", "VENCIMIENTO SEGURO", "FRECUENCIA FUMIGACION"
+        ];
+    }
+    public function styles(Worksheet $sheet)
+    {
+        $sheet->getStyle('A1:P1')->applyFromArray(array(
+            'fill' => array(
+                'fillType' => Fill::FILL_SOLID,
+                'color' => array('rgb' => '9dbad5')
+            )
+            ));
+        return [
+
+
+            // Style the first row as bold text.
+            1    => ['font' => ['bold' => true]],
         ];
     }
 }
