@@ -41,15 +41,11 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <a class="btn btn-success" {{-- href="{{ route('operadores.export', $usuario) }}" --}}><i class="fas fa-file-excel"></i></a>
-                                <input type="text" class="form-control pull-right" style="width:20%" id="search"
-                                    placeholder="Buscar....">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Operador</th>
                                     <th style="color:#fff;">Informacion</th>
                                     <th style="color:#fff;">Estado Licencia</th>
-                                    <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @php
@@ -257,15 +253,6 @@
                                                     </td>
                                                     {{-- ============================================================== --}}
                                                     {{-- ============================================================== --}}
-                                                    <td>
-                                                        <a class="btn btn-info"
-                                                            href="{{ route('operadores.edit', $operadore->id) }}">
-                                                            <i class="fas fa-edit"></i></a>
-                                                        <button type="submit" class="btn btn-danger"
-                                                            onclick="$('#delete{{ str_replace(' ', '', $operadore->nombreoperador) }}').modal('show')">
-                                                            <i class="fas fa-trash-alt"></i>
-                                                        </button>
-                                                    </td>
                                                 </tr>
                                             @endif
                                         @endif

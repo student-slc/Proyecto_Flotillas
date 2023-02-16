@@ -74,8 +74,9 @@ class CalculoFechas  extends Controller
                             /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
                             $uno = 'nulo';
                             $calcular = 0;
-                            $dias_exactos = 1;
                             $mes_contador = 1;
+                            $dias_exactos = 1;
+                            //cambio
                             if ($diferencia_año >= 1) {
                                 $meses = $diferencia_año * 12 + 12;
                                 $operacion_1 = $meses - (int) $mes_actual;
@@ -86,8 +87,8 @@ class CalculoFechas  extends Controller
                                 if ($diferencia_año == 0) {
                                     $meses = (int) $vencimiento_mes - (int) $mes_actual;
                                 } else {
-                                    $dias_exactos = 1;
-                                    $mes_contador = 1;
+                                    $mes_contador = 0;
+                                    $dias_exactos = 0;
                                 }
                             }
                             if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
