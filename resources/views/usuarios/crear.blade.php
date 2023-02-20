@@ -51,12 +51,27 @@
                                         {!! Form::password('confirm-password', ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Roles</label>
-                                        {!! Form::select('roles[]', $roles, [], ['class' => 'selectsearch']) !!}
+                                @if ($rol == 'Administrador')
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Rol</label>
+                                            {!! Form::select(
+                                                'rol',
+                                                ['Administrador' => 'Administrador', 'Usuario' => 'Usuario'],
+                                                [],
+                                                ['class' => 'selectsearch'],
+                                            ) !!}
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+                                @if ($rol == 'SuperAdministrador')
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Roles</label>
+                                            {!! Form::select('roles[]', $roles, [], ['class' => 'selectsearch']) !!}
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
                                         <label for="">Cliente</label>

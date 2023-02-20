@@ -143,7 +143,25 @@
                                         <div class="form-group">
                                             <label for="producto">Producto Utilizado</label>
                                             <select name="producto" id="producto" class=" selectsearch">
-                                                <option value="Productos" selected>Productos</option>
+                                                <option value="CYNOFF 40 PH" selected>CYNOFF 40 PH</option>
+                                                <option value="BIOTRINE FLOW" selected>BIOTRINE FLOW</option>
+                                                <option value="BIOTRINE C.E." selected>BIOTRINE C.E.</option>
+                                                <option value="ELEGY" selected>ELEGY</option>
+                                                <option value="TERMIDOR" selected>TERMIDOR</option>
+                                                <option value="TEMRPID SC" selected>TEMRPID SC</option>
+                                                <option value="TYSON2E" selected>TYSON2E</option>
+                                                <option value="DDVP 500" selected>DDVP 500</option>
+                                                <option value="SIEGE" selected>SIEGE</option>
+                                                <option value="MAXFORCE" selected>MAXFORCE</option>
+                                                <option value="TALÓN BLOQUE" selected>TALÓN BLOQUE</option>
+                                                <option value="STORM" selected>STORM</option>
+                                                <option value="ARMA" selected>ARMA</option>
+                                                <option value="RODILON BLOQUE" selected>RODILON BLOQUE</option>
+                                                <option value="DIFARAT" selected>DIFARAT</option>
+                                                <option value="C-REALB" selected>C-REALB</option>
+                                                <option value="BETA QUAT 4" selected>BETA QUAT 4</option>
+                                                <option value="VIRTUAL" selected>VIRTUAL</option>
+                                                <option value="SAVAGE" selected>SAVAGE</option>
                                             </select>
                                         </div>
                                     </div>

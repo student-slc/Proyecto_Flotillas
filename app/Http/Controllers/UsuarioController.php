@@ -40,10 +40,12 @@ class UsuarioController extends Controller
      */
     public function create()
     {
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
         //aqui trabajamos con name de las tablas de users
         $clientes = Cliente::pluck('nombrecompleto', 'nombrecompleto')->all();
         $roles = Role::pluck('name', 'name')->all();
-        return view('usuarios.crear', compact('roles', 'clientes'));
+        return view('usuarios.crear', compact('roles', 'clientes','rol'));
     }
 
     /**

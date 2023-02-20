@@ -112,7 +112,46 @@
                                         <div class="form-group">
                                             <label for="producto">Producto Utilizado</label>
                                             <select name="producto" id="producto" class=" selectsearch">
-                                                <option value="Productos" selected>Productos</option>
+                                                <option value="CYNOFF 40 PH"
+                                                    @if ($fumigaciones->producto == 'CYNOFF 40 PH') selected @endif>CYNOFF 40 PH</option>
+                                                <option value="BIOTRINE FLOW"
+                                                    @if ($fumigaciones->producto == 'BIOTRINE FLOW') selected @endif>BIOTRINE FLOW</option>
+                                                <option value="BIOTRINE C.E."
+                                                    @if ($fumigaciones->producto == 'BIOTRINE C.E.') selected @endif>BIOTRINE C.E.</option>
+                                                <option value="ELEGY" @if ($fumigaciones->producto == 'ELEGY') selected @endif>
+                                                    ELEGY</option>
+                                                <option value="TERMIDOR" @if ($fumigaciones->producto == 'TERMIDOR') selected @endif>
+                                                    TERMIDOR</option>
+                                                <option value="TEMRPID SC"
+                                                    @if ($fumigaciones->producto == 'TEMRPID SC') selected @endif>TEMRPID SC</option>
+                                                <option value="TYSON2E" @if ($fumigaciones->producto == 'TYSON2E') selected @endif>
+                                                    TYSON2E</option>
+                                                <option value="DDVP 500" @if ($fumigaciones->producto == 'DDVP 500') selected @endif>
+                                                    DDVP 500</option>
+                                                <option value="SIEGE" @if ($fumigaciones->producto == 'SIEGE') selected @endif>
+                                                    SIEGE</option>
+                                                <option value="MAXFORCE"
+                                                    @if ($fumigaciones->producto == 'MAXFORCE') selected @endif>MAXFORCE</option>
+                                                <option value="TALÓN BLOQUE"
+                                                    @if ($fumigaciones->producto == 'TALÓN BLOQUE') selected @endif>TALÓN BLOQUE
+                                                </option>
+                                                <option value="STORM" @if ($fumigaciones->producto == 'STORM') selected @endif>
+                                                    STORM</option>
+                                                <option value="ARMA" @if ($fumigaciones->producto == 'ARMA') selected @endif>
+                                                    ARMA</option>
+                                                <option value="RODILON BLOQUE"
+                                                    @if ($fumigaciones->producto == 'RODILON BLOQUE') selected @endif>RODILON BLOQUE
+                                                </option>
+                                                <option value="DIFARAT"
+                                                    @if ($fumigaciones->producto == 'DIFARAT') selected @endif>DIFARAT</option>
+                                                <option value="C-REALB"
+                                                    @if ($fumigaciones->producto == 'C-REALB') selected @endif>C-REALB</option>
+                                                <option value="BETA QUAT 4"
+                                                    @if ($fumigaciones->producto == 'BETA QUAT 4') selected @endif>BETA QUAT 4</option>
+                                                <option value="VIRTUAL"
+                                                    @if ($fumigaciones->producto == 'VIRTUAL') selected @endif>VIRTUAL</option>
+                                                <option value="SAVAGE" @if ($fumigaciones->producto == 'SAVAGE') selected @endif>
+                                                    SAVAGE</option>
                                             </select>
                                         </div>
                                     </div>
