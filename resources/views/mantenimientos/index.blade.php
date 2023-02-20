@@ -17,11 +17,12 @@
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('mantenimientos.crear', $unidad) }}">Nuevo</a>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-success" href="{{ route('mantenimientos.export', $unidad) }}"><i
+                                <a class="btn btn-md" style="background-color: #7caa98" href="{{ route('mantenimientos.export', $unidad) }}"><i
                                         class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                <thead style="background-color:#6777ef">
+                                    <br><br>
+                                <thead style="background-color: #9dbad5">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Identificador</th>
                                     <th style="color:#fff;">Información</th>
@@ -54,10 +55,10 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a class="btn btn-info"
+                                                <a class="btn btn-sm" style="background-color: #9dbad5"
                                                     href="{{ route('mantenimientos.edit', $mantenimiento->id) }}">
-                                                    <i class="fas fa-edit"></i></a>
-                                                <button type="submit" class="btn btn-danger"
+                                                    <i class="fas fa-pencil-alt"></i></a>
+                                                <button type="submit" class="btn btn-sm"  class="btn btn-sm" style="background-color: #ff8097"
                                                     onclick="$('#delete{{ $a }}').modal('show')">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>

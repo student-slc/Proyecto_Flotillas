@@ -47,7 +47,7 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <thead style="background-color:#6777ef">
+                                <thead style="background-color: #9dbad5">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">No. Serie/Dirección</th>
@@ -121,7 +121,7 @@
                                                     @endif
                                                     {{-- Boton MODAL --}}
                                                     <td>
-                                                        <button type="button" class="btn btn-primary"
+                                                        <button type="button" class="btn btn-sm" style="background-color: #9dbad5"
                                                             onclick="$('#{{ $a }}').modal('show')">
                                                             Detalles
                                                         </button>
