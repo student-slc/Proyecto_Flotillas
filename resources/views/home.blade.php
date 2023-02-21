@@ -10,14 +10,6 @@
                 <div class="col-lg-12">
                     {{-- OBTENGO TODAS LAS UNIDADES --}}
                     @php
-                        use App\Models\Unidade;
-                        use App\Models\Operadore;
-                        $operadores = Operadore::all();
-                        $unidades = Unidade::all();
-                        $unidadesk = Unidade::where('tipomantenimiento', '=', 'Kilometraje')->get();
-                        $unidadest = Unidade::where('tipomantenimiento', '=', 'Fecha')->get();
-                    @endphp
-                    @php
                         $azul = 0;
                         $verde = 0;
                         $amarillo = 0;

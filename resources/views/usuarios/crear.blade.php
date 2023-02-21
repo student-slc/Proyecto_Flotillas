@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <label for="">Rol</label>
                                             {!! Form::select(
-                                                'rol',
+                                                'roles[]',
                                                 ['Administrador' => 'Administrador', 'Usuario' => 'Usuario'],
                                                 [],
                                                 ['class' => 'selectsearch'],

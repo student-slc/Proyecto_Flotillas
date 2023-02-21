@@ -29,7 +29,18 @@ class CalculoFechas  extends Controller
         $amarillo = 0;
         $rojo = 0;
         $expirado = 0;
-        $unidades = Unidade::all();
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $cliente = $usuario->clientes;
+        if ($rol == 'SuperAdministrador') {
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Administrador') {
+            $unidades = Unidade::all();
+        }
+        if ($rol == 'Usuario') {
+            $unidades = Unidade::where('cliente', '=', $cliente)->get();
+        }
         $matriz[1][0] = 'vacio';
         $matriz[2][0] = 'vacio';
         $matriz[3][0] = 'vacio';

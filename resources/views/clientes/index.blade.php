@@ -16,8 +16,8 @@
                                 <a class="btn btn-warning" href="{{ route('clientes.create') }}">Nuevo</a>
                             @endcan
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-md" style="background-color: #7caa98" href="{{ route('clientes.export') }}"><i
-                                        class="fas fa-file-excel"></i></a>
+                                {{-- <a class="btn btn-md" style="background-color: #7caa98" href="{{ route('clientes.export') }}"><i
+                                        class="fas fa-file-excel"></i></a> --}}
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
                                     <br>

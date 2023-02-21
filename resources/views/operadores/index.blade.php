@@ -17,8 +17,8 @@
                         <div class="card-body">
                             <a class="btn btn-warning" href="{{ route('operadores.crear', $usuario) }}">Nuevo</a>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-success" href="{{ route('operadores.export', $usuario) }}"><i
-                                        class="fas fa-file-excel"></i></a>
+                                {{-- <a class="btn btn-success" href="{{ route('operadores.export', $usuario) }}"><i
+                                        class="fas fa-file-excel"></i></a> --}}
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
                                     <br>
