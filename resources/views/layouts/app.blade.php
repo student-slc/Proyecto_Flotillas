@@ -31,7 +31,10 @@
     <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
     {{-- DATATABLES --}}
-    <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+   
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
     {{--  --}}
     @yield('page_css')
 
@@ -106,13 +109,17 @@
 @yield('scripts')
 {{-- DATATABLES --}}
 <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
+<script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+<script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#tablas-style').DataTable({
             "responsive": true,
+            "lengthChange": true,
 
             "language": {
-                "lengthMenu": "Mostrar _MENU_ registros ",
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
                 "zeroRecords": "No se encontraron datos",
                 "info": "Página _PAGE_ de _PAGES_",
                 "infoEmpty": "No hay datos disponibles",
@@ -121,12 +128,19 @@
                 "paginate": {
                     "next": "Siguiente",
                     "previous": "Anterior"
+                },
+                "pageLength": {
+                    "_": "Mostrar %d filas",
+                    "-1": "Todo"
                 }
             },
+
             "paging": {{ $paging ?? 'true' }},
             "searching": true,
             "info": true,
             "autoWidth": false,
+
+            
         });
     });
 </script>
