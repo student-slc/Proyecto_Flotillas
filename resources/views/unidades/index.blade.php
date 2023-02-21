@@ -19,11 +19,11 @@
                                 <a class="btn btn-warning" href="{{ route('unidades.crear', $usuario) }}">Nuevo</a>
                             @endcan
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <a class="btn btn-md" style="background-color: #7caa98" href="{{ route('unidades.export', $usuario) }}"><i
-                                        class="fas fa-file-excel"></i></a>
+                                <a class="btn btn-md" style="background-color: #7caa98"
+                                    href="{{ route('unidades.export', $usuario) }}"><i class="fas fa-file-excel"></i></a>
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                    <br><br>
+                                <br><br>
                                 <thead style="background-color: #9dbad5">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Placas/<br>Dirección</th>
@@ -33,7 +33,10 @@
                                     <th style="color:#fff;">Verificación Físico-Mecánica</th>
                                     <th style="color:#fff;">Estado Mantenimiento</th>
                                     <th style="color:#fff;">Estado Fumigación</th>
-                                    <th style="color:#fff;">Acciones</th>
+                                    @can('editar-unidades', 'borrar-unidades')
+                                        <th style="color:#fff;">Acciones</th>
+                                    @endcan
+
                                 </thead>
                                 <tbody>
                                     @php
@@ -146,7 +149,7 @@
                                                                     }
                                                                 }
                                                                 /* CALCULO DE MESES EXACTOS */
-
+                                                            
                                                                 $dias_resto = $calcular;
                                                                 $opc = 2;
                                                                 for ($i = 0; $i <= $opc; $i++) {
@@ -321,7 +324,7 @@
                                                                     }
                                                                 }
                                                                 /* CALCULO DE MESES EXACTOS */
-
+                                                            
                                                                 $dias_resto = $calcular;
                                                                 $opc = 2;
                                                                 for ($i = 0; $i <= $opc; $i++) {
@@ -496,7 +499,7 @@
                                                                     }
                                                                 }
                                                                 /* CALCULO DE MESES EXACTOS */
-
+                                                            
                                                                 $dias_resto = $calcular;
                                                                 $opc = 2;
                                                                 for ($i = 0; $i <= $opc; $i++) {
@@ -677,7 +680,7 @@
                                                                         }
                                                                     }
                                                                     /* CALCULO DE MESES EXACTOS */
-
+                                                                
                                                                     $dias_resto = $calcular;
                                                                     $opc = 2;
                                                                     for ($i = 0; $i <= $opc; $i++) {
@@ -916,7 +919,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-
+                                                        
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -1079,15 +1082,20 @@
                                                     </h6>
                                                 @endif
                                             </td>
-                                            <td>
-                                                <a class="btn btn-sm" style="background-color: #9dbad5"
-                                                    href="{{ route('unidades.edit', $unidade->id) }}">
-                                                    <i class="fas fa-pencil-alt"></i></a>
-                                                <button type="submit" class="btn btn-sm"  class="btn btn-sm" style="background-color: #ff8097"
-                                                    onclick="$('#delete{{ $a }}').modal('show')">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </td>
+                                            @can('editar-unidades', 'borrar-unidades')
+                                                <td>
+                                                    <a class="btn btn-sm" style="background-color: #9dbad5"
+                                                        href="{{ route('unidades.edit', $unidade->id) }}">
+                                                        <i class="fas fa-pencil-alt"></i></a>
+
+                                                    <button type="submit" class="btn btn-sm" class="btn btn-sm"
+                                                        style="background-color: #ff8097"
+                                                        onclick="$('#delete{{ $a }}').modal('show')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+
+                                                </td>
+                                            @endcan
                                         </tr>
                                         @php
                                             $a = $a . 'a';

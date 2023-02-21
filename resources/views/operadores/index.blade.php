@@ -29,7 +29,9 @@
                                     <th style="color:#fff;">Informacion</th>
                                     <th style="color:#fff;">Estado Vencimiento Medico</th>
                                     <th style="color:#fff;">Estado Vencimiento Licencia</th>
+                                    @can('editar-operadores', 'borrar-operadores')
                                     <th style="color:#fff;">Acciones</th>
+                                    @endcan
                                 </thead>
                                 <tbody>
                                     @foreach ($operadores as $operadore)
@@ -348,6 +350,7 @@
                                                 </h5>
                                             </td>
                                             {{-- ============================================================== --}}
+                                            @can('editar-operadores', 'borrar-operadores')
                                             <td>
                                                 <a  class="btn btn-sm" style="background-color: #9dbad5"
                                                     href="{{ route('operadores.edit', $operadore->id) }}">
@@ -357,6 +360,7 @@
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </td>
+                                            @endcan
                                         </tr>
                                     @endforeach
                                 </tbody>
