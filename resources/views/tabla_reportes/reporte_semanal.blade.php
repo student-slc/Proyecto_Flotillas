@@ -129,7 +129,7 @@
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Folio Fumigacion</th>
 =======
-                                <thead style="background-color: #9dbad5">
+                                <thead style="background-color: #95b8f6">
 >>>>>>> master
                                     <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>

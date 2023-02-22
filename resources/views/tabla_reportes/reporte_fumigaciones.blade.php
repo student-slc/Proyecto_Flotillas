@@ -105,7 +105,7 @@
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <thead  style="background-color: #9dbad5">
+                                <thead style="background-color:#95b8f6">
                                     <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">Marca</th>
