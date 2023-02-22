@@ -220,9 +220,64 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="tipounidad">Tipo</label>
-                                                    <input type="text" name="tipounidad" class="form-control"
-                                                        value="{{ $unidade->tipounidad }}">
+                                                    <label for="tipounidad">Tipo de Unidad</label>
+                                                    <select name="tipounidad" id="tipounidad" class=" selectsearch">
+                                                        <option disabled value="">Selecciona el Tipo de
+                                                            Unidad
+                                                        </option>
+                                                        <option @if ($unidade->tipounidad == 'B2') selected @endif
+                                                            value="B2">B2: AUTOBUS DE 2 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'B3') selected @endif
+                                                            value="B3">B3: AUTOBUS DE 3 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'B4') selected @endif
+                                                            value="B4">B4: AUTOBUS DE 4 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'C2') selected @endif
+                                                            value="C2">C2: CAMION DE 2 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'C3') selected @endif
+                                                            value="C3">C3: CAMION DE 3 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'C4') selected @endif
+                                                            value="C4">C4: CAMION DE 4 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'DOLLY') selected @endif
+                                                            value="DOLLY">DOLLY: DOLLY</option>
+                                                        <option @if ($unidade->tipounidad == 'GA') selected @endif
+                                                            value="GA">GA: GRUA TIPO A</option>
+                                                        <option @if ($unidade->tipounidad == 'GB') selected @endif
+                                                            value="GB">GB: GRUA TIPO B</option>
+                                                        <option @if ($unidade->tipounidad == 'GC') selected @endif
+                                                            value="GC">GC: GRUA TIPO C</option>
+                                                        <option @if ($unidade->tipounidad == 'GD') selected @endif
+                                                            value="GD">GD: GRUA TIPO D</option>
+                                                        <option @if ($unidade->tipounidad == 'GI') selected @endif
+                                                            value="GI">GI: GRUA TIPO I</option>
+                                                        <option @if ($unidade->tipounidad == 'MINIVAN') selected @endif
+                                                            value="MINIVAN">MINIVAN: MINIVAN</option>
+                                                        <option @if ($unidade->tipounidad == 'R2') selected @endif
+                                                            value="R2">R2: REMOLQUE DE 2 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'R3') selected @endif
+                                                            value="R3">R3: REMOLQUE DE 3 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'R4') selected @endif
+                                                            value="R4">R4: REMOLQUE DE 4 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'R5') selected @endif
+                                                            value="R5">R5: REMOLQUE DE 5 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'R6') selected @endif
+                                                            value="R6">R6: REMOLQUE DE 6 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'S1') selected @endif
+                                                            value="S1">S1: SEMIREMOLQUE DE 1 EJE</option>
+                                                        <option @if ($unidade->tipounidad == 'S2') selected @endif
+                                                            value="S2">S2: SEMIREMOLQUE DE 2 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'S3') selected @endif
+                                                            value="S3">S3: SEMIREMOLQUE DE 3 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'S4') selected @endif
+                                                            value="S4">S4: SEMIREMOLQUE DE 4 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'S5') selected @endif
+                                                            value="S5">S5: SEMIREMOLQUE DE 5 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'S6') selected @endif
+                                                            value="S6">S6: SEMIREMOLQUE DE 6 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'T2') selected @endif
+                                                            value="T2">T2: TRACTOCAMION DE 2 EJES</option>
+                                                        <option @if ($unidade->tipounidad == 'T3') selected @endif
+                                                            value="T3">T3: TRACTOCAMION DE 3 EJES</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -248,11 +303,13 @@
                                                         class=" selectsearch">
                                                         <option disabled value="">Selecciona Status</option>
                                                         <option value="Kilometraje"
-                                                            @if ($unidade->tipomantenimiento == 'Kilometraje') selected @endif>Mantenimiento
+                                                            @if ($unidade->tipomantenimiento == 'Kilometraje') selected @endif>
+                                                            Mantenimiento
                                                             por Kilometraje
                                                         </option>
                                                         <option value="Fecha"
-                                                            @if ($unidade->tipomantenimiento == 'Fecha') selected @endif> Mantenimiento
+                                                            @if ($unidade->tipomantenimiento == 'Fecha') selected @endif>
+                                                            Mantenimiento
                                                             por Fecha
                                                         </option>
                                                     </select>
@@ -270,21 +327,110 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="status">Status de Servivio</label>
+                                                    <label for="status">Status de Unidad</label>
                                                     <select name="status" id="status" class=" selectsearch">
-                                                        <option disabled value="">Selecciona Status</option>
-                                                        <option value="Status 1"
-                                                            @if ($unidade->status == 'Status 1') selected @endif>Status 1
+                                                        <option disabled value="">Selecciona Status
                                                         </option>
-                                                        <option value="Status 2"
-                                                            @if ($unidade->status == 'Status 2') selected @endif>Status 2
-                                                        </option>
-                                                        <option value="Status 3"
-                                                            @if ($unidade->status == 'Status 3') selected @endif>Status 3
-                                                        </option>
+                                                        <option @if ($unidade->status == 'Activo') selected @endif
+                                                            value="Activo">
+                                                            Activo</option>
+                                                        <option @if ($unidade->status == 'Inactivo') selected @endif
+                                                            value="Inactivo">Inactivo</option>
+                                                        <option @if ($unidade->status == 'Reparación') selected @endif
+                                                            value="Reparación">Reparación</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            {{-- SERVICIOS --}}
+                                            {{-- \\\\\\\\\\\ NO \\\\\\\\\\\ --}}
+                                            <div class="col-xs-12 col-sm-12 col-md-12 card-deck" hidden>
+                                                <div class="card">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="No"
+                                                            checked id="status_seguro" name="status_seguro">
+                                                        <label class="form-check-label" for="status_seguro">
+                                                            SEGURO
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="No"
+                                                            checked id="status_ambiental" name="status_ambiental">
+                                                        <label class="form-check-label" for="status_ambiental">
+                                                            V. AMBIENTAL
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="No"
+                                                            checked id="status_fisica" name="status_fisica">
+                                                        <label class="form-check-label" for="status_fisica">
+                                                            V. FISICA
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="No"
+                                                            checked id="status_mantenimiento" name="status_mantenimiento">
+                                                        <label class="form-check-label" for="status_mantenimiento">
+                                                            MANTENIMIENTO
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="No"
+                                                            checked id="status_fumigacion" name="status_fumigacion">
+                                                        <label class="form-check-label" for="status_fumigacion">
+                                                            FUMIGACION
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                            {{-- \\\\\\\\\\\ SI \\\\\\\\\\\ --}}
+                                            <div class="col-xs-12 col-sm-12 col-md-12 card-deck">
+                                                <div class="card">
+                                                    <h5 class="form-check-label">SERVICIOS PARA ESTA UNIDAD</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Si"
+                                                            @if ($unidade->status_seguro == 'Si') checked @endif
+                                                            id="status_seguro" name="status_seguro">
+                                                        <label class="form-check-label" for="status_seguro">
+                                                            SEGURO
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Si"
+                                                            @if ($unidade->status_ambiental == 'Si') checked @endif
+                                                            id="status_ambiental" name="status_ambiental">
+                                                        <label class="form-check-label" for="status_ambiental">
+                                                            V. AMBIENTAL
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Si"
+                                                            @if ($unidade->status_fisica == 'Si') checked @endif
+                                                            id="status_fisica" name="status_fisica">
+                                                        <label class="form-check-label" for="status_fisica">
+                                                            V. FISICA
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Si"
+                                                            @if ($unidade->status_mantenimiento == 'Si') checked @endif
+                                                            id="status_mantenimiento" name="status_mantenimiento">
+                                                        <label class="form-check-label" for="status_mantenimiento">
+                                                            MANTENIMIENTO
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Si"
+                                                            @if ($unidade->status_fumigacion == 'Si') checked @endif
+                                                            id="status_fumigacion" name="status_fumigacion">
+                                                        <label class="form-check-label" for="status_fumigacion">
+                                                            FUMIGACION
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                            {{--  --}}
                                         @endif
                                         {{-- ========================================================================= --}}
                                         @if ($unidade->tipo == 'Unidad Habitacional o Comercial')

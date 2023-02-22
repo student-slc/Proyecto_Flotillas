@@ -103,6 +103,11 @@ class UnidadesController extends Controller
                 'comisionfumigacion' => 'required',
                 'distanciakm' => 'required',
                 'ltrsgasolina' => 'required',
+                'status_seguro' => 'required',
+                'status_ambiental' => 'required',
+                'status_fisica' => 'required',
+                'status_mantenimiento' => 'required',
+                'status_fumigacion' => 'required',
             ]);
         }
         $usuario = $request->cliente;
@@ -201,6 +206,11 @@ class UnidadesController extends Controller
                 'comisionfumigacion' => 'required',
                 'distanciakm' => 'required',
                 'ltrsgasolina' => 'required',
+                'status_seguro' => 'required',
+                'status_ambiental' => 'required',
+                'status_fisica' => 'required',
+                'status_mantenimiento' => 'required',
+                'status_fumigacion' => 'required',
             ]);
         }
         $usuario = $request->cliente;

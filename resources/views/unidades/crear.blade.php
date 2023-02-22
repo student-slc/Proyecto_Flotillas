@@ -160,8 +160,38 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="tipounidad">Tipo</label>
-                                                <input type="text" name="tipounidad" class="form-control">
+                                                <label for="tipounidad">Tipo de Unidad</label>
+                                                <select name="tipounidad" id="tipounidad" class=" selectsearch">
+                                                    <option disabled selected value="">Selecciona el Tipo de Unidad
+                                                    </option>
+                                                    <option value="B2">B2: AUTOBUS DE 2 EJES</option>
+                                                    <option value="B3">B3: AUTOBUS DE 3 EJES</option>
+                                                    <option value="B4">B4: AUTOBUS DE 4 EJES</option>
+                                                    <option value="C2">C2: CAMION DE 2 EJES</option>
+                                                    <option value="C3">C3: CAMION DE 3 EJES</option>
+                                                    <option value="C4">C4: CAMION DE 4 EJES</option>
+                                                    <option value="DOLLY">DOLLY: DOLLY</option>
+                                                    <option value="GA">GA: GRUA TIPO A</option>
+                                                    <option value="GB">GB: GRUA TIPO B</option>
+                                                    <option value="GC">GC: GRUA TIPO C</option>
+                                                    <option value="GD">GD: GRUA TIPO D</option>
+                                                    <option value="GI">GI: GRUA TIPO I</option>
+                                                    <option value="MINIVAN">MINIVAN: MINIVAN</option>
+                                                    <option value="R2">R2: REMOLQUE DE 2 EJES</option>
+                                                    <option value="R3">R3: REMOLQUE DE 3 EJES</option>
+                                                    <option value="R4">R4: REMOLQUE DE 4 EJES</option>
+                                                    <option value="R5">R5: REMOLQUE DE 5 EJES</option>
+                                                    <option value="R6">R6: REMOLQUE DE 6 EJES</option>
+                                                    <option value="S1">S1: SEMIREMOLQUE DE 1 EJE</option>
+                                                    <option value="S2">S2: SEMIREMOLQUE DE 2 EJES</option>
+                                                    <option value="S3">S3: SEMIREMOLQUE DE 3 EJES</option>
+                                                    <option value="S4">S4: SEMIREMOLQUE DE 4 EJES</option>
+                                                    <option value="S5">S5: SEMIREMOLQUE DE 5 EJES</option>
+                                                    <option value="S6">S6: SEMIREMOLQUE DE 6 EJES</option>
+                                                    <option value="T2">T2: TRACTOCAMION DE 2 EJES</option>
+                                                    <option value="T3">T3: TRACTOCAMION DE 3 EJES</option>
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -205,20 +235,104 @@
                                         <br>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="status">Status de Servivio</label>
+                                                <label for="status">Status de Unidad</label>
                                                 <select name="status" id="status" class=" selectsearch">
                                                     <option disabled selected value="">Selecciona Status
                                                     </option>
-                                                    <option value="Status 1">Status 1</option>
-                                                    <option value="Status 2">Status 2</option>
-                                                    <option value="Status 3">Status 3</option>
-                                                    {{-- <option value="No Pagado">No Pagado</option>
-                                                <option value="Pagado">Pagado</option> --}}
+                                                    <option value="Activo">Activo</option>
+                                                    <option value="Inactivo">Inactivo</option>
+                                                    <option value="Reparación">Reparación</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <h4 class="form-check-label">Tipo De Mantenimiento</h4>
+                                        {{-- SERVICIOS --}}
+                                        {{-- \\\\\\\\\\\ NO \\\\\\\\\\\ --}}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 card-deck" hidden>
+                                            <div class="card">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="No"
+                                                        checked id="status_seguro" name="status_seguro">
+                                                    <label class="form-check-label" for="status_seguro">
+                                                        SEGURO
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="No"
+                                                        checked id="status_ambiental" name="status_ambiental">
+                                                    <label class="form-check-label" for="status_ambiental">
+                                                        V. AMBIENTAL
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="No"
+                                                        checked id="status_fisica" name="status_fisica">
+                                                    <label class="form-check-label" for="status_fisica">
+                                                        V. FISICA
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="No"
+                                                        checked id="status_mantenimiento" name="status_mantenimiento">
+                                                    <label class="form-check-label" for="status_mantenimiento">
+                                                        MANTENIMIENTO
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="No"
+                                                        checked id="status_fumigacion" name="status_fumigacion">
+                                                    <label class="form-check-label" for="status_fumigacion">
+                                                        FUMIGACION
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                        {{-- \\\\\\\\\\\ SI \\\\\\\\\\\ --}}
+                                        <div class="col-xs-12 col-sm-12 col-md-12 card-deck">
+                                            <div class="card">
+                                                <h5 class="form-check-label">SERVICIOS PARA ESTA UNIDAD</h5>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Si"
+                                                        id="status_seguro" name="status_seguro">
+                                                    <label class="form-check-label" for="status_seguro">
+                                                        SEGURO
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Si"
+                                                        id="status_ambiental" name="status_ambiental">
+                                                    <label class="form-check-label" for="status_ambiental">
+                                                        V. AMBIENTAL
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Si"
+                                                        id="status_fisica" name="status_fisica">
+                                                    <label class="form-check-label" for="status_fisica">
+                                                        V. FISICA
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Si"
+                                                        id="status_mantenimiento" name="status_mantenimiento">
+                                                    <label class="form-check-label" for="status_mantenimiento">
+                                                        MANTENIMIENTO
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Si"
+                                                        id="status_fumigacion" name="status_fumigacion">
+                                                    <label class="form-check-label" for="status_fumigacion">
+                                                        FUMIGACION
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                        {{--  --}}
+                                        <br>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h5 class="form-check-label">TIPO DE MANTENIMIENTO</h5>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="tipomantenimiento"
                                                     id="Kilometraje" value="Kilometraje">

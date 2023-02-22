@@ -27,16 +27,16 @@ class ClientesController extends Controller
     {
         $usuario = \Auth::user();
         $rol = $usuario->rol;
-        $user=$usuario->name;
+        $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
-            $clientes=Cliente::all();
+            $clientes = Cliente::all();
         }
         if ($rol == 'Administrador') {
-            $clientes=Cliente::all();
+            $clientes = Cliente::all();
         }
-        if ($rol == 'Usuario'){
-            $cliente=$usuario->clientes;
-            $clientes= Cliente::where('nombrecompleto', '=', $cliente)->get();
+        if ($rol == 'Usuario') {
+            $cliente = $usuario->clientes;
+            $clientes = Cliente::where('nombrecompleto', '=', $cliente)->get();
         }
         //Con paginación
         return view('clientes.index', compact('clientes'));
@@ -84,7 +84,12 @@ class ClientesController extends Controller
             }
         }
         $unidades = Unidade::where('cliente', '=', $usuario)->get();
-        return view('unidades.index', compact('unidades', 'usuario'));
+        /*  */
+        $user = \Auth::user();
+        $rol = $user->rol;
+        $user = $user->name;
+        /*  */
+        return view('unidades.index', compact('unidades', 'usuario', 'rol'));
     }
 
     /**

@@ -45,5 +45,10 @@ class Unidade extends Model
         'comisionfumigacion',
         'distanciakm',
         'ltrsgasolina',
+        'status_seguro',
+        'status_ambiental',
+        'status_fisica',
+        'status_mantenimiento',
+        'status_fumigacion',
     ];
 }
