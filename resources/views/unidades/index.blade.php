@@ -26,7 +26,12 @@
                                 <br><br>
                                 <thead style="background-color: #9dbad5">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Placas/<br>Dirección</th>
+                                    @if ($mostrar == 'Placas')
+                                        <th style="color:#fff;">Placas/<br>Dirección</th>
+                                    @endif
+                                    @if ($mostrar == 'Economico')
+                                        <th style="color:#fff;">Economico/<br>Dirección</th>
+                                    @endif
                                     <th style="color:#fff;">Información</th>
                                     <th style="color:#fff;">Estado Seguro</th>
                                     <th style="color:#fff;">Verificación Ambiental</th>
@@ -49,7 +54,12 @@
                                                 <td>{{ $unidade->direccion }}</td>
                                             @endif
                                             @if ($unidade->tipo == 'Unidad Vehicular')
-                                                <td>{{ $unidade->placas }}</td>
+                                                @if ($mostrar == 'Placas')
+                                                    <td>{{ $unidade->placas }}</td>
+                                                @endif
+                                                @if ($mostrar == 'Economico')
+                                                    <td>{{ $unidade->economico }}</td>
+                                                @endif
                                             @endif
                                             {{-- Boton MODAL --}}
                                             <td>

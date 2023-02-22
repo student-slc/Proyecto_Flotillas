@@ -87,9 +87,10 @@ class ClientesController extends Controller
         /*  */
         $user = \Auth::user();
         $rol = $user->rol;
+        $mostrar = $user->economico;
         $user = $user->name;
         /*  */
-        return view('unidades.index', compact('unidades', 'usuario', 'rol'));
+        return view('unidades.index', compact('unidades', 'usuario', 'rol','mostrar'));
     }
 
     /**
