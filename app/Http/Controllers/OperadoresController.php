@@ -8,6 +8,7 @@ use App\Models\Unidade;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OperadoresExport;
+
 class OperadoresController extends Controller
 {
     /**
@@ -114,8 +115,10 @@ class OperadoresController extends Controller
      */
     public function show($usuario)
     {
+        $user = \Auth::user();
+        $rol = $user->rol;
         $operadores = Operadore::where('cliente', '=', $usuario)->get();
-        return view('operadores.index', compact('operadores', 'usuario'));
+        return view('operadores.index', compact('operadores', 'usuario', 'rol'));
     }
 
     /**
@@ -216,6 +219,6 @@ class OperadoresController extends Controller
     }
     public function export($usuario)
     {
-        return (new OperadoresExport($usuario))->download('Operadores_del_usuario_'.$usuario.'.xlsx');
+        return (new OperadoresExport($usuario))->download('Operadores_del_usuario_' . $usuario . '.xlsx');
     }
 }

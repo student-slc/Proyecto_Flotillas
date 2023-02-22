@@ -16,12 +16,8 @@
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-<<<<<<< HEAD
                                         <button type="submit" class="btn btn-success"
                                             dir="{{ route('tabla_reportes.reporte_semanalexcel') }}">
-=======
-                                        <button type="submit" class="btn btn-md" style="background-color: #7caa98">
->>>>>>> master
                                             <i class="fas fa-file-excel"></i> Excel
                                         </button>
                                         <button type="submit" class="btn btn-danger"
@@ -125,12 +121,8 @@
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-<<<<<<< HEAD
                                 <thead style="background-color:#6777ef">
                                     <th style="color:#fff;">Folio Fumigacion</th>
-=======
-                                <thead style="background-color: #95b8f6">
->>>>>>> master
                                     <th style="color:#fff;">Placas/Dirección</th>
                                     <th style="color:#fff;">Cliente</th>
                                     {{-- <th style="color:#fff;">Serie Unidad</th> --}}
@@ -163,24 +155,12 @@
                                                     echo '<td>' . $fumigacione->fechaultimafumigacion . '</td>';
                                                     echo '<td>' . $fumigacione->id_fumigador . '</td>';
                                                     echo '<td>' . $fumigacione->status . '</td>';
-<<<<<<< HEAD
                                                     foreach ($clientes as $cliente) {
                                                         if ($cliente->nombrecompleto == $unidade->cliente) {
                                                             echo '<td>' . $cliente->direccionfisica . '</td>';
                                                             echo '<td>' . $cliente->razonsocial . '</td>';
                                                             echo '<td>
                                         <button type="button" class="btn btn-primary"
-=======
-                                                    break;
-                                                }
-                                            }
-                                            foreach ($clientes as $cliente) {
-                                                if ($cliente->nombrecompleto == $unidade->cliente) {
-                                                    echo '<td>' . $cliente->direccionfisica . '</td>';
-                                                    echo '<td>' . $cliente->razonsocial . '</td>';
-                                                    echo '<td>
-                                        <button type="button" class="btn btn-sm" style="background-color: #9dbad5"
->>>>>>> master
                                             onclick="$("#{{ $a }}").modal("show")">
                                             Detalles
                                         </button>
