@@ -28,5 +28,10 @@ class Cliente extends Model
         'observaciones',
         'regimen_fiscal',
         'sfdi',
+        'servicio_seguro',
+        'servicio_ambiental',
+        'servicio_fisica',
+        'servicio_mantenimiento',
+        'servicio_fumigacion',
     ];
 }

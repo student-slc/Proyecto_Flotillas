@@ -153,6 +153,91 @@
                                             <input type="text" name="sfdi" class="form-control">
                                         </div>
                                     </div>
+                                    {{-- SERVICIOS --}}
+                                    {{-- \\\\\\\\\\\ NO \\\\\\\\\\\ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 card-deck" hidden>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_seguro" name="servicio_seguro">
+                                                <label class="form-check-label" for="servicio_seguro">
+                                                    SEGURO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_ambiental" name="servicio_ambiental">
+                                                <label class="form-check-label" for="servicio_ambiental">
+                                                    V. AMBIENTAL
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_fisica" name="servicio_fisica">
+                                                <label class="form-check-label" for="servicio_fisica">
+                                                    V. FISICA
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_mantenimiento" name="servicio_mantenimiento">
+                                                <label class="form-check-label" for="servicio_mantenimiento">
+                                                    MANTENIMIENTO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_fumigacion" name="servicio_fumigacion">
+                                                <label class="form-check-label" for="servicio_fumigacion">
+                                                    FUMIGACION
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                    {{-- \\\\\\\\\\\ SI \\\\\\\\\\\ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 card-deck">
+                                        <div class="card">
+                                            <h5 class="card-title">Servicios Para El Cliente</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_seguro" name="servicio_seguro">
+                                                <label class="form-check-label" for="servicio_seguro">
+                                                    SEGURO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_ambiental" name="servicio_ambiental">
+                                                <label class="form-check-label" for="servicio_ambiental">
+                                                    V. AMBIENTAL
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_fisica" name="servicio_fisica">
+                                                <label class="form-check-label" for="servicio_fisica">
+                                                    V. FISICA
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_mantenimiento" name="servicio_mantenimiento">
+                                                <label class="form-check-label" for="servicio_mantenimiento">
+                                                    MANTENIMIENTO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_fumigacion" name="servicio_fumigacion">
+                                                <label class="form-check-label" for="servicio_fumigacion">
+                                                    FUMIGACION
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                    {{--  --}}
                                 </div>
                             </div>
                             {{-- ================================================= --}}

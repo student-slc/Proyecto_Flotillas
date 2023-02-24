@@ -49,14 +49,14 @@
                                             <div class="form-group">
                                                 <label for="nombrecompletoc">Nombre del Contacto</label>
                                                 <input type="text" name="nombrecompletoc" class="form-control"
-                                                value="{{ $cliente->nombrecompletoc }}">
+                                                    value="{{ $cliente->nombrecompletoc }}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="telefonoc">Telefono Contacto</label>
                                                 <input type="text" name="telefonoc" class="form-control"
-                                                value="{{ $cliente->telefonoc }}">
+                                                    value="{{ $cliente->telefonoc }}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -70,7 +70,7 @@
                                             <div class="form-group">
                                                 <label for="estado">Estado</label>
                                                 <input type="text" name="estado" class="form-control"
-                                                value="{{ $cliente->estado }}">
+                                                    value="{{ $cliente->estado }}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -173,23 +173,112 @@
                                         <div class="form-group">
                                             <label for="regimen_fiscal">Regimen Fiscal</label>
                                             <input type="text" name="regimen_fiscal" class="form-control"
-                                            value="{{ $cliente->regimen_fiscal }}">
+                                                value="{{ $cliente->regimen_fiscal }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="sfdi">SFDI</label>
                                             <input type="text" name="sfdi" class="form-control"
-                                            value="{{ $cliente->sfdi }}">
+                                                value="{{ $cliente->sfdi }}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="observaciones">Observaciones</label>
-                                            <textarea name="observaciones" id="observaciones" class="form-control" rows="7"
-                                                >{{ $cliente->observaciones }}</textarea>
+                                            <textarea name="observaciones" id="observaciones" class="form-control" rows="7">{{ $cliente->observaciones }}</textarea>
                                         </div>
                                     </div>
+                                    {{-- SERVICIOS --}}
+                                    {{-- \\\\\\\\\\\ NO \\\\\\\\\\\ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 card-deck" hidden>
+                                        <div class="card">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_seguro" name="servicio_seguro">
+                                                <label class="form-check-label" for="servicio_seguro">
+                                                    SEGURO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_ambiental" name="servicio_ambiental">
+                                                <label class="form-check-label" for="servicio_ambiental">
+                                                    V. AMBIENTAL
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_fisica" name="servicio_fisica">
+                                                <label class="form-check-label" for="servicio_fisica">
+                                                    V. FISICA
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_mantenimiento" name="servicio_mantenimiento">
+                                                <label class="form-check-label" for="servicio_mantenimiento">
+                                                    MANTENIMIENTO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_fumigacion" name="servicio_fumigacion">
+                                                <label class="form-check-label" for="servicio_fumigacion">
+                                                    FUMIGACION
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                    {{-- \\\\\\\\\\\ SI \\\\\\\\\\\ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12 card-deck">
+                                        <div class="card">
+                                            <h5 class="card-title">Servicios Para El Cliente</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    @if ($cliente->servicio_seguro == 'Si') checked @endif id="servicio_seguro"
+                                                    name="servicio_seguro">
+                                                <label class="form-check-label" for="servicio_seguro">
+                                                    SEGURO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    @if ($cliente->servicio_ambiental == 'Si') checked @endif
+                                                    id="servicio_ambiental" name="servicio_ambiental">
+                                                <label class="form-check-label" for="servicio_ambiental">
+                                                    V. AMBIENTAL
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    @if ($cliente->servicio_fisica == 'Si') checked @endif id="servicio_fisica"
+                                                    name="servicio_fisica">
+                                                <label class="form-check-label" for="servicio_fisica">
+                                                    V. FISICA
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    @if ($cliente->servicio_mantenimiento == 'Si') checked @endif
+                                                    id="servicio_mantenimiento" name="servicio_mantenimiento">
+                                                <label class="form-check-label" for="servicio_mantenimiento">
+                                                    MANTENIMIENTO
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    @if ($cliente->servicio_fumigacion == 'Si') checked @endif
+                                                    id="servicio_fumigacion" name="servicio_fumigacion">
+                                                <label class="form-check-label" for="servicio_fumigacion">
+                                                    FUMIGACION
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
+                                    {{--  --}}
                                 </div>
                             </div>
                             {{-- ================================================= --}}
