@@ -8,10 +8,12 @@
             <h3 class="page__heading">Clientes</h3>
         </div>
         <div class="section-body">
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                            
                             @can('general-rol')
                                 <a class="btn btn-warning" href="{{ route('clientes.create') }}">Nuevo</a>
                             @endcan
@@ -20,15 +22,32 @@
                                         class="fas fa-file-excel"></i></a> --}}
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                    <br>
-                                    <br>
+                                <br>
+                                <br>
                                 <thead style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Nombre Cliente</th>
-                                    <th style="color:#fff;">Información completa</th>
+                                    <th style="color:#fff;">Nombre Cliente
+                                    </th>
+                                    <th style="color:#fff;">
+                                        <div data-toggle="tooltip" data-placement="top"
+                                            title="Proporciona los detalles del cliente y datos de facturación">
+                                            Información completa
+                                        </div>
+                                    </th>
                                     <th style="color:#fff;">Unidades</th>
-                                    <th style="color:#fff;">Operadores</th>
-                                    <th style="color:#fff;">Status de Servicio</th>
+                                    <th style="color:#fff;">
+                                        <div data-toggle="tooltip" data-placement="top"
+                                            title="Proporciona información de los operadores, licencia y certificado médico">
+                                            Operadores
+                                        </div>
+
+                                    </th>
+                                    <th style="color:#fff;">
+                                        <div data-toggle="tooltip" data-placement="top"
+                                            title="Proporciona el estado de pago ">
+                                            Status de Servicio
+                                        </div>
+                                    </th>
                                     @can('general-rol')
                                         <th style="color:#fff;">Acciones</th>
                                     @endcan
@@ -40,20 +59,21 @@
                                             <td>{{ $cliente->nombrecompleto }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-sm text-dark" style="background-color: #9dbad5"
+                                                <button type="button" class="btn btn-sm text-dark"
+                                                    style="background-color: #9dbad5"
                                                     onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <a  class="btn btn-sm" style="background-color: #7caa98"
+                                                <a class="btn btn-sm" style="background-color: #7caa98"
                                                     href="{{ route('clientes.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-bus"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a  class="btn btn-sm" style="background-color: #7caa98"
+                                                <a class="btn btn-sm" style="background-color: #7caa98"
                                                     href="{{ route('operadores.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-address-card"></i>
                                                 </a>
@@ -72,7 +92,8 @@
                                                     </h6>
                                                 @endif
                                                 @if ($cliente->statuspago == 'No Pagado')
-                                                    <h5><span class="badge badge-pill badge-danger">{{ $cliente->statuspago }}</span>
+                                                    <h5><span
+                                                            class="badge badge-pill badge-danger">{{ $cliente->statuspago }}</span>
                                                     </h5>
                                                 @endif
                                                 @if ($cliente->statuspago == 'Pagado')
@@ -83,7 +104,8 @@
                                             @can('general-rol')
                                                 <td>
 
-                                                    <a class="btn btn-sm" style="background-color: #9dbad5" href="{{ route('clientes.edit', $cliente->id) }}">
+                                                    <a class="btn btn-sm" style="background-color: #9dbad5"
+                                                        href="{{ route('clientes.edit', $cliente->id) }}">
                                                         <i class="fas fa-pencil-alt"></i></a>
                                                     <button type="submit" class="btn btn-sm" style="background-color: #ff8097"
                                                         onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
@@ -227,6 +249,44 @@
                     </form>
                 </div>
             </div>
+            <script>
+                function tutorial() {
+                    introJs().setOptions({
+                        nextLabel: 'Siguiente',
+                        prevLabel: 'Anterior',
+                        doneLabel: 'Terminar',
+                        skipLabel: 'Omitir',
+                        steps: [{
+                                element: document.querySelector('#status'),
+                                intro: '<h3>Filtro estado</h3>Filtrar por estado de ticket (Abierto,En proceso, Cerrado,Etc)',
+                                position: 'top'
+                            },
+                            {
+                                element: document.querySelector('#type'),
+                                intro: '<h3>Filtro tipo de ticket</h3>Filtrar por tipo de ticket (Preventivo,Correctivo y Modificaciones)',
+                                position: 'top'
+                            },
+                            {
+                                element: document.querySelector('#ticketsIndexDataTable_length'),
+                                intro: '<h3>Selector de registros</h3>Seleccionar cuantos registros quieres mostrar',
+                                position: 'top'
+                            },
+                            {
+                                element: document.querySelector('#ticketsIndexDataTable_filter'),
+                                intro: '<h3>Buscador</h3>Buscar por palabra en especifico',
+                                position: 'top'
+                            },
+                            {
+                                element: document.querySelector('#ticketsIndexDataTable_paginate'),
+                                intro: '<h3>Paginacion</h3>Gestionar paginas de registros',
+                                position: 'top'
+                            }
+
+
+                        ]
+                    }).start();
+                }
+            </script>
         </div>
     @endforeach
     {{-- =========================================== --}}
