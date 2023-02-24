@@ -20,8 +20,8 @@
                                         class="fas fa-file-excel"></i></a> --}}
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                    <br>
-                                    <br>
+                                <br>
+                                <br>
                                 <thead style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Cliente</th>
@@ -40,20 +40,21 @@
                                             <td>{{ $cliente->nombrecompleto }}</td>
                                             {{-- Boton MODAL --}}
                                             <td>
-                                                <button type="button" class="btn btn-sm text-dark" style="background-color: #9dbad5"
+                                                <button type="button" class="btn btn-sm text-dark"
+                                                    style="background-color: #9dbad5"
                                                     onclick="$('#{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
                                                     Detalles
                                                 </button>
                                             </td>
                                             {{-- ====================== --}}
                                             <td>
-                                                <a  class="btn btn-sm" style="background-color: #7caa98"
+                                                <a class="btn btn-sm" style="background-color: #7caa98"
                                                     href="{{ route('clientes.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-bus"></i>
                                                 </a>
                                             </td>
                                             <td>
-                                                <a  class="btn btn-sm" style="background-color: #7caa98"
+                                                <a class="btn btn-sm" style="background-color: #7caa98"
                                                     href="{{ route('operadores.show', $usuario = $cliente->nombrecompleto) }}">
                                                     <i class="fas fa-address-card"></i>
                                                 </a>
@@ -72,7 +73,8 @@
                                                     </h6>
                                                 @endif
                                                 @if ($cliente->statuspago == 'No Pagado')
-                                                    <h5><span class="badge badge-pill badge-danger">{{ $cliente->statuspago }}</span>
+                                                    <h5><span
+                                                            class="badge badge-pill badge-danger">{{ $cliente->statuspago }}</span>
                                                     </h5>
                                                 @endif
                                                 @if ($cliente->statuspago == 'Pagado')
@@ -83,7 +85,8 @@
                                             @can('general-rol')
                                                 <td>
 
-                                                    <a class="btn btn-sm" style="background-color: #9dbad5" href="{{ route('clientes.edit', $cliente->id) }}">
+                                                    <a class="btn btn-sm" style="background-color: #9dbad5"
+                                                        href="{{ route('clientes.edit', $cliente->id) }}">
                                                         <i class="fas fa-pencil-alt"></i></a>
                                                     <button type="submit" class="btn btn-sm" style="background-color: #ff8097"
                                                         onclick="$('#delete{{ str_replace(' ', '', $cliente->nombrecompleto) }}').modal('show')">
@@ -181,6 +184,52 @@
                         <li class="list-group-item">
                             {{ $cliente->sfdi }}
                         </li>
+                        <br>
+                        <b>Servicios Para Este Cliente:</b>
+                        <div class="card-deck">
+                            <div class="card">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Si"
+                                        @if ($cliente->servicio_seguro == 'Si') checked @endif id="servicio_seguro"
+                                        name="servicio_seguro">
+                                    <label class="form-check-label" for="servicio_seguro">
+                                        SEGURO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Si"
+                                        @if ($cliente->servicio_ambiental == 'Si') checked @endif id="servicio_ambiental"
+                                        name="servicio_ambiental">
+                                    <label class="form-check-label" for="servicio_ambiental">
+                                        V. AMBIENTAL
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Si"
+                                        @if ($cliente->servicio_fisica == 'Si') checked @endif id="servicio_fisica"
+                                        name="servicio_fisica">
+                                    <label class="form-check-label" for="servicio_fisica">
+                                        V. FISICA
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Si"
+                                        @if ($cliente->servicio_mantenimiento == 'Si') checked @endif id="servicio_mantenimiento"
+                                        name="servicio_mantenimiento">
+                                    <label class="form-check-label" for="servicio_mantenimiento">
+                                        MANTENIMIENTO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Si"
+                                        @if ($cliente->servicio_fumigacion == 'Si') checked @endif id="servicio_fumigacion"
+                                        name="servicio_fumigacion">
+                                    <label class="form-check-label" for="servicio_fumigacion">
+                                        FUMIGACION
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                         <br>
                         <b>Observaciones:</b>
                         <li class="list-group-item">
