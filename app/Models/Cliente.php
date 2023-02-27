@@ -33,5 +33,7 @@ class Cliente extends Model
         'servicio_fisica',
         'servicio_mantenimiento',
         'servicio_fumigacion',
+        'servicio_omedico',
+        'servicio_olicencia',
     ];
 }

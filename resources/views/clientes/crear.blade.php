@@ -192,6 +192,20 @@
                                                     FUMIGACION
                                                 </label>
                                             </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_omedico" name="servicio_omedico">
+                                                <label class="form-check-label" for="servicio_omedico">
+                                                    MEDICO OPERADOR
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="No" checked
+                                                    id="servicio_olicencia" name="servicio_olicencia">
+                                                <label class="form-check-label" for="servicio_olicencia">
+                                                    LICENCIA OPERADOR
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     {{-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ --}}
@@ -232,6 +246,20 @@
                                                     id="servicio_fumigacion" name="servicio_fumigacion">
                                                 <label class="form-check-label" for="servicio_fumigacion">
                                                     FUMIGACION
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_omedico" name="servicio_omedico">
+                                                <label class="form-check-label" for="servicio_omedico">
+                                                    MEDICO OPERADOR
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Si"
+                                                    id="servicio_olicencia" name="servicio_olicencia">
+                                                <label class="form-check-label" for="servicio_olicencia">
+                                                    LICENCIA OPERADOR
                                                 </label>
                                             </div>
                                         </div>

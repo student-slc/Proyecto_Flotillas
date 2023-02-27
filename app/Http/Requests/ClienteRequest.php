@@ -47,6 +47,8 @@ class ClienteRequest extends FormRequest
             'servicio_fisica' => 'required',
             'servicio_mantenimiento' => 'required',
             'servicio_fumigacion' => 'required',
+            'servicio_omedico' => 'required',
+            'servicio_olicencia' => 'required',
         ];
     }
     public function messages()
@@ -75,6 +77,8 @@ class ClienteRequest extends FormRequest
             'servicio_fisica.required' => 'Es Obligatorio Seleccionar almenos una Opcion de Servicio',
             'servicio_mantenimiento.required' => 'Es Obligatorio Seleccionar almenos una Opcion de Servicio',
             'servicio_fumigacion.required' => 'Es Obligatorio Seleccionar almenos una Opcion de Servicio',
+            'servicio_omedico.required' => 'Es Obligatorio Seleccionar almenos una Opcion de Servicio',
+            'servicio_olicencia.required' => 'Es Obligatorio Seleccionar almenos una Opcion de Servicio',
         ];
     }
 }

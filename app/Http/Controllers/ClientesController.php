@@ -87,10 +87,17 @@ class ClientesController extends Controller
         /*  */
         $user = \Auth::user();
         $rol = $user->rol;
+        /* ------------------------------------ */
+        $servicios_seguro=$user->servicio_seguro;
+        $servicios_ambiental=$user->servicio_ambiental;
+        $servicios_fisica=$user->servicio_fisica;
+        $servicios_mantenimiento=$user->servicio_mantenimiento;
+        $servicios_fumigacion=$user->servicio_fumigacion;
+        /* ------------------------------------ */
         $mostrar = $user->economico;
         $user = $user->name;
         /*  */
-        return view('unidades.index', compact('unidades', 'usuario', 'rol','mostrar'));
+        return view('unidades.index',compact('unidades', 'usuario', 'rol','mostrar','servicios_seguro','servicios_ambiental','servicios_fisica','servicios_mantenimiento','servicios_fumigacion'));
     }
 
     /**
