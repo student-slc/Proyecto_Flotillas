@@ -8,6 +8,7 @@ use App\Models\Unidade;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OperadoresExport;
+use App\Models\Cliente;
 
 class OperadoresController extends Controller
 {
@@ -115,10 +116,34 @@ class OperadoresController extends Controller
      */
     public function show($usuario)
     {
+        /*  */
         $user = \Auth::user();
         $rol = $user->rol;
+        if ($rol == 'SuperAdministrador') {
+            $servicios_omedico = 'Si';
+            $servicios_olicencia = 'Si';
+        }
+        if ($rol == 'Administrador') {
+            $servicios_omedico = 'Si';
+            $servicios_olicencia = 'Si';
+        }
+        if ($rol == 'Usuario') {
+            $cliente = $user->clientes;
+            $clientes = Cliente::where('nombrecompleto', '=', $cliente)->get();
+            foreach ($clientes as $client) {
+                $servicios_omedico = $client->servicio_omedico;
+                $servicios_olicencia = $client->servicio_olicencia;
+            }
+        }
+        /* ------------------------------------ */
         $operadores = Operadore::where('cliente', '=', $usuario)->get();
-        return view('operadores.index', compact('operadores', 'usuario', 'rol'));
+        return view('operadores.index', compact(
+            'operadores',
+            'usuario',
+            'rol',
+            'servicios_omedico',
+            'servicios_olicencia'
+        ));
     }
 
     /**

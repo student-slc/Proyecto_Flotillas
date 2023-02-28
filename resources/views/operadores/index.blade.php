@@ -136,7 +136,7 @@
                                                 @endphp
                                                 {{-- ============================================================== --}}
                                                 {{-- ========================== IF PARA MOSTRAR =================== --}}
-                                                @if ($rol == 'Usuario')
+                                                @if ($servicios_omedico == 'No')
                                                     <h5>
                                                         @if ($mes_contador >= 9)
                                                             <span class="badge badge-primary">
@@ -342,7 +342,7 @@
                                                     }
                                                 @endphp
                                                 {{-- ============================================================== --}}
-                                                @if ($rol == 'Usuario')
+                                                @if ($servicios_olicencia == 'No')
                                                     {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                     <h5>
                                                         @if ($mes_contador >= 9)

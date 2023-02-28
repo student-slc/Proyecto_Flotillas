@@ -87,17 +87,55 @@ class ClientesController extends Controller
         /*  */
         $user = \Auth::user();
         $rol = $user->rol;
+        if ($rol == 'SuperAdministrador') {
+            $servicios_seguro = 'Si';
+            $servicios_ambiental = 'Si';
+            $servicios_fisica = 'Si';
+            $servicios_mantenimiento = 'Si';
+            $servicios_fumigacion = 'Si';
+            $servicios_omedico = 'Si';
+            $servicios_olicencia = 'Si';
+        }
+        if ($rol == 'Administrador') {
+            $servicios_seguro = 'Si';
+            $servicios_ambiental = 'Si';
+            $servicios_fisica = 'Si';
+            $servicios_mantenimiento = 'Si';
+            $servicios_fumigacion = 'Si';
+            $servicios_omedico = 'Si';
+            $servicios_olicencia = 'Si';
+        }
+        if ($rol == 'Usuario') {
+            $cliente = $user->clientes;
+            $clientes = Cliente::where('nombrecompleto', '=', $cliente)->get();
+            foreach ($clientes as $client) {
+                $servicios_seguro = $client->servicio_seguro;
+                $servicios_ambiental = $client->servicio_ambiental;
+                $servicios_fisica = $client->servicio_fisica;
+                $servicios_mantenimiento = $client->servicio_mantenimiento;
+                $servicios_fumigacion = $client->servicio_fumigacion;
+                $servicios_omedico = $client->servicio_omedico;
+                $servicios_olicencia = $client->servicio_olicencia;
+            }
+        }
         /* ------------------------------------ */
-        $servicios_seguro=$user->servicio_seguro;
-        $servicios_ambiental=$user->servicio_ambiental;
-        $servicios_fisica=$user->servicio_fisica;
-        $servicios_mantenimiento=$user->servicio_mantenimiento;
-        $servicios_fumigacion=$user->servicio_fumigacion;
         /* ------------------------------------ */
         $mostrar = $user->economico;
         $user = $user->name;
         /*  */
-        return view('unidades.index',compact('unidades', 'usuario', 'rol','mostrar','servicios_seguro','servicios_ambiental','servicios_fisica','servicios_mantenimiento','servicios_fumigacion'));
+        return view('unidades.index', compact(
+            'unidades',
+            'usuario',
+            'rol',
+            'mostrar',
+            'servicios_seguro',
+            'servicios_ambiental',
+            'servicios_fisica',
+            'servicios_mantenimiento',
+            'servicios_fumigacion',
+            'servicios_omedico',
+            'servicios_olicencia'
+        ));
     }
 
     /**

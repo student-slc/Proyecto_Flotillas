@@ -117,10 +117,16 @@
                                         @else
                                             @if ($unidade->tipo == 'Unidad Vehicular')
                                                 @if ($unidade->seguro == 'Sin Seguro')
-                                                    <h6><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Sin
-                                                                <br> Seguro</a></span>
-                                                    </h6>
+                                                    @if ($servicios_seguro == 'No')
+                                                        <h6><span class="badge badge-danger"><a class="link-light">Sin
+                                                                    <br> Seguro</a></span>
+                                                        </h6>
+                                                    @else
+                                                        <h6><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Sin
+                                                                    <br> Seguro</a></span>
+                                                        </h6>
+                                                    @endif
                                                 @else
                                                     {{-- ===================== CALCULO_DE_FECHAS_SEGURO ===================== --}}
                                                     @php
@@ -198,7 +204,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-                                                        
+
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -212,71 +218,132 @@
                                                     {{-- ============================================================== --}}
                                                     {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                     <h6>
-                                                        @if ($mes_contador >= 9)
-                                                            <span class="badge badge-primary">
-                                                                <a class="link-light"
-                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                            <span class="badge badge-success">
-                                                                <a class="link-light"
-                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                            <span class="badge badge-warning">
-                                                                <a class="link-light"
-                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador == 1 && $uno == 'nulo')
-                                                            @if ($calcular == 0)
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                        @if ($servicios_seguro == 'No')
+                                                            @if ($mes_contador >= 9)
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light">Expira
                                                                         en:<br>
-                                                                        {{ $mes_contador }} mes
-                                                                    </a> </span>
-                                                            @else
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light">Expira
                                                                         en:<br>
-                                                                        {{ $mes_contador }} mes
-                                                                        <br>y {{ $calcular }} dias
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'uno')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
                                                                     </a> </span>
                                                             @endif
-                                                        @endif
-                                                        @if ($mes_contador == 1 && $uno == 'uno')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">
-                                                                    Seguro
-                                                                    <br> Expirado
-                                                                </a> </span>
+                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">
+                                                                        Seguro
+                                                                        <br> Expirado
+                                                                    </a> </span>
+                                                            @endif
+                                                        @else
+                                                            @if ($mes_contador >= 9)
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'uno')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('unidades.show', $unidad = $unidade->serieunidad) }}">
+                                                                        Seguro
+                                                                        <br> Expirado
+                                                                    </a> </span>
+                                                            @endif
                                                         @endif
                                                     </h6>
                                                 @endif
@@ -293,10 +360,16 @@
                                         @else
                                             @if ($unidade->tipo == 'Unidad Vehicular')
                                                 @if ($unidade->verificacion == 'Sin Verificación')
-                                                    <h6><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Sin
-                                                                <br> Verificación</a></span>
-                                                    </h6>
+                                                    @if ($servicios_ambiental == 'No')
+                                                        <h6><span class="badge badge-danger"><a class="link-light">Sin
+                                                                    <br> Verificación</a></span>
+                                                        </h6>
+                                                    @else
+                                                        <h6><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Sin
+                                                                    <br> Verificación</a></span>
+                                                        </h6>
+                                                    @endif
                                                 @else
                                                     {{-- ===================== CALCULO_DE_FECHAS_VERIFICACIONES ===================== --}}
                                                     @php
@@ -374,7 +447,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-                                                        
+
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -388,71 +461,132 @@
                                                     {{-- ============================================================== --}}
                                                     {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                     <h6>
-                                                        @if ($mes_contador >= 9)
-                                                            <span class="badge badge-primary">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                            <span class="badge badge-success">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                            <span class="badge badge-warning">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador == 1 && $uno == 'nulo')
-                                                            @if ($calcular == 0)
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                        @if ($servicios_ambiental == 'No')
+                                                            @if ($mes_contador >= 9)
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light">Expira
                                                                         en:<br>
-                                                                        {{ $mes_contador }} mes
-                                                                    </a> </span>
-                                                            @else
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light">Expira
                                                                         en:<br>
-                                                                        {{ $mes_contador }} mes
-                                                                        <br>y {{ $calcular }} dias
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'uno')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
                                                                     </a> </span>
                                                             @endif
-                                                        @endif
-                                                        @if ($mes_contador == 1 && $uno == 'uno')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">
-                                                                    Verificación
-                                                                    <br> Expirada
-                                                                </a> </span>
+                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">
+                                                                        Verificación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
+                                                        @else
+                                                            @if ($mes_contador >= 9)
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'uno')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificaciones.show', $unidad = $unidade->serieunidad) }}">
+                                                                        Verificación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
                                                         @endif
                                                     </h6>
                                                 @endif
@@ -469,10 +603,16 @@
                                         @else
                                             @if ($unidade->tipo == 'Unidad Vehicular')
                                                 @if ($unidade->verificacion2 == 'Sin Verificación')
-                                                    <h6><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Sin
-                                                                <br>Verificación</a></span>
-                                                    </h6>
+                                                    @if ($servicios_fisica == 'No')
+                                                        <h6><span class="badge badge-danger"><a class="link-light">Sin
+                                                                    <br>Verificación</a></span>
+                                                        </h6>
+                                                    @else
+                                                        <h6><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Sin
+                                                                    <br>Verificación</a></span>
+                                                        </h6>
+                                                    @endif
                                                 @else
                                                     {{-- ===================== CALCULO_DE_FECHAS_VERIFICACIONES ===================== --}}
                                                     @php
@@ -550,7 +690,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-                                                        
+
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -564,71 +704,132 @@
                                                     {{-- ============================================================== --}}
                                                     {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                     <h6>
-                                                        @if ($mes_contador >= 9)
-                                                            <span class="badge badge-primary">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                            <span class="badge badge-success">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                            <span class="badge badge-warning">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
-                                                        @endif
-                                                        @if ($mes_contador == 1 && $uno == 'nulo')
-                                                            @if ($calcular == 0)
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                        @if ($servicios_fisica == 'No')
+                                                            @if ($mes_contador >= 9)
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light">Expira
                                                                         en:<br>
-                                                                        {{ $mes_contador }} mes
-                                                                    </a> </span>
-                                                            @else
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light">Expira
                                                                         en:<br>
-                                                                        {{ $mes_contador }} mes
-                                                                        <br>y {{ $calcular }} dias
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'uno')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
                                                                     </a> </span>
                                                             @endif
-                                                        @endif
-                                                        @if ($mes_contador == 1 && $uno == 'uno')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en:<br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">
-                                                                    Verificación
-                                                                    <br> Expirada
-                                                                </a> </span>
+                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">
+                                                                        Verificación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
+                                                        @else
+                                                            @if ($mes_contador >= 9)
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en:<br>
+                                                                            {{ $mes_contador }} mes
+                                                                            <br>y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($mes_contador == 1 && $uno == 'uno')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en:<br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('verificacionesfisicomecanicas.show', $unidad = $unidade->serieunidad) }}">
+                                                                        Verificación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
                                                         @endif
                                                     </h6>
                                                 @endif
@@ -645,10 +846,16 @@
                                         @else
                                             @if ($unidade->tipo == 'Unidad Vehicular')
                                                 @if ($unidade->mantenimiento == 'Sin Mantenimiento')
-                                                    <h6><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Sin
-                                                                <br> Mantenimiento</a></span>
-                                                    </h6>
+                                                    @if ($servicios_mantenimiento == 'No')
+                                                        <h6><span class="badge badge-danger"><a class="link-light">Sin
+                                                                    <br> Mantenimiento</a></span>
+                                                        </h6>
+                                                    @else
+                                                        <h6><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Sin
+                                                                    <br> Mantenimiento</a></span>
+                                                        </h6>
+                                                    @endif
                                                 @else
                                                     @if ($unidade->tipomantenimiento == 'Fecha')
                                                         {{-- ===================== CALCULO_DE_FECHAS_MANTENIMIENTO ===================== --}}
@@ -732,7 +939,7 @@
                                                                     }
                                                                 }
                                                                 /* CALCULO DE MESES EXACTOS */
-                                                            
+
                                                                 $dias_resto = $calcular;
                                                                 $opc = 2;
                                                                 for ($i = 0; $i <= $opc; $i++) {
@@ -746,71 +953,132 @@
                                                         {{-- ============================================================== --}}
                                                         {{-- ========================== IF PARA MOSTRAR_POR FECHAS =================== --}}
                                                         <h6>
-                                                            @if ($mes_contador >= 9)
-                                                                <span class="badge badge-primary">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                        en: <br>
-                                                                        {{ $mes_contador }} meses</a>
-                                                                </span>
-                                                            @endif
-                                                            @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                                <span class="badge badge-success">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                        en: <br>
-                                                                        {{ $mes_contador }} meses</a>
-                                                                </span>
-                                                            @endif
-                                                            @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                                <span class="badge badge-warning">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                        en: <br>
-                                                                        {{ $mes_contador }} meses</a>
-                                                                </span>
-                                                            @endif
-                                                            @if ($mes_contador == 1 && $uno == 'nulo')
-                                                                @if ($calcular == 0)
-                                                                    <span class="badge badge-danger">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                            @if ($servicios_mantenimiento == 'No')
+                                                                @if ($mes_contador >= 9)
+                                                                    <span class="badge badge-primary">
+                                                                        <a class="link-light">Expira
                                                                             en: <br>
-                                                                            {{ $mes_contador }} mes
-                                                                        </a> </span>
-                                                                @else
-                                                                    <span class="badge badge-danger">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            {{ $mes_contador }} meses</a>
+                                                                    </span>
+                                                                @endif
+                                                                @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                    <span class="badge badge-success">
+                                                                        <a class="link-light">Expira
                                                                             en: <br>
-                                                                            {{ $mes_contador }} mes <br> y
-                                                                            {{ $calcular }} dias
+                                                                            {{ $mes_contador }} meses</a>
+                                                                    </span>
+                                                                @endif
+                                                                @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                    <span class="badge badge-warning">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} meses</a>
+                                                                    </span>
+                                                                @endif
+                                                                @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                    @if ($calcular == 0)
+                                                                        <span class="badge badge-danger">
+                                                                            <a class="link-light">Expira
+                                                                                en: <br>
+                                                                                {{ $mes_contador }} mes
+                                                                            </a> </span>
+                                                                    @else
+                                                                        <span class="badge badge-danger">
+                                                                            <a class="link-light">Expira
+                                                                                en: <br>
+                                                                                {{ $mes_contador }} mes <br> y
+                                                                                {{ $calcular }} dias
+                                                                            </a> </span>
+                                                                    @endif
+                                                                @endif
+                                                                @if ($mes_contador == 1 && $uno == 'uno')
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $dias_exactos }} dias
                                                                         </a> </span>
                                                                 @endif
-                                                            @endif
-                                                            @if ($mes_contador == 1 && $uno == 'uno')
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                        en: <br>
-                                                                        {{ $dias_exactos }} dias
-                                                                    </a> </span>
-                                                            @endif
-                                                            @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                        en: <br>
-                                                                        {{ $dias_exactos }} dias
-                                                                    </a> </span>
-                                                            @endif
-                                                            @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                        Mantenimiento
-                                                                        <br> Expirado
-                                                                    </a> </span>
+                                                                @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $dias_exactos }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                                @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">
+                                                                            Mantenimiento
+                                                                            <br> Expirado
+                                                                        </a> </span>
+                                                                @endif
+                                                            @else
+                                                                @if ($mes_contador >= 9)
+                                                                    <span class="badge badge-primary">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} meses</a>
+                                                                    </span>
+                                                                @endif
+                                                                @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                                    <span class="badge badge-success">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} meses</a>
+                                                                    </span>
+                                                                @endif
+                                                                @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                                    <span class="badge badge-warning">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} meses</a>
+                                                                    </span>
+                                                                @endif
+                                                                @if ($mes_contador == 1 && $uno == 'nulo')
+                                                                    @if ($calcular == 0)
+                                                                        <span class="badge badge-danger">
+                                                                            <a class="link-light"
+                                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                                en: <br>
+                                                                                {{ $mes_contador }} mes
+                                                                            </a> </span>
+                                                                    @else
+                                                                        <span class="badge badge-danger">
+                                                                            <a class="link-light"
+                                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                                en: <br>
+                                                                                {{ $mes_contador }} mes <br> y
+                                                                                {{ $calcular }} dias
+                                                                            </a> </span>
+                                                                    @endif
+                                                                @endif
+                                                                @if ($mes_contador == 1 && $uno == 'uno')
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $dias_exactos }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                                @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $dias_exactos }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                                @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
+                                                                            Mantenimiento
+                                                                            <br> Expirado
+                                                                        </a> </span>
+                                                                @endif
                                                             @endif
                                                         </h6>
                                                     @endif
@@ -824,49 +1092,92 @@
                                                                 $km_actual = $unidade->kilometros_actuales;
                                                                 $diferencia = $frecuencia + $km_actual - $km_contador;
                                                             @endphp
-                                                            @if ($km_contador >= $frecuencia + $km_actual)
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                        Mantenimiento
-                                                                        <br> Expirado
-                                                                    </a> </span>
-                                                            @endif
-                                                            @if ($km_contador < $frecuencia + $km_actual)
-                                                                @php
-                                                                    $diferencia = $frecuencia + $km_actual - $km_contador;
-                                                                @endphp
-                                                                @if ($diferencia >= 1 && $diferencia < 100)
+                                                            @if ($servicios_mantenimiento == 'No')
+                                                                @if ($km_contador >= $frecuencia + $km_actual)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">
+                                                                            Mantenimiento
+                                                                            <br> Expirado
+                                                                        </a> </span>
+                                                                @endif
+                                                                @if ($km_contador < $frecuencia + $km_actual)
+                                                                    @php
+                                                                        $diferencia = $frecuencia + $km_actual - $km_contador;
+                                                                    @endphp
+                                                                    @if ($diferencia >= 1 && $diferencia < 100)
+                                                                        <span class="badge badge-danger">
+                                                                            <a class="link-light">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                    @if ($diferencia >= 100 && $diferencia < 300)
+                                                                        <span class="badge badge-warning">
+                                                                            <a class="link-light">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                    @if ($diferencia >= 300 && $diferencia < 500)
+                                                                        <span class="badge badge-success">
+                                                                            <a class="link-light">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                    @if ($diferencia >= 500)
+                                                                        <span class="badge badge-primary">
+                                                                            <a class="link-light">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                @endif
+                                                            @else
+                                                                @if ($km_contador >= $frecuencia + $km_actual)
                                                                     <span class="badge badge-danger">
                                                                         <a class="link-light"
                                                                             href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                            {{ $diferencia }} Km
-                                                                            <br> Para expirar
+                                                                            Mantenimiento
+                                                                            <br> Expirado
                                                                         </a> </span>
                                                                 @endif
-                                                                @if ($diferencia >= 100 && $diferencia < 300)
-                                                                    <span class="badge badge-warning">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                            {{ $diferencia }} Km
-                                                                            <br> Para expirar
-                                                                        </a> </span>
-                                                                @endif
-                                                                @if ($diferencia >= 300 && $diferencia < 500)
-                                                                    <span class="badge badge-success">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                            {{ $diferencia }} Km
-                                                                            <br> Para expirar
-                                                                        </a> </span>
-                                                                @endif
-                                                                @if ($diferencia >= 500)
-                                                                    <span class="badge badge-primary">
-                                                                        <a class="link-light"
-                                                                            href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
-                                                                            {{ $diferencia }} Km
-                                                                            <br> Para expirar
-                                                                        </a> </span>
+                                                                @if ($km_contador < $frecuencia + $km_actual)
+                                                                    @php
+                                                                        $diferencia = $frecuencia + $km_actual - $km_contador;
+                                                                    @endphp
+                                                                    @if ($diferencia >= 1 && $diferencia < 100)
+                                                                        <span class="badge badge-danger">
+                                                                            <a class="link-light"
+                                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                    @if ($diferencia >= 100 && $diferencia < 300)
+                                                                        <span class="badge badge-warning">
+                                                                            <a class="link-light"
+                                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                    @if ($diferencia >= 300 && $diferencia < 500)
+                                                                        <span class="badge badge-success">
+                                                                            <a class="link-light"
+                                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
+                                                                    @if ($diferencia >= 500)
+                                                                        <span class="badge badge-primary">
+                                                                            <a class="link-light"
+                                                                                href="{{ route('mantenimientos.show', $unidad = $unidade->serieunidad) }}">
+                                                                                {{ $diferencia }} Km
+                                                                                <br> Para expirar
+                                                                            </a> </span>
+                                                                    @endif
                                                                 @endif
                                                             @endif
                                                         @endif
@@ -884,17 +1195,30 @@
                                             </h6>
                                         @else
                                             @if ($unidade->fumigacion == 'Sin Fumigación')
-                                                @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                    <h6><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Sin
-                                                                <br>Fumigación</a></span>
-                                                    </h6>
-                                                @endif
-                                                @if ($unidade->tipo == 'Unidad Vehicular')
-                                                    <h6><span class="badge badge-danger"><a class="link-light"
-                                                                href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Sin
-                                                                <br>Fumigación</a></span>
-                                                    </h6>
+                                                @if ($servicios_fumigacion == 'No')
+                                                    @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                        <h6><span class="badge badge-danger"><a class="link-light">Sin
+                                                                    <br>Fumigación</a></span>
+                                                        </h6>
+                                                    @endif
+                                                    @if ($unidade->tipo == 'Unidad Vehicular')
+                                                        <h6><span class="badge badge-danger"><a class="link-light">Sin
+                                                                    <br>Fumigación</a></span>
+                                                        </h6>
+                                                    @endif
+                                                @else
+                                                    @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                        <h6><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Sin
+                                                                    <br>Fumigación</a></span>
+                                                        </h6>
+                                                    @endif
+                                                    @if ($unidade->tipo == 'Unidad Vehicular')
+                                                        <h6><span class="badge badge-danger"><a class="link-light"
+                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Sin
+                                                                    <br>Fumigación</a></span>
+                                                        </h6>
+                                                    @endif
                                                 @endif
                                             @else
                                                 {{-- ===================== CALCULO_DE_FECHAS_FUMIGACION ===================== --}}
@@ -978,7 +1302,7 @@
                                                             }
                                                         }
                                                         /* CALCULO DE MESES EXACTOS */
-                                                    
+
                                                         $dias_resto = $calcular;
                                                         $opc = 2;
                                                         for ($i = 0; $i <= $opc; $i++) {
@@ -992,150 +1316,284 @@
                                                 {{-- ============================================================== --}}
                                                 {{-- ========================== IF PARA MOSTRAR =================== --}}
                                                 <h6>
-                                                    @if ($mes_contador >= 9)
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            <span class="badge badge-primary">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
+                                                    @if ($servicios_fumigacion == 'No')
+                                                        @if ($mes_contador >= 9)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
                                                         @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            <span class="badge badge-primary">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
+                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
                                                         @endif
-                                                    @endif
-                                                    @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            <span class="badge badge-success">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
+                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
                                                         @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            <span class="badge badge-success">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
+                                                        @if ($mes_contador == 1 && $uno == 'nulo')
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes <br>
+                                                                            <br> y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes <br>
+                                                                            <br> y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
                                                         @endif
-                                                    @endif
-                                                    @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            <span class="badge badge-warning">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
+                                                        @if ($mes_contador == 1 && $uno == 'uno')
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
                                                         @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            <span class="badge badge-warning">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $mes_contador }} meses</a>
-                                                            </span>
+                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">Expira
+                                                                        en: <br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
                                                         @endif
-                                                    @endif
-                                                    @if ($mes_contador == 1 && $uno == 'nulo')
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            @if ($calcular == 0)
+                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">
+                                                                        Fumigación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light">
+                                                                        Fumigación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
+                                                        @endif
+                                                    @else
+                                                        {{--  --}}
+                                                        @if ($mes_contador >= 9)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-primary">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-success">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-warning">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $mes_contador }} meses</a>
+                                                                </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 1 && $uno == 'nulo')
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes <br>
+                                                                            <br> y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                @if ($calcular == 0)
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes
+                                                                        </a> </span>
+                                                                @else
+                                                                    <span class="badge badge-danger">
+                                                                        <a class="link-light"
+                                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                            en: <br>
+                                                                            {{ $mes_contador }} mes <br>
+                                                                            <br> y {{ $calcular }} dias
+                                                                        </a> </span>
+                                                                @endif
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 1 && $uno == 'uno')
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
                                                                         en: <br>
-                                                                        {{ $mes_contador }} mes
+                                                                        {{ $dias_exactos }} dias
                                                                     </a> </span>
-                                                            @else
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
+                                                                        en: <br>
+                                                                        {{ $dias_exactos }} dias
+                                                                    </a> </span>
+                                                            @endif
+                                                        @endif
+                                                        @if ($mes_contador == 0 && $dias_exactos > 0)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
                                                                         en: <br>
-                                                                        {{ $mes_contador }} mes <br>
-                                                                        <br> y {{ $calcular }} dias
+                                                                        {{ $dias_exactos }} dias
                                                                     </a> </span>
                                                             @endif
-                                                        @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            @if ($calcular == 0)
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
                                                                 <span class="badge badge-danger">
                                                                     <a class="link-light"
                                                                         href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
                                                                         en: <br>
-                                                                        {{ $mes_contador }} mes
-                                                                    </a> </span>
-                                                            @else
-                                                                <span class="badge badge-danger">
-                                                                    <a class="link-light"
-                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                        en: <br>
-                                                                        {{ $mes_contador }} mes <br>
-                                                                        <br> y {{ $calcular }} dias
+                                                                        {{ $dias_exactos }} dias
                                                                     </a> </span>
                                                             @endif
                                                         @endif
-                                                    @endif
-                                                    @if ($mes_contador == 1 && $uno == 'uno')
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                    @endif
-                                                    @if ($mes_contador == 0 && $dias_exactos > 0)
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Expira
-                                                                    en: <br>
-                                                                    {{ $dias_exactos }} dias
-                                                                </a> </span>
-                                                        @endif
-                                                    @endif
-                                                    @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                                        @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">
-                                                                    Fumigación
-                                                                    <br> Expirada
-                                                                </a> </span>
-                                                        @endif
-                                                        @if ($unidade->tipo == 'Unidad Vehicular')
-                                                            <span class="badge badge-danger">
-                                                                <a class="link-light"
-                                                                    href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">
-                                                                    Fumigación
-                                                                    <br> Expirada
-                                                                </a> </span>
+                                                        @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">
+                                                                        Fumigación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <span class="badge badge-danger">
+                                                                    <a class="link-light"
+                                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">
+                                                                        Fumigación
+                                                                        <br> Expirada
+                                                                    </a> </span>
+                                                            @endif
                                                         @endif
                                                     @endif
                                                 </h6>
