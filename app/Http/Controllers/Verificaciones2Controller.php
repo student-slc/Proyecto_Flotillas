@@ -28,7 +28,7 @@ class Verificaciones2Controller extends Controller
     }
     public function crear($unidad)
     {
-        $folios = Folio::whereNot('tipo', '=', 'Ambiental')->get();
+        $folios = Folio::where('tipo', '=', 'Fisico-Mecanica-Motriz')->where('tipo', '=', 'Fisico-Mecanica-Arrastre')->get();
         $verificacion = Verificacione::where('id_unidad', '=', $unidad)
             ->where('estado', '=', 'Activo')->get();
         foreach ($verificacion as $veri) {

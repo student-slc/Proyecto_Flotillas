@@ -18,8 +18,8 @@
                                         class="fas fa-file-excel"></i></a> --}}
                                 {{-- <input type="text" class="form-control pull-right" style="width:20%" id="search"
                                     placeholder="Buscar...."> --}}
-                                    <br><br>
-                                <thead  style="background-color: #9dbad5">
+                                <br><br>
+                                <thead style="background-color: #9dbad5">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Nombre Folio</th>
                                     <th style="color:#fff;">Tipo de Folio</th>
@@ -51,6 +51,9 @@
                                                     }
                                                     if ($folio->tipo == 'Fisico-Mecanica-Motriz') {
                                                         echo 'M-' . $numeros;
+                                                    }
+                                                    if ($folio->tipo == 'Fumigaciones') {
+                                                        echo $numeros;
                                                     }
                                                 @endphp
                                             </td>
@@ -96,10 +99,11 @@
                                             {{--  --}}
                                             {{-- ====================== --}}
                                             <td>
-                                                <button type="submit"  class="btn btn-sm" style="background-color: #9dbad5"
+                                                <button type="submit" class="btn btn-sm" style="background-color: #9dbad5"
                                                     onclick="$('#edit{{ str_replace(' ', '', $folio->id) }}').modal('show')">
                                                     <i class="fas fa-pencil-alt"></i></button>
-                                                <button type="submit"  class="btn btn-sm"  class="btn btn-sm" style="background-color: #ff8097"
+                                                <button type="submit" class="btn btn-sm" class="btn btn-sm"
+                                                    style="background-color: #ff8097"
                                                     onclick="$('#delete{{ str_replace(' ', '', $folio->id) }}').modal('show')">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
@@ -227,6 +231,11 @@
                                                     @else
                                                         <option value="Fisico-Mecanica-Motriz">Fisico-Mecanica
                                                             Motriz</option>
+                                                    @endif
+                                                    @if ($folio->tipo == 'Fumigaciones')
+                                                        <option selected value="Fumigaciones">Fumigaciones</option>
+                                                    @else
+                                                        <option value="Fumigaciones">Fumigaciones</option>
                                                     @endif
                                                 </select>
                                             </div>

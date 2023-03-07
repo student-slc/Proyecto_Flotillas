@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FumigacionesExport;
 use App\Imports\FumigacionesImport;
+use App\Models\Folio;
 use App\Models\Unidade;
 
 class FumigacionesController extends Controller
@@ -40,6 +41,7 @@ class FumigacionesController extends Controller
     }
     public function crear($unidad)
     {
+        $folios = Folio::where('tipo', '=', 'Fumigaciones')->get();
         $unidades = Unidade::orWhere('direccion', '=', $unidad)
             ->orWhere('serieunidad', '=', $unidad)
             ->get();
@@ -54,7 +56,7 @@ class FumigacionesController extends Controller
             $direccion = $cliente->direccionfisica;
         }
         $fumigadores = Fumigadore::all();
-        return view('fumigaciones.crear', compact('unidad', 'fumigadores', 'tipo', 'lugar', 'pcliente', 'direccion'));
+        return view('fumigaciones.crear', compact('unidad', 'fumigadores', 'tipo', 'lugar', 'pcliente', 'direccion', 'folios'));
     }
 
     /**
@@ -65,11 +67,50 @@ class FumigacionesController extends Controller
      */
     public function store(FumigacionesRequest $request)
     {
+        $folio_actual = $request->numerofumigacion;
+        $folios = Folio::where('id', '=', $folio_actual)->get();
         $unidad = $request->unidad;
         if ($request->validated()) {
             $cambio = Fumigacione::where('unidad', '=', $unidad)->update(["status" => "Inactivo"]);
         }
-        Fumigacione::create($request->validated());
+        /* ---------------------------------------------- FOLIOS ---------------------------------------------- */
+        foreach ($folios as $folio) {
+            $contador = $folio->contador;
+            $string = $folio->folio;
+            $inicio = preg_replace('/[^0-9]/', '', $string);
+            $fin = (int) $inicio + (int) $contador;
+        }
+        $request->merge(['numerofumigacion' => '' . $fin]);
+        $cambio = Folio::where('id', '=', $folio_actual)->update(["contador" => $contador + 1]);
+        /* ---------------------------------------------------------------------------------------------------- */
+        Fumigacione::create(
+            [
+                "id_fumigador" => $request['id_fumigador'],
+                "fechaprogramada" => $request['fechaprogramada'],
+                "fechaultimafumigacion" => $request['fechaultimafumigacion'],
+                "lugardelservicio" => $request['lugardelservicio'],
+                "status" => $request['status'],
+                "numerodevisitas" => $request['numerodevisitas'],
+                "costo" => $request['costo'],
+                "numerofumigacion" => $request['numerofumigacion'],
+                "unidad" => $request['unidad'],
+                "producto" => $request['producto'],
+                "insectosvoladores" => $request['insectosvoladores'],
+                "pulgas" => $request['pulgas'],
+                "aracnidos" => $request['aracnidos'],
+                "roedores" => $request['roedores'],
+                "insectosrastreros" => $request['insectosrastreros'],
+                "mosca" => $request['mosca'],
+                "hormigas" => $request['hormigas'],
+                "alacranes" => $request['alacranes'],
+                "cucaracha" => $request['cucaracha'],
+                "chinches" => $request['chinches'],
+                "termitas" => $request['termitas'],
+                "carcamo" => $request['carcamo'],
+                "tipo" => $request['tipo'],
+                "observaciones" => $request['observaciones'],
+            ]
+        );
         $estado = $request->get('status');
         if ($estado == 'Realizado') {
             $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]);

@@ -68,8 +68,7 @@
                                                 <option selected value="Ambiental">Ambiental</option>
                                                 <option value="Fisico-Mecanica-Arrastre">Fisico-Mecanica Arrastre</option>
                                                 <option value="Fisico-Mecanica-Motriz">Fisico-Mecanica Motriz</option>
-                                                {{-- <option value="No Pagado">No Pagado</option>
-                                                <option value="Pagado">Pagado</option> --}}
+                                                <option value="Fumigaciones">Fumigaciones</option>
                                             </select>
                                         </div>
                                     </div>
@@ -85,21 +84,4 @@
             </div>
         </div>
     </section>
-    <script>
-        //================================================ //BUG: IMAGE PREVIEW ========================================
-        function previewBeforeUpload(id) {
-            document.querySelector("#" + id).addEventListener("change", function(e) {
-                if (e.target.files.length == 0) {
-                    return;
-                }
-                let file = e.target.files[0];
-                let url = URL.createObjectURL(file);
-                document.querySelector("#" + id + "-preview div").innerText = file.name;
-                document.querySelector("#" + id + "-preview object").data = url;
-            });
-        }
-        previewBeforeUpload("licencia");
-        previewBeforeUpload("curso");
-        previewBeforeUpload("examenmedico");
-    </script>
 @endsection
