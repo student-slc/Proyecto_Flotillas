@@ -58,7 +58,7 @@ Route::resource('mantenimientos', MantenimientosController::class);
 Route::resource('logs', ObservadorController::class);
 Route::resource('reportes', ReportesController::class);
 Route::resource('tabla_reportes', ReportesController::class);
-Route::resource('checklist', ChecklistController::class);
+//Route::resource('checklist', ChecklistController::class);
 Route::resource('folios', FoliosController::class);
 });
 /* Route::controller(ExcelLogController::class)->group(function(){
@@ -160,7 +160,7 @@ Route::get('/reportes/operadores/licencia/{color}', [App\Http\Controllers\Report
 Route::get('/arranque_unidad', [App\Http\Controllers\ChecklistController::class, 'arranque'])->name('checklist.arranque');
 
 ///--------------------------------------CHECKLIST ARRANQUE--------------------------------------------------------------------
-Route::get('/arranque_unidad/guardar', [App\Http\Controllers\ChecklistController::class, 'guardarsalida'])->name('checklist.guardarsalida');
+Route::post('/arranque_unidad/guardar', [App\Http\Controllers\ChecklistController::class, 'guardarSalida'])->name('checklist.guardarSalida');
 
 
 ///--------------------------------------CHECKLIST REGRESO--------------------------------------------------------------------

@@ -47,7 +47,7 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <thead style="background-color: #9dbad5">
+                                <thead style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">No. Serie/Dirección</th>
@@ -129,7 +129,7 @@
                                                     {{-- ================================ //BUG:SEGUROS ================================ --}}
                                                     <td>
                                                         @if ($unidade->fumigacion == 'Sin Fumigación')
-                                                            <h6><span class="badge badge-danger">Sin <br>Fumigación</span>
+                                                            <h6><span class="badge badge-danger">SIN FUMIGACIÓN</span>
                                                             </h6>
                                                         @else
                                                             {{-- ===================== CALCULO_DE_FECHAS_SEGURO ===================== --}}
@@ -229,31 +229,31 @@
                                                             <h6>
                                                                 @if ($mes_contador >= 9)
                                                                     <span class="badge badge-primary">
-                                                                        Expira en: <br>
+                                                                        Expira en:
                                                                         {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 5 && $mes_contador <= 8)
                                                                     <span class="badge badge-success">
-                                                                        Expira en: <br>
+                                                                        Expira en:
                                                                         {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador >= 2 && $mes_contador <= 4)
                                                                     <span class="badge badge-warning">
-                                                                        Expira en: <br>
+                                                                        Expira en:
                                                                         {{ $mes_contador }} meses
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'nulo')
                                                                     @if ($calcular == 0)
                                                                         <span class="badge badge-danger">
-                                                                            Expira en: <br>
+                                                                            Expira en:
                                                                             {{ $mes_contador }} mes
                                                                         </span>
                                                                     @else
                                                                         <span class="badge badge-danger">
-                                                                            Expira en: <br>
+                                                                            Expira en: 
                                                                             {{ $mes_contador }} mes y
                                                                             <br> {{ $calcular }} dias
                                                                         </span>
@@ -261,20 +261,19 @@
                                                                 @endif
                                                                 @if ($mes_contador == 1 && $uno == 'uno')
                                                                     <span class="badge badge-danger">
-                                                                        Expira en: <br>
+                                                                        Expira en: 
                                                                         {{ $dias_exactos }}dias
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos > 0)
                                                                     <span class="badge badge-danger">
-                                                                        Expira en: <br>
+                                                                        Expira en: 
                                                                         {{ $dias_exactos }} dias
                                                                     </span>
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos <= 0)
                                                                     <span class="badge badge-danger">
-                                                                        FUMIGACIÓN
-                                                                        <br> EXPIRADA
+                                                                        FUMIGACIÓN EXPIRADA
                                                                     </span>
                                                                 @endif
                                                             </h6>
