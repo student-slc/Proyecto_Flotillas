@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    Dashboard
+@endsection
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -1261,19 +1263,24 @@
                 const labelopem = myNewChartopem.data.labels[firstPointopem.index];
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
                 if (labelopem == '9-12 meses') {
-                    window.location.href = "/reportes/operadores/medico/azul";
+                    /* "/reportes/operadores/medico/azul"; */
+                    window.location.href = "{{ route('reportes.medico', 'azul') }}";
                 }
                 if (labelopem == '5-8 meses') {
-                    window.location.href = "/reportes/operadores/medico/verde";
+                    /* "/reportes/operadores/medico/verde"; */
+                    window.location.href = "{{ route('reportes.medico', 'verde') }}";
                 }
                 if (labelopem == '2-4 meses') {
-                    window.location.href = "/reportes/operadores/medico/amarillo";
+                    /* "/reportes/operadores/medico/amarillo"; */
+                    window.location.href = "{{ route('reportes.medico', 'amarillo') }}";
                 }
                 if (labelopem == 'Sig. mes') {
-                    window.location.href = "/reportes/operadores/medico/rojo";
+                    /* /reportes/operadores/medico/rojo */
+                    window.location.href = "{{ route('reportes.medico', 'rojo') }}";
                 }
                 if (labelopem == 'Medico Expirado') {
-                    window.location.href = "/reportes/operadores/medico/expirado";
+                    /* "/reportes/operadores/medico/expirado" */
+                    window.location.href = "{{ route('reportes.medico', 'expirado') }}";
                 }
             }
         }
@@ -1324,20 +1331,27 @@
                 const firstPointopel = sliceopel[0];
                 const labelopel = myNewChartopel.data.labels[firstPointopel.index];
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.licencia
+                "{{ route('reportes.licencia', 'expirado') }}";*/
                 if (labelopel == '9-12 meses') {
-                    window.location.href = "/reportes/operadores/licencia/azul";
+                    /* "/reportes/operadores/licencia/azul"; */
+                    window.location.href = "{{ route('reportes.licencia', 'azul') }}";
                 }
                 if (labelopel == '5-8 meses') {
-                    window.location.href = "/reportes/operadores/licencia/verde";
+                    /* "/reportes/operadores/licencia/verde"; */
+                    window.location.href = "{{ route('reportes.licencia', 'verde') }}";
                 }
                 if (labelopel == '2-4 meses') {
-                    window.location.href = "/reportes/operadores/licencia/amarillo";
+                    /* "/reportes/operadores/licencia/amarillo"; */
+                    window.location.href = "{{ route('reportes.licencia', 'amarillo') }}";
                 }
                 if (labelopel == 'Sig. mes') {
-                    window.location.href = "/reportes/operadores/licencia/rojo";
+                    /* "/reportes/operadores/licencia/rojo"; */
+                    window.location.href = "{{ route('reportes.licencia', 'rojo') }}";
                 }
                 if (labelopel == 'Licencia Expirada') {
-                    window.location.href = "/reportes/operadores/licencia/expirado";
+                    /* "/reportes/operadores/licencia/expirado"; */
+                    window.location.href = "{{ route('reportes.licencia', 'expirado') }}";
                 }
             }
         }
@@ -1390,23 +1404,31 @@
                 const label = myNewChart.data.labels[firstPoint.index];
                 const value = myNewChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.seguros
+                "{{ route('reportes.seguros', 'expirado') }}";*/
                 if (label == 'Sin Seguro') {
-                    window.location.href = "/reportes/seguros/sin%20seguro";
+                    /* "/reportes/seguros/sin%20seguro"; */
+                    window.location.href = "{{ route('reportes.seguros', 'sin%20seguro') }}";
                 }
                 if (label == '9-12 meses') {
-                    window.location.href = "/reportes/seguros/azul";
+                    /* "/reportes/seguros/azul"; */
+                    window.location.href = "{{ route('reportes.seguros', 'azul') }}";
                 }
                 if (label == '5-8 meses') {
-                    window.location.href = "/reportes/seguros/verde";
+                    /* "/reportes/seguros/verde"; */
+                    window.location.href = "{{ route('reportes.seguros', 'verde') }}";
                 }
                 if (label == '2-4 meses') {
-                    window.location.href = "/reportes/seguros/amarillo";
+                    /* "/reportes/seguros/amarillo"; */
+                    window.location.href = "{{ route('reportes.seguros', 'amarillo') }}";
                 }
                 if (label == 'Sig. mes') {
-                    window.location.href = "/reportes/seguros/rojo";
+                    /* "/reportes/seguros/rojo"; */
+                    window.location.href = "{{ route('reportes.seguros', 'rojo') }}";
                 }
                 if (label == 'Seguro Expirado') {
-                    window.location.href = "/reportes/seguros/expirado";
+                    /* "/reportes/seguros/expirado"; */
+                    window.location.href = "{{ route('reportes.seguros', 'expirado') }}";
                 }
             }
         }
@@ -1457,26 +1479,32 @@
             if (sliceva.length) {
                 const firstPointva = sliceva[0];
                 const labelva = myNewChartva.data.labels[firstPointva.index];
-                /*                 const value = myNewChartva.data.datasets[firstPointva.datasetIndex].data[firstPointva.index];
-                 */
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.vambiental
+                "{{ route('reportes.vambiental', 'expirado') }}";*/
                 if (labelva == 'Sin Verificación') {
-                    window.location.href = "/reportes/verificaciones_ambientales/sin%20verificacion";
+                    /* "/reportes/verificaciones_ambientales/sin%20verificacion"; */
+                    window.location.href = "{{ route('reportes.vambiental', 'sin%20verificacion') }}";
                 }
                 if (labelva == '9-12 meses') {
-                    window.location.href = "/reportes/verificaciones_ambientales/azul";
+                    /* "/reportes/verificaciones_ambientales/azul"; */
+                    window.location.href = "{{ route('reportes.vambiental', 'azul') }}";
                 }
                 if (labelva == '5-8 meses') {
-                    window.location.href = "/reportes/verificaciones_ambientales/verde";
+                    /* "/reportes/verificaciones_ambientales/verde"; */
+                    window.location.href = "{{ route('reportes.vambiental', 'verde') }}";
                 }
                 if (labelva == '2-4 meses') {
-                    window.location.href = "/reportes/verificaciones_ambientales/amarillo";
+                    /* "/reportes/verificaciones_ambientales/amarillo"; */
+                    window.location.href = "{{ route('reportes.vambiental', 'amarillo') }}";
                 }
                 if (labelva == 'Sig. mes') {
-                    window.location.href = "/reportes/verificaciones_ambientales/rojo";
+                    /* "/reportes/verificaciones_ambientales/rojo"; */
+                    window.location.href = "{{ route('reportes.vambiental', 'rojo') }}";
                 }
                 if (labelva == 'Verificación Expirada') {
-                    window.location.href = "/reportes/verificaciones_ambientales/expirado";
+                    /* "/reportes/verificaciones_ambientales/expirado"; */
+                    window.location.href = "{{ route('reportes.vambiental', 'expirado') }}";
                 }
             }
         }
@@ -1530,23 +1558,31 @@
                 /*                 const value = myNewChartva.data.datasets[firstPointva.datasetIndex].data[firstPointva.index];
                  */
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.vfisica
+                "{{ route('reportes.vfisica', 'expirado') }}";*/
                 if (labelvf == 'Sin Verificación') {
-                    window.location.href = "/reportes/verificaciones_fisico_mecanicas/sin%20verificacion";
+                    /* "/reportes/verificaciones_fisico_mecanicas/sin%20verificacion"; */
+                    window.location.href = "{{ route('reportes.vfisica', 'sin%20verificacion') }}";
                 }
                 if (labelvf == '9-12 meses') {
-                    window.location.href = "/reportes/verificaciones_fisico_mecanicas/azul";
+                    /* "/reportes/verificaciones_fisico_mecanicas/azul"; */
+                    window.location.href = "{{ route('reportes.vfisica', 'azul') }}";
                 }
                 if (labelvf == '5-8 meses') {
-                    window.location.href = "/reportes/verificaciones_fisico_mecanicas/verde";
+                    /* "/reportes/verificaciones_fisico_mecanicas/verde"; */
+                    window.location.href = "{{ route('reportes.vfisica', 'verde') }}";
                 }
                 if (labelvf == '2-4 meses') {
-                    window.location.href = "/reportes/verificaciones_fisico_mecanicas/amarillo";
+                    /* "/reportes/verificaciones_fisico_mecanicas/amarillo"; */
+                    window.location.href = "{{ route('reportes.vfisica', 'amarillo') }}";
                 }
                 if (labelvf == 'Sig. mes') {
-                    window.location.href = "/reportes/verificaciones_fisico_mecanicas/rojo";
+                    /* "/reportes/verificaciones_fisico_mecanicas/rojo"; */
+                    window.location.href = "{{ route('reportes.vfisica', 'rojo') }}";
                 }
                 if (labelvf == 'Verificación Expirada') {
-                    window.location.href = "/reportes/verificaciones_fisico_mecanicas/expirado";
+                    /* "/reportes/verificaciones_fisico_mecanicas/expirado"; */
+                    window.location.href = "{{ route('reportes.vfisica', 'expirado') }}";
                 }
             }
         }
@@ -1598,23 +1634,31 @@
                 const firstPointmk = slicemk[0];
                 const labelmk = myNewChartmk.data.labels[firstPointmk.index];
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.mantenimientosk
+                "{{ route('reportes.mantenimientosk', 'expirado') }}";*/
                 if (labelmk == 'Sin Mantenimiento') {
-                    window.location.href = "/reportes/mantenimientos_kilometraje/sin%20mantenimiento";
+                    /* "/reportes/mantenimientos_kilometraje/sin%20mantenimiento"; */
+                    window.location.href = "{{ route('reportes.mantenimientosk', 'sin%20mantenimiento') }}";
                 }
                 if (labelmk == '500 km') {
-                    window.location.href = "/reportes/mantenimientos_kilometraje/azul";
+                    /* "/reportes/mantenimientos_kilometraje/azul"; */
+                    window.location.href = "{{ route('reportes.mantenimientosk', 'azul') }}";
                 }
                 if (labelmk == '300 a 500 km') {
-                    window.location.href = "/reportes/mantenimientos_kilometraje/verde";
+                    /* "/reportes/mantenimientos_kilometraje/verde"; */
+                    window.location.href = "{{ route('reportes.mantenimientosk', 'verde') }}";
                 }
                 if (labelmk == '100 a 300 km') {
-                    window.location.href = "/reportes/mantenimientos_kilometraje/amarillo";
+                    /* "/reportes/mantenimientos_kilometraje/amarillo"; */
+                    window.location.href = "{{ route('reportes.mantenimientosk', 'amarillo') }}";
                 }
                 if (labelmk == '1 a 100 km') {
-                    window.location.href = "/reportes/mantenimientos_kilometraje/rojo";
+                    /* "/reportes/mantenimientos_kilometraje/rojo"; */
+                    window.location.href = "{{ route('reportes.mantenimientosk', 'rojo') }}";
                 }
                 if (labelmk == 'Mantenimiento Expirado') {
-                    window.location.href = "/reportes/mantenimientos_kilometraje/expirado";
+                    /* "/reportes/mantenimientos_kilometraje/expirado"; */
+                    window.location.href = "{{ route('reportes.mantenimientosk', 'expirado') }}";
                 }
             }
         }
@@ -1666,23 +1710,31 @@
                 const firstPointmt = slicemt[0];
                 const labelmt = myNewChartmt.data.labels[firstPointmt.index];
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.mantenimientos
+                "{{ route('reportes.mantenimientos', 'expirado') }}";*/
                 if (labelmt == 'Sin Mantenimiento') {
-                    window.location.href = "/reportes/mantenimientos/sin%20mantenimiento";
+                    /* "/reportes/mantenimientos/sin%20mantenimiento"; */
+                    window.location.href = "{{ route('reportes.mantenimientos', 'sin%20mantenimiento') }}";
                 }
                 if (labelmt == '9-12 meses') {
-                    window.location.href = "/reportes/mantenimientos/azul";
+                    /* "/reportes/mantenimientos/azul"; */
+                    window.location.href = "{{ route('reportes.mantenimientos', 'azul') }}";
                 }
                 if (labelmt == '5-8 meses') {
-                    window.location.href = "/reportes/mantenimientos/verde";
+                    /* "/reportes/mantenimientos/verde"; */
+                    window.location.href = "{{ route('reportes.mantenimientos', 'verde') }}";
                 }
                 if (labelmt == '2-4 meses') {
-                    window.location.href = "/reportes/mantenimientos/amarillo";
+                    /* "/reportes/mantenimientos/amarillo"; */
+                    window.location.href = "{{ route('reportes.mantenimientos', 'amarillo') }}";
                 }
                 if (labelmt == 'Sig. mes') {
-                    window.location.href = "/reportes/mantenimientos/rojo";
+                    /* "/reportes/mantenimientos/rojo"; */
+                    window.location.href = "{{ route('reportes.mantenimientos', 'rojo') }}";
                 }
                 if (labelmt == 'Mantenimiento Expirado') {
-                    window.location.href = "/reportes/mantenimientos/expirado";
+                    /* "/reportes/mantenimientos/expirado"; */
+                    window.location.href = "{{ route('reportes.mantenimientos', 'expirado') }}";
                 }
             }
         }
@@ -1734,23 +1786,31 @@
                 const firstPointfum = slicefum[0];
                 const labelfum = myNewChartfum.data.labels[firstPointfum.index];
                 /* 'Sin Seguro','9-12 meses', '5-8 meses', '2-4 meses', 'Sig. mes', 'Seguro Expirado'*/
+                /* reportes.fumigaciones
+                "{{ route('reportes.fumigaciones', 'expirado') }}";*/
                 if (labelfum == 'Sin Fumigacion') {
-                    window.location.href = "/reportes/fumigaciones/sin%20fumigacion";
+                    /* "/reportes/fumigaciones/sin%20fumigacion"; */
+                    window.location.href = "{{ route('reportes.fumigaciones', 'sin%20fumigacion') }}";
                 }
                 if (labelfum == '9-12 meses') {
-                    window.location.href = "/reportes/fumigaciones/azul";
+                    /* "/reportes/fumigaciones/azul"; */
+                    window.location.href = "{{ route('reportes.fumigaciones', 'azul') }}";
                 }
                 if (labelfum == '5-8 meses') {
-                    window.location.href = "/reportes/fumigaciones/verde";
+                    /* "/reportes/fumigaciones/verde"; */
+                    window.location.href = "{{ route('reportes.fumigaciones', 'verde') }}";
                 }
                 if (labelfum == '2-4 meses') {
-                    window.location.href = "/reportes/fumigaciones/amarillo";
+                    /* "/reportes/fumigaciones/amarillo"; */
+                    window.location.href = "{{ route('reportes.fumigaciones', 'amarillo') }}";
                 }
                 if (labelfum == 'Sig. mes') {
-                    window.location.href = "/reportes/fumigaciones/rojo";
+                    /* "/reportes/fumigaciones/rojo"; */
+                    window.location.href = "{{ route('reportes.fumigaciones', 'rojo') }}";
                 }
                 if (labelfum == 'Fumigacion Expirada') {
-                    window.location.href = "/reportes/fumigaciones/expirado";
+                    /* "/reportes/fumigaciones/expirado"; */
+                    window.location.href = "{{ route('reportes.fumigaciones', 'expirado') }}";
                 }
             }
         }
