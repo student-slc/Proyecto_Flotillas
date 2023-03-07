@@ -46,7 +46,7 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <thead style="background-color:#6777ef">
+                                <thead style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">No. Serie</th>
@@ -123,8 +123,7 @@
                                                     {{-- ================================ //BUG:SEGUROS ================================ --}}
                                                     <td>
                                                         @if ($unidade->mantenimiento == 'Sin Mantenimiento')
-                                                            <h6><span class="badge badge-danger">Sin
-                                                                    <br> Mantenimiento</span>
+                                                            <h6><span class="badge badge-danger">SIN MANTENIMIENTO </span>
                                                             </h6>
                                                         @else
                                                             {{-- ===================== CALCULO_DE_FECHAS_SEGURO ===================== --}}
@@ -275,8 +274,7 @@
                                                                 @endif
                                                                 @if ($mes_contador == 0 && $dias_exactos <= 0)
                                                                     <span class="badge badge-danger">
-                                                                        MANTENIMIENTO
-                                                                        <br> EXPIRADO
+                                                                        MANTENIMIENTO EXPIRADO
                                                                     </span>
                                                                 @endif
                                                             </h6>

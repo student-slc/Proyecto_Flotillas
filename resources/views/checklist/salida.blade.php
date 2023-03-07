@@ -12,6 +12,7 @@
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet" type="text/css" />
     <!-- Title Page-->
     <title>Checklist Salida</title>
+
     <!-- Icons font CSS-->
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -66,14 +67,18 @@
     <link href="css/main.css" rel="stylesheet" media="all">
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body onload="mueveReloj()">
+
     <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <form>
+                    <form method="POST" action="{{ route('checklist.guardarSalida') }}">
+                        @csrf
+
                         {{--  <img align="right" class="brand-logo" src="img/sumapp.png" alt="SuMapp">
                         <br>
                         <br> --}}
@@ -192,7 +197,7 @@
                                 <div class="input-group">
                                     <label class="label">COMBUSTIBLE</label>
                                     <select name="combustible" id="combustible" readonly="readonly"
-                                        class=" selectsearch">
+                                        class=" selectsearch form-control">
                                         <option disabled selected value="">SELECCIONA UNA OPCIÓN</option>
                                         <option value="1/4">1/4</option>
                                         <option value="2/4">2/4</option>
@@ -226,19 +231,6 @@
                         </label>
                         {{-- ---------------------------------------------- --}}
                         {{-- ---------------------------------------------- --}}
-                        <br>
-                        <br>
-                        <label class="label">LLANTA DE REFACCIÓN</label>
-                        <label class="radio-container m-r-45">SI
-                            <input readonly name="llantarefaccion" id="llantarefaccion" type="radio"
-                                value="SI">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="radio-container">NO
-                            <input readonly name="llantarefaccion" id="llantarefaccion"
-                                type="radio"value="NO">
-                            <span class="checkmark"></span>
-                        </label>
                         {{-- ---------------------------------------------- --}}
                         {{-- ---------------------------------------------- --}}
                         <br>
@@ -271,11 +263,11 @@
                         <br>
                         <label class="label">CUERDAS</label>
                         <label class="radio-container m-r-45">SI
-                            <input readonly name="CUERDAS" id="CUERDAS" type="radio" value="SI">
+                            <input readonly name="cuerdas" id="cuerdas" type="radio" value="SI">
                             <span class="checkmark"></span>
                         </label>
                         <label class="radio-container">NO
-                            <input readonly name="CUERDAS" id="CUERDAS" type="radio"value="NO">
+                            <input readonly name="cuerdas" id="cuerdas" type="radio"value="NO">
                             <span class="checkmark"></span>
                         </label>
                         {{-- ---------------------------------------------- --}}
@@ -368,7 +360,7 @@
                         </div>
                         {{-- ======================================================== --}}
                         <div class="p-t-15">
-                            <button class="btn btn--radius-2 btn--blue" type="submit">Guardar</button>
+                            <button class="btn btn-radius-2 btn-blue btnSave">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -486,8 +478,8 @@
                 $('#info_operadores').html(r);
             },
             error: function() {
-               /*  console.log('AFUERA');
-                alert("ERROR AL CARGAR LOS OPERADORES"); */
+                /*  console.log('AFUERA');
+                 alert("ERROR AL CARGAR LOS OPERADORES"); */
             }
         });
     }
@@ -565,6 +557,31 @@
     previewBeforeUpload("evidencia_3");
     previewBeforeUpload("evidencia_4");
 </script>
+
+
+@if ($errors->any() == false)
+    <script type="text/javascript">
+        $(".btnSave").click(function() {
+            Swal.fire(
+                '¡Guardado Correctamente!',
+                'Los datos fueron registrados',
+                'success'
+            )
+        });
+    </script>
+@endif
+
+@if ($errors->any() == true)
+    <script type="text/javascript">
+        $(".btnSave").click(function() {
+            Swal.fire(
+                'Oops',
+                'Ocurrio un error al intentar guardar',
+                'error'
+            )
+        });
+    </script>
+@endif
 
 </html>
 <!-- end document-->

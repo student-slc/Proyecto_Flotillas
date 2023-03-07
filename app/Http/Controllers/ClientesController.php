@@ -7,13 +7,11 @@ use App\Models\Cliente;
 use App\Models\Mantenimiento;
 use App\Models\Fumigacione;
 use App\Models\Operadore;
-use App\Models\Seguro;
-use App\Models\Unidade;
-use App\Models\Verificacione;
+use App\Models\{Seguro,Unidade,Verificacione} ;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ClientesExport;
-use App\Imports\ClientesImport;
+
 
 
 class ClientesController extends Controller

@@ -46,7 +46,7 @@
                     <div class="card">
                         <div class="card-body">
                             <table class="table table-striped mt-2" id="tabla">
-                                <thead style="background-color:#6777ef">
+                                <thead style="background-color:#95b8f6">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">No. Serie</th>
@@ -124,8 +124,7 @@
                                                     <td>
                                                         <h6>
                                                             @if ($unidade->mantenimiento == 'Sin Mantenimiento')
-                                                                <span class="badge badge-danger">Sin <br>
-                                                                    Mantenimiento</span>
+                                                                <span class="badge badge-danger">SIN MANTENIMIENTO</span>
                                                             @else
                                                                 @if ($unidade->tipomantenimiento == 'Kilometraje')
                                                                     @php
@@ -136,8 +135,7 @@
                                                                     @endphp
                                                                     @if ($km_contador >= $frecuencia + $km_actual)
                                                                         <span class="badge badge-danger">
-                                                                            MANTENIMIENTO
-                                                                            <br> EXPIRADO</span>
+                                                                            MANTENIMIENTO EXPIRADO</span>
                                                                     @endif
                                                                     @if ($km_contador < $frecuencia + $km_actual)
                                                                         @php
@@ -146,22 +144,22 @@
                                                                         @if ($diferencia >= 1 && $diferencia < 100)
                                                                             <span class="badge badge-danger">
                                                                                 {{ $diferencia }} KM
-                                                                                <br> PARA EXPIRAR</span>
+                                                                                PARA EXPIRAR</span>
                                                                         @endif
                                                                         @if ($diferencia >= 100 && $diferencia < 300)
                                                                             <span class="badge badge-warning">
                                                                                 {{ $diferencia }} KM
-                                                                                <br> PARA EXPIRAR</span>
+                                                                                PARA EXPIRAR</span>
                                                                         @endif
                                                                         @if ($diferencia >= 300 && $diferencia < 500)
                                                                             <span class="badge badge-success">
                                                                                 {{ $diferencia }} KM
-                                                                                <br> PARA EXPIRAR</span>
+                                                                                PARA EXPIRAR</span>
                                                                         @endif
                                                                         @if ($diferencia >= 500)
                                                                             <span class="badge badge-primary">
                                                                                 {{ $diferencia }} KM
-                                                                                <br> PARA EXPIRAR</span>
+                                                                                PARA EXPIRAR</span>
                                                                         @endif
                                                                     @endif
                                                                 @endif
