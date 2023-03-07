@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Exports\ReporteDiaExport;
 use App\Models\Operadore;
 use Illuminate\Http\Request;
@@ -16,7 +14,6 @@ use App\Exports\ReporteSemanalExport;
 use App\Exports\ReporteVeriExport;
 use App\Exports\ReposteSegurosExport;
 use App\Models\Fumigacione;
-
 class CalculoFechas  extends Controller
 {
     public function fechas($color, $fecha, $tipo, $mstipo, $sin, $frecuencia)

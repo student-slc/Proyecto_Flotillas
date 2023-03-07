@@ -123,7 +123,7 @@
                                         <div class="form-group">
                                             <label for="tipo">Tipo</label>
                                             <select name="tipo" id="tipo" class=" selectsearch">
-                                                <option value="Por Confirmar" selected>Tipos</option>
+                                                <option value="Tipo" selected>Tipos</option>
                                             </select>
                                         </div>
                                     </div>
@@ -357,14 +357,15 @@
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                             <select name="status" id="status" class=" selectsearch">
-                                                {{-- <option disabled value="">Selecciona un Status</option>
-                                                <option value="En Proceso">En Proceso</option>
-                                                <option value="Concluido">Concluido</option> --}}
-                                                <option value="Por Confirmar" selected>Por Confirmar</option>
+                                                <option disabled value="" selected>Selecciona un Status</option>
+                                                <option value="Realizado">Realizado</option>
+                                                <option value="Cancelado">Cancelado</option>
+                                                <option value="Reprogramado">Reprogramado</option>
+                                                <option value="Pendiente">Pendiente</option>
                                             </select>
                                         </div>
                                     </div>
