@@ -220,7 +220,10 @@ class FumigacionesController extends Controller
             if (Unidade::where('direccion', '=', $unidad)->exists()) {
                 $fumigacion_activa = Unidade::where('direccion', '=', $unidad)->get();
             }
-            $folio=$fumigacion_activa->fumigacion;
+            $folio = "";
+            foreach ($fumigacion_activa as $fumigacion_activas) {
+                $folio = $fumigacion_activas->fumigacion;
+            }
             if ($folio == 'Sin Fumigación') {
                 $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
                 $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);

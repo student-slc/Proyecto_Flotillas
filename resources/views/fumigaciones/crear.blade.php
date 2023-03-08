@@ -29,11 +29,31 @@
                             <form action="{{ route('fumigaciones.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="numerofumigacion">Folio de Fumigación</label>
-                                            <input type="text" name="numerofumigacion" class="form-control"
-                                                value="{{ $fumigacione->numerofumigacion }}">
+                                            <label class="label" for="numerofumigacion">Folio De Fumigación</label>
+                                            <select name="numerofumigacion" id="numerofumigacion"
+                                                class="form-select form-select-sm mb-3" aria-label=".form-select-sm example"
+                                                onchange="toggleButton_2()">
+                                                <option disabled selected value="">SELECCIONA UN FOLIO</option>
+                                                @foreach ($folios as $folio)
+                                                    @php
+                                                        $string = $folio->folio;
+                                                        $inicio = preg_replace('/[^0-9]/', '', $string);
+                                                        $string_2 = $folio->rango;
+                                                        $final = preg_replace('/[^0-9]/', '', $string_2);
+                                                        $fin = (int) $final;
+                                                        $numeros = (int) $inicio + (int) $folio->contador;
+                                                    @endphp
+                                                    @if ($fin == $numeros)
+                                                    @else
+                                                        @if ($fin >= $numeros)
+                                                            <option value="{{ $folio->id }}">{{ $numeros }}
+                                                            </option>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     {{-- MOSTRAR SI ES V O H --}}

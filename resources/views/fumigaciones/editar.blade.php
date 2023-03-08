@@ -35,7 +35,7 @@
                                         <div class="form-group">
                                             <label for="numerofumigacion">Folio de Fumigación</label>
                                             <input type="text" name="numerofumigacion" class="form-control"
-                                                value="{{ $fumigacione->numerofumigacion }}">
+                                                value="{{ $fumigacione->numerofumigacion }}" readonly="readonly">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

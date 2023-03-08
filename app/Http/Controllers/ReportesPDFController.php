@@ -3195,6 +3195,8 @@ class Metodos extends Controller
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3216,6 +3218,8 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3237,6 +3241,8 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3264,6 +3270,8 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3286,6 +3294,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3308,6 +3318,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3337,6 +3349,8 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3359,6 +3373,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3381,6 +3397,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3409,6 +3427,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3432,6 +3452,8 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3455,6 +3477,8 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3486,6 +3510,8 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3508,6 +3534,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3530,6 +3558,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3558,6 +3588,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3581,6 +3613,8 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3604,6 +3638,8 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3634,6 +3670,8 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3657,6 +3695,8 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3680,6 +3720,8 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3709,6 +3751,8 @@ class Metodos extends Controller
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3733,6 +3777,8 @@ class Metodos extends Controller
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3757,6 +3803,8 @@ class Metodos extends Controller
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
+                                ->orWhere('fumigaciones.status', 'Realizado')
+                                ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
                                     'fumigaciones.numerofumigacion',
                                     'clientes.nombrecompleto',
@@ -3790,6 +3838,8 @@ class Metodos extends Controller
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3813,6 +3863,8 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3836,6 +3888,8 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3865,6 +3919,8 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3889,6 +3945,8 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3913,6 +3971,8 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3944,6 +4004,8 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3968,6 +4030,8 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -3992,6 +4056,8 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -4022,6 +4088,8 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -4047,6 +4115,8 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',
@@ -4072,6 +4142,8 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
+                            ->orWhere('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
                                 'fumigaciones.numerofumigacion',
                                 'clientes.nombrecompleto',

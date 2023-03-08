@@ -142,7 +142,7 @@
                                     @foreach ($fumigaciones as $fumigacione)
                                         @php
                                             foreach ($unidades as $unidade) {
-                                                if ($fumigacione->numerofumigacion == $unidade->fumigacion) {
+                                                if ($fumigacione->unidad == $unidade->serieunidad || $fumigacione->unidad == $unidade->direccion) {
                                                     echo '<tr>';
                                                     echo '<td>' . $fumigacione->numerofumigacion . '</td>';
                                                     if ($unidade->tipo == 'Unidad Vehicular') {
