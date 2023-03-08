@@ -118,10 +118,10 @@ class FumigacionesController extends Controller
             $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]);
             $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $request->get('fechaprogramada')]);
         }
-        if ($estado != 'Realizado') {
-            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]);
+        if ($estado != 'Realizado' && $estado != 'Cancelado') {
+            /* $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]); */
             $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => $estado]);
-            $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]);
+            /* $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $request->get('numerofumigacion')]); */
             $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $estado]);
         }
         return redirect()->route('fumigaciones.show', $unidad);
@@ -171,7 +171,8 @@ class FumigacionesController extends Controller
             $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $request->get('fechaprogramada')]);
         }
         if ($estado != 'Realizado' && $estado != 'Cancelado') {
-            $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["lapsofumigacion" => $estado]);
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => $estado]);
+            $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $estado]);
         }
         if ($estado == 'Cancelado') {
             if (Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->exists()) {
@@ -185,8 +186,10 @@ class FumigacionesController extends Controller
                 $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $numero]);
                 $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $lapso]);
             } else {
-                $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
-                $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["fumigacion" => "Sin Fumigación"]);
+                $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
+                $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
+                $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
+                $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
             }
         }
         return redirect()->route('fumigaciones.show', $unidad);
@@ -205,24 +208,41 @@ class FumigacionesController extends Controller
         $fumigacione->delete();
         if ($estado == 'Realizado') {
             $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
-            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["Sin Fecha de Fumigación"]);
+            $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
             $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
-            $cambio = Unidade::where('direccion', '=', $unidad)->update(["Sin Fecha de Fumigación"]);
+            $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
         }
         if ($estado != 'Realizado') {
-            if (Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->exists()) {
-                $fumigacion_activa = Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->get();
-                foreach ($fumigacion_activa as $fumigacion_activas) {
-                    $numero = $fumigacion_activas->numerofumigacion;
-                    $lapso = $fumigacion_activas->fechaprogramada;
-                }
-                $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $numero]);
-                $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => $lapso]);
-                $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $numero]);
-                $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $lapso]);
+            $fumigacion_activa = '';
+            if (Unidade::where('serieunidad', '=', $unidad)->exists()) {
+                $fumigacion_activa = Unidade::where('serieunidad', '=', $unidad)->get();
+            }
+            if (Unidade::where('direccion', '=', $unidad)->exists()) {
+                $fumigacion_activa = Unidade::where('direccion', '=', $unidad)->get();
+            }
+            $folio=$fumigacion_activa->fumigacion;
+            if ($folio == 'Sin Fumigación') {
+                $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
+                $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
+                $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
+                $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
             } else {
-                $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
-                $cambio = Unidade::where('fumigacion', '=', $fumigacion)->update(["fumigacion" => "Sin Fumigación"]);
+                if (Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->exists()) {
+                    $fumigacion_activa = Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->get();
+                    foreach ($fumigacion_activa as $fumigacion_activas) {
+                        $numero = $fumigacion_activas->numerofumigacion;
+                        $lapso = $fumigacion_activas->fechaprogramada;
+                    }
+                    $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $numero]);
+                    $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => $lapso]);
+                    $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => $numero]);
+                    $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => $lapso]);
+                } else {
+                    $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
+                    $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
+                    $cambio = Unidade::where('direccion', '=', $unidad)->update(["fumigacion" => "Sin Fumigación"]);
+                    $cambio = Unidade::where('direccion', '=', $unidad)->update(["lapsofumigacion" => "Sin Fecha de Fumigación"]);
+                }
             }
         }
         return redirect()->route('fumigaciones.show', $unidad);

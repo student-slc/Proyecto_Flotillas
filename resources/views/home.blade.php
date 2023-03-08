@@ -1056,144 +1056,146 @@
                             $expirado = 0;
                         @endphp
                         @foreach ($unidades as $unidade)
-                            @if ($unidade->fumigacion == 'Sin Fumigación')
-                                @php
-                                    $sin_mantenimiento = $sin_mantenimiento + 1;
-                                @endphp
-                            @else
-                                @php
-                                    /* FECHA LICENCIA */
-                                    $vencimiento_dia = substr($unidade->lapsofumigacion, 8, 2);
-                                    $vencimiento_mes = substr($unidade->lapsofumigacion, 5, 2);
-                                    $vencimiento_año = substr($unidade->lapsofumigacion, 0, 4);
-                                    $vencimiento_mes = $vencimiento_mes + $unidade->frecuencia_fumiga;
-                                    if ($vencimiento_mes > 12) {
-                                        $vencimiento_año = $vencimiento_año + 1;
-                                        $vencimiento_mes = $vencimiento_mes - 12;
-                                    }
-                                    /* FECHA ACTUAL */
-                                    $año_actual = date('Y');
-                                    $mes_actual = date('n');
-                                    $dia_actual = date('d');
-                                    /* OBTIENE LA DIFERENCIA DE AÑO ENTRE FECHA ACTUAL Y FECHA A VENCER */
-                                    $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
-                                    /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
-                                    $uno = 'nulo';
-                                    $calcular = 0;
-                                    $mes_contador = 1;
-                                    $dias_exactos = 1;
-                                    //cambio
-                                    if ($diferencia_año >= 1) {
-                                        $meses = $diferencia_año * 12 + 12;
-                                        $operacion_1 = $meses - (int) $mes_actual;
-                                        $operacion_2 = 12 - (int) $vencimiento_mes;
-                                        $operacion_3 = $operacion_1 - $operacion_2;
-                                        $meses = $operacion_3;
-                                    } else {
-                                        if ($diferencia_año == 0) {
-                                            $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                            @if ($unidade->lapsofumigacion != 'Reprogramado' && $unidade->lapsofumigacion != 'Pendiente')
+                                @if ($unidade->fumigacion == 'Sin Fumigación')
+                                    @php
+                                        $sin_mantenimiento = $sin_mantenimiento + 1;
+                                    @endphp
+                                @else
+                                    @php
+                                        /* FECHA LICENCIA */
+                                        $vencimiento_dia = substr($unidade->lapsofumigacion, 8, 2);
+                                        $vencimiento_mes = substr($unidade->lapsofumigacion, 5, 2);
+                                        $vencimiento_año = substr($unidade->lapsofumigacion, 0, 4);
+                                        $vencimiento_mes = $vencimiento_mes + $unidade->frecuencia_fumiga;
+                                        if ($vencimiento_mes > 12) {
+                                            $vencimiento_año = $vencimiento_año + 1;
+                                            $vencimiento_mes = $vencimiento_mes - 12;
+                                        }
+                                        /* FECHA ACTUAL */
+                                        $año_actual = date('Y');
+                                        $mes_actual = date('n');
+                                        $dia_actual = date('d');
+                                        /* OBTIENE LA DIFERENCIA DE AÑO ENTRE FECHA ACTUAL Y FECHA A VENCER */
+                                        $diferencia_año = (int) $vencimiento_año - (int) $año_actual;
+                                        /* CALCULO DE NUMERO DE MESES ENTRE FECHA ACTUAL Y VENCIMIENTO */
+                                        $uno = 'nulo';
+                                        $calcular = 0;
+                                        $mes_contador = 1;
+                                        $dias_exactos = 1;
+                                        //cambio
+                                        if ($diferencia_año >= 1) {
+                                            $meses = $diferencia_año * 12 + 12;
+                                            $operacion_1 = $meses - (int) $mes_actual;
+                                            $operacion_2 = 12 - (int) $vencimiento_mes;
+                                            $operacion_3 = $operacion_1 - $operacion_2;
+                                            $meses = $operacion_3;
                                         } else {
+                                            if ($diferencia_año == 0) {
+                                                $meses = (int) $vencimiento_mes - (int) $mes_actual;
+                                            } else {
+                                                $mes_contador = 0;
+                                                $dias_exactos = 0;
+                                            }
+                                        }
+                                        if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
+                                            $uno = 'uno';
+                                            $calcular = 0;
+                                        } else {
+                                            $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
+                                            $direstantes = (int) $cantidaddias - (int) $dia_actual;
+                                            $calcular = $direstantes + (int) $vencimiento_dia;
+                                        }
+                                        /* CALCULO DE DIAS EXACTOS */
+                                        $contador_1 = 0;
+                                        $contador_2 = 0;
+                                        $cuenta_mes = $mes_actual;
+                                        $operacion_1 = 0;
+                                        if ($mes_contador == 1 && $dias_exactos == 1) {
                                             $mes_contador = 0;
                                             $dias_exactos = 0;
-                                        }
-                                    }
-                                    if ((int) $año_actual == (int) $vencimiento_año && (int) $mes_actual == (int) $vencimiento_mes) {
-                                        $uno = 'uno';
-                                        $calcular = 0;
-                                    } else {
-                                        $cantidaddias = cal_days_in_month(CAL_GREGORIAN, $mes_actual, $año_actual);
-                                        $direstantes = (int) $cantidaddias - (int) $dia_actual;
-                                        $calcular = $direstantes + (int) $vencimiento_dia;
-                                    }
-                                    /* CALCULO DE DIAS EXACTOS */
-                                    $contador_1 = 0;
-                                    $contador_2 = 0;
-                                    $cuenta_mes = $mes_actual;
-                                    $operacion_1 = 0;
-                                    if ($mes_contador == 1 && $dias_exactos == 1) {
-                                        $mes_contador = 0;
-                                        $dias_exactos = 0;
-                                        for ($i = 0; $i <= $meses; $i++) {
-                                            if ($uno == 'uno') {
-                                                $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
-                                                $i = $meses + 1;
-                                            } else {
-                                                if ($contador_1 == 0) {
-                                                    $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                    $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
-                                                    $dias_exactos = $dias_exactos + $operacion_2;
-                                                    $contador_1 = 1;
+                                            for ($i = 0; $i <= $meses; $i++) {
+                                                if ($uno == 'uno') {
+                                                    $dias_exactos = (int) $vencimiento_dia - (int) $dia_actual;
+                                                    $i = $meses + 1;
                                                 } else {
-                                                    if ($i == $meses) {
-                                                        $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
-                                                    } else {
+                                                    if ($contador_1 == 0) {
                                                         $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
-                                                        $dias_exactos = $dias_exactos + (int) $operacion_1;
-                                                        $mes_contador = $mes_contador + 1;
+                                                        $operacion_2 = (int) $operacion_1 - (int) $dia_actual;
+                                                        $dias_exactos = $dias_exactos + $operacion_2;
+                                                        $contador_1 = 1;
+                                                    } else {
+                                                        if ($i == $meses) {
+                                                            $dias_exactos = $dias_exactos + (int) $vencimiento_dia;
+                                                        } else {
+                                                            $operacion_1 = cal_days_in_month(CAL_GREGORIAN, $cuenta_mes, $año_actual + $contador_2);
+                                                            $dias_exactos = $dias_exactos + (int) $operacion_1;
+                                                            $mes_contador = $mes_contador + 1;
+                                                        }
+                                                    }
+                                                    if ($cuenta_mes == 12) {
+                                                        $contador_2 = $contador_2 + 1;
+                                                        $cuenta_mes = 1;
+                                                    } else {
+                                                        $cuenta_mes = $cuenta_mes + 1;
                                                     }
                                                 }
-                                                if ($cuenta_mes == 12) {
-                                                    $contador_2 = $contador_2 + 1;
-                                                    $cuenta_mes = 1;
-                                                } else {
-                                                    $cuenta_mes = $cuenta_mes + 1;
+                                            }
+                                            /* CALCULO DE MESES EXACTOS */
+
+                                            $dias_resto = $calcular;
+                                            $opc = 2;
+                                            for ($i = 0; $i <= $opc; $i++) {
+                                                if ($calcular >= 30) {
+                                                    $mes_contador = $mes_contador + 1;
+                                                    $calcular = $calcular - 30;
                                                 }
                                             }
                                         }
-                                        /* CALCULO DE MESES EXACTOS */
-
-                                        $dias_resto = $calcular;
-                                        $opc = 2;
-                                        for ($i = 0; $i <= $opc; $i++) {
-                                            if ($calcular >= 30) {
-                                                $mes_contador = $mes_contador + 1;
-                                                $calcular = $calcular - 30;
-                                            }
-                                        }
-                                    }
-                                @endphp
-                                {{-- ============================================================== --}}
-                                {{-- ========================== IF PARA MOSTRAR =================== --}}
-                                @if ($mes_contador >= 9)
-                                    @php
-                                        $azul = $azul + 1;
                                     @endphp
-                                @endif
-                                @if ($mes_contador >= 5 && $mes_contador <= 8)
-                                    @php
-                                        $verde = $verde + 1;
-                                    @endphp
-                                @endif
-                                @if ($mes_contador >= 2 && $mes_contador <= 4)
-                                    @php
-                                        $amarillo = $amarillo + 1;
-                                    @endphp
-                                @endif
-                                @if ($mes_contador == 1 && $uno == 'nulo')
-                                    @if ($calcular == 0)
+                                    {{-- ============================================================== --}}
+                                    {{-- ========================== IF PARA MOSTRAR =================== --}}
+                                    @if ($mes_contador >= 9)
                                         @php
-                                            $rojo = $rojo + 1;
+                                            $azul = $azul + 1;
                                         @endphp
-                                    @else
+                                    @endif
+                                    @if ($mes_contador >= 5 && $mes_contador <= 8)
+                                        @php
+                                            $verde = $verde + 1;
+                                        @endphp
+                                    @endif
+                                    @if ($mes_contador >= 2 && $mes_contador <= 4)
+                                        @php
+                                            $amarillo = $amarillo + 1;
+                                        @endphp
+                                    @endif
+                                    @if ($mes_contador == 1 && $uno == 'nulo')
+                                        @if ($calcular == 0)
+                                            @php
+                                                $rojo = $rojo + 1;
+                                            @endphp
+                                        @else
+                                            @php
+                                                $rojo = $rojo + 1;
+                                            @endphp
+                                        @endif
+                                    @endif
+                                    @if ($mes_contador == 1 && $uno == 'uno')
                                         @php
                                             $rojo = $rojo + 1;
                                         @endphp
                                     @endif
-                                @endif
-                                @if ($mes_contador == 1 && $uno == 'uno')
-                                    @php
-                                        $rojo = $rojo + 1;
-                                    @endphp
-                                @endif
-                                @if ($mes_contador == 0 && $dias_exactos > 0)
-                                    @php
-                                        $rojo = $rojo + 1;
-                                    @endphp
-                                @endif
-                                @if ($mes_contador == 0 && $dias_exactos <= 0)
-                                    @php
-                                        $expirado = $expirado + 1;
-                                    @endphp
+                                    @if ($mes_contador == 0 && $dias_exactos > 0)
+                                        @php
+                                            $rojo = $rojo + 1;
+                                        @endphp
+                                    @endif
+                                    @if ($mes_contador == 0 && $dias_exactos <= 0)
+                                        @php
+                                            $expirado = $expirado + 1;
+                                        @endphp
+                                    @endif
                                 @endif
                             @endif
                         @endforeach

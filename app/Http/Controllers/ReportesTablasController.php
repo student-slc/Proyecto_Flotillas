@@ -107,17 +107,17 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $fumigaciones = Fumigacione::all();
+            $fumigaciones = Fumigacione::orWhere('status', 'Realizado')->orWhere('status', 'Inactivo')->get();
             $unidades = Unidade::all();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $fumigaciones = Fumigacione::all();
+            $fumigaciones = Fumigacione::orWhere('status', 'Realizado')->orWhere('status', 'Inactivo')->get();
             $unidades = Unidade::all();
         }
         if ($rol == 'Usuario') {
-            $clientes = Cliente::where('nombrecompleto', '=', $usuario->clientes)->get();
-            $fumigaciones = Fumigacione::all();
+            $clientes = $usuario->clientes;
+            $fumigaciones = Fumigacione::orWhere('status', 'Realizado')->orWhere('status', 'Inactivo')->get();
             $unidades = Unidade::where('cliente', '=', $clientes)->get();
         }
         return view('tabla_reportes.reporte_semanal',  compact('unidades', 'fumigaciones', 'clientes'));
