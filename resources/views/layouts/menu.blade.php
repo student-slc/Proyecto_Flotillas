@@ -4,7 +4,7 @@
 @endphp
 <li class="side-menus">
 <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
-    <a class="nav-link active" href="/home" data-bs-toggle="tooltip" data-bs-placement="right"
+    <a class="nav-link active" href="{{ route('home') }}" data-bs-toggle="tooltip" data-bs-placement="right"
         title=" Dashboard Principal">
         <i class="fas fa-table"></i><span>Dashboard</span>
     </a>
