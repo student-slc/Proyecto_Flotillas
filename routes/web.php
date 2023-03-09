@@ -259,12 +259,12 @@ Route::controller(ReportesExcelController::class)->group(function(){
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 Route::post('pdf/reportes_satisfaccion', [App\Http\Controllers\ReportesPDFController::class, 'ReporteSatisfaccionPDF'])->name('pdf.reportes_satisfaccionpdf');
+
+Route::get('pdf/constancia/{fumigacione:id}/fumigacion', [App\Http\Controllers\ReportesPDFController::class, 'reporteIndividualFumigacion'])->name('pdf.constancia_fumigacion');
+
 /// ================================================== REPORTE ==================================================
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::get('/reportes_bd', [App\Http\Controllers\ReportesController::class, 'reporte_bd'])->name('tabla_reportes.reporte_bd');
-
-
-
 
 
 

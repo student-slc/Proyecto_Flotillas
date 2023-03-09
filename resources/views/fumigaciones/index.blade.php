@@ -88,6 +88,9 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                <a class="btn btn-sm btn-danger" href="{{ route('pdf.constancia_fumigacion', $fumigacione->id) }}">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </a>
                                                 <a class="btn btn-sm" style="background-color: #9dbad5"
                                                     href="{{ route('fumigaciones.edit', $fumigacione->id) }}">
                                                     <i class="fas fa-pencil-alt"></i></a>

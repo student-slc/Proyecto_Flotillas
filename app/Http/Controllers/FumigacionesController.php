@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FumigacionesRequest;
-use App\Models\Cliente;
-use App\Models\Fumigacione;
-use App\Models\Fumigadore;
-use Illuminate\Http\Request;
+use App\Models\{Cliente,Fumigacione,Fumigadore,Folio, Unidade};
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FumigacionesExport;
-use App\Imports\FumigacionesImport;
-use App\Models\Folio;
-use App\Models\Unidade;
+use PDF;
+
 
 class FumigacionesController extends Controller
 {
@@ -201,4 +197,6 @@ class FumigacionesController extends Controller
         Excel::import(new ClientesImport,request()->file('file'));
         return back();
     } */
+
+    
 }
