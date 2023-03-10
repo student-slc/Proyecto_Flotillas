@@ -33,73 +33,73 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="nombrecompleto">Nombre del Cliente</label>
-                                                <input type="text" name="nombrecompleto" class="form-control">
+                                                <input type="text" name="nombrecompleto" class="form-control" value="{{old('nombrecompleto')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="telefono">Telefono</label>
-                                                <input type="text" name="telefono" class="form-control">
+                                                <input type="text" name="telefono" class="form-control" value="{{old('telefono')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="nombrecompletoc">Nombre del Contacto</label>
-                                                <input type="text" name="nombrecompletoc" class="form-control">
+                                                <input type="text" name="nombrecompletoc" class="form-control" value="{{old('nombrecompletoc')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="telefonoc">Telefono Contacto</label>
-                                                <input type="text" name="telefonoc" class="form-control">
+                                                <input type="text" name="telefonoc" class="form-control" value="{{old('telefonoc')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="codigopostal">Codigo Postal</label>
-                                                <input type="text" name="codigopostal" class="form-control">
+                                                <input type="text" name="codigopostal" class="form-control"value="{{old('codigopostal')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="estado">Estado</label>
-                                                <input type="text" name="estado" class="form-control">
+                                                <input type="text" name="estado" class="form-control" value="{{old('estado')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="ciudad">Ciudad</label>
-                                                <input type="text" name="ciudad" class="form-control">
+                                                <input type="text" name="ciudad" class="form-control" value="{{old('ciudad')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="municipio">Municipio</label>
-                                                <input type="text" name="municipio" class="form-control">
+                                                <input type="text" name="municipio" class="form-control" value="{{old('municipio')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="colonia">Colonia</label>
-                                                <input type="text" name="colonia" class="form-control">
+                                                <input type="text" name="colonia" class="form-control" value="{{old('colonia')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="direccionfisica">Dirección</label>
-                                                <input type="text" name="direccionfisica" class="form-control">
+                                                <input type="text" name="direccionfisica" class="form-control" value="{{old('direccionfisica')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="correo">Correo</label>
-                                                <input type="text" name="correo" class="form-control">
+                                                <input type="text" name="correo" class="form-control" value="{{old('correo')}}">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="observaciones">Observaciones</label>
-                                                <textarea name="observaciones" id="observaciones" class="form-control" rows="7"></textarea>
+                                                <textarea name="observaciones" id="observaciones" class="form-control" rows="7">{{old('observaciones')}}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -126,31 +126,31 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="razonsocial">Razon Social</label>
-                                            <input type="text" name="razonsocial" class="form-control">
+                                            <input type="text" name="razonsocial" class="form-control" value="{{old('razonsocial')}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="rfc">RFC</label>
-                                            <input type="text" name="rfc" class="form-control">
+                                            <input type="text" name="rfc" class="form-control" value="{{old('rfc')}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="numero">Número</label>
-                                            <input type="text" name="numero" class="form-control">
+                                            <input type="text" name="numero" class="form-control" value="{{old('numero')}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="regimen_fiscal">Regimen Fiscal</label>
-                                            <input type="text" name="regimen_fiscal" class="form-control">
+                                            <input type="text" name="regimen_fiscal" class="form-control" value="{{old('regimen_fiscal')}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="sfdi">SFDI</label>
-                                            <input type="text" name="sfdi" class="form-control">
+                                            <input type="text" name="sfdi" class="form-control" value="{{old('sfid')}}">
                                         </div>
                                     </div>
                                     {{-- SERVICIOS --}}
