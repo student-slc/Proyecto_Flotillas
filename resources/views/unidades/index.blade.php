@@ -1602,16 +1602,32 @@
                                             @endif
                                         @endif
                                         @if ($unidade->lapsofumigacion == 'Pendiente')
-                                            <h6><span class="badge badge-warning"><a class="link-light"
-                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Fumigación
-                                                        <br>Pendiente</a></span>
-                                            </h6>
+                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                <h6><span class="badge badge-warning"><a class="link-light"
+                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Fumigación
+                                                            <br>Pendiente</a></span>
+                                                </h6>
+                                            @endif
+                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                <h6><span class="badge badge-warning"><a class="link-light"
+                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Fumigación
+                                                            <br>Pendiente</a></span>
+                                                </h6>
+                                            @endif
                                         @endif
                                         @if ($unidade->lapsofumigacion == 'Reprogramado')
-                                            <h6><span class="badge badge-warning"><a class="link-light"
-                                                        href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Fumigación
-                                                        <br>Reprogramada</a></span>
-                                            </h6>
+                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                <h6><span class="badge badge-warning"><a class="link-light"
+                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->direccion) }}">Fumigación
+                                                            <br>Reprogramado</a></span>
+                                                </h6>
+                                            @endif
+                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                <h6><span class="badge badge-warning"><a class="link-light"
+                                                            href="{{ route('fumigaciones.show', $unidad = $unidade->serieunidad) }}">Fumigación
+                                                            <br>Reprogramado</a></span>
+                                                </h6>
+                                            @endif
                                         @endif
                                     </td>
                                     @can('editar-unidades', 'borrar-unidades')

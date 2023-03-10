@@ -48,6 +48,7 @@ class FumigacionesRequest extends FormRequest
             "carcamo" => 'required',
             "tipo" => 'required',
             "observaciones" => 'required',
+            "proxima_fumigacion"=> 'required',
         ];
     }
     public function messages()
@@ -77,6 +78,8 @@ class FumigacionesRequest extends FormRequest
             "carcamo.required" => 'El INSECTO es Obligatorio',
             "tipo.required" => 'El Tipo es Obligatorio',
             "observaciones.required" => 'Las Observaciones son Obligatorias',
+            "proxima_fumigacion.required"=> 'Proxima Fumigación Requerida',
+
         ];
     }
 }

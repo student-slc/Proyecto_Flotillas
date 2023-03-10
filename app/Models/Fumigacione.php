@@ -33,5 +33,6 @@ class Fumigacione extends Model
         "carcamo",
         "tipo",
         "observaciones",
+        "proxima_fumigacion"
     ];
 }

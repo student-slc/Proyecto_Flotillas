@@ -12,8 +12,32 @@ use App\Exports\FumigacionesExport;
 use App\Imports\FumigacionesImport;
 use App\Models\Folio;
 use App\Models\Unidade;
+use Carbon\Carbon;
 
-class FumigacionesController extends Controller
+class Metodos extends Controller
+{
+    public function CalculoFechas($unidad, $fecha)
+    {
+        $frecuencia = "";
+        if (Unidade::where('serieunidad', '=', $unidad)->exists()) {
+            $unidades = Unidade::where('serieunidad', '=', $unidad)->get();
+        }
+        if (Unidade::where('direccion', '=', $unidad)->exists()) {
+            $unidades = Unidade::where('direccion', '=', $unidad)->get();
+        }
+        foreach ($unidades as $unidad) {
+            $frecuencia = $unidad->frecuencia_fumiga;
+        }
+        /* ----------------------- OBTENER FECHA POR DIA-MES-AÑO ------------------------*/
+        $fecha_fumigacion=substr($fecha, 0, 10);
+        /* ------------------------------------------------------------------------------- */
+        /* ----------------------- CALCULO DE FECHA DE VENCIMIENTO ----------------------- */
+        $fecha = Carbon::parse($fecha_fumigacion);
+        $fecha_final = $fecha->addMonths($frecuencia);
+        return $fecha_final->toDateString();
+    }
+}
+class FumigacionesController extends Metodos
 {
     /**
      * Display a listing of the resource.
@@ -45,18 +69,38 @@ class FumigacionesController extends Controller
         $unidades = Unidade::orWhere('direccion', '=', $unidad)
             ->orWhere('serieunidad', '=', $unidad)
             ->get();
-        foreach ($unidades as $unidade) {
-            $tipo = $unidade->tipo;
-            $lugar = $unidade->direccion;
-            $cliente = $unidade->cliente;
+        /* --------------------------- OBTENER ULTIMA FUMIGACION --------------------------- */
+        $fumigacion = "";
+        $tipo = "";
+        $lugar = "";
+        $cliente = "";
+        foreach ($unidades as $unidad_prueba) {
+            $fumigacion = $unidad_prueba->fumigacion;
+            $tipo = $unidad_prueba->tipo;
+            $lugar = $unidad_prueba->direccion;
+            $cliente = $unidad_prueba->cliente;
         }
+        if ($fumigacion != "Sin Fumigación") {
+            $fumigaciones = Fumigacione::where("numerofumigacion", "=", $fumigacion)->get();
+            foreach ($fumigaciones as $fumigaciones_prueba) {
+                $fumigacion = $fumigaciones_prueba->fechaprogramada;
+                $dia = substr($fumigacion, 8, 2);
+                $mes = substr($fumigacion, 5, 2);
+                $año = substr($fumigacion, 0, 4);
+                $hora = substr($fumigacion, 11, 5);
+                $fumigacion = "" . $dia . "-" . $mes . "-" . $año . "  " . $hora;
+            }
+        } else {
+            $fumigacion = "Sin Fumigación Previa";
+        }
+        /* --------------------------------------------------------------------------------- */
         $clientes = Cliente::where('nombrecompleto', '=', $cliente)->get();
         foreach ($clientes as $cliente) {
             $pcliente = $cliente->nombrecompleto;
             $direccion = $cliente->direccionfisica;
         }
         $fumigadores = Fumigadore::all();
-        return view('fumigaciones.crear', compact('unidad', 'fumigadores', 'tipo', 'lugar', 'pcliente', 'direccion', 'folios'));
+        return view('fumigaciones.crear', compact('unidad', 'fumigadores', 'tipo', 'lugar', 'pcliente', 'direccion', 'folios', 'fumigacion'));
     }
 
     /**
@@ -74,6 +118,11 @@ class FumigacionesController extends Controller
         if ($request->validated()  && $estado == 'Realizado') {
             $cambio = Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->update(["status" => "Inactivo"]);
         }
+        /* ---------------------------------------- PROXIMA_FUMIGACION ---------------------------------------- */
+        $fecha = $request->fechaprogramada;
+        $proxima_fumigacion = Metodos::CalculoFechas($unidad, $fecha);
+        $request->merge(['proxima_fumigacion' => '' . $proxima_fumigacion]);
+        /* ---------------------------------------------------------------------------------------------------- */
         /* ---------------------------------------------- FOLIOS ---------------------------------------------- */
         foreach ($folios as $folio) {
             $contador = $folio->contador;
@@ -110,6 +159,7 @@ class FumigacionesController extends Controller
                 "carcamo" => $request['carcamo'],
                 "tipo" => $request['tipo'],
                 "observaciones" => $request['observaciones'],
+                "proxima_fumigacion" => $request['proxima_fumigacion'],
             ]
         );
         if ($estado == 'Realizado') {

@@ -29,6 +29,15 @@
                             <form action="{{ route('fumigaciones.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
+                                    {{-- ================ DATOS OCULTOS ================ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="proxima_fumigacion">Proxima Fumigación</label>
+                                            <input type="text" name="proxima_fumigacion" class="form-control"
+                                                value="0">
+                                        </div>
+                                    </div>
+                                    {{-- ================================================ --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label class="label" for="numerofumigacion">Folio De Fumigación</label>
@@ -92,6 +101,13 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
+                                            <label for="fechaultimafumigacion">Fecha ultima fumigacion</label>
+                                            <input type="text" name="fechaultimafumigacion" class="form-control"
+                                                value="{{ $fumigacion }}" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
                                             <label for="id_fumigador">Fumigador</label>
                                             <select name="id_fumigador" id="id_fumigador" class=" selectsearch">
                                                 <option disabled selected value="">Selecciona el Fumigador</option>
@@ -111,13 +127,6 @@
                                             <label for="fechaprogramada">Fecha de Servicio</label>
                                             <input type="datetime-local" name="fechaprogramada" class="form-control"
                                                 min="{{ date('Y-n-d') }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="fechaultimafumigacion">Fecha ultima fumigacion</label>
-                                            <input type="text" name="fechaultimafumigacion" class="form-control"
-                                                value="{{ $fecha_actual }}" readonly="readonly">
                                         </div>
                                     </div>
                                     {{-- MOSTRAR SI ES V O H --}}

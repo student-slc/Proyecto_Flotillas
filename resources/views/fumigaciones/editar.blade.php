@@ -31,6 +31,15 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
+                                    {{-- ================ DATOS OCULTOS ================ --}}
+                                    <div class="col-xs-12 col-sm-12 col-md-12" hidden>
+                                        <div class="form-group">
+                                            <label for="proxima_fumigacion">Proxima Fumigación</label>
+                                            <input type="text" name="proxima_fumigacion" class="form-control"
+                                            value="{{ $fumigacione->proxima_fumigacion }}">
+                                        </div>
+                                    </div>
+                                    {{-- ================================================ --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="numerofumigacion">Folio de Fumigación</label>

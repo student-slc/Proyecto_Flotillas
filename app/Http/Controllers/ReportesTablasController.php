@@ -8,7 +8,6 @@ use App\Models\Unidade;
 use App\Models\Cliente;
 use App\Models\Verificacione;
 use Illuminate\Http\Request;
-
 class ReportesTablasController extends Controller
 {
     /* ============================================= REPORTES ================================================= */
@@ -129,17 +128,17 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $fumigaciones = Fumigacione::all();
+            $fumigaciones = Fumigacione::where('status', 'Realizado')->get();
             $unidades = Unidade::all();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $fumigaciones = Fumigacione::all();
+            $fumigaciones = Fumigacione::where('status', 'Realizado')->get();
             $unidades = Unidade::all();
         }
         if ($rol == 'Usuario') {
-            $clientes = Cliente::where('nombrecompleto', '=', $usuario->clientes)->get();
-            $fumigaciones = Fumigacione::all();
+            $clientes = $usuario->clientes;
+            $fumigaciones = Fumigacione::where('status', 'Realizado')->get();
             $unidades = Unidade::where('cliente', '=', $clientes)->get();
         }
         return view('tabla_reportes.reporte_dia', compact('unidades', 'fumigaciones', 'clientes'));

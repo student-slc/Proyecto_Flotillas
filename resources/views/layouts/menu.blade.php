@@ -15,10 +15,10 @@
         <li><a href="{{ route('tabla_reportes.reporte_flotilla') }}">Flotilla</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_seguros') }}">Seguros de Resp. Civil</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_veri') }}">Verificación Vehicular</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_fumigaciones') }}">Fumigaciones</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_semanal') }}"> Fum. Semanal/mensual</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_dia') }}">Servicios al Día</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_servicios') }}">Servicios de la Semana</a></li>
+        <li><a href="{{ route('tabla_reportes.reporte_fumigaciones') }}">Fumigaciones Acumuladas</a></li>
+        <li><a href="{{ route('tabla_reportes.reporte_semanal') }}">Fumigaciones Realizadas</a></li>
+        <li><a href="{{ route('tabla_reportes.reporte_dia') }}">Fumigaciones Proximas</a></li>
+        {{-- <li><a href="{{ route('tabla_reportes.reporte_servicios') }}">Fumigadores</a></li> --}}
         <li><a href="{{ route('tabla_reportes.reporte_individualv') }}">Individual Vehicular</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_individual') }}">Individual Operador</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_satisfaccion') }}">Satisfacción de Serv. Fum.</a></li>
