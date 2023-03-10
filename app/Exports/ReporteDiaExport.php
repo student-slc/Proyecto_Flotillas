@@ -15,7 +15,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
-class ReporteDiaExport implements FromCollection, WithHeadings
+class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -49,19 +49,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -74,19 +73,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -99,19 +97,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -130,19 +127,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -156,19 +152,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -182,19 +177,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -215,19 +209,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -241,19 +234,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -267,19 +259,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -299,19 +290,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -326,19 +316,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -353,19 +342,18 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -387,20 +375,19 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -413,20 +400,19 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -439,20 +425,19 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -470,21 +455,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -497,21 +481,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -524,21 +507,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -559,20 +541,19 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -586,20 +567,19 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -613,20 +593,19 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -645,21 +624,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -673,21 +651,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -701,21 +678,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
+                                ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                                 ->where('unidades.id', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
                                     'fumigaciones.numerofumigacion',
                                     'fumigaciones.fechaprogramada',
+                                    'fumigaciones.proxima_fumigacion',
                                     'fumigaciones.id_fumigador',
                                     'fumigaciones.unidad',
                                     'unidades.frecuencia_fumiga',
                                     'fumigaciones.status',
                                     'unidades.marca',
-                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
@@ -738,21 +714,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             }
                         )
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -765,21 +740,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                         return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -792,21 +766,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                         return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -824,22 +797,21 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             }
                         )
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -852,22 +824,21 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                         return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -880,22 +851,21 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                         return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -916,21 +886,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                         )
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('clientes.nombrecompleto', '=', $cli)
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -944,21 +913,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->where('clientes.nombrecompleto', '=', $cli)
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -972,21 +940,20 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('clientes.nombrecompleto', '=', $cli)
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -1005,22 +972,21 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                         )
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('clientes.nombrecompleto', '=', $cli)
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -1034,22 +1000,21 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->where('clientes.nombrecompleto', '=', $cli)
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -1063,22 +1028,21 @@ class ReporteDiaExport implements FromCollection, WithHeadings
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('clientes.nombrecompleto', '=', $cli)
-                            ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                            ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
+                            ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
                             ->where('unidades.id', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
                                 'fumigaciones.numerofumigacion',
                                 'fumigaciones.fechaprogramada',
+                                'fumigaciones.proxima_fumigacion',
                                 'fumigaciones.id_fumigador',
                                 'fumigaciones.unidad',
                                 'unidades.frecuencia_fumiga',
                                 'fumigaciones.status',
                                 'unidades.marca',
-                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
@@ -1095,7 +1059,8 @@ class ReporteDiaExport implements FromCollection, WithHeadings
     {
         return [
             "ID ClIENTE", "CLIENTE", "FOLIO FUMIGACION",
-            "EXPIRACIÓN DE FUMIGACION", "FUMIGADOR", "UNIDAD", "FRECUENCIA DE FUMIGACIÓN","STATUS", "MARCA", "SERIE UNIDAD",
+            "ULTIMA FUMIGACIÓN", "PROXIMA FUMIGACIÓN", "FUMIGADOR", "PLACAS / DIRECCIÓN",
+            "FRECUENCIA DE FUMIGACIÓN", "STATUS", "MARCA",
             "AÑO UNIDAD", "PLACAS", "TIPO", "RAZON SOCIAL",
             "RAZON SOCIAL CLIENTE", "DIRECCION FISICA CLIENTE"
         ];

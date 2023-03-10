@@ -112,9 +112,9 @@ class ReportesExcelController extends Controller
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
         if ($cli == 'todos') {
-            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Dia.xlsx');
+            return (new ReporteDiaExport($cli, $inicio, $final, $unidad, $tipou))->download('Reportes_Realizados.xlsx');
         } else {
-            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Dia_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteDiaExport($cli, $inicio, $final, $unidad, $tipou))->download('Reportes_Realizados_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_serviciosexcel(Request $request)
