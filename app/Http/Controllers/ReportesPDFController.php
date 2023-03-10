@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unidade;
-use App\Models\Verificacione;
-use App\Models\Fumigacione;
-use App\Models\Operadore;
+use App\Models\{Unidade, Fumigacione, Operadore, Verificacione};
 use Illuminate\Http\Request;
 use PDF;
 
@@ -5368,5 +5365,15 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
         return $pdf->download('Reporte_Servicio.pdf');
+    }
+
+    public function reporteIndividualFumigacion($id)
+    {
+        $fumigacion = Fumigacione::findOrFail($id);
+       //dd($fumigacion);
+        $pdf = PDF::loadView('pdf.constancia_fumigacion', ['fumigacion' => $fumigacion]);
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->render();
+        return $pdf->stream('Constancia');
     }
 }
