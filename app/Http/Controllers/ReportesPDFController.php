@@ -5182,6 +5182,51 @@ class Metodos extends Controller
             }
         }
     }
+    public function ConstanciaFumigacion($id)
+    {
+        return Fumigacione::join(
+            'unidades',
+            function ($join) {
+                $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+            }
+        )
+            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+            ->where('fumigaciones.status', 'Realizado')
+            ->where('fumigaciones.id', $id)
+            ->select(
+                'clientes.id',
+                'clientes.nombrecompleto',
+                'fumigaciones.numerofumigacion',
+                'fumigaciones.tipo',
+                'fumigaciones.lugardelservicio',
+                'fumigaciones.observaciones',
+                'fumigaciones.fechaprogramada',
+                'fumigaciones.proxima_fumigacion',
+                'fumigaciones.id_fumigador',
+                'fumigaciones.unidad',
+                'unidades.frecuencia_fumiga',
+                'fumigaciones.status',
+                'unidades.marca',
+                'unidades.añounidad',
+                'unidades.placas',
+                'unidades.razonsocialunidad',
+                'clientes.razonsocial',
+                'clientes.direccionfisica',
+                "insectosvoladores",
+                "fumigaciones.pulgas",
+                "fumigaciones.aracnidos",
+                "fumigaciones.roedores",
+                "fumigaciones.insectosrastreros",
+                "fumigaciones.mosca",
+                "fumigaciones.hormigas",
+                "fumigaciones.alacranes",
+                "fumigaciones.cucaracha",
+                "fumigaciones.chinches",
+                "fumigaciones.termitas",
+                "fumigaciones.carcamo",
+            )
+            ->get();
+    }
 }
 class ReportesPDFController extends Metodos
 {
@@ -5369,11 +5414,14 @@ class ReportesPDFController extends Metodos
 
     public function reporteIndividualFumigacion($id)
     {
-        $fumigacion = Fumigacione::findOrFail($id);
-       //dd($fumigacion);
-        $pdf = PDF::loadView('pdf.constancia_fumigacion', ['fumigacion' => $fumigacion]);
-        $pdf->setPaper('A4', 'portrait');
+        $fumigaciones = Metodos::ConstanciaFumigacion($id);
+        /* $fumigacion = Fumigacione::findOrFail($id); */
+        $pdf = PDF::loadView('pdf.constancia_fumigacion', [
+            'fumigaciones' => $fumigaciones,
+        ]);
+        $pdf->setPaper(array(0, 0, 638, 888), 'portrait');
         $pdf->render();
-        return $pdf->stream('Constancia');
+        /* return $pdf->stream('Constancia_de_fumigación'); */
+        return $pdf->download('Constancia_de_fumigación.pdf');
     }
 }
