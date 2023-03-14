@@ -16,6 +16,7 @@ use App\Exports\ReporteIndividualVExport;
 use App\Exports\ReporteSatisfaccionExport;
 use App\Exports\ReporteSemanalExport;
 use App\Exports\ReporteVeriExport;
+use App\Exports\ReporteVerificacionesExport;
 use App\Exports\ReposteSegurosExport;
 use App\Models\Fumigacione;
 
@@ -23,6 +24,19 @@ class ReportesExcelController extends Controller
 {
     /* ============================================= EXCELES FUNCIONES ============================================= */
     public function reporte_flotillasexcel(Request $request)
+    {
+        /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        if ($cli == 'todos') {
+            return (new ReporteFlotillasExport($cli, $inicio, $final, $unidad))->download('Reporte_Flotillas.xlsx');
+        } else {
+            return (new ReporteFlotillasExport($cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_' . str_replace(' ', '_', $cli) . '.xlsx');
+        }
+    }
+    public function reporte_verificacionesexcel(Request $request)
     {
         /* return (new SegurosExport($unidad))->download('Seguros_unidad_' . $unidad . '.xlsx'); */
         $tipo = $request['filtroveri'];
@@ -32,23 +46,23 @@ class ReportesExcelController extends Controller
         $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
             if ($tipo == 'Ambiental') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambientales.xlsx');
+                return (new ReporteVerificacionesExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambientales.xlsx');
             }
             if ($tipo == 'Fisica') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_F_Mecanicas.xlsx');
+                return (new ReporteVerificacionesExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_F_Mecanicas.xlsx');
             }
             if ($tipo == 'Ambas') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambas_Veri.xlsx');
+                return (new ReporteVerificacionesExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambas_Veri.xlsx');
             }
         } else {
             if ($tipo == 'Ambiental') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
+                return (new ReporteVerificacionesExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
             }
             if ($tipo == 'Fisica') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
+                return (new ReporteVerificacionesExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
             }
             if ($tipo == 'Ambas') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
+                return (new ReporteVerificacionesExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
             }
         }
     }
@@ -63,19 +77,6 @@ class ReportesExcelController extends Controller
             return (new ReposteSegurosExport($cli, $inicio, $final, $unidad))->download('Reporte_Seguros.xlsx');
         } else {
             return (new ReposteSegurosExport($cli, $inicio, $final, $unidad))->download('Reporte_Seguros_' . str_replace(' ', '_', $cli) . '.xlsx');
-        }
-    }
-    public function reporte_veriexcel(Request $request)
-    {
-        /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
-        $cli = $request['filtrocli'];
-        $final = "" . $request['filtrofechafinal'];
-        $inicio = "" . $request['filtrofechainicio'];
-        $unidad = "" . $request['filtrounid'];
-        if ($cli == 'todos') {
-            return (new ReporteVeriExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones.xlsx');
-        } else {
-            return (new ReporteVeriExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_fumigacionesexcel(Request $request)

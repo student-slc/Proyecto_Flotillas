@@ -179,17 +179,25 @@ Route::post('/informacion_unidades',function(){return view('checklist.unidades')
 ///--------------------------------------CHECKLIST UNIDADES--------------------------------------------------------------------
 Route::post('/informacion_operadores',function(){return view('checklist.operadores');})->name('checklist.infooperadores');
 /* -------------------------------------------------------- //BUG: REPORTES_Y_EXCELES -------------------------------------------------------- */
-/// ================================================== REPORTE ==================================================
-Route::get('/reportes_flotillas', [App\Http\Controllers\ReportesTablasController::class, 'reporte_flotilla'])->name('tabla_reportes.reporte_flotilla');
-///EXCEL FLOTILLAS
-Route::controller(ReportesExcelController::class)->group(function(){
-    Route::post('/reportes_flotillas/excel', 'reporte_flotillasexcel')->name('tabla_reportes.reporte_flotillasexcel');
-    /* Route::post('log-import', 'import')->name('log.import'); */
-});
-Route::post('pdf/reportes_flotillas', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFlotillaPDF'])->name('pdf.reporte_flotillaspdf');
 Route::post('pdf/datos_unidades',function(){return view('pdf.datos_unidades');})->name('pdf.datos_unidades');
 Route::post('pdf/datos_operadores',function(){return view('pdf.datos_operadores');})->name('pdf.datos_operadores');
 Route::post('pdf/datos_unidades_ambas',function(){return view('pdf.datos_unidades_ambas');})->name('pdf.datos_unidades_ambas');
+/// ================================================== REPORTE ==================================================
+Route::get('/reporte_flotillas', [App\Http\Controllers\ReportesTablasController::class, 'reporte_flotillas'])->name('tabla_reportes.reporte_flotillas');
+///EXCEL SEGUROS
+Route::controller(ReportesExcelController::class)->group(function(){
+    Route::post('/reporte_flotillas/excel', 'reporte_flotillasexcel')->name('tabla_reportes.reporte_flotillasexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+Route::post('pdf/reporte_flotillas', [App\Http\Controllers\ReportesPDFController::class, 'ReporteFlotillasPDF'])->name('pdf.reporte_flotillaspdf');
+/// ================================================== REPORTE ==================================================
+Route::get('/reportes_verificaciones', [App\Http\Controllers\ReportesTablasController::class, 'reporte_verificaciones'])->name('tabla_reportes.reporte_verificaciones');
+///EXCEL FLOTILLAS
+Route::controller(ReportesExcelController::class)->group(function(){
+    Route::post('/reportes_verificaciones/excel', 'reporte_verificacionesexcel')->name('tabla_reportes.reporte_verificacionesexcel');
+    /* Route::post('log-import', 'import')->name('log.import'); */
+});
+Route::post('pdf/reportes_verificaciones', [App\Http\Controllers\ReportesPDFController::class, 'ReporteVerificacionesPDF'])->name('pdf.reporte_verificacionespdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_seguros', [App\Http\Controllers\ReportesTablasController::class, 'reporte_seguros'])->name('tabla_reportes.reporte_seguros');
 ///EXCEL SEGUROS
@@ -198,14 +206,6 @@ Route::controller(ReportesExcelController::class)->group(function(){
     /* Route::post('log-import', 'import')->name('log.import'); */
 });
 Route::post('pdf/reportes_seguros', [App\Http\Controllers\ReportesPDFController::class, 'ReporteSegurosPDF'])->name('pdf.reporte_segurospdf');
-/// ================================================== REPORTE ==================================================
-Route::get('/reportes_verificaciones', [App\Http\Controllers\ReportesTablasController::class, 'reporte_veri'])->name('tabla_reportes.reporte_veri');
-///EXCEL SEGUROS
-Route::controller(ReportesExcelController::class)->group(function(){
-    Route::post('/reportes_verificaciones/excel', 'reporte_veriexcel')->name('tabla_reportes.reporte_veriexcel');
-    /* Route::post('log-import', 'import')->name('log.import'); */
-});
-Route::post('pdf/reportes_veri', [App\Http\Controllers\ReportesPDFController::class, 'ReporteVeriPDF'])->name('pdf.reporte_veripdf');
 /// ================================================== REPORTE ==================================================
 Route::get('/reportes_preventivo', [App\Http\Controllers\ReportesTablasController::class, 'reporte_preventivo'])->name('tabla_reportes.reporte_preventivo');
 /// ================================================== REPORTE ==================================================

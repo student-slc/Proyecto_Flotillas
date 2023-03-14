@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    REPORTE VERIFICACIONES
+    REPORTE FLOTILLAS
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Reporte Verificaciones</h3>
+            <h3 class="page__heading">Reporte Flotillas</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -48,7 +48,6 @@
                                     </div>
                                 </div>
                                 <br>
-                                {{-- PARTICULAR --}}
                                 @can('particular-rol')
                                     <div class="row">
                                         <div class="card-deck mt-6">
@@ -75,21 +74,6 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="card-deck mt-6">
-                                            <div class="card col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                        style="width:100%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
-                                                        <option value="Ambiental">Verificaciones Ambientales</option>
-                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endcan
                                 {{-- GENERAL --}}
                                 @can('general-rol')
@@ -117,26 +101,12 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="card-deck mt-6">
-                                            <div class="card col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                        style="width:100%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
-                                                        <option value="Ambiental">Verificaciones Ambientales</option>
-                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endcan
                             </form>
                             <br>
+                            <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <thead style="background-color: #9dbad5">
+                                <thead style="background-color:#95b8f6">
                                     <th style="color:#fff;">Id Cliente</th>
                                     <th style="color:#fff;">Cliente</th>
                                     <th style="color:#fff;">Marca</th>
@@ -146,27 +116,19 @@
                                     <th style="color:#fff;">Tipo Unidad</th>
                                     <th style="color:#fff;">Razon Social Unidad</th>
                                     <th style="color:#fff;">Digito Placa</th>
-                                    <th style="color:#fff;">Folio Verificación</th>
-                                    <th style="color:#fff;">Tipo Verificación</th>
-                                    <th style="color:#fff;">Subtipo Verificación</th>
-                                    <th style="color:#fff;">Ultima Verificación</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($unidades as $unidade)
                                         <tr>
-                                            <td> {{ $unidade->id }} </td>
-                                            <td> {{ $unidade->nombrecompleto }} </td>
-                                            <td> {{ $unidade->marca }} </td>
-                                            <td> {{ $unidade->serieunidad }} </td>
-                                            <td> {{ $unidade->añounidad }} </td>
-                                            <td> {{ $unidade->placas }} </td>
-                                            <td> {{ $unidade->tipounidad }} </td>
-                                            <td> {{ $unidade->razonsocialunidad }} </td>
-                                            <td> {{ $unidade->digitoplaca }} </td>
-                                            <td> {{ $unidade->noverificacion }} </td>
-                                            <td> {{ $unidade->tipoverificacion }} </td>
-                                            <td> {{ $unidade->subtipoverificacion }} </td>
-                                            <td> {{ $unidade->ultimaverificacion }} </td>
+                                            <td>{{ $unidade->id }}</td>
+                                            <td>{{ $unidade->nombrecompleto }}</td>
+                                            <td>{{ $unidade->marca }}</td>
+                                            <td>{{ $unidade->serieunidad }}</td>
+                                            <td>{{ $unidade->añounidad }}</td>
+                                            <td>{{ $unidade->placas }}</td>
+                                            <td>{{ $unidade->tipounidad }}</td>
+                                            <td>{{ $unidade->razonsocialunidad }}</td>
+                                            <td>{{ $unidade->digitoplaca }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

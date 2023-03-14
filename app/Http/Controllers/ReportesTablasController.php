@@ -12,7 +12,63 @@ use Illuminate\Http\Request;
 class ReportesTablasController extends Controller
 {
     /* ============================================= REPORTES ================================================= */
-    public function reporte_flotilla()
+    public function reporte_flotillas()
+    {
+        $usuario = \Auth::user();
+        $rol = $usuario->rol;
+        $user = $usuario->name;
+        if ($rol == 'SuperAdministrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                )->get();
+        }
+        if ($rol == 'Administrador') {
+            $clientes = Cliente::all();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                )->get();
+        }
+        if ($rol == 'Usuario') {
+            $clientes = $usuario->clientes;
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->where('cliente', '=', $clientes)
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                )->get();;
+        }
+        return view('tabla_reportes.reporte_flotillas', compact('unidades', 'clientes'));
+    }
+    public function reporte_verificaciones()
     {
         $usuario = \Auth::user();
         $rol = $usuario->rol;
@@ -69,7 +125,7 @@ class ReportesTablasController extends Controller
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $unidades =Unidade::join(
+            $unidades = Unidade::join(
                 'verificaciones',
                 function ($join) {
                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
@@ -93,8 +149,7 @@ class ReportesTablasController extends Controller
                     'verificaciones.ultimaverificacion',
                 )->get();
         }
-       /*  $verificaciones = Verificacione::all(); */
-        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'clientes'));
+        return view('tabla_reportes.reporte_verificaciones', compact('unidades', 'clientes'));
     }
     public function reporte_seguros()
     {
@@ -114,26 +169,6 @@ class ReportesTablasController extends Controller
             $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
         }
         return view('tabla_reportes.reporte_seguros', compact('unidades', 'clientes'));
-    }
-    public function reporte_veri()
-    {
-        $usuario = \Auth::user();
-        $rol = $usuario->rol;
-        $user = $usuario->name;
-        if ($rol == 'SuperAdministrador') {
-            $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        }
-        if ($rol == 'Administrador') {
-            $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
-        }
-        if ($rol == 'Usuario') {
-            $clientes = $usuario->clientes;
-            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
-        }
-        $verificaciones = Verificacione::all();
-        return view('tabla_reportes.reporte_veri', compact('unidades', 'verificaciones', 'clientes'));
     }
     public function reporte_preventivo()
     {
