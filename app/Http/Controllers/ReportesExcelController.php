@@ -14,6 +14,7 @@ use App\Exports\ReporteFumigacionesExport;
 use App\Exports\ReporteIndividualExport;
 use App\Exports\ReporteIndividualVExport;
 use App\Exports\ReporteSatisfaccionExport;
+use App\Exports\ReporteSegurosExport;
 use App\Exports\ReporteSemanalExport;
 use App\Exports\ReporteVeriExport;
 use App\Exports\ReporteVerificacionesExport;
@@ -74,9 +75,9 @@ class ReportesExcelController extends Controller
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
-            return (new ReposteSegurosExport($cli, $inicio, $final, $unidad))->download('Reporte_Seguros.xlsx');
+            return (new ReporteSegurosExport($cli, $inicio, $final, $unidad))->download('Reporte_Seguros.xlsx');
         } else {
-            return (new ReposteSegurosExport($cli, $inicio, $final, $unidad))->download('Reporte_Seguros_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteSegurosExport($cli, $inicio, $final, $unidad))->download('Reporte_Seguros_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_fumigacionesexcel(Request $request)

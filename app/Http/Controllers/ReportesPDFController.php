@@ -1109,100 +1109,124 @@ class Metodos extends Controller
         }
         /* ============================================================================== */
     }
-    public function UnidadesCFIU($cli, $final, $inicio, $unidad)
+    public function Reporte_Seguros($cli, $final, $inicio, $unidad)
     {
         if ($inicio == null) {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
                         ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'unidades.marca',
+                            'unidades.serieunidad',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.tipounidad',
+                            'unidades.razonsocialunidad',
+                            'unidades.digitoplaca',
+                            'unidades.seguro_fecha',
                         )->get();
                 } else {
                     if ($unidad == 'todos') {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('unidades.cliente', '=', $cli)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     } else {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('unidades.cliente', '=', $cli)
                             ->where('unidades.id', '=', $unidad)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                        ->whereDate('seguro_fecha', '<=', $final)
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                        ->whereDate('unidades.seguro_fecha', '<=', $final)
                         ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'unidades.marca',
+                            'unidades.serieunidad',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.tipounidad',
+                            'unidades.razonsocialunidad',
+                            'unidades.digitoplaca',
+                            'unidades.seguro_fecha',
                         )->get();
                 } else {
                     if ($unidad == "todos") {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->whereDate('seguro_fecha', '<=', $final)
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->whereDate('unidades.seguro_fecha', '<=', $final)
+                            ->where('unidades.cliente', '=', $cli)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     } else {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('unidades.cliente', '=', $cli)
                             ->where('unidades.id', '=', $unidad)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     }
                 }
@@ -1210,106 +1234,129 @@ class Metodos extends Controller
         } else {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                        ->whereDate('seguro_fecha', '>=', $inicio)
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                        ->whereDate('unidades.seguro_fecha', '>=', $inicio)
                         ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'unidades.marca',
+                            'unidades.serieunidad',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.tipounidad',
+                            'unidades.razonsocialunidad',
+                            'unidades.digitoplaca',
+                            'unidades.seguro_fecha',
                         )->get();
                 } else {
                     if ($unidad == "todos") {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->where('cliente', '=', $cli)
-                            ->whereDate('seguro_fecha', '>=', $inicio)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->whereDate('unidades.seguro_fecha', '>=', $inicio)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     } else {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('unidades.cliente', '=', $cli)
                             ->where('unidades.id', '=', $unidad)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                        ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                        ->whereDate('seguro_fecha', '>=', $inicio)
-                        ->whereDate('seguro_fecha', '<=', $final)
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                        ->whereDate('unidades.seguro_fecha', '>=', $inicio)
+                        ->whereDate('unidades.seguro_fecha', '<=', $final)
                         ->select(
-                            'cliente',
-                            'marca',
-                            'serieunidad',
-                            'añounidad',
-                            'placas',
-                            'tipounidad',
-                            'razonsocialunidad',
-                            'seguro_fecha'
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'unidades.marca',
+                            'unidades.serieunidad',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.tipounidad',
+                            'unidades.razonsocialunidad',
+                            'unidades.digitoplaca',
+                            'unidades.seguro_fecha',
                         )->get();
                 } else {
                     if ($unidad == "todos") {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->whereDate('seguro_fecha', '>=', $inicio)
-                            ->whereDate('seguro_fecha', '<=', $final)
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->whereDate('unidades.seguro_fecha', '>=', $inicio)
+                            ->whereDate('unidades.seguro_fecha', '<=', $final)
+                            ->where('unidades.cliente', '=', $cli)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     } else {
-                        return Unidade::where('tipo', '=', 'Unidad Vehicular')
-                            ->whereNot('seguro_fecha', '=', 'Sin Fecha de Seguro')
-                            ->where('cliente', '=', $cli)
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                            ->where('unidades.cliente', '=', $cli)
                             ->where('unidades.id', '=', $unidad)
                             ->select(
-                                'cliente',
-                                'marca',
-                                'serieunidad',
-                                'añounidad',
-                                'placas',
-                                'tipounidad',
-                                'razonsocialunidad',
-                                'seguro_fecha'
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'unidades.marca',
+                                'unidades.serieunidad',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.tipounidad',
+                                'unidades.razonsocialunidad',
+                                'unidades.digitoplaca',
+                                'unidades.seguro_fecha',
                             )->get();
                     }
                 }
             }
         }
     }
-
     public function FumigacionesUnidadesCFIU($cli, $final, $inicio, $unidad)
     {
         if ($inicio == null) {
@@ -5405,7 +5452,7 @@ class ReportesPDFController extends Metodos
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
-        $unidades = Metodos::UnidadesCFIU($cli, $final, $inicio, $unidad);
+        $unidades = Metodos::Reporte_Seguros($cli, $final, $inicio, $unidad);
         $pdf = PDF::loadView('pdf.ReporteSeguros', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Seguros',

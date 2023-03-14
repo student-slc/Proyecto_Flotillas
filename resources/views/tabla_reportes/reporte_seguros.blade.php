@@ -106,40 +106,34 @@
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
                                 <thead style="background-color:#95b8f6">
-                                    <th style="color:#fff;">Placas</th>
+                                    <th style="color:#fff;">Id Cliente</th>
                                     <th style="color:#fff;">Cliente</th>
-                                    <th style="color:#fff;">Serie Unidad</th>
                                     <th style="color:#fff;">Marca</th>
+                                    <th style="color:#fff;">Serie Unidad</th>
                                     <th style="color:#fff;">Año Unidad</th>
+                                    <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Tipo Unidad</th>
-                                    <th style="color:#fff;">Razon Social</th>
+                                    <th style="color:#fff;">Razon Social Unidad</th>
+                                    <th style="color:#fff;">Digito Placa</th>
                                     <th style="color:#fff;">Fecha vencimiento Seguro</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($unidades as $unidade)
-                                        @if ($unidade->seguro_fecha != 'Sin Fecha de Seguro')
-                                            <tr>
-                                                <td>{{ $unidade->placas }}</td>
-                                                <td>{{ $unidade->cliente }}</td>
-                                                <td>{{ $unidade->serieunidad }}</td>
-                                                <td>{{ $unidade->marca }}</td>
-                                                <td>{{ $unidade->añounidad }}</td>
-                                                <td>{{ $unidade->tipounidad }}</td>
-                                                <td>{{ $unidade->razonsocialunidad }}</td>
-                                                <td>{{ $unidade->seguro_fecha }}</td>
-                                                {{-- Boton MODAL --}}
-                                                {{-- AQUI VA --}}
-
-                                                {{--  --}}
-                                            </tr>
-                                        @endif
+                                        <tr>
+                                            <td>{{ $unidade->id }}</td>
+                                            <td>{{ $unidade->nombrecompleto }}</td>
+                                            <td>{{ $unidade->marca }}</td>
+                                            <td>{{ $unidade->serieunidad }}</td>
+                                            <td>{{ $unidade->añounidad }}</td>
+                                            <td>{{ $unidade->placas }}</td>
+                                            <td>{{ $unidade->tipounidad }}</td>
+                                            <td>{{ $unidade->razonsocialunidad }}</td>
+                                            <td>{{ $unidade->digitoplaca }}</td>
+                                            <td>{{ $unidade->seguro_fecha }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <!-- Ubicamos la paginacion a la derecha -->
-                            {{--  <div class="pagination justify-content-end">
-                                {!! $unidades->links() !!}
-                            </div> --}}
                         </div>
                     </div>
                 </div>

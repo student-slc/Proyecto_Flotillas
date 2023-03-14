@@ -158,15 +158,58 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                    'unidades.seguro_fecha',
+                )->get();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                    'unidades.seguro_fecha',
+                )->get();
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->join('seguros', 'seguros.nopoliza', '=', 'unidades.seguro')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->where('unidades.cliente', '=', $clientes)
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                    'unidades.seguro_fecha',
+                )->get();
         }
         return view('tabla_reportes.reporte_seguros', compact('unidades', 'clientes'));
     }
