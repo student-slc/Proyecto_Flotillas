@@ -8,6 +8,7 @@ use App\Models\Unidade;
 use App\Models\Cliente;
 use App\Models\Verificacione;
 use Illuminate\Http\Request;
+
 class ReportesTablasController extends Controller
 {
     /* ============================================= REPORTES ================================================= */
@@ -18,18 +19,82 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join(
+                'verificaciones',
+                function ($join) {
+                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                }
+            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                    "verificaciones.noverificacion",
+                    'verificaciones.tipoverificacion',
+                    'verificaciones.subtipoverificacion',
+                    'verificaciones.ultimaverificacion',
+                )->get();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join(
+                'verificaciones',
+                function ($join) {
+                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                }
+            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                    "verificaciones.noverificacion",
+                    'verificaciones.tipoverificacion',
+                    'verificaciones.subtipoverificacion',
+                    'verificaciones.ultimaverificacion',
+                )->get();
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades =Unidade::join(
+                'verificaciones',
+                function ($join) {
+                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                }
+            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->where('unidades.cliente', '=', $clientes)
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipounidad',
+                    'unidades.razonsocialunidad',
+                    'unidades.digitoplaca',
+                    "verificaciones.noverificacion",
+                    'verificaciones.tipoverificacion',
+                    'verificaciones.subtipoverificacion',
+                    'verificaciones.ultimaverificacion',
+                )->get();
         }
-        $verificaciones = Verificacione::all();
-        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'verificaciones', 'clientes'));
+       /*  $verificaciones = Verificacione::all(); */
+        return view('tabla_reportes.reporte_flotilla', compact('unidades', 'clientes'));
     }
     public function reporte_seguros()
     {

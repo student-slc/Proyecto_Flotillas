@@ -8,7 +8,7 @@ use PDF;
 
 class Metodos extends Controller
 {
-    public function UnidadesTCFIU($tipo, $cli, $final, $inicio, $unidad)
+    public function Reporte_Verificaciones($tipo, $cli, $final, $inicio, $unidad)
     {
         /* ============================================================================== */
         if ($inicio == null) {
@@ -16,13 +16,12 @@ class Metodos extends Controller
                 if ($cli == 'todos') {
                     if ($tipo == 'Ambiental') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -30,17 +29,20 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Fisica') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -48,6 +50,10 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Ambas') {
@@ -56,13 +62,11 @@ class Metodos extends Controller
                             function ($join) {
                                 $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                             }
-                        )
+                        )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -70,20 +74,23 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                 } else {
                     if ($unidad == 'todos') {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -91,18 +98,21 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -110,6 +120,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -118,14 +132,12 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -133,20 +145,23 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     } else {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -154,19 +169,22 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -174,6 +192,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -182,15 +204,13 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -198,6 +218,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     }
@@ -206,14 +230,13 @@ class Metodos extends Controller
                 if ($cli == 'todos') {
                     if ($tipo == 'Ambiental') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                             ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -221,18 +244,21 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Fisica') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                             ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -240,6 +266,10 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Ambas') {
@@ -248,14 +278,12 @@ class Metodos extends Controller
                             function ($join) {
                                 $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                             }
-                        )
+                        )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -263,20 +291,23 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                 } else {
                     if ($unidad == 'todos') {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -284,18 +315,21 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -303,6 +337,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -311,14 +349,12 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -326,20 +362,23 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     } else {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -347,19 +386,22 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -367,6 +409,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -375,15 +421,13 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -391,6 +435,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     }
@@ -401,14 +449,13 @@ class Metodos extends Controller
                 if ($cli == 'todos') {
                     if ($tipo == 'Ambiental') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                             ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -416,18 +463,21 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Fisica') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                             ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -435,6 +485,10 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Ambas') {
@@ -443,14 +497,12 @@ class Metodos extends Controller
                             function ($join) {
                                 $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                             }
-                        )
+                        )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -458,20 +510,23 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                 } else {
                     if ($unidad == 'todos') {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -479,18 +534,21 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -498,6 +556,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -506,14 +568,12 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -521,20 +581,23 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     } else {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -542,19 +605,22 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -562,6 +628,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -570,15 +640,13 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -586,6 +654,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     }
@@ -594,15 +666,14 @@ class Metodos extends Controller
                 if ($cli == 'todos') {
                     if ($tipo == 'Ambiental') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                             ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
                             ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -610,19 +681,22 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Fisica') {
                         return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                            ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                             ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
                             ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -630,6 +704,10 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                     if ($tipo == 'Ambas') {
@@ -638,15 +716,13 @@ class Metodos extends Controller
                             function ($join) {
                                 $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                             }
-                        )
+                        )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
                             ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
                             ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
@@ -654,20 +730,23 @@ class Metodos extends Controller
                                 'unidades.tipounidad',
                                 'unidades.razonsocialunidad',
                                 'unidades.digitoplaca',
+                                "verificaciones.noverificacion",
+                                'verificaciones.tipoverificacion',
+                                'verificaciones.subtipoverificacion',
+                                'verificaciones.ultimaverificacion',
                             )->get();
                     }
                 } else {
                     if ($unidad == 'todos') {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -675,18 +754,21 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -694,6 +776,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -702,14 +788,12 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -717,20 +801,23 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     } else {
                         if ($tipo == 'Ambiental') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -738,19 +825,22 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Fisica') {
                             return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
+                                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -758,6 +848,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                         if ($tipo == 'Ambas') {
@@ -766,15 +860,13 @@ class Metodos extends Controller
                                 function ($join) {
                                     $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
                                 }
-                            )
+                            )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
                                 ->where('unidades.id', '=', $unidad)
                                 ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
+                                    'clientes.id',
+                                    'clientes.nombrecompleto',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
@@ -782,6 +874,10 @@ class Metodos extends Controller
                                     'unidades.tipounidad',
                                     'unidades.razonsocialunidad',
                                     'unidades.digitoplaca',
+                                    "verificaciones.noverificacion",
+                                    'verificaciones.tipoverificacion',
+                                    'verificaciones.subtipoverificacion',
+                                    'verificaciones.ultimaverificacion',
                                 )->get();
                         }
                     }
@@ -5237,16 +5333,16 @@ class ReportesPDFController extends Metodos
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
-        $unidades = Metodos::UnidadesTCFIU($tipo, $cli, $final, $inicio, $unidad);
+        $unidades = Metodos::Reporte_Verificaciones($tipo, $cli, $final, $inicio, $unidad);
         $pdf = PDF::loadView('pdf.ReporteFlotillas', [
             'unidades' => $unidades,
-            'nombre' => 'Reporte Flotillas',
+            'nombre' => 'Reporte Verificaciones',
         ]);
         /* landscape->HORIZONTAL */
         /* portrait->vertical */
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
-        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
-        return $pdf->download('Reporte_Flotillas.pdf');
+        $pdf->setPaper(array(0, 0, 878, 1228), 'portrait');
+        return $pdf->download('Reporte_Verificaciones.pdf');
     }
     public function ReporteSegurosPDF(Request $request)
     {
@@ -5373,7 +5469,7 @@ class ReportesPDFController extends Metodos
         /* portrait->vertical */
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
-        return $pdf->download('Reporte_Semanal.pdf');
+        return $pdf->download('Reporte_Fumigaciones_realizadas.pdf');
     }
     public function ReporteDiaPDF(Request $request)
     {
@@ -5391,7 +5487,7 @@ class ReportesPDFController extends Metodos
         /* portrait->vertical */
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 840, 1240), 'landscape');
-        return $pdf->download('Reporte_Dia.pdf');
+        return $pdf->download('Reporte_Fumigaciones_Proximas.pdf');
     }
     public function ReporteServicioPDF(Request $request)
     {

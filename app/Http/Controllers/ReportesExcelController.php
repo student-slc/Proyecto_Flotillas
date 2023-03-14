@@ -32,23 +32,23 @@ class ReportesExcelController extends Controller
         $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
             if ($tipo == 'Ambiental') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_Ambientales.xlsx');
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambientales.xlsx');
             }
             if ($tipo == 'Fisica') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_F_Mecanicas.xlsx');
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_F_Mecanicas.xlsx');
             }
             if ($tipo == 'Ambas') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_Ambas_Veri.xlsx');
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambas_Veri.xlsx');
             }
         } else {
             if ($tipo == 'Ambiental') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
             }
             if ($tipo == 'Fisica') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
             }
             if ($tipo == 'Ambas') {
-                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Flotillas_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
+                return (new ReporteFlotillasExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
             }
         }
     }
@@ -99,9 +99,9 @@ class ReportesExcelController extends Controller
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
         if ($cli == 'todos') {
-            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Semanal.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Fumigaciones_Realizadas.xlsx');
         } else {
-            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Semanal_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Fumigaciones_Realizadas_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_diaexcel(Request $request)
@@ -112,9 +112,9 @@ class ReportesExcelController extends Controller
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
         if ($cli == 'todos') {
-            return (new ReporteDiaExport($cli, $inicio, $final, $unidad, $tipou))->download('Reportes_Realizados.xlsx');
+            return (new ReporteDiaExport($cli, $inicio, $final, $unidad, $tipou))->download('Reportes_Fumigaciones_Proximas.xlsx');
         } else {
-            return (new ReporteDiaExport($cli, $inicio, $final, $unidad, $tipou))->download('Reportes_Realizados_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteDiaExport($cli, $inicio, $final, $unidad, $tipou))->download('Reportes_Fumigaciones_Proximas_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_serviciosexcel(Request $request)

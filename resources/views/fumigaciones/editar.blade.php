@@ -98,9 +98,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="tipo">Tipo</label>
-                                            <select name="tipo" id="tipo" class=" selectsearch">
-                                                <option value="Tipo" selected>Tipos</option>
-                                            </select>
+                                            <input type="text" name="tipo" value="{{ $fumigacione->tipo }}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

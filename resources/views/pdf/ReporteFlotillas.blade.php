@@ -78,38 +78,43 @@
 
         <table id="customers">
             <thead>
+                <th>Id Cliente</th>
                 <th>Cliente</th>
-                <th>Tipo Verificación</th>
-                <th>Subtipo Verificación</th>
-                <th>Ultima Verificación</th>
                 <th>Marca</th>
                 <th>Serie Unidad</th>
                 <th>Año Unidad</th>
                 <th>Placas</th>
                 <th>Tipo Unidad</th>
-                <th>Razon Social</th>
+                <th>Razon Social Unidad</th>
                 <th>Digito Placa</th>
+                <th>Folio Verificación</th>
+                <th>Tipo Verificación</th>
+                <th>Subtipo Verificación</th>
+                <th>Ultima Verificación</th>
             </thead>
             <tbody>
                 @foreach ($unidades as $unidade)
                     <tr>
-                        <td>{{ $unidade->cliente }} </td>
-                        <td>{{ $unidade->tipoverificacion }} </td>
-                        <td>{{ $unidade->subtipoverificacion }} </td>
-                        <td>{{ $unidade->ultimaverificacion }} </td>
-                        <td>{{ $unidade->marca }} </td>
-                        <td>{{ $unidade->serieunidad }} </td>
-                        <td>{{ $unidade->añounidad }} </td>
-                        <td>{{ $unidade->placas }} </td>
-                        <td>{{ $unidade->tipounidad }} </td>
-                        <td>{{ $unidade->razonsocialunidad }} </td>
-                        <td>{{ $unidade->digitoplaca }} </td>
+                        <td> {{ $unidade->id }} </td>
+                        <td> {{ $unidade->nombrecompleto }} </td>
+                        <td> {{ $unidade->marca }} </td>
+                        <td> {{ $unidade->serieunidad }} </td>
+                        <td> {{ $unidade->añounidad }} </td>
+                        <td> {{ $unidade->placas }} </td>
+                        <td> {{ $unidade->tipounidad }} </td>
+                        <td> {{ $unidade->razonsocialunidad }} </td>
+                        <td> {{ $unidade->digitoplaca }} </td>
+                        <td> {{ $unidade->noverificacion }} </td>
+                        <td> {{ $unidade->tipoverificacion }} </td>
+                        <td> {{ $unidade->subtipoverificacion }} </td>
+                        <td> {{ $unidade->ultimaverificacion }} </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </body>
+
 </html>
 {{-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
