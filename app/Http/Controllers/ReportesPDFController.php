@@ -3357,7 +3357,7 @@ class Metodos extends Controller
             }
         }
     }
-    public function ReporteCIFUT($cli, $inicio, $final, $unidad, $tipou)
+    public function Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou)
     {
         if ($inicio == null) {
             if ($final == null) {
@@ -3374,20 +3374,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3397,20 +3398,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3420,20 +3422,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -3449,20 +3452,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3473,20 +3477,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3497,20 +3502,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -3528,20 +3534,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3552,20 +3559,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3576,20 +3584,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -3606,20 +3615,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3631,20 +3641,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3656,20 +3667,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -3689,20 +3701,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3713,20 +3726,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3737,20 +3751,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -3767,20 +3782,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3792,20 +3808,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3817,20 +3834,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -3849,20 +3867,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3874,20 +3893,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3899,20 +3919,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -3930,20 +3951,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -3956,20 +3978,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -3982,20 +4005,21 @@ class Metodos extends Controller
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -4017,20 +4041,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -4042,20 +4067,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -4067,20 +4093,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 } else {
@@ -4098,20 +4125,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -4124,20 +4152,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -4150,20 +4179,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 }
@@ -4183,20 +4213,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -4209,20 +4240,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -4235,20 +4267,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 } else {
@@ -4267,20 +4300,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -4294,20 +4328,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -4321,20 +4356,21 @@ class Metodos extends Controller
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 }
@@ -5543,7 +5579,7 @@ class ReportesPDFController extends Metodos
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::ReporteCIFUT($cli, $inicio, $final, $unidad, $tipou);
+        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou);
         $pdf = PDF::loadView('pdf.ReporteSemanal', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Semanal',
@@ -5551,7 +5587,7 @@ class ReportesPDFController extends Metodos
         /* landscape->HORIZONTAL */
         /* portrait->vertical */
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
-        $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
+        $pdf->setPaper(array(0, 0, 988, 1228), 'landscape');
         return $pdf->download('Reporte_Fumigaciones_realizadas.pdf');
     }
     public function ReporteDiaPDF(Request $request)
@@ -5579,7 +5615,7 @@ class ReportesPDFController extends Metodos
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::ReporteCIFUT($cli, $inicio, $final, $unidad, $tipou);
+        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou);
         $pdf = PDF::loadView('pdf.ReporteSemanal', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Servicio',

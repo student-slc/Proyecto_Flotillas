@@ -249,20 +249,93 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $fumigaciones = Fumigacione::orWhere('status', 'Realizado')->orWhere('status', 'Inactivo')->get();
-            $unidades = Unidade::all();
+            $fumigaciones = Fumigacione::join(
+                'unidades',
+                function ($join) {
+                    $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+                }
+            )
+                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->orWhere('fumigaciones.status', 'Realizado')
+                ->orWhere('fumigaciones.status', 'Inactivo')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'clientes.direccionfisica',
+                    'fumigaciones.numerofumigacion',
+                    'fumigaciones.unidad',
+                    'fumigaciones.id_fumigador',
+                    'fumigaciones.fechaprogramada',
+                    'fumigaciones.status',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipo',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $fumigaciones = Fumigacione::orWhere('status', 'Realizado')->orWhere('status', 'Inactivo')->get();
-            $unidades = Unidade::all();
+            $fumigaciones = Fumigacione::join(
+                'unidades',
+                function ($join) {
+                    $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+                }
+            )
+                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->orWhere('fumigaciones.status', 'Realizado')
+                ->orWhere('fumigaciones.status', 'Inactivo')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'clientes.direccionfisica',
+                    'fumigaciones.numerofumigacion',
+                    'fumigaciones.unidad',
+                    'fumigaciones.id_fumigador',
+                    'fumigaciones.fechaprogramada',
+                    'fumigaciones.status',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipo',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $fumigaciones = Fumigacione::orWhere('status', 'Realizado')->orWhere('status', 'Inactivo')->get();
-            $unidades = Unidade::where('cliente', '=', $clientes)->get();
+            $fumigaciones = Fumigacione::join(
+                'unidades',
+                function ($join) {
+                    $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+                }
+            )
+                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('clientes.nombrecompleto', '=', $clientes)
+                ->orWhere('fumigaciones.status', 'Realizado')
+                ->orWhere('fumigaciones.status', 'Inactivo')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'clientes.direccionfisica',
+                    'fumigaciones.numerofumigacion',
+                    'fumigaciones.unidad',
+                    'fumigaciones.id_fumigador',
+                    'fumigaciones.fechaprogramada',
+                    'fumigaciones.status',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipo',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
-        return view('tabla_reportes.reporte_semanal',  compact('unidades', 'fumigaciones', 'clientes'));
+        return view('tabla_reportes.reporte_semanal',  compact('fumigaciones', 'clientes'));
     }
     public function reporte_dia()
     {

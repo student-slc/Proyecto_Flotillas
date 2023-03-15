@@ -51,20 +51,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -74,20 +75,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -97,20 +99,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -126,20 +129,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -150,20 +154,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -174,20 +179,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -205,20 +211,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -229,20 +236,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -253,20 +261,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -283,20 +292,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -308,20 +318,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -333,20 +344,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -366,20 +378,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -390,20 +403,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -414,20 +428,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -444,20 +459,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -469,20 +485,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -494,20 +511,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -526,20 +544,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -551,20 +570,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -576,20 +596,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     } else {
@@ -607,20 +628,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -633,20 +655,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -659,20 +682,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
-                                    'fumigaciones.numerofumigacion',
+                                    'clientes.id',
                                     'clientes.nombrecompleto',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
+                                    'fumigaciones.numerofumigacion',
                                     'fumigaciones.unidad',
+                                    'fumigaciones.id_fumigador',
+                                    'fumigaciones.fechaprogramada',
+                                    'fumigaciones.status',
                                     'unidades.marca',
                                     'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.id_fumigador',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
-                                    'fumigaciones.status',
                                 )->get();
                         }
                     }
@@ -694,20 +718,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -719,20 +744,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -744,20 +770,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 } else {
@@ -775,20 +802,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -801,20 +829,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -827,20 +856,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 }
@@ -860,20 +890,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -886,20 +917,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -912,20 +944,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 } else {
@@ -944,20 +977,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -971,20 +1005,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -998,20 +1033,21 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
-                                'fumigaciones.numerofumigacion',
+                                'clientes.id',
                                 'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
+                                'fumigaciones.numerofumigacion',
                                 'fumigaciones.unidad',
+                                'fumigaciones.id_fumigador',
+                                'fumigaciones.fechaprogramada',
+                                'fumigaciones.status',
                                 'unidades.marca',
                                 'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.id_fumigador',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
-                                'fumigaciones.status',
                             )->get();
                     }
                 }
@@ -1021,15 +1057,14 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
     public function headings(): array
     {
         return [
-            "FOLIO FUMIGACION",
-            "CLIENTE", "UNIDAD", "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO", "RAZON SOCIAL",
-            "FECHA ULTIMA FUMIGACION", "FUMIGADOR", "RAZON SOCIAL CLIENTE", "DIRECCION FISICA CLIENTE",
-            "STATUS"
+            "ID CLIENTE", "CLIENTE", "RAZON SOCIAL CLIENTE", "DIRECCION FISICA CLIENTE", "FOLIO FUMIGACION",
+            "UNIDAD", "FUMIGADOR", "FECHA FUMIGACIÓN", "STATUS",
+            "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO", "RAZON SOCIAL UNIDAD"
         ];
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:N1')->applyFromArray(array(
+        $sheet->getStyle('A1:O1')->applyFromArray(array(
             'fill' => array(
                 'fillType' => Fill::FILL_SOLID,
                 'color' => array('rgb' => '9dbad5')
