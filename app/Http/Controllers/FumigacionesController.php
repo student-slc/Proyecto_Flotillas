@@ -128,6 +128,8 @@ class FumigacionesController extends Metodos
             $fin = (int) $inicio + (int) $contador;
         }
         $request->merge(['numerofumigacion' => '' . $fin]);
+        $fecha_sin_t = str_replace("T", " ",$fecha);
+        $request->merge(['fechaprogramada' => '' . $fecha_sin_t]);
         $cambio = Folio::where('id', '=', $folio_actual)->update(["contador" => $contador + 1]);
         /* ---------------------------------------------------------------------------------------------------- */
         Fumigacione::create(
@@ -210,6 +212,11 @@ class FumigacionesController extends Metodos
         if ($request->validated() && $estado == 'Realizado') {
             $cambio = Fumigacione::where('unidad', '=', $unidad)->where('status', '=', 'Realizado')->update(["status" => "Inactivo"]);
         }
+        /* ======================= FECHAS ====================================== */
+        $fecha = $request->fechaprogramada;
+        $fecha_sin_t = str_replace("T", " ",$fecha);
+        $request->merge(['fechaprogramada' => '' . $fecha_sin_t]);
+        /* ===================================================================== */
         $fumigacione->update($request->validated());
         if ($estado == 'Realizado') {
             $cambio = Unidade::where('serieunidad', '=', $unidad)->update(["fumigacion" => $fumigacion]);

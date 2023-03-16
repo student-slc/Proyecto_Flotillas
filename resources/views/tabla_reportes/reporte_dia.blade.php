@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    REPORTE DIA
+    REPORTE PROXIMAS FUMIGACIONES
 @endsection
 @section('content')
     <section class="section">
@@ -121,61 +121,36 @@
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <thead style="background-color: #95b8f6">
-                                    <th style="color:#fff;">ID. CLiente</th>
-                                    <th style="color:#fff;">Cliente</th>
-                                    <th style="color:#fff;">Folio Fumigacion</th>
-                                    <th style="color:#fff;">Ultima Fumigación</th>
+                                <thead style="background-color:#6777ef">
+                                    <th style="color:#fff;">Id CLiente</th>
+                                    <th style="color:#fff;">CLiente</th>
+                                    <th style="color:#fff;">Razon Social Cliente</th>
+                                    <th style="color:#fff;">Dirección Fisica</th>
+                                    <th style="color:#fff;">Unidad</th>
                                     <th style="color:#fff;">Proxima Fumigación</th>
-                                    <th style="color:#fff;">Fumigador</th>
-                                    <th style="color:#fff;">Placas/Dirección</th>
-                                    <th style="color:#fff;">Frecuencia de Fumigacion</th>
-                                    <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Marca</th>
+                                    <th style="color:#fff;">Serie Unidad/Dirección</th>
                                     <th style="color:#fff;">Año Unidad</th>
                                     <th style="color:#fff;">Placas</th>
-                                    <th style="color:#fff;">Tipo</th>
-                                    <th style="color:#fff;">Razón Social Unidad</th>
-                                    <th style="color:#fff;">Razón Social Cliente</th>
-                                    <th style="color:#fff;">Dirección Fisica Cliente</th>
+                                    <th style="color:#fff;">Tipo Unidad</th>
+                                    <th style="color:#fff;">Razon Social Unidad</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($fumigaciones as $fumigacione)
-                                        @php
-                                            foreach ($unidades as $unidade) {
-                                                if ($fumigacione->numerofumigacion == $unidade->fumigacion) {
-                                                    echo '<tr>';
-                                                    echo '<td>' . $unidade->id . '</td>';
-                                                    echo '<td>' . $unidade->cliente . '</td>';
-                                                    echo '<td>' . $unidade->fumigacion . '</td>';
-                                                    echo '<td>' . substr($unidade->lapsofumigacion, 0, 10) . '</td>';
-                                                    echo '<td>' . $fumigacione->proxima_fumigacion . '</td>';
-                                                    echo '<td>' . $fumigacione->id_fumigador . '</td>';
-                                                    if ($unidade->tipo == 'Unidad Vehicular') {
-                                                        echo '<td>' . $unidade->placas . '</td>';
-                                                    }
-                                                    if ($unidade->tipo == 'Unidad Habitacional o Comercial') {
-                                                        echo '<td>' . $unidade->direccion . '</td>';
-                                                    }
-                                                    echo '<td>' . $unidade->frecuencia_fumiga . '</td>';
-                                                    echo '<td>' . $fumigacione->status . '</td>';
-                                                    echo '<td>' . $unidade->marca . '</td>';
-                                                    echo '<td>' . $unidade->añounidad . '</td>';
-                                                    echo '<td>' . $unidade->placas . '</td>';
-                                                    echo '<td>' . $unidade->tipo . '</td>';
-                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
-                                                    foreach ($clientes as $cliente) {
-                                                        if ($cliente->nombrecompleto == $unidade->cliente) {
-                                                            echo '<td>' . $cliente->direccionfisica . '</td>';
-                                                            echo '<td>' . $cliente->razonsocial . '</td>';
-                                                            echo '</tr>';
-                                                            break;
-                                                        }
-                                                    }
-                                                    break;
-                                                }
-                                            }
-                                        @endphp
+                                    @foreach ($fumigaciones as $fumigacion)
+                                        <tr>
+                                            <td>{{ $fumigacion->id }}</td>
+                                            <td>{{ $fumigacion->nombrecompleto }}</td>
+                                            <td>{{ $fumigacion->razonsocial }}</td>
+                                            <td>{{ $fumigacion->direccionfisica }}</td>
+                                            <td>{{ $fumigacion->unidad }}</td>
+                                            <td>{{ $fumigacion->proxima_fumigacion }}</td>
+                                            <td>{{ $fumigacion->marca }}</td>
+                                            <td>{{ $fumigacion->serieunidad }}</td>
+                                            <td>{{ $fumigacion->añounidad }}</td>
+                                            <td>{{ $fumigacion->placas }}</td>
+                                            <td>{{ $fumigacion->tipo }}</td>
+                                            <td>{{ $fumigacion->razonsocialunidad }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

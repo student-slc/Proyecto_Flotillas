@@ -4377,7 +4377,7 @@ class Metodos extends Controller
             }
         }
     }
-    public function ReporteFRealizados($cli, $inicio, $final, $unidad, $tipou)
+    public function Reportes_Fumigaciones_Proximas($cli, $inicio, $final, $unidad, $tipou)
     {
         if ($inicio == null) {
             if ($final == null) {
@@ -4395,20 +4395,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4419,20 +4415,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4443,20 +4435,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     } else {
@@ -4473,20 +4461,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4498,20 +4482,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4523,20 +4503,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     }
@@ -4555,20 +4531,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4580,20 +4552,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4605,20 +4573,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     } else {
@@ -4636,20 +4600,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4662,20 +4622,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4688,20 +4644,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     }
@@ -4722,20 +4674,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4747,20 +4695,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4772,20 +4716,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     } else {
@@ -4803,20 +4743,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4829,20 +4765,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4855,20 +4787,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     }
@@ -4888,20 +4816,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4914,20 +4838,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -4940,20 +4860,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     } else {
@@ -4972,20 +4888,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Habitacion') {
@@ -4999,20 +4911,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                         if ($tipou == 'Vehiculo') {
@@ -5026,20 +4934,16 @@ class Metodos extends Controller
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
-                                    'fumigaciones.numerofumigacion',
-                                    'fumigaciones.fechaprogramada',
-                                    'fumigaciones.proxima_fumigacion',
-                                    'fumigaciones.id_fumigador',
+                                    'clientes.razonsocial',
+                                    'clientes.direccionfisica',
                                     'fumigaciones.unidad',
-                                    'unidades.frecuencia_fumiga',
-                                    'fumigaciones.status',
+                                    'fumigaciones.proxima_fumigacion',
                                     'unidades.marca',
+                                    'unidades.serieunidad',
                                     'unidades.añounidad',
                                     'unidades.placas',
                                     'unidades.tipo',
                                     'unidades.razonsocialunidad',
-                                    'clientes.razonsocial',
-                                    'clientes.direccionfisica',
                                 )->get();
                         }
                     }
@@ -5062,20 +4966,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -5088,20 +4988,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -5114,20 +5010,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                 } else {
@@ -5146,20 +5038,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -5173,20 +5061,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -5200,20 +5084,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                 }
@@ -5234,20 +5114,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -5261,20 +5137,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -5288,20 +5160,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                 } else {
@@ -5321,20 +5189,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Habitacion') {
@@ -5349,20 +5213,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                     if ($tipou == 'Vehiculo') {
@@ -5377,20 +5237,16 @@ class Metodos extends Controller
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
-                                'fumigaciones.numerofumigacion',
-                                'fumigaciones.fechaprogramada',
-                                'fumigaciones.proxima_fumigacion',
-                                'fumigaciones.id_fumigador',
+                                'clientes.razonsocial',
+                                'clientes.direccionfisica',
                                 'fumigaciones.unidad',
-                                'unidades.frecuencia_fumiga',
-                                'fumigaciones.status',
+                                'fumigaciones.proxima_fumigacion',
                                 'unidades.marca',
+                                'unidades.serieunidad',
                                 'unidades.añounidad',
                                 'unidades.placas',
                                 'unidades.tipo',
                                 'unidades.razonsocialunidad',
-                                'clientes.razonsocial',
-                                'clientes.direccionfisica',
                             )->get();
                     }
                 }
@@ -5597,7 +5453,7 @@ class ReportesPDFController extends Metodos
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::ReporteFRealizados($cli, $inicio, $final, $unidad, $tipou);
+        $unidades = Metodos::Reportes_Fumigaciones_Proximas($cli, $inicio, $final, $unidad, $tipou);
         $pdf = PDF::loadView('pdf.ReporteDia', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Dia',

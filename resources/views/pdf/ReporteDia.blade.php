@@ -77,42 +77,34 @@
         </div>
         <table id="customers">
             <thead>
-                <th>ID. CLiente</th>
-                <th>Cliente</th>
-                <th>Folio Fumigacion</th>
-                <th>Ultima Fumigación</th>
+                <th>Id CLiente</th>
+                <th>CLiente</th>
+                <th>Razon Social Cliente</th>
+                <th>Dirección Fisica</th>
+                <th>Unidad</th>
                 <th>Proxima Fumigación</th>
-                <th>Fumigador</th>
-                <th>Placas/Dirección</th>
-                <th>Frecuencia de Fumigacion</th>
-                <th>Status</th>
                 <th>Marca</th>
+                <th>Serie Unidad/Dirección</th>
                 <th>Año Unidad</th>
                 <th>Placas</th>
-                <th>Tipo</th>
-                <th>Razón Social Unidad</th>
-                <th>Razón Social Cliente</th>
-                <th>Dirección Fisica Cliente</th>
+                <th>Tipo Unidad</th>
+                <th>Razon Social Unidad</th>
             </thead>
             <tbody>
-                @foreach ($unidades as $unidade)
+                @foreach ($unidades as $fumigacion)
                     <tr>
-                        <td>{{ $unidade->id }}</td>
-                        <td>{{ $unidade->nombrecompleto }}</td>
-                        <td>{{ $unidade->numerofumigacion }}</td>
-                        <td>{{ $unidade->fechaprogramada }}</td>
-                        <td>{{ $unidade->proxima_fumigacion }}</td>
-                        <td>{{ $unidade->id_fumigador }}</td>
-                        <td>{{ $unidade->unidad }}</td>
-                        <td>{{ $unidade->frecuencia_fumiga }}</td>
-                        <td>{{ $unidade->status }}</td>
-                        <td>{{ $unidade->marca }}</td>
-                        <td>{{ $unidade->añounidad }}</td>
-                        <td>{{ $unidade->placas }}</td>
-                        <td>{{ $unidade->tipo }}</td>
-                        <td>{{ $unidade->razonsocialunidad }}</td>
-                        <td>{{ $unidade->razonsocial }}</td>
-                        <td>{{ $unidade->direccionfisica }}</td>
+                        <td>{{ $fumigacion->id }}</td>
+                        <td>{{ $fumigacion->nombrecompleto }}</td>
+                        <td>{{ $fumigacion->razonsocial }}</td>
+                        <td>{{ $fumigacion->direccionfisica }}</td>
+                        <td>{{ $fumigacion->unidad }}</td>
+                        <td>{{ $fumigacion->proxima_fumigacion }}</td>
+                        <td>{{ $fumigacion->marca }}</td>
+                        <td>{{ $fumigacion->serieunidad }}</td>
+                        <td>{{ $fumigacion->añounidad }}</td>
+                        <td>{{ $fumigacion->placas }}</td>
+                        <td>{{ $fumigacion->tipo }}</td>
+                        <td>{{ $fumigacion->razonsocialunidad }}</td>
                     </tr>
                 @endforeach
             </tbody>
