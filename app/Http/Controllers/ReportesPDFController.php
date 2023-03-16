@@ -2505,74 +2505,92 @@ class Metodos extends Controller
             }
         }
     }
-    public function IndividualCFIO($cli, $final, $inicio, $operador)
+    public function Reporte_Individual_Operador($cli, $final, $inicio, $operador)
     {
         if ($inicio == null) {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    return Operadore::select(
-                        'cliente',
-                        'nombreoperador',
-                        'nolicencia',
-                        'fechavencimientolicencia',
-                        'fechavencimientomedico',
-                    )->get();
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->select(
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
+                        )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::where('cliente', '=', $cli)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
-                        ->whereDate('fechavencimientomedico', '<=', $final)
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                        ->whereDate('operadores.fechavencimientomedico', '<=', $final)
                         ->select(
-                            'cliente',
-                            'nombreoperador',
-                            'nolicencia',
-                            'fechavencimientolicencia',
-                            'fechavencimientomedico',
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
                         )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
@@ -2580,81 +2598,99 @@ class Metodos extends Controller
         } else {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                        ->whereDate('fechavencimientomedico', '>=', $inicio)
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                        ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
                         ->select(
-                            'cliente',
-                            'nombreoperador',
-                            'nolicencia',
-                            'fechavencimientolicencia',
-                            'fechavencimientomedico',
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
                         )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::where('cliente', '=', $cli)
-                            ->whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
-                            ->whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                        ->whereDate('fechavencimientomedico', '>=', $inicio)
-                        ->whereDate('fechavencimientolicencia', '<=', $final)
-                        ->whereDate('fechavencimientomedico', '<=', $final)
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                        ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
+                        ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                        ->whereDate('operadores.fechavencimientomedico', '<=', $final)
                         ->select(
-                            'cliente',
-                            'nombreoperador',
-                            'nolicencia',
-                            'fechavencimientolicencia',
-                            'fechavencimientomedico',
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
                         )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
-                            ->whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
-                            ->whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
@@ -5355,6 +5391,78 @@ class ReportesPDFController extends Metodos
         $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
         return $pdf->download('Reporte_Seguros.pdf');
     }
+    public function ReporteSemanalPDF(Request $request)
+    {
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
+        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou);
+        $pdf = PDF::loadView('pdf.ReporteSemanal', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Semanal',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 988, 1228), 'landscape');
+        return $pdf->download('Reporte_Fumigaciones_realizadas.pdf');
+    }
+    public function ReporteDiaPDF(Request $request)
+    {
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
+        $unidades = Metodos::Reportes_Fumigaciones_Proximas($cli, $inicio, $final, $unidad, $tipou);
+        $pdf = PDF::loadView('pdf.ReporteDia', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Dia',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 840, 1240), 'landscape');
+        return $pdf->download('Reporte_Fumigaciones_Proximas.pdf');
+    }
+    public function ReporteIndividualPDF(Request $request)
+    {
+        /* $tipo = $request['filtroveri']; */
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $operador = "" . $request['filtrooper'];
+        $operadores = Metodos::Reporte_Individual_Operador($cli, $final, $inicio, $operador);
+        $pdf = PDF::loadView('pdf.ReporteIndividual', [
+            'operadores' => $operadores,
+            'nombre' => 'Reporte Individual Operador',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
+        return $pdf->download('Reporte_Individual_Operador.pdf');
+    }
+    public function ReporteSatisfaccionPDF(Request $request)
+    {
+        $cli = $request['filtrocli'];
+        $final = "" . $request['filtrofechafinal'];
+        $inicio = "" . $request['filtrofechainicio'];
+        $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
+        $unidades = Metodos::SatisfaccionCIFUT($cli, $inicio, $final, $unidad, $tipou);
+        $pdf = PDF::loadView('pdf.ReporteSatisfaccion', [
+            'unidades' => $unidades,
+            'nombre' => 'Reporte Satisfaccion',
+        ]);
+        /* landscape->HORIZONTAL */
+        /* portrait->vertical */
+        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
+        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
+        return $pdf->download('Reporte_Satisfaccion.pdf');
+    }
     public function ReporteFumigacionesPDF(Request $request)
     {
         /* $tipo = $request['filtroveri']; */
@@ -5391,78 +5499,6 @@ class ReportesPDFController extends Metodos
         /* A3 -> "a3" => array(0,0,841.89,1190.55), */
         $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
         return $pdf->download('Reporte_Individual_Vehicular.pdf');
-    }
-    public function ReporteIndividualPDF(Request $request)
-    {
-        /* $tipo = $request['filtroveri']; */
-        $cli = $request['filtrocli'];
-        $final = "" . $request['filtrofechafinal'];
-        $inicio = "" . $request['filtrofechainicio'];
-        $operador = "" . $request['filtrooper'];
-        $unidades = Metodos::IndividualCFIO($cli, $final, $inicio, $operador);
-        $pdf = PDF::loadView('pdf.ReporteIndividual', [
-            'unidades' => $unidades,
-            'nombre' => 'Reporte Individual Operador',
-        ]);
-        /* landscape->HORIZONTAL */
-        /* portrait->vertical */
-        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
-        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
-        return $pdf->download('Reporte_Individual_Operador.pdf');
-    }
-    public function ReporteSatisfaccionPDF(Request $request)
-    {
-        $cli = $request['filtrocli'];
-        $final = "" . $request['filtrofechafinal'];
-        $inicio = "" . $request['filtrofechainicio'];
-        $unidad = "" . $request['filtrounid'];
-        $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::SatisfaccionCIFUT($cli, $inicio, $final, $unidad, $tipou);
-        $pdf = PDF::loadView('pdf.ReporteSatisfaccion', [
-            'unidades' => $unidades,
-            'nombre' => 'Reporte Satisfaccion',
-        ]);
-        /* landscape->HORIZONTAL */
-        /* portrait->vertical */
-        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
-        $pdf->setPaper(array(0, 0, 838, 1188), 'portrait');
-        return $pdf->download('Reporte_Satisfaccion.pdf');
-    }
-    public function ReporteSemanalPDF(Request $request)
-    {
-        $cli = $request['filtrocli'];
-        $final = "" . $request['filtrofechafinal'];
-        $inicio = "" . $request['filtrofechainicio'];
-        $unidad = "" . $request['filtrounid'];
-        $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou);
-        $pdf = PDF::loadView('pdf.ReporteSemanal', [
-            'unidades' => $unidades,
-            'nombre' => 'Reporte Semanal',
-        ]);
-        /* landscape->HORIZONTAL */
-        /* portrait->vertical */
-        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
-        $pdf->setPaper(array(0, 0, 988, 1228), 'landscape');
-        return $pdf->download('Reporte_Fumigaciones_realizadas.pdf');
-    }
-    public function ReporteDiaPDF(Request $request)
-    {
-        $cli = $request['filtrocli'];
-        $final = "" . $request['filtrofechafinal'];
-        $inicio = "" . $request['filtrofechainicio'];
-        $unidad = "" . $request['filtrounid'];
-        $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::Reportes_Fumigaciones_Proximas($cli, $inicio, $final, $unidad, $tipou);
-        $pdf = PDF::loadView('pdf.ReporteDia', [
-            'unidades' => $unidades,
-            'nombre' => 'Reporte Dia',
-        ]);
-        /* landscape->HORIZONTAL */
-        /* portrait->vertical */
-        /* A3 -> "a3" => array(0,0,841.89,1190.55), */
-        $pdf->setPaper(array(0, 0, 840, 1240), 'landscape');
-        return $pdf->download('Reporte_Fumigaciones_Proximas.pdf');
     }
     public function ReporteServicioPDF(Request $request)
     {

@@ -449,17 +449,45 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $operadores = Operadore::all();
+            $operadores = Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'operadores.nombreoperador',
+                    'operadores.nolicencia',
+                    'operadores.fechavencimientolicencia',
+                    'operadores.fechavencimientomedico',
+                )->get();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $operadores = Operadore::all();
+            $operadores = Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'operadores.nombreoperador',
+                    'operadores.nolicencia',
+                    'operadores.fechavencimientolicencia',
+                    'operadores.fechavencimientomedico',
+                )->get();
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $operadores = Operadore::where('cliente', '=', $clientes)->get();
+            $operadores = Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                ->where('clientes.nombrecompleto', '=', $clientes)
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'operadores.nombreoperador',
+                    'operadores.nolicencia',
+                    'operadores.fechavencimientolicencia',
+                    'operadores.fechavencimientomedico',
+                )->get();
         }
-        return view('tabla_reportes.reporte_individual', compact('clientes', 'operadores'));
+        return view('tabla_reportes.reporte_individual', compact('operadores', 'clientes'));
     }
     public function reporte_individualv()
     {

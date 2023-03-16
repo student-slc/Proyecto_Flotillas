@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
+
 class ReporteIndividualExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
@@ -34,69 +35,87 @@ class ReporteIndividualExport implements FromCollection, WithHeadings, ShouldAut
         if ($inicio == null) {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    return Operadore::select(
-                        'cliente',
-                        'nombreoperador',
-                        'nolicencia',
-                        'fechavencimientolicencia',
-                        'fechavencimientomedico',
-                    )->get();
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->select(
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
+                        )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::where('cliente', '=', $cli)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
-                        ->whereDate('fechavencimientomedico', '<=', $final)
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                        ->whereDate('operadores.fechavencimientomedico', '<=', $final)
                         ->select(
-                            'cliente',
-                            'nombreoperador',
-                            'nolicencia',
-                            'fechavencimientolicencia',
-                            'fechavencimientomedico',
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
                         )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
@@ -104,81 +123,99 @@ class ReporteIndividualExport implements FromCollection, WithHeadings, ShouldAut
         } else {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                        ->whereDate('fechavencimientomedico', '>=', $inicio)
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                        ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
                         ->select(
-                            'cliente',
-                            'nombreoperador',
-                            'nolicencia',
-                            'fechavencimientolicencia',
-                            'fechavencimientomedico',
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
                         )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::where('cliente', '=', $cli)
-                            ->whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
-                            ->whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                        ->whereDate('fechavencimientomedico', '>=', $inicio)
-                        ->whereDate('fechavencimientolicencia', '<=', $final)
-                        ->whereDate('fechavencimientomedico', '<=', $final)
+                    return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                        ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                        ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
+                        ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                        ->whereDate('operadores.fechavencimientomedico', '<=', $final)
                         ->select(
-                            'cliente',
-                            'nombreoperador',
-                            'nolicencia',
-                            'fechavencimientolicencia',
-                            'fechavencimientomedico',
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'operadores.nombreoperador',
+                            'operadores.nolicencia',
+                            'operadores.fechavencimientolicencia',
+                            'operadores.fechavencimientomedico',
                         )->get();
                 } else {
                     if ($operador == 'todos') {
-                        return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
-                            ->whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     } else {
-                        return Operadore::whereDate('fechavencimientolicencia', '>=', $inicio)
-                            ->whereDate('fechavencimientomedico', '>=', $inicio)
-                            ->whereDate('fechavencimientolicencia', '<=', $final)
-                            ->whereDate('fechavencimientomedico', '<=', $final)
-                            ->where('cliente', '=', $cli)
-                            ->where('nombreoperador', '=', $operador)
+                        return Operadore::join('clientes', 'clientes.nombrecompleto', '=', 'operadores.cliente')
+                            ->whereDate('operadores.fechavencimientolicencia', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientomedico', '>=', $inicio)
+                            ->whereDate('operadores.fechavencimientolicencia', '<=', $final)
+                            ->whereDate('operadores.fechavencimientomedico', '<=', $final)
+                            ->where('clientes.nombrecompleto', '=', $cli)
+                            ->where('operadores.nombreoperador', '=', $operador)
                             ->select(
-                                'cliente',
-                                'nombreoperador',
-                                'nolicencia',
-                                'fechavencimientolicencia',
-                                'fechavencimientomedico',
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'operadores.nombreoperador',
+                                'operadores.nolicencia',
+                                'operadores.fechavencimientolicencia',
+                                'operadores.fechavencimientomedico',
                             )->get();
                     }
                 }
@@ -188,18 +225,18 @@ class ReporteIndividualExport implements FromCollection, WithHeadings, ShouldAut
     public function headings(): array
     {
         return [
-            "CLIENTE",
+            "ID CLIENTE","CLIENTE","RAZON SOCIAL CLIENTE",
             "NOMBRE OPERADOR", "NO. LICENCIA", "VENCIMIENTO LICENCIA", "VENCIMIENTO MEDICO"
         ];
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:E1')->applyFromArray(array(
+        $sheet->getStyle('A1:G1')->applyFromArray(array(
             'fill' => array(
                 'fillType' => Fill::FILL_SOLID,
                 'color' => array('rgb' => '9dbad5')
             )
-            ));
+        ));
         return [
 
 

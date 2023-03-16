@@ -65,7 +65,8 @@
                                                         class=" selectsearch" style="width:100%">
                                                         <option selected value="todos">Todos Los Operadores</option>
                                                         @foreach ($operadores as $operadore)
-                                                            <option value="{{ $operadore->id }}">{{ $operadore->nombreoperador }}
+                                                            <option value="{{ $operadore->id }}">
+                                                                {{ $operadore->nombreoperador }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -106,32 +107,28 @@
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
                                 <thead style="background-color:#95b8f6">
-                                    <th style="color:#fff;">Nombre Operador</th>
+                                    <th style="color:#fff;">ID Cliente</th>
                                     <th style="color:#fff;">Cliente</th>
-                                    <th style="color:#fff;">No. Licencia</th>
+                                    <th style="color:#fff;">Razon Social CLiente</th>
+                                    <th style="color:#fff;">Nombre Operador</th>
+                                    <th style="color:#fff;">No Licencia</th>
                                     <th style="color:#fff;">Vencimiento Licencia</th>
-                                    <th style="color:#fff;">Vencimiento Apto</th>
+                                    <th style="color:#fff;">Vencimiento Medico</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($operadores as $operadore)
                                         <tr>
+                                            <td>{{ $operadore->id }}</td>
+                                            <td>{{ $operadore->nombrecompleto }}</td>
+                                            <td>{{ $operadore->razonsocial }}</td>
                                             <td>{{ $operadore->nombreoperador }}</td>
-                                            <td>{{ $operadore->cliente }}</td>
                                             <td>{{ $operadore->nolicencia }}</td>
                                             <td>{{ $operadore->fechavencimientolicencia }}</td>
                                             <td>{{ $operadore->fechavencimientomedico }}</td>
-                                            {{-- Boton MODAL --}}
-                                            {{-- AQUI VA --}}
-
-                                            {{--  --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <!-- Ubicamos la paginacion a la derecha -->
-                            {{--  <div class="pagination justify-content-end">
-                                {!! $unidades->links() !!}
-                            </div> --}}
                         </div>
                     </div>
                 </div>

@@ -73,20 +73,24 @@
         </div>
         <table id="customers">
             <thead>
+                <th>ID Cliente</th>
                 <th>Cliente</th>
+                <th>Razon Social CLiente</th>
                 <th>Nombre Operador</th>
-                <th>No. Licencia</th>
+                <th>No Licencia</th>
                 <th>Vencimiento Licencia</th>
                 <th>Vencimiento Medico</th>
             </thead>
             <tbody>
-                @foreach ($unidades as $unidade)
+                @foreach ($operadores as $operadore)
                     <tr>
-                        <td>{{ $unidade->cliente }}</td>
-                        <td>{{ $unidade->nombreoperador }}</td>
-                        <td>{{ $unidade->nolicencia }}</td>
-                        <td>{{ $unidade->fechavencimientolicencia }}</td>
-                        <td>{{ $unidade->fechavencimientomedico }}</td>
+                        <td>{{ $operadore->id }}</td>
+                        <td>{{ $operadore->nombrecompleto }}</td>
+                        <td>{{ $operadore->razonsocial }}</td>
+                        <td>{{ $operadore->nombreoperador }}</td>
+                        <td>{{ $operadore->nolicencia }}</td>
+                        <td>{{ $operadore->fechavencimientolicencia }}</td>
+                        <td>{{ $operadore->fechavencimientomedico }}</td>
                     </tr>
                 @endforeach
             </tbody>
