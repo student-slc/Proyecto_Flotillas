@@ -90,7 +90,12 @@
                                 <tr>
                                     <td style="display: none;">{{ $unidade->id }}</td>
                                     @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                        <td>{{ $unidade->direccion }}</td>
+                                        @if ($mostrar == 'Placas')
+                                            <td>{{ $unidade->direccion }}</td>
+                                        @endif
+                                        @if ($mostrar == 'Economico')
+                                            <td>{{ $unidade->economico }}</td>
+                                        @endif
                                     @endif
                                     @if ($unidade->tipo == 'Unidad Vehicular')
                                         @if ($mostrar == 'Placas')
@@ -204,7 +209,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-
+                                                        
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -447,7 +452,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-
+                                                        
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -690,7 +695,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-
+                                                        
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -939,7 +944,7 @@
                                                                     }
                                                                 }
                                                                 /* CALCULO DE MESES EXACTOS */
-
+                                                            
                                                                 $dias_resto = $calcular;
                                                                 $opc = 2;
                                                                 for ($i = 0; $i <= $opc; $i++) {
@@ -1303,7 +1308,7 @@
                                                                 }
                                                             }
                                                             /* CALCULO DE MESES EXACTOS */
-
+                                                        
                                                             $dias_resto = $calcular;
                                                             $opc = 2;
                                                             for ($i = 0; $i <= $opc; $i++) {
@@ -1794,6 +1799,11 @@
                             <b>Codigo Postal:</b>
                             <li class="list-group-item">
                                 {{ $unidade->cp }}
+                            </li>
+                            <br>
+                            <b>No. Economico:</b>
+                            <li class="list-group-item">
+                                {{ $unidade->economico }}
                             </li>
                             <br>
                             <b>Dirección:</b>

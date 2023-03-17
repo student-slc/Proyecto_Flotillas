@@ -126,17 +126,25 @@
                                     </div>
                                     {{-- ========================================================================= --}}
                                     {{-- -------------------------- DATOS UNIDADES VEHICULARES -------------------------- --}}
+                                    <div class="form no_mostrar" id="guardar_inicio">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="economico">No. Economico</label>
+                                                <input type="text" name="economico" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="razonsocialunidad">Razon Social</label>
+                                                <input type="text" name="razonsocialunidad" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form no_mostrar" id="unidadv">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="serieunidad">No. Serie</label>
                                                 <input type="text" name="serieunidad" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <label for="economico">No. Economico</label>
-                                                <input type="text" name="economico" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -397,12 +405,6 @@
                                     <div class="form no_mostrar" id="guardar">
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
-                                                <label for="razonsocialunidad">Razon Social</label>
-                                                <input type="text" name="razonsocialunidad" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
                                                 <label for="frecuencia_fumiga">Frecuencia de Fumigacion</label>
                                                 <input type="number" min="1" step="1"
                                                     name="frecuencia_fumiga" class="form-control"
@@ -451,13 +453,16 @@
         //----------------------------------------- MOSTRAR TIPO DE UNIDAD -----------------------------------------
         var habitacion = document.getElementById('unidadv');
         var guardar = document.getElementById('guardar');
+        var guardar_inicio = document.getElementById('guardar_inicio');
         document.getElementById('habitacion').addEventListener('click', function(e) {
             habitacion.style.display = 'none';
             guardar.style.display = 'inline';
+            guardar_inicio.style.display = 'inline';
         });
         document.getElementById('vehiculo').addEventListener('click', function(e) {
             habitacion.style.display = 'inline';
             guardar.style.display = 'inline';
+            guardar_inicio.style.display = 'inline';
         });
         /* llllllllllllllllllllllllllllllllllllllllllllllllllll */
         var vehiculo = document.getElementById('unidadh');

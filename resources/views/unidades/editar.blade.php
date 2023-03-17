@@ -85,6 +85,13 @@
                                                     value="{{ $unidade->razonsocialunidad }}">
                                             </div>
                                         </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="economico">No. Economico</label>
+                                                <input type="text" name="economico" class="form-control"
+                                                value="{{ $unidade->economico }}">
+                                            </div>
+                                        </div>
                                         @if ($unidade->tipo == 'Unidad Vehicular')
                                             <div class="col-xs-12 col-sm-12 col-md-12" hidden>
                                                 <div class="form-group">
@@ -187,13 +194,6 @@
                                                     <label for="serieunidad">No. Serie</label>
                                                     <input type="text" name="serieunidad" class="form-control"
                                                         value="{{ $unidade->serieunidad }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label for="economico">No. Economico</label>
-                                                    <input type="text" name="economico" class="form-control"
-                                                        value="{{ $unidade->economico }}">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-12">

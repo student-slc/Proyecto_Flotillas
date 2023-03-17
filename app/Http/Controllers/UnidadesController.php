@@ -68,6 +68,7 @@ class UnidadesController extends Controller
                 'comisionfumigacion' => 'required',
                 'distanciakm' => 'required',
                 'ltrsgasolina' => 'required',
+                'economico' => 'required',
             ]);
         }
         if ($tipo == "Unidad Vehicular") {
@@ -171,6 +172,7 @@ class UnidadesController extends Controller
                 'comisionfumigacion' => 'required',
                 'distanciakm' => 'required',
                 'ltrsgasolina' => 'required',
+                'economico' => 'required',
             ]);
         }
         if ($tipo == "Unidad Vehicular") {
