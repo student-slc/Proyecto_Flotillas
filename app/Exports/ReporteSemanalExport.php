@@ -56,8 +56,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -83,8 +87,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -110,8 +118,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -143,8 +155,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -171,8 +187,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -199,8 +219,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -234,8 +258,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -262,8 +290,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -290,8 +322,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -324,8 +360,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -353,8 +393,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -382,8 +426,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -419,8 +467,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -447,8 +499,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -475,8 +531,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -509,8 +569,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -538,8 +602,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -567,8 +635,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -603,8 +675,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -632,8 +708,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -661,8 +741,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -696,8 +780,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -726,8 +814,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -756,8 +848,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -795,8 +891,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -824,8 +924,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -853,8 +957,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -888,8 +996,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -918,8 +1030,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -948,8 +1064,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -985,8 +1105,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -1015,8 +1139,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -1045,8 +1173,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -1081,8 +1213,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -1112,8 +1248,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -1143,8 +1283,12 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })

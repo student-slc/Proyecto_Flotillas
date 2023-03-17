@@ -331,8 +331,12 @@ class ReportesTablasController extends Controller
                 }
             )
                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                ->orWhere('fumigaciones.status', 'Realizado')
-                ->orWhere('fumigaciones.status', 'Inactivo')
+                ->where(
+                    function ($query) {
+                        $query->where('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo');
+                    }
+                )
                 ->select(
                     'clientes.id',
                     'clientes.nombrecompleto',
@@ -361,8 +365,12 @@ class ReportesTablasController extends Controller
                 }
             )
                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                ->orWhere('fumigaciones.status', 'Realizado')
-                ->orWhere('fumigaciones.status', 'Inactivo')
+                ->where(
+                    function ($query) {
+                        $query->where('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo');
+                    }
+                )
                 ->select(
                     'clientes.id',
                     'clientes.nombrecompleto',
@@ -392,8 +400,12 @@ class ReportesTablasController extends Controller
             )
                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                 ->where('clientes.nombrecompleto', '=', $clientes)
-                ->orWhere('fumigaciones.status', 'Realizado')
-                ->orWhere('fumigaciones.status', 'Inactivo')
+                ->where(
+                    function ($query) {
+                        $query->where('fumigaciones.status', 'Realizado')
+                            ->orWhere('fumigaciones.status', 'Inactivo');
+                    }
+                )
                 ->select(
                     'clientes.id',
                     'clientes.nombrecompleto',

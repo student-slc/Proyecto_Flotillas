@@ -4275,8 +4275,12 @@ class Metodos extends Controller
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4302,8 +4306,12 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4329,8 +4337,12 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4362,8 +4374,12 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4390,8 +4406,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4418,8 +4438,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4453,8 +4477,12 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4481,8 +4509,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4509,8 +4541,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4543,8 +4579,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4572,8 +4612,12 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4601,8 +4645,12 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4638,8 +4686,12 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4666,8 +4718,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4694,8 +4750,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4728,8 +4788,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4757,8 +4821,12 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4786,8 +4854,12 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4822,8 +4894,12 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4851,8 +4927,12 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4880,8 +4960,12 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4915,8 +4999,12 @@ class Metodos extends Controller
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4945,8 +5033,12 @@ class Metodos extends Controller
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -4975,8 +5067,12 @@ class Metodos extends Controller
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                                 ->where('fumigaciones.unidad', '=', $unidad)
-                                ->orWhere('fumigaciones.status', 'Realizado')
-                                ->orWhere('fumigaciones.status', 'Inactivo')
+                                ->where(
+                                    function ($query) {
+                                        $query->where('fumigaciones.status', 'Realizado')
+                                            ->orWhere('fumigaciones.status', 'Inactivo');
+                                    }
+                                )
                                 ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                     return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                                 })
@@ -5014,8 +5110,12 @@ class Metodos extends Controller
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5043,8 +5143,12 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5072,8 +5176,12 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5107,8 +5215,12 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5137,8 +5249,12 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5167,8 +5283,12 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5204,8 +5324,12 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5234,8 +5358,12 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5264,8 +5392,12 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5300,8 +5432,12 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5331,8 +5467,12 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -5362,8 +5502,12 @@ class Metodos extends Controller
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
                             ->where('fumigaciones.unidad', '=', $unidad)
-                            ->orWhere('fumigaciones.status', 'Realizado')
-                            ->orWhere('fumigaciones.status', 'Inactivo')
+                            ->where(
+                                function ($query) {
+                                    $query->where('fumigaciones.status', 'Realizado')
+                                        ->orWhere('fumigaciones.status', 'Inactivo');
+                                }
+                            )
                             ->when($condicion_fumigador, function ($query) use ($fumigador) {
                                 return $query->where('fumigaciones.id_fumigador', '=', $fumigador);
                             })
@@ -6380,7 +6524,7 @@ class ReportesPDFController extends Metodos
         $fumigaciones = Metodos::Reporte_Fumigaciones_Acumuladas($cli, $inicio, $final, $unidad, $tipou, $fumigador, $status);
         $pdf = PDF::loadView('pdf.ReporteFumigaciones', [
             'fumigaciones' => $fumigaciones,
-            'nombre' => 'Reporte Fumigaciones',
+            'nombre' => 'Reporte Fumigaciones Acumuladas',
         ]);
         /* landscape->HORIZONTAL */
         /* portrait->vertical */
@@ -6399,7 +6543,7 @@ class ReportesPDFController extends Metodos
         $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou, $fumigador);
         $pdf = PDF::loadView('pdf.ReporteSemanal', [
             'unidades' => $unidades,
-            'nombre' => 'Reporte Semanal',
+            'nombre' => 'Reporte Fumigaciones Realizadas',
         ]);
         /* landscape->HORIZONTAL */
         /* portrait->vertical */
@@ -6417,7 +6561,7 @@ class ReportesPDFController extends Metodos
         $unidades = Metodos::Reportes_Fumigaciones_Proximas($cli, $inicio, $final, $unidad, $tipou);
         $pdf = PDF::loadView('pdf.ReporteDia', [
             'unidades' => $unidades,
-            'nombre' => 'Reporte Dia',
+            'nombre' => 'Reporte Proximas Fumigaciones',
         ]);
         /* landscape->HORIZONTAL */
         /* portrait->vertical */
@@ -6466,8 +6610,9 @@ class ReportesPDFController extends Metodos
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
+        $fumigador = "" . $request['filtrofumigador'];
         $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::SatisfaccionCIFUT($cli, $inicio, $final, $unidad, $tipou);
+        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou, $fumigador);
         $pdf = PDF::loadView('pdf.ReporteSatisfaccion', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Satisfaccion',
@@ -6484,8 +6629,9 @@ class ReportesPDFController extends Metodos
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
+        $fumigador = "" . $request['filtrofumigador'];
         $tipou = "" . $request['filtrotuni'];
-        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou);
+        $unidades = Metodos::Reporte_Semanal($cli, $inicio, $final, $unidad, $tipou, $fumigador);
         $pdf = PDF::loadView('pdf.ReporteSemanal', [
             'unidades' => $unidades,
             'nombre' => 'Reporte Servicio',
@@ -6496,7 +6642,6 @@ class ReportesPDFController extends Metodos
         $pdf->setPaper(array(0, 0, 838, 1188), 'landscape');
         return $pdf->download('Reporte_Servicio.pdf');
     }
-
     public function reporteIndividualFumigacion($id)
     {
         $fumigaciones = Metodos::ConstanciaFumigacion($id);
