@@ -65,8 +65,14 @@
                                                         class=" selectsearch" style="width:100%">
                                                         <option selected value="todos">Todas Las Unidades</option>
                                                         @foreach ($unidades as $unidade)
-                                                            <option value="{{ $unidade->id }}">{{ $unidade->serieunidad }}
-                                                            </option>
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <option value="{{ $unidade->serieunidad }}">
+                                                                    {{ $unidade->serieunidad }}</option>';
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <option value="{{ $unidade->direccion }}">
+                                                                    {{ $unidade->direccion }}</option>';
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>

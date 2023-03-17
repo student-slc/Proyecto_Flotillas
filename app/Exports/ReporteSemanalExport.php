@@ -125,7 +125,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -150,7 +150,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -175,7 +175,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -288,7 +288,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -314,7 +314,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -340,7 +340,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -455,7 +455,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -481,7 +481,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -507,7 +507,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -624,7 +624,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -651,7 +651,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -678,7 +678,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -798,7 +798,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -825,7 +825,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -852,7 +852,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -973,7 +973,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -1001,7 +1001,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -1029,7 +1029,7 @@ class ReporteSemanalExport implements FromCollection, WithHeadings, ShouldAutoSi
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(

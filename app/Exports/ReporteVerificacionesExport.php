@@ -185,7 +185,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -208,7 +208,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -234,7 +234,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -402,7 +402,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -425,7 +425,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -451,7 +451,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -621,7 +621,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -644,7 +644,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -670,7 +670,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -841,7 +841,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -864,7 +864,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -890,7 +890,7 @@ class ReporteVerificacionesExport implements FromCollection, WithHeadings, Shoul
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',

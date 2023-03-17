@@ -48,7 +48,7 @@ class Metodos extends Controller
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -102,7 +102,7 @@ class Metodos extends Controller
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -158,7 +158,7 @@ class Metodos extends Controller
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -214,7 +214,7 @@ class Metodos extends Controller
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -381,7 +381,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -404,7 +404,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -430,7 +430,7 @@ class Metodos extends Controller
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -598,7 +598,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -621,7 +621,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -647,7 +647,7 @@ class Metodos extends Controller
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -817,7 +817,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -840,7 +840,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -866,7 +866,7 @@ class Metodos extends Controller
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -1037,7 +1037,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -1060,7 +1060,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('verificaciones.tipoverificacion', '=', 'Fisica')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -1086,7 +1086,7 @@ class Metodos extends Controller
                             )->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('unidades.serieunidad', '=', $unidad)
                                 ->select(
                                     'clientes.id',
                                     'clientes.nombrecompleto',
@@ -1155,7 +1155,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -1215,7 +1215,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -1277,7 +1277,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -1339,7 +1339,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -1613,7 +1613,7 @@ class Metodos extends Controller
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -1807,7 +1807,7 @@ class Metodos extends Controller
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where(
                                 function ($query) use ($final) {
                                     $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
@@ -2053,7 +2053,7 @@ class Metodos extends Controller
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where(
                                 function ($query) use ($inicio) {
                                     $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
@@ -2297,7 +2297,7 @@ class Metodos extends Controller
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where(
                                 function ($query) use ($final, $inicio) {
                                     $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
@@ -3358,7 +3358,7 @@ class Metodos extends Controller
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3383,7 +3383,7 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3408,7 +3408,7 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3521,7 +3521,7 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3547,7 +3547,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3573,7 +3573,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3688,7 +3688,7 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3714,7 +3714,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3740,7 +3740,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3857,7 +3857,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3884,7 +3884,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -3911,7 +3911,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->orWhere('fumigaciones.status', 'Realizado')
                                 ->orWhere('fumigaciones.status', 'Inactivo')
                                 ->select(
@@ -4031,7 +4031,7 @@ class Metodos extends Controller
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -4058,7 +4058,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -4085,7 +4085,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -4206,7 +4206,7 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -4234,7 +4234,7 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -4262,7 +4262,7 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.fechaprogramada', '<=', $final)
                             ->whereDate('fumigaciones.fechaprogramada', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->orWhere('fumigaciones.status', 'Realizado')
                             ->orWhere('fumigaciones.status', 'Inactivo')
                             ->select(
@@ -4366,7 +4366,7 @@ class Metodos extends Controller
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4387,7 +4387,7 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4408,7 +4408,7 @@ class Metodos extends Controller
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4505,7 +4505,7 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4527,7 +4527,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4549,7 +4549,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4648,7 +4648,7 @@ class Metodos extends Controller
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4670,7 +4670,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4692,7 +4692,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4793,7 +4793,7 @@ class Metodos extends Controller
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4816,7 +4816,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4839,7 +4839,7 @@ class Metodos extends Controller
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -4943,7 +4943,7 @@ class Metodos extends Controller
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -4966,7 +4966,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -4989,7 +4989,7 @@ class Metodos extends Controller
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -5094,7 +5094,7 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -5118,7 +5118,7 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -5142,7 +5142,7 @@ class Metodos extends Controller
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',

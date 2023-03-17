@@ -15,14 +15,13 @@
         <li><a href="{{ route('tabla_reportes.reporte_flotillas') }}">Flotillas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_seguros') }}">Seguros de Resp. Civil</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_verificaciones') }}">Verificaciones</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_fumigaciones') }}">Fumigaciones Acumuladas</a></li>
+        {{-- <li><a href="{{ route('tabla_reportes.reporte_fumigaciones') }}">Fumigaciones Acumuladas</a></li> --}}
         <li><a href="{{ route('tabla_reportes.reporte_semanal') }}">Fumigaciones Realizadas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_dia') }}">Fumigaciones Proximas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_individualv') }}">Individual Vehicular</a></li>
+        {{-- <li><a href="{{ route('tabla_reportes.reporte_individualv') }}">Individual Habitacional</a></li> --}}
         <li><a href="{{ route('tabla_reportes.reporte_individual') }}">Individual Operador</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_satisfaccion') }}">Satisfacción de Serv. Fum.</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_individualv') }}">Inconcluso</a></li>
-        <li><a href="{{ route('tabla_reportes.reporte_individual') }}">Inconcluso</a></li>
+        {{-- <li><a href="{{ route('tabla_reportes.reporte_satisfaccion') }}">Satisfacción de Servicio. F.</a></li> --}}
     </ul>
 </li>
 

@@ -102,7 +102,7 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -296,7 +296,7 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where(
                                 function ($query) use ($final) {
                                     $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
@@ -542,7 +542,7 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where(
                                 function ($query) use ($inicio) {
                                     $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
@@ -786,7 +786,7 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
                         return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where(
                                 function ($query) use ($final, $inicio) {
                                     $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')

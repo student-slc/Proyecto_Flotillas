@@ -65,7 +65,7 @@
                                                         class=" selectsearch" style="width:100%">
                                                         <option selected value="todos">Todas Las Unidades</option>
                                                         @foreach ($unidades as $unidade)
-                                                            <option value="{{ $unidade->id }}">{{ $unidade->serieunidad }}
+                                                            <option value="{{ $unidade->serieunidad }}">{{ $unidade->serieunidad }}
                                                             </option>
                                                         @endforeach
                                                     </select>

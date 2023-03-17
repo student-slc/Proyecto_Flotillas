@@ -114,7 +114,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 }
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -135,7 +135,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             return Fumigacione::join('unidades', 'unidades.direccion', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -156,7 +156,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             return Fumigacione::join('unidades', 'unidades.serieunidad', '=', 'fumigaciones.unidad')
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -253,7 +253,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -275,7 +275,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -297,7 +297,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -396,7 +396,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             )
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -418,7 +418,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -440,7 +440,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -541,7 +541,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -564,7 +564,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -587,7 +587,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                                 ->where('unidades.tipo', '=', 'Unidad Vehicular')
                                 ->where('clientes.nombrecompleto', '=', $cli)
                                 ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
-                                ->where('unidades.id', '=', $unidad)
+                                ->where('fumigaciones.unidad', '=', $unidad)
                                 ->where('fumigaciones.status', 'Realizado')
                                 ->select(
                                     'clientes.id',
@@ -691,7 +691,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -714,7 +714,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             ->where('unidades.tipo', '=', 'Unidad Habitacional o Comercial')
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -737,7 +737,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             ->where('unidades.tipo', '=', 'Unidad Vehicular')
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -842,7 +842,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -866,7 +866,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',
@@ -890,7 +890,7 @@ class ReporteDiaExport implements FromCollection, WithHeadings, ShouldAutoSize, 
                             ->where('clientes.nombrecompleto', '=', $cli)
                             ->whereDate('fumigaciones.proxima_fumigacion', '<=', $final)
                             ->whereDate('fumigaciones.proxima_fumigacion', '>=', $inicio)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('fumigaciones.unidad', '=', $unidad)
                             ->where('fumigaciones.status', 'Realizado')
                             ->select(
                                 'clientes.id',

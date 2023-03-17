@@ -9,7 +9,7 @@
     } else {
         $cadena_1 = $cadena_1 . '<option value="todos">Todos Los Operadores</option>';
         foreach ($operadores as $operadore) {
-            $cadena_1 = $cadena_1 . '<option value="' . $operadore->id . '">' . strval($operadore->nombreoperador) . '</option>';
+            $cadena_1 = $cadena_1 . '<option value="' . strval($operadore->nombreoperador) . '">' . strval($operadore->nombreoperador) . '</option>';
         }
     }
     $cadena_1 = $cadena_1 . '</select>';

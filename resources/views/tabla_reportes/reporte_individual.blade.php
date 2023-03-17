@@ -65,7 +65,7 @@
                                                         class=" selectsearch" style="width:100%">
                                                         <option selected value="todos">Todos Los Operadores</option>
                                                         @foreach ($operadores as $operadore)
-                                                            <option value="{{ $operadore->id }}">
+                                                            <option value="{{ $operadore->nombreoperador }}">
                                                                 {{ $operadore->nombreoperador }}
                                                             </option>
                                                         @endforeach

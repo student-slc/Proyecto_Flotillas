@@ -11,7 +11,7 @@
     } else {
         $cadena_1 = $cadena_1 . '<option value="todos">Todas Las Unidades</option>';
         foreach ($unidad as $unidade) {
-            $cadena_1 = $cadena_1 . '<option value="' . $unidade->id . '">' . strval($unidade->placas) . '</option>';
+            $cadena_1 = $cadena_1 . '<option value="' . strval($unidade->placas) . '">' . strval($unidade->placas) . '</option>';
         }
     }
     $cadena_1 = $cadena_1 . '</select>';

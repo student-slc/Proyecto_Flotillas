@@ -70,7 +70,7 @@ class ReporteFlotillasExport implements FromCollection, WithHeadings, ShouldAuto
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -124,7 +124,7 @@ class ReporteFlotillasExport implements FromCollection, WithHeadings, ShouldAuto
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -180,7 +180,7 @@ class ReporteFlotillasExport implements FromCollection, WithHeadings, ShouldAuto
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
@@ -236,7 +236,7 @@ class ReporteFlotillasExport implements FromCollection, WithHeadings, ShouldAuto
                             ->where('tipo', '=', 'Unidad Vehicular')
                             ->whereNot('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
                             ->where('unidades.cliente', '=', $cli)
-                            ->where('unidades.id', '=', $unidad)
+                            ->where('unidades.serieunidad', '=', $unidad)
                             ->select(
                                 'clientes.id',
                                 'clientes.nombrecompleto',
