@@ -6,6 +6,7 @@ use App\Models\Fumigacione;
 use App\Models\Operadore;
 use App\Models\Unidade;
 use App\Models\Cliente;
+use App\Models\Fumigadore;
 use App\Models\Verificacione;
 use Illuminate\Http\Request;
 
@@ -225,17 +226,90 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $fumigadores = Fumigadore::all();
+            $fumigaciones = Fumigacione::join(
+                'unidades',
+                function ($join) {
+                    $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+                }
+            )
+                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'clientes.direccionfisica',
+                    'fumigaciones.numerofumigacion',
+                    'fumigaciones.unidad',
+                    'fumigaciones.id_fumigador',
+                    'fumigaciones.fechaprogramada',
+                    'fumigaciones.status',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipo',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $fumigadores = Fumigadore::all();
+            $fumigaciones = Fumigacione::join(
+                'unidades',
+                function ($join) {
+                    $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+                }
+            )
+                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'clientes.direccionfisica',
+                    'fumigaciones.numerofumigacion',
+                    'fumigaciones.unidad',
+                    'fumigaciones.id_fumigador',
+                    'fumigaciones.fechaprogramada',
+                    'fumigaciones.status',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipo',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+            $fumigadores = Fumigadore::all();
+            $fumigaciones = Fumigacione::join(
+                'unidades',
+                function ($join) {
+                    $join->on('unidades.serieunidad', '=', 'fumigaciones.unidad')->orOn('unidades.direccion', '=', 'fumigaciones.unidad');
+                }
+            )
+                ->join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('clientes.nombrecompleto', '=', $clientes)
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'clientes.direccionfisica',
+                    'fumigaciones.numerofumigacion',
+                    'fumigaciones.unidad',
+                    'fumigaciones.id_fumigador',
+                    'fumigaciones.fechaprogramada',
+                    'fumigaciones.status',
+                    'unidades.marca',
+                    'unidades.serieunidad',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.tipo',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
-        return view('tabla_reportes.reporte_fumigaciones', compact('unidades', 'clientes'));
+        return view('tabla_reportes.reporte_fumigaciones', compact('fumigaciones', 'clientes', 'fumigadores'));
     }
     public function reporte_operadores()
     {

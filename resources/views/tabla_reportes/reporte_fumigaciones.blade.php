@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    REPORTE FUMIGACIONES
+    REPORTE FUMIGACIONES ACUMULADAS
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Reporte Fumigaciones</h3>
+            <h3 class="page__heading">Reporte Fumigaciones Acumuladas</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -65,8 +65,14 @@
                                                         class=" selectsearch" style="width:100%">
                                                         <option selected value="todos">Todas Las Unidades</option>
                                                         @foreach ($unidades as $unidade)
-                                                            <option value="{{ $unidade->serieunidad }}">{{ $unidade->serieunidad }}
-                                                            </option>
+                                                            @if ($unidade->tipo == 'Unidad Vehicular')
+                                                                <option value="{{ $unidade->serieunidad }}">
+                                                                    {{ $unidade->serieunidad }}</option>';
+                                                            @endif
+                                                            @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
+                                                                <option value="{{ $unidade->direccion }}">
+                                                                    {{ $unidade->direccion }}</option>';
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -102,44 +108,93 @@
                                     </div>
                                     <br>
                                 @endcan
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrofumigador">Filtro Fumigadores</label>
+                                                <select name="filtrofumigador" id="filtrofumigador" readonly="readonly"
+                                                    class=" selectsearch" style="width:100%">
+                                                    <option selected value="todos">Todos los Fumigadores</option>
+                                                    @foreach ($fumigadores as $fumigador)
+                                                        <option value="{{ $fumigador->nombrecompleto }}">
+                                                            {{ $fumigador->nombrecompleto }}</option>';
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrotuni">Filtro Tipo de Unidad</label>
+                                                <select name="filtrotuni" id="filtrotuni" class=" selectsearch"
+                                                    style="width:100%">
+                                                    <option selected value="Ambas">Ambas Unidades</option>
+                                                    <option value="Habitacion">Habitacionales</option>
+                                                    <option value="Vehiculo">Vehiculares</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrostatus">Filtros Status Fumigación</label>
+                                                <select name="filtrostatus" id="filtrostatus" readonly="readonly"
+                                                    class=" selectsearch" style="width:100%">
+                                                    <option selected value="todos">Todos los Status</option>
+                                                    <option value="Realizado">Realizado</option>
+                                                    <option value="Inactivo">Inactivo</option>
+                                                    <option value="Reprogramado">Reprogramado</option>
+                                                    <option value="Pendiente">Pendiente</option>
+                                                    <option value="Cancelado">Cancelado</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
-                                <thead style="background-color:#95b8f6">
-                                    <th style="color:#fff;">Placas/Dirección</th>
-                                    <th style="color:#fff;">Cliente</th>
+                                <thead style="background-color:#6777ef">
+                                    <th style="color:#fff;">Id CLiente</th>
+                                    <th style="color:#fff;">CLiente</th>
+                                    <th style="color:#fff;">Razon Social Cliente</th>
+                                    <th style="color:#fff;">Dirección Fisica</th>
+                                    <th style="color:#fff;">Folio Fumigación</th>
+                                    <th style="color:#fff;">Unidad</th>
+                                    <th style="color:#fff;">Fumigador</th>
+                                    <th style="color:#fff;">Fecha Programada</th>
+                                    <th style="color:#fff;">Status</th>
                                     <th style="color:#fff;">Marca</th>
+                                    <th style="color:#fff;">Serie Unidad/Dirección</th>
                                     <th style="color:#fff;">Año Unidad</th>
+                                    <th style="color:#fff;">Placas</th>
                                     <th style="color:#fff;">Tipo Unidad</th>
-                                    <th style="color:#fff;">Razon Social</th>
-                                    <th style="color:#fff;">Ultima Fumigación</th>
+                                    <th style="color:#fff;">Razon Social Unidad</th>
                                 </thead>
                                 <tbody>
-                                    @foreach ($unidades as $unidade)
-                                        @if ($unidade->lapsofumigacion != 'Sin Fecha de Fumigación')
-                                            <tr>
-                                                @php
-                                                    if ($unidade->tipo == 'Unidad Vehicular') {
-                                                        echo '<td>' . $unidade->placas . '</td>';
-                                                        echo '<td>' . $unidade->cliente . '</td>';
-                                                        echo '<td>' . $unidade->marca . '</td>';
-                                                        echo '<td>' . $unidade->añounidad . '</td>';
-                                                        echo '<td>' . $unidade->tipounidad . '</td>';
-                                                        echo '<td>' . $unidade->razonsocialunidad . '</td>';
-                                                        echo '<td>' . $unidade->lapsofumigacion . '</td>';
-                                                    }
-                                                    if ($unidade->tipo == 'Unidad Habitacional o Comercial') {
-                                                        echo '<td>' . $unidade->direccion . '</td>';
-                                                        echo '<td>' . $unidade->cliente . '</td>';
-                                                        echo '<td>NO APLICA</td>';
-                                                        echo '<td>NO APLICA</td>';
-                                                        echo '<td>NO APLICA</td>';
-                                                        echo '<td>' . $unidade->razonsocialunidad . '</td>';
-                                                        echo '<td>' . $unidade->lapsofumigacion . '</td>';
-                                                    }
-                                                @endphp
-                                            </tr>
-                                        @endif
+                                    @foreach ($fumigaciones as $fumigacion)
+                                        <tr>
+                                            <td>{{ $fumigacion->id }}</td>
+                                            <td>{{ $fumigacion->nombrecompleto }}</td>
+                                            <td>{{ $fumigacion->razonsocial }}</td>
+                                            <td>{{ $fumigacion->direccionfisica }}</td>
+                                            <td>{{ $fumigacion->numerofumigacion }}</td>
+                                            <td>{{ $fumigacion->unidad }}</td>
+                                            <td>{{ $fumigacion->id_fumigador }}</td>
+                                            <td>{{ $fumigacion->fechaprogramada }}</td>
+                                            <td>{{ $fumigacion->status }}</td>
+                                            <td>{{ $fumigacion->marca }}</td>
+                                            <td>{{ $fumigacion->serieunidad }}</td>
+                                            <td>{{ $fumigacion->añounidad }}</td>
+                                            <td>{{ $fumigacion->placas }}</td>
+                                            <td>{{ $fumigacion->tipo }}</td>
+                                            <td>{{ $fumigacion->razonsocialunidad }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

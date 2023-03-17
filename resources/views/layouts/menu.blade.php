@@ -15,7 +15,7 @@
         <li><a href="{{ route('tabla_reportes.reporte_flotillas') }}">Flotillas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_seguros') }}">Seguros de Resp. Civil</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_verificaciones') }}">Verificaciones</a></li>
-        {{-- <li><a href="{{ route('tabla_reportes.reporte_fumigaciones') }}">Fumigaciones Acumuladas</a></li> --}}
+        <li><a href="{{ route('tabla_reportes.reporte_fumigaciones') }}">Fumigaciones Acumuladas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_semanal') }}">Fumigaciones Realizadas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_dia') }}">Fumigaciones Proximas</a></li>
         <li><a href="{{ route('tabla_reportes.reporte_individualv') }}">Individual Vehicular</a></li>

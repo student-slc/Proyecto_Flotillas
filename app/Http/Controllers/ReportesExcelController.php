@@ -87,10 +87,13 @@ class ReportesExcelController extends Controller
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
+        $tipou = "" . $request['filtrotuni'];
+        $fumigador = "" . $request['filtrofumigador'];
+        $status = "" . $request['filtrostatus'];
         if ($cli == 'todos') {
-            return (new ReporteFumigacionesExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones.xlsx');
+            return (new ReporteFumigacionesExport($cli, $inicio, $final, $unidad, $tipou, $fumigador, $status))->download('Reporte_Fumigaciones_Acumuladas.xlsx');
         } else {
-            return (new ReporteFumigacionesExport($cli, $inicio, $final, $unidad))->download('Reporte_Verificaciones_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteFumigacionesExport($cli, $inicio, $final, $unidad, $tipou, $fumigador, $status))->download('Reporte_Fumigaciones_Acumuladas_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_semanalexcel(Request $request)
@@ -153,9 +156,9 @@ class ReportesExcelController extends Controller
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
-                return (new ReporteIndividualVExport($cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular.xlsx');
+            return (new ReporteIndividualVExport($cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular.xlsx');
         } else {
-                return (new ReporteIndividualVExport($cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteIndividualVExport($cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reportes_satisfaccionexcel(Request $request)
