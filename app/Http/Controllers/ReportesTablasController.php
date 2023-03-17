@@ -496,15 +496,97 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'unidades.tipounidad',
+                    'unidades.serieunidad',
+                    'unidades.verificacion',
+                    'unidades.verificacion_fecha',
+                    'unidades.verificacion2',
+                    'unidades.verificacion_fecha2',
+                    'unidades.seguro',
+                    'unidades.seguro_fecha',
+                    'unidades.fumigacion',
+                    'unidades.lapsofumigacion',
+                    'unidades.frecuencia_fumiga',
+                    'unidades.mantenimiento',
+                    'unidades.mantenimiento_fecha',
+                    'unidades.frecuencia_mante',
+                    'unidades.tipomantenimiento',
+                    'unidades.marca',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.digitoplaca',
+                    'unidades.kilometros_contador',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
-            $unidades = Unidade::where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'unidades.tipounidad',
+                    'unidades.serieunidad',
+                    'unidades.verificacion',
+                    'unidades.verificacion_fecha',
+                    'unidades.verificacion2',
+                    'unidades.verificacion_fecha2',
+                    'unidades.seguro',
+                    'unidades.seguro_fecha',
+                    'unidades.fumigacion',
+                    'unidades.lapsofumigacion',
+                    'unidades.frecuencia_fumiga',
+                    'unidades.mantenimiento',
+                    'unidades.mantenimiento_fecha',
+                    'unidades.frecuencia_mante',
+                    'unidades.tipomantenimiento',
+                    'unidades.marca',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.digitoplaca',
+                    'unidades.kilometros_contador',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
-            $unidades = Unidade::where('cliente', '=', $clientes)->where('tipo', '=', 'Unidad Vehicular')->get();
+            $unidades = Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                ->where('unidades.cliente', '=', $clientes)
+                ->select(
+                    'clientes.id',
+                    'clientes.nombrecompleto',
+                    'clientes.razonsocial',
+                    'unidades.tipounidad',
+                    'unidades.serieunidad',
+                    'unidades.verificacion',
+                    'unidades.verificacion_fecha',
+                    'unidades.verificacion2',
+                    'unidades.verificacion_fecha2',
+                    'unidades.seguro',
+                    'unidades.seguro_fecha',
+                    'unidades.fumigacion',
+                    'unidades.lapsofumigacion',
+                    'unidades.frecuencia_fumiga',
+                    'unidades.mantenimiento',
+                    'unidades.mantenimiento_fecha',
+                    'unidades.frecuencia_mante',
+                    'unidades.tipomantenimiento',
+                    'unidades.marca',
+                    'unidades.añounidad',
+                    'unidades.placas',
+                    'unidades.digitoplaca',
+                    'unidades.kilometros_contador',
+                    'unidades.razonsocialunidad',
+                )->get();
         }
         $verificaciones = Verificacione::all();
         return view('tabla_reportes.reporte_individualv', compact('unidades', 'clientes', 'verificaciones'));

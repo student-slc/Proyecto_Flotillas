@@ -76,21 +76,6 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="card-deck mt-6">
-                                            <div class="card col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                        style="width:100%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
-                                                        <option value="Ambiental">Verificaciones Ambientales</option>
-                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endcan
                                 {{-- GENERAL --}}
                                 @can('general-rol')
@@ -118,214 +103,73 @@
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="card-deck mt-6">
-                                            <div class="card col-xs-12 col-sm-12 col-md-12">
-                                                <div class="form-group">
-                                                    <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
-                                                        style="width:100%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
-                                                        <option value="Ambiental">Verificaciones Ambientales</option>
-                                                        <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endcan
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
                                 <thead style="background-color:#95b8f6">
-                                    <th style="color:#fff;">Placas</th>
+                                    <th style="color:#fff;">ID Cliente</th>
                                     <th style="color:#fff;">Cliente</th>
+                                    <th style="color:#fff;">Razon Social Cliente</th>
+                                    <th style="color:#fff;">Tipo Unidad</th>
                                     <th style="color:#fff;">Serie Unidad</th>
-                                    {{-- <th style="color:#fff;">Marca</th> --}}
-                                    {{-- <th style="color:#fff;">Año Unidad</th> --}}
-                                    {{-- <th style="color:#fff;">Tipo Unidad</th> --}}
-                                    <th style="color:#fff;">Razon Social</th>
-                                    <th style="color:#fff;">Tipo Verificación</th>
-                                    <th style="color:#fff;">Subtipo Verificación</th>
-                                    <th style="color:#fff;">Ultima Verificación</th>
-                                    <th style="color:#fff;">Mas Información</th>
-
+                                    <th style="color:#fff;">Verificacion Fisico-Mecanica</th>
+                                    <th style="color:#fff;">Fecha Verificación</th>
+                                    <th style="color:#fff;">Verificacion Ambiental</th>
+                                    <th style="color:#fff;">Fecha Verificación</th>
+                                    <th style="color:#fff;">Seguro</th>
+                                    <th style="color:#fff;">Fecha Seguro</th>
+                                    <th style="color:#fff;">Fumigación</th>
+                                    <th style="color:#fff;">Fecha Fumigación</th>
+                                    <th style="color:#fff;">Frecuencia Fumigación</th>
+                                    <th style="color:#fff;">Mantenimiento</th>
+                                    <th style="color:#fff;">Fecha Mantenimiento</th>
+                                    <th style="color:#fff;">Frecuencia Mantenimiento</th>
+                                    <th style="color:#fff;">Tipo de Mantenimiento</th>
+                                    <th style="color:#fff;">Marca</th>
+                                    <th style="color:#fff;">Año Unidad</th>
+                                    <th style="color:#fff;">Placas</th>
+                                    <th style="color:#fff;">Digito Placa</th>
+                                    <th style="color:#fff;">Kilometraje</th>
+                                    <th style="color:#fff;">Razon Social Unidad</th>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $a = 'a';
-                                        use App\Models\Verificacione;
-                                        $verificaciones = Verificacione::all();
-                                    @endphp
-                                    {{--  --}}
                                     @foreach ($unidades as $unidade)
-                                        @php
-                                            foreach ($verificaciones as $verificacione) {
-                                                if ($verificacione->noverificacion == $unidade->verificacion) {
-                                                    echo '<tr>';
-                                                    echo '<td>' . $unidade->placas . '</td>';
-                                                    echo '<td>' . $unidade->cliente . '</td>';
-                                                    echo '<td>' . $unidade->serieunidad . '</td>';
-                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
-                                                    echo '<td>' . $verificacione->tipoverificacion . '</td>';
-                                                    echo '<td>' . $verificacione->subtipoverificacion . '</td>';
-                                                    echo '<td>' . $verificacione->fechavencimiento . '</td>';
-                                                    echo '<td>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="$("#{{ $a }}").modal("show")">
-                                                    Detalles
-                                                </button>
-                                            </td>';
-                                                    echo '</tr>';
-                                                    break;
-                                                } /*  else {
-                                                    echo '<td>No aplica</td>';
-                                                    echo '<td>No aplica</td>';
-                                                    echo '<td>No aplica</td>';
-                                                    break;
-                                                } */
-                                            }
-                                        @endphp
-                                        @php
-                                            $a = $a . 'a';
-                                        @endphp
+                                        <tr>
+                                            <td>{{ $unidade->id }}</td>
+                                            <td>{{ $unidade->nombrecompleto }}</td>
+                                            <td>{{ $unidade->razonsocial }}</td>
+                                            <td>{{ $unidade->tipounidad }}</td>
+                                            <td>{{ $unidade->serieunidad }}</td>
+                                            <td>{{ $unidade->verificacion }}</td>
+                                            <td>{{ $unidade->verificacion_fecha }}</td>
+                                            <td>{{ $unidade->verificacion2 }}</td>
+                                            <td>{{ $unidade->verificacion_fecha2 }}</td>
+                                            <td>{{ $unidade->seguro }}</td>
+                                            <td>{{ $unidade->seguro_fecha }}</td>
+                                            <td>{{ $unidade->fumigacion }}</td>
+                                            <td>{{ $unidade->lapsofumigacion }}</td>
+                                            <td>{{ $unidade->frecuencia_fumiga }}</td>
+                                            <td>{{ $unidade->mantenimiento }}</td>
+                                            <td>{{ $unidade->mantenimiento_fecha }}</td>
+                                            <td>{{ $unidade->frecuencia_mante }}</td>
+                                            <td>{{ $unidade->tipomantenimiento }}</td>
+                                            <td>{{ $unidade->marca }}</td>
+                                            <td>{{ $unidade->añounidad }}</td>
+                                            <td>{{ $unidade->placas }}</td>
+                                            <td>{{ $unidade->digitoplaca }}</td>
+                                            <td>{{ $unidade->kilometros_contador }}</td>
+                                            <td>{{ $unidade->razonsocialunidad }}</td>
+                                        </tr>
                                     @endforeach
-                                    {{--  --}}
-                                    @foreach ($unidades as $unidade)
-                                        @php
-                                            foreach ($verificaciones as $verificacione) {
-                                                if ($verificacione->noverificacion == $unidade->verificacion2) {
-                                                    echo '<tr>';
-                                                    echo '<td>' . $unidade->placas . '</td>';
-                                                    echo '<td>' . $unidade->cliente . '</td>';
-                                                    echo '<td>' . $unidade->serieunidad . '</td>';
-                                                    echo '<td>' . $unidade->razonsocialunidad . '</td>';
-                                                    echo '<td>' . $verificacione->tipoverificacion . '</td>';
-                                                    echo '<td>' . $verificacione->subtipoverificacion . '</td>';
-                                                    echo '<td>' . $verificacione->fechavencimiento . '</td>';
-                                                    echo '<td>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="$("#{{ $a }}").modal("show")">
-                                                    Detalles
-                                                </button>
-                                            </td>';
-                                                    echo '</tr>';
-                                                    break;
-                                                } /*  else {
-                                                    echo '<td>No aplica</td>';
-                                                    echo '<td>No aplica</td>';
-                                                    echo '<td>No aplica</td>';
-                                                    break;
-                                                } */
-                                            }
-                                        @endphp
-                                        @php
-                                            $a = $a . 'a';
-                                        @endphp
-                                    @endforeach
-                                    {{--  --}}
                                 </tbody>
                             </table>
-                            <!-- Ubicamos la paginacion a la derecha -->
-                            {{--  <div class="pagination justify-content-end">
-                                {!! $unidades->links() !!}
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    {{-- MODAL --}}
-    @php
-        $a = 'a';
-    @endphp
-    @foreach ($unidades as $unidade)
-        <div class="modal fade" id="{{ $a }}" tabindex="-1" role="dialog"
-            aria-labelledby="ModalDetallesTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="ModalDetallesTitle"><b>Informacion de
-                                @if ($unidade->tipo == 'Unidad Habitacional o Comercial')
-                                    {{ $unidade->direccion }}
-                                @endif
-                                @if ($unidade->tipo == 'Unidad Vehicular')
-                                    {{ $unidade->placas }}
-                                @endif
-                            </b></h5>
-                        <button type="button" class="btn-close" onclick="$('#{{ $a }}').modal('hide')">
-                    </div>
-                    <div class="modal-body">
-                        @if ($unidade->tipo == 'Unidad Vehicular')
-                            <b>Marca:</b>
-                            <li class="list-group-item">
-                                {{ $unidade->marca }}
-                            </li>
-                            <br>
-                            <b>Año de la Unidad:</b>
-                            <li class="list-group-item">
-                                {{ $unidade->añounidad }}
-                            </li>
-                            <br>
-                            <b>Tipo de Unidad:</b>
-                            <li class="list-group-item">
-                                {{ $unidade->tipounidad }}
-                            </li>
-                            <br>
-                            <b>Accesorios Completos</b>
-                            <li class="list-group-item">
-                                N/A
-                            </li>
-                            <br>
-                            <b>Kilometraje</b>
-                            <br>
-                            <li class="list-group-item">
-                                {{ $unidade->kilometros_contador }}
-                            </li>
-                            <br>
-                            <b>Accesorios Completos</b>
-                            <br>
-                            <li class="list-group-item">
-                                {{ $unidade->kilometros_contador }}
-                            </li>
-                            <br>
-                            @if ($unidade->tipomantenimiento == 'Kilometraje')
-                                <b>Sig. Mantenimiento KM</b>
-                                <br>
-                                <li class="list-group-item">
-                                    {{ $unidade->kilometros_contador + $unidade->frecuenciamante }} km
-                                </li>
-                                <br>
-                            @endif
-                            @if ($unidade->tipomantenimiento == 'Fecha')
-                                <b>Sig. Mantenimiento KM</b>
-                                <br>
-                                <li class="list-group-item">
-                                    N/A
-                                </li>
-                                <br>
-                            @endif
-                            <b>Seguro Fecha</b>
-                            <br>
-                            <li class="list-group-item">
-                                {{ $unidade->seguro_fecha }}
-                            </li>
-                            <br>
-                        @endif
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger"
-                            onclick="$('#{{ $a }}').modal('hide')">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @php
-            $a = $a . 'a';
-        @endphp
-    @endforeach
-    {{-- =========================================== --}}
 @endsection
 @section('scripts')
     <script type="text/javascript">

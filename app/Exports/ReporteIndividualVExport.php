@@ -14,6 +14,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
+
 class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAutoSize, WithStyles
 {
     /**
@@ -21,9 +22,8 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
      */
     use Exportable;
 
-    public function __construct(string $tipo, string $cli, string $inicio, string $final, string $unidad)
+    public function __construct(string $cli, string $inicio, string $final, string $unidad)
     {
-        $this->tipo = $tipo;
         $this->cli = $cli;
         $this->inicio = $inicio;
         $this->final = $final;
@@ -32,7 +32,6 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
     public function collection()
     {
         /* whereDate('created_at','<=', '2021-01-17') */
-        $tipo = $this->tipo;
         $cli = $this->cli;
         $inicio = $this->inicio;
         $final = $this->final;
@@ -40,956 +39,830 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
         if ($inicio == null) {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    if ($tipo == 'Ambiental') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Fisica') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Ambas') {
-                        return Unidade::join(
-                            'verificaciones',
-                            function ($join) {
-                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
-                            }
-                        )
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->select(
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'unidades.tipounidad',
+                            'unidades.serieunidad',
+                            'unidades.verificacion',
+                            'unidades.verificacion_fecha',
+                            'unidades.verificacion2',
+                            'unidades.verificacion_fecha2',
+                            'unidades.seguro',
+                            'unidades.seguro_fecha',
+                            'unidades.fumigacion',
+                            'unidades.lapsofumigacion',
+                            'unidades.frecuencia_fumiga',
+                            'unidades.mantenimiento',
+                            'unidades.mantenimiento_fecha',
+                            'unidades.frecuencia_mante',
+                            'unidades.tipomantenimiento',
+                            'unidades.marca',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.digitoplaca',
+                            'unidades.kilometros_contador',
+                            'unidades.razonsocialunidad',
+                        )->get();
                 } else {
                     if ($unidad == 'todos') {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
-                                }
-                            )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     } else {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
-                                }
-                            )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    if ($tipo == 'Ambiental') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Fisica') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Ambas') {
-                        return Unidade::join(
-                            'verificaciones',
-                            function ($join) {
-                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->where(
+                            function ($query) use ($final) {
+                                $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                    ->orWhere(
+                                        function ($q) use ($final) {
+                                            return $q->whereDate('unidades.verificacion_fecha', '<=', $final);
+                                        }
+                                    );
                             }
                         )
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
+                        ->where(
+                            function ($query) use ($final) {
+                                $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                    ->orWhere(
+                                        function ($q) use ($final) {
+                                            return $q->whereDate('unidades.verificacion_fecha2', '<=', $final);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($final) {
+                                $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                    ->orWhere(
+                                        function ($q) use ($final) {
+                                            return $q->whereDate('unidades.seguro_fecha', '<=', $final);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($final) {
+                                $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                    ->orWhere(
+                                        function ($q) use ($final) {
+                                            return $q->whereDate('unidades.lapsofumigacion', '<=', $final);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($final) {
+                                $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                    ->orWhere(
+                                        function ($q) use ($final) {
+                                            return $q->whereDate('unidades.mantenimiento_fecha', '<=', $final);
+                                        }
+                                    );
+                            }
+                        )
+                        ->select(
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'unidades.tipounidad',
+                            'unidades.serieunidad',
+                            'unidades.verificacion',
+                            'unidades.verificacion_fecha',
+                            'unidades.verificacion2',
+                            'unidades.verificacion_fecha2',
+                            'unidades.seguro',
+                            'unidades.seguro_fecha',
+                            'unidades.fumigacion',
+                            'unidades.lapsofumigacion',
+                            'unidades.frecuencia_fumiga',
+                            'unidades.mantenimiento',
+                            'unidades.mantenimiento_fecha',
+                            'unidades.frecuencia_mante',
+                            'unidades.tipomantenimiento',
+                            'unidades.marca',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.digitoplaca',
+                            'unidades.kilometros_contador',
+                            'unidades.razonsocialunidad',
+                        )->get();
                 } else {
                     if ($unidad == 'todos') {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.verificacion_fecha', '<=', $final);
+                                            }
+                                        );
                                 }
                             )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.verificacion_fecha2', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.seguro_fecha', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.lapsofumigacion', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.mantenimiento_fecha', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     } else {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.verificacion_fecha', '<=', $final);
+                                            }
+                                        );
                                 }
                             )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.verificacion_fecha2', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.seguro_fecha', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.lapsofumigacion', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final) {
+                                    $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                        ->orWhere(
+                                            function ($q) use ($final) {
+                                                return $q->whereDate('unidades.mantenimiento_fecha', '<=', $final);
+                                            }
+                                        );
+                                }
+                            )
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     }
                 }
             }
         } else {
             if ($final == null) {
                 if ($cli == 'todos') {
-                    if ($tipo == 'Ambiental') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Fisica') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Ambas') {
-                        return Unidade::join(
-                            'verificaciones',
-                            function ($join) {
-                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->where(
+                            function ($query) use ($inicio) {
+                                $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                    ->orWhere(
+                                        function ($q) use ($inicio) {
+                                            return $q->whereDate('unidades.verificacion_fecha', '>=', $inicio);
+                                        }
+                                    );
                             }
                         )
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
+                        ->where(
+                            function ($query) use ($inicio) {
+                                $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                    ->orWhere(
+                                        function ($q) use ($inicio) {
+                                            return $q->whereDate('unidades.verificacion_fecha2', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($inicio) {
+                                $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                    ->orWhere(
+                                        function ($q) use ($inicio) {
+                                            return $q->whereDate('unidades.seguro_fecha', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($inicio) {
+                                $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                    ->orWhere(
+                                        function ($q) use ($inicio) {
+                                            return $q->whereDate('unidades.lapsofumigacion', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($inicio) {
+                                $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                    ->orWhere(
+                                        function ($q) use ($inicio) {
+                                            return $q->whereDate('unidades.mantenimiento_fecha', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->select(
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'unidades.tipounidad',
+                            'unidades.serieunidad',
+                            'unidades.verificacion',
+                            'unidades.verificacion_fecha',
+                            'unidades.verificacion2',
+                            'unidades.verificacion_fecha2',
+                            'unidades.seguro',
+                            'unidades.seguro_fecha',
+                            'unidades.fumigacion',
+                            'unidades.lapsofumigacion',
+                            'unidades.frecuencia_fumiga',
+                            'unidades.mantenimiento',
+                            'unidades.mantenimiento_fecha',
+                            'unidades.frecuencia_mante',
+                            'unidades.tipomantenimiento',
+                            'unidades.marca',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.digitoplaca',
+                            'unidades.kilometros_contador',
+                            'unidades.razonsocialunidad',
+                        )->get();
                 } else {
                     if ($unidad == 'todos') {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha', '>=', $inicio);
+                                            }
+                                        );
                                 }
                             )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha2', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.seguro_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.lapsofumigacion', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.mantenimiento_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     } else {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha', '>=', $inicio);
+                                            }
+                                        );
                                 }
                             )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha2', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.seguro_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.lapsofumigacion', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($inicio) {
+                                    $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                        ->orWhere(
+                                            function ($q) use ($inicio) {
+                                                return $q->whereDate('unidades.mantenimiento_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     }
                 }
             } else {
                 if ($cli == 'todos') {
-                    if ($tipo == 'Ambiental') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
-                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Fisica') {
-                        return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
-                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
-                    if ($tipo == 'Ambas') {
-                        return Unidade::join(
-                            'verificaciones',
-                            function ($join) {
-                                $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                    return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                        ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                        ->where(
+                            function ($query) use ($final, $inicio) {
+                                $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                    ->orWhere(
+                                        function ($q) use ($final, $inicio) {
+                                            return $q->whereDate('unidades.verificacion_fecha', '<=', $final)->whereDate('unidades.verificacion_fecha', '>=', $inicio);
+                                        }
+                                    );
                             }
                         )
-                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                            ->whereDate('verificaciones.ultimaverificacion', '>=', $inicio)
-                            ->whereDate('verificaciones.ultimaverificacion', '<=', $final)
-                            ->select(
-                                'unidades.cliente',
-                                'verificaciones.tipoverificacion',
-                                'verificaciones.subtipoverificacion',
-                                'verificaciones.ultimaverificacion',
-                                'unidades.marca',
-                                'unidades.serieunidad',
-                                'unidades.añounidad',
-                                'unidades.placas',
-                                'unidades.tipounidad',
-                                'unidades.razonsocialunidad',
-                                'unidades.digitoplaca',
-                                'unidades.kilometros_contador',
-                                'unidades.tipomantenimiento',
-                                'unidades.frecuencia_mante',
-                                'unidades.seguro_fecha',
-                                'unidades.lapsofumigacion',
-                            )->get();
-                    }
+                        ->where(
+                            function ($query) use ($final, $inicio) {
+                                $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                    ->orWhere(
+                                        function ($q) use ($final, $inicio) {
+                                            return $q->whereDate('unidades.verificacion_fecha2', '<=', $final)->whereDate('unidades.verificacion_fecha2', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($final, $inicio) {
+                                $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                    ->orWhere(
+                                        function ($q) use ($final, $inicio) {
+                                            return $q->whereDate('unidades.seguro_fecha', '<=', $final)->whereDate('unidades.seguro_fecha', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($final, $inicio) {
+                                $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                    ->orWhere(
+                                        function ($q) use ($final, $inicio) {
+                                            return $q->whereDate('unidades.lapsofumigacion', '<=', $final)->whereDate('unidades.lapsofumigacion', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->where(
+                            function ($query) use ($final, $inicio) {
+                                $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                    ->orWhere(
+                                        function ($q) use ($final, $inicio) {
+                                            return $q->whereDate('unidades.mantenimiento_fecha', '<=', $final)->whereDate('unidades.mantenimiento_fecha', '>=', $inicio);
+                                        }
+                                    );
+                            }
+                        )
+                        ->select(
+                            'clientes.id',
+                            'clientes.nombrecompleto',
+                            'clientes.razonsocial',
+                            'unidades.tipounidad',
+                            'unidades.serieunidad',
+                            'unidades.verificacion',
+                            'unidades.verificacion_fecha',
+                            'unidades.verificacion2',
+                            'unidades.verificacion_fecha2',
+                            'unidades.seguro',
+                            'unidades.seguro_fecha',
+                            'unidades.fumigacion',
+                            'unidades.lapsofumigacion',
+                            'unidades.frecuencia_fumiga',
+                            'unidades.mantenimiento',
+                            'unidades.mantenimiento_fecha',
+                            'unidades.frecuencia_mante',
+                            'unidades.tipomantenimiento',
+                            'unidades.marca',
+                            'unidades.añounidad',
+                            'unidades.placas',
+                            'unidades.digitoplaca',
+                            'unidades.kilometros_contador',
+                            'unidades.razonsocialunidad',
+                        )->get();
                 } else {
                     if ($unidad == 'todos') {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha', '<=', $final)->whereDate('unidades.verificacion_fecha', '>=', $inicio);
+                                            }
+                                        );
                                 }
                             )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha2', '<=', $final)->whereDate('unidades.verificacion_fecha2', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.seguro_fecha', '<=', $final)->whereDate('unidades.seguro_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.lapsofumigacion', '<=', $final)->whereDate('unidades.lapsofumigacion', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.mantenimiento_fecha', '<=', $final)->whereDate('unidades.mantenimiento_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     } else {
-                        if ($tipo == 'Ambiental') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Ambiental')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Fisica') {
-                            return Unidade::join('verificaciones', 'verificaciones.noverificacion', '=', 'unidades.verificacion2')
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('verificaciones.tipoverificacion', '=', 'Fisica')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
-                        if ($tipo == 'Ambas') {
-                            return Unidade::join(
-                                'verificaciones',
-                                function ($join) {
-                                    $join->on('verificaciones.noverificacion', '=', 'unidades.verificacion')->orOn('verificaciones.noverificacion', '=', 'unidades.verificacion2');
+                        return Unidade::join('clientes', 'clientes.nombrecompleto', '=', 'unidades.cliente')
+                            ->where('unidades.tipo', '=', 'Unidad Vehicular')
+                            ->where('unidades.cliente', '=', $cli)
+                            ->where('unidades.id', '=', $unidad)
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.verificacion_fecha', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha', '<=', $final)->whereDate('unidades.verificacion_fecha', '>=', $inicio);
+                                            }
+                                        );
                                 }
                             )
-                                ->where('unidades.tipo', '=', 'Unidad Vehicular')
-                                ->where('unidades.cliente', '=', $cli)
-                                ->where('unidades.id', '=', $unidad)
-                                ->select(
-                                    'unidades.cliente',
-                                    'verificaciones.tipoverificacion',
-                                    'verificaciones.subtipoverificacion',
-                                    'verificaciones.ultimaverificacion',
-                                    'unidades.marca',
-                                    'unidades.serieunidad',
-                                    'unidades.añounidad',
-                                    'unidades.placas',
-                                    'unidades.tipounidad',
-                                    'unidades.razonsocialunidad',
-                                    'unidades.digitoplaca',
-                                    'unidades.kilometros_contador',
-                                    'unidades.tipomantenimiento',
-                                    'unidades.frecuencia_mante',
-                                    'unidades.seguro_fecha',
-                                    'unidades.lapsofumigacion',
-                                )->get();
-                        }
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.verificacion_fecha2', '=', 'Sin Fecha de Verificación')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.verificacion_fecha2', '<=', $final)->whereDate('unidades.verificacion_fecha2', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.seguro_fecha', '=', 'Sin Fecha de Seguro')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.seguro_fecha', '<=', $final)->whereDate('unidades.seguro_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.lapsofumigacion', '=', 'Sin Fecha de Fumigación')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.lapsofumigacion', '<=', $final)->whereDate('unidades.lapsofumigacion', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->where(
+                                function ($query) use ($final, $inicio) {
+                                    $query->where('unidades.mantenimiento_fecha', '=', 'Sin Fecha de Mantenimiento')
+                                        ->orWhere(
+                                            function ($q) use ($final, $inicio) {
+                                                return $q->whereDate('unidades.mantenimiento_fecha', '<=', $final)->whereDate('unidades.mantenimiento_fecha', '>=', $inicio);
+                                            }
+                                        );
+                                }
+                            )
+                            ->select(
+                                'clientes.id',
+                                'clientes.nombrecompleto',
+                                'clientes.razonsocial',
+                                'unidades.tipounidad',
+                                'unidades.serieunidad',
+                                'unidades.verificacion',
+                                'unidades.verificacion_fecha',
+                                'unidades.verificacion2',
+                                'unidades.verificacion_fecha2',
+                                'unidades.seguro',
+                                'unidades.seguro_fecha',
+                                'unidades.fumigacion',
+                                'unidades.lapsofumigacion',
+                                'unidades.frecuencia_fumiga',
+                                'unidades.mantenimiento',
+                                'unidades.mantenimiento_fecha',
+                                'unidades.frecuencia_mante',
+                                'unidades.tipomantenimiento',
+                                'unidades.marca',
+                                'unidades.añounidad',
+                                'unidades.placas',
+                                'unidades.digitoplaca',
+                                'unidades.kilometros_contador',
+                                'unidades.razonsocialunidad',
+                            )->get();
                     }
                 }
             }
@@ -998,21 +871,40 @@ class ReporteIndividualVExport implements FromCollection, WithHeadings, ShouldAu
     public function headings(): array
     {
         return [
+            "ID CLIENTE",
             "CLIENTE",
-            "TIPO VERIFICACION",
-            "SUB TIPO VERIFICACION", "ULTIMA VERIFICACION",
-            "MARCA", "SERIE UNIDAD", "AÑO UNIDAD", "PLACAS", "TIPO UNIDAD", "RAZON SOCIAL UNIDAD", "DIGITO PLACA"
-            , "KILOMETROS", "TIPO MANTENIMIENTO", "FRECUENCIA MANTENIMIENTO", "VENCIMIENTO SEGURO", "FRECUENCIA FUMIGACION"
+            "RAZON SOCIAL CLIENTE",
+            "TIPO DE UNIDAD",
+            "SERIE UNIDAD",
+            "VERIFICACIÓN FISICO-MECANICA",
+            "FECHA VERIFICACIÓN",
+            "VERIFICACIÓN AMBIENTAL",
+            "FECHA VERIFICACIÓN",
+            "SEGURO",
+            "FECHA SEGURO",
+            "FUMIGACIÓN",
+            "FECHA FUMIGACIÓN",
+            "FRECUENCIA DE FUMIGACIÓN",
+            "MANTENIMIENTO",
+            "FEHA MANTENIMIENTO",
+            "FRECUENCIA DE MANTENIMIENTO",
+            "TIPO DE MANTENIMIENTO",
+            "MARCA",
+            "AÑO UNIDAD",
+            "PLACAS",
+            "DIGITO PLACA",
+            "KILOMETRAJE",
+            "RAZON SOCIAL UNIDAD",
         ];
     }
     public function styles(Worksheet $sheet)
     {
-        $sheet->getStyle('A1:P1')->applyFromArray(array(
+        $sheet->getStyle('A1:X1')->applyFromArray(array(
             'fill' => array(
                 'fillType' => Fill::FILL_SOLID,
                 'color' => array('rgb' => '9dbad5')
             )
-            ));
+        ));
         return [
 
 

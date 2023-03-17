@@ -73,43 +73,58 @@
         </div>
         <table id="customers">
             <thead>
+                <th>ID Cliente</th>
                 <th>Cliente</th>
-                <th>Tipo Verificación</th>
-                <th>Subtipo Verificación</th>
-                <th>Ultima Verificación</th>
-                <th>Marca</th>
+                <th>Razon Social Cliente</th>
+                <th>Tipo Unidad</th>
                 <th>Serie Unidad</th>
+                <th>Verificacion Fisico-Mecanica</th>
+                <th>Fecha Verificación</th>
+                <th>Verificacion Ambiental</th>
+                <th>Fecha Verificación</th>
+                <th>Seguro</th>
+                <th>Fecha Seguro</th>
+                <th>Fumigación</th>
+                <th>Fecha Fumigación</th>
+                <th>Frecuencia Fumigación</th>
+                <th>Mantenimiento</th>
+                <th>Fecha Mantenimiento</th>
+                <th>Frecuencia Mantenimiento</th>
+                <th>Tipo de Mantenimiento</th>
+                <th>Marca</th>
                 <th>Año Unidad</th>
                 <th>Placas</th>
-                <th>Tipo Unidad</th>
-                <th>Razon Social</th>
                 <th>Digito Placa</th>
-                <th>Kilometros</th>
-                <th>Tipo Mantenimiento</th>
-                <th>Frecuencia Mantenimiento</th>
-                <th>Vencimiento Seguro</th>
-                <th>Frecuencia Fumigacion</th>
-                {{--  , "KILOMETROS", "TIPO MANTENIMIENTO", "FRECUENCIA MANTENIMIENTO", "VENCIMIENTO SEGURO", "FRECUENCIA FUMIGACION" --}}
+                <th>Kilometraje</th>
+                <th>Razon Social Unidad</th>
             </thead>
             <tbody>
                 @foreach ($unidades as $unidade)
                     <tr>
-                        <td>{{ $unidade->cliente }} </td>
-                        <td>{{ $unidade->tipoverificacion }} </td>
-                        <td>{{ $unidade->subtipoverificacion }} </td>
-                        <td>{{ $unidade->ultimaverificacion }} </td>
-                        <td>{{ $unidade->marca }} </td>
-                        <td>{{ $unidade->serieunidad }} </td>
-                        <td>{{ $unidade->añounidad }} </td>
-                        <td>{{ $unidade->placas }} </td>
-                        <td>{{ $unidade->tipounidad }} </td>
-                        <td>{{ $unidade->razonsocialunidad }} </td>
-                        <td>{{ $unidade->digitoplaca }} </td>
-                        <td>{{ $unidade->kilometros_contador }}</td>
-                        <td>{{ $unidade->tipomantenimiento }}</td>
-                        <td>{{ $unidade->frecuencia_mante }}</td>
+                        <td>{{ $unidade->id }}</td>
+                        <td>{{ $unidade->nombrecompleto }}</td>
+                        <td>{{ $unidade->razonsocial }}</td>
+                        <td>{{ $unidade->tipounidad }}</td>
+                        <td>{{ $unidade->serieunidad }}</td>
+                        <td>{{ $unidade->verificacion }}</td>
+                        <td>{{ $unidade->verificacion_fecha }}</td>
+                        <td>{{ $unidade->verificacion2 }}</td>
+                        <td>{{ $unidade->verificacion_fecha2 }}</td>
+                        <td>{{ $unidade->seguro }}</td>
                         <td>{{ $unidade->seguro_fecha }}</td>
+                        <td>{{ $unidade->fumigacion }}</td>
                         <td>{{ $unidade->lapsofumigacion }}</td>
+                        <td>{{ $unidade->frecuencia_fumiga }}</td>
+                        <td>{{ $unidade->mantenimiento }}</td>
+                        <td>{{ $unidade->mantenimiento_fecha }}</td>
+                        <td>{{ $unidade->frecuencia_mante }}</td>
+                        <td>{{ $unidade->tipomantenimiento }}</td>
+                        <td>{{ $unidade->marca }}</td>
+                        <td>{{ $unidade->añounidad }}</td>
+                        <td>{{ $unidade->placas }}</td>
+                        <td>{{ $unidade->digitoplaca }}</td>
+                        <td>{{ $unidade->kilometros_contador }}</td>
+                        <td>{{ $unidade->razonsocialunidad }}</td>
                     </tr>
                 @endforeach
             </tbody>

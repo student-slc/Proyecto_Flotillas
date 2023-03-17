@@ -148,31 +148,14 @@ class ReportesExcelController extends Controller
     public function reportes_individualvexcel(Request $request)
     {
         /* return Excel::download(new ReposteSegurosExport, 'Reporte_Seguros.xlsx'); */
-        $tipo = $request['filtroveri'];
         $cli = $request['filtrocli'];
         $final = "" . $request['filtrofechafinal'];
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         if ($cli == 'todos') {
-            if ($tipo == 'Ambiental') {
-                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambientales.xlsx');
-            }
-            if ($tipo == 'Fisica') {
-                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_F_Mecanicas.xlsx');
-            }
-            if ($tipo == 'Ambas') {
-                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambas_Veri.xlsx');
-            }
+                return (new ReporteIndividualVExport($cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular.xlsx');
         } else {
-            if ($tipo == 'Ambiental') {
-                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambientales_' . str_replace(' ', '_', $cli) . '.xlsx');
-            }
-            if ($tipo == 'Fisica') {
-                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_F_Mecanicas_' . str_replace(' ', '_', $cli) . '.xlsx');
-            }
-            if ($tipo == 'Ambas') {
-                return (new ReporteIndividualVExport($tipo, $cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_Ambas_Veri_' . str_replace(' ', '_', $cli) . '.xlsx');
-            }
+                return (new ReporteIndividualVExport($cli, $inicio, $final, $unidad))->download('Reporte_Individual_Vehicular_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reportes_satisfaccionexcel(Request $request)
