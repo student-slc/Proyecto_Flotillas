@@ -137,7 +137,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="numero">Número</label>
+                                            <label for="numero">Código Postal</label>
                                             <input type="text" name="numero" class="form-control" value="{{old('numero')}}">
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="sfdi">SFDI</label>
+                                            <label for="sfdi">USO</label>
                                             <input type="text" name="sfdi" class="form-control" value="{{old('sfid')}}">
                                         </div>
                                     </div>

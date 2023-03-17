@@ -189,7 +189,7 @@
                             {{ $cliente->razonsocial }}
                         </li>
                         <br>
-                        <b>Numero:</b>
+                        <b>Codigo Postal:</b>
                         <li class="list-group-item">
                             {{ $cliente->numero }}
                         </li>
@@ -199,7 +199,7 @@
                             {{ $cliente->regimen_fiscal }}
                         </li>
                         <br>
-                        <b>SFDI:</b>
+                        <b>USO:</b>
                         <li class="list-group-item">
                             {{ $cliente->sfdi }}
                         </li>
