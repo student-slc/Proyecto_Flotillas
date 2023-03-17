@@ -103,10 +103,11 @@ class ReportesExcelController extends Controller
         $inicio = "" . $request['filtrofechainicio'];
         $unidad = "" . $request['filtrounid'];
         $tipou = "" . $request['filtrotuni'];
+        $fumigador = "" . $request['filtrofumigador'];
         if ($cli == 'todos') {
-            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Fumigaciones_Realizadas.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou, $fumigador))->download('Reporte_Fumigaciones_Realizadas.xlsx');
         } else {
-            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou))->download('Reporte_Fumigaciones_Realizadas_' . str_replace(' ', '_', $cli) . '.xlsx');
+            return (new ReporteSemanalExport($cli, $inicio, $final, $unidad, $tipou, $fumigador))->download('Reporte_Fumigaciones_Realizadas_' . str_replace(' ', '_', $cli) . '.xlsx');
         }
     }
     public function reporte_diaexcel(Request $request)

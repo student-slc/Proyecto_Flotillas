@@ -323,6 +323,7 @@ class ReportesTablasController extends Controller
         $user = $usuario->name;
         if ($rol == 'SuperAdministrador') {
             $clientes = Cliente::all();
+            $fumigadores = Fumigadore::all();
             $fumigaciones = Fumigacione::join(
                 'unidades',
                 function ($join) {
@@ -352,6 +353,7 @@ class ReportesTablasController extends Controller
         }
         if ($rol == 'Administrador') {
             $clientes = Cliente::all();
+            $fumigadores = Fumigadore::all();
             $fumigaciones = Fumigacione::join(
                 'unidades',
                 function ($join) {
@@ -381,6 +383,7 @@ class ReportesTablasController extends Controller
         }
         if ($rol == 'Usuario') {
             $clientes = $usuario->clientes;
+            $fumigadores = Fumigadore::all();
             $fumigaciones = Fumigacione::join(
                 'unidades',
                 function ($join) {
@@ -409,7 +412,7 @@ class ReportesTablasController extends Controller
                     'unidades.razonsocialunidad',
                 )->get();
         }
-        return view('tabla_reportes.reporte_semanal',  compact('fumigaciones', 'clientes'));
+        return view('tabla_reportes.reporte_semanal',  compact('fumigaciones', 'clientes','fumigadores'));
     }
     public function reporte_dia()
     {

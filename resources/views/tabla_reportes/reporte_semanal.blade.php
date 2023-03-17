@@ -124,6 +124,24 @@
                                     </div>
                                 </div>
                                 <br>
+                                <div class="row">
+                                    <div class="card-deck mt-6">
+                                        <div class="card col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="filtrofumigador">Filtro Fumigadores</label>
+                                                <select name="filtrofumigador" id="filtrofumigador" readonly="readonly"
+                                                    class=" selectsearch" style="width:100%">
+                                                    <option selected value="todos">Todos los Fumigadores</option>
+                                                    @foreach ($fumigadores as $fumigador)
+                                                        <option value="{{ $fumigador->nombrecompleto }}">
+                                                            {{ $fumigador->nombrecompleto }}</option>';
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                             </form>
                             <br>
                             <table id='tablas-style' class="table table-striped mt-2">
