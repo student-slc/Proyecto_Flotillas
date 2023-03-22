@@ -174,12 +174,12 @@
             "info": true,
             "autoWidth": false,
 
-            "columnDefs": [{
-                "targets": 9,
+           /* "columnDefs": [{
+                "targets": 20,
                 "render": function(data, type, row) {
                     return moment(data).format('dd/mm/yyyy');
                 }
-            }]
+            }]*/
 
 
 
