@@ -16,11 +16,11 @@
                                 @csrf
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success"
+                                        <button type="submit" class="btn btn-md" style="background-color: #7caa98"
                                             dir="{{ route('tabla_reportes.reporte_semanalexcel') }}">
                                             <i class="fas fa-file-excel"></i> Excel
                                         </button>
-                                        <button type="submit" class="btn btn-danger"
+                                        <button type="submit" class="btn btn-md" style="background-color: #ff8097"
                                             dir="{{ route('pdf.reportes_semanalpdf') }}">
                                             <i class="fas fa-file-pdf"></i> PDF
                                         </button>
@@ -54,7 +54,7 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrocli">Filtro Clientes:</label>
-                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control filtroClientes" data-column="1" 
                                                         value="{{ $clientes }}" readonly="readonly" style="width:100%">
                                                 </div>
                                             </div>
@@ -89,9 +89,9 @@
                                                 <div class="input-group">
                                                     <label class="label" for="filtrocli">Filtro Clientes</label>
                                                     <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
-                                                        class="form-select form-select-sm mb-3"
+                                                        class="form-select form-select-sm mb-3 filtroClientes" data-column="1"
                                                         aria-label=".form-select-sm example" style="width:100%">
-                                                        <option value="todos">Todos los Clientes</option>
+                                                        <option value=" ">Todos los Clientes</option>
                                                         @foreach ($clientes as $cliente)
                                                             <option value="{{ $cliente->nombrecompleto }}">
                                                                 {{ $cliente->nombrecompleto }}
@@ -113,11 +113,11 @@
                                         <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="filtrotuni">Filtro Tipo de Unidad</label>
-                                                <select name="filtrotuni" id="filtrotuni" class=" selectsearch"
+                                                <select name="filtrotuni" id="filtrotuni" class="form-select filtroTipoUnidad" data-column="5"
                                                     style="width:100%">
-                                                    <option selected value="Ambas">Ambas Unidades</option>
+                                                    <option selected value=" ">Ambas Unidades</option>
                                                     <option value="Habitacion">Habitacionales</option>
-                                                    <option value="Vehiculo">Vehiculares</option>
+                                                    <option value="Vehicular">Vehiculares</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -130,8 +130,8 @@
                                             <div class="form-group">
                                                 <label for="filtrofumigador">Filtro Fumigadores</label>
                                                 <select name="filtrofumigador" id="filtrofumigador" readonly="readonly"
-                                                    class=" selectsearch" style="width:100%">
-                                                    <option selected value="todos">Todos los Fumigadores</option>
+                                                    class="form-select filtroFumigadores" data-column="6" style="width:100%">
+                                                    <option selected value=" ">Todos los Fumigadores</option>
                                                     @foreach ($fumigadores as $fumigador)
                                                         <option value="{{ $fumigador->nombrecompleto }}">
                                                             {{ $fumigador->nombrecompleto }}</option>';

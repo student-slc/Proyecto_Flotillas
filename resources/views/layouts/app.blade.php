@@ -33,8 +33,8 @@
     {{-- DATATABLES --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    
-    
+
+
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
     {{--  --}}
     @yield('page_css')
@@ -46,7 +46,7 @@
 
     @yield('css')
 
-    
+
 
 </head>
 {{-- <script src="{{ asset('/sw.js') }}"></script> --}}
@@ -115,9 +115,39 @@
 <script src='https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js'></script>
 <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
 <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+<script src="{{ asset('js/moment.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.min.js') }}"></script>
 <script>
+    var minDate, maxDate;
+
+    // Custom filtering function which will search data in column four between two values
+    /* $.fn.dataTable.ext.search.push(
+         function(settings, data, dataIndex) {
+             var min = minDate.val();
+             var max = maxDate.val();
+             var date = new Date(data[4]);
+
+             if (
+                 (min === null && max === null) ||
+                 (min === null && date <= max) ||
+                 (min <= date && max === null) ||
+                 (min <= date && date <= max)
+             ) {
+                 return true;
+             }
+             return false;
+         }
+     );*/
+
     $(document).ready(function() {
-        $('#tablas-style').DataTable({
+        /* minDate = new DateTime($('#min'), {
+             format: 'MMMM Do YYYY'
+         });
+         maxDate = new DateTime($('.#max'), {
+             format: 'MMMM Do YYYY'
+         });*/
+
+        var table = $('#tablas-style').DataTable({
             "responsive": true,
             "lengthChange": true,
 
@@ -144,7 +174,48 @@
             "info": true,
             "autoWidth": false,
 
+            "columnDefs": [{
+                "targets": 9,
+                "render": function(data, type, row) {
+                    return moment(data).format('dd/mm/yyyy');
+                }
+            }]
 
+
+
+        });
+
+        $('#fechaInicio, #fechaFin').on('change', function() {
+            var fecha_inicio = $('#fechaInicio').val();
+            var fecha_fin = $('#fechaFin').val();
+
+            table.columns(9).search(fecha_inicio + '|' + fecha_fin, true, false).draw();
+        });
+
+
+        $('.filtroVerificaciones').change(function() {
+            table.column($(this).data('column')).search($(this).val()).draw();
+        });
+        
+        $('.filtroClientes').change(function() {
+            table.column($(this).data('column')).search($(this).val()).draw();
+        });
+        $('.filtroUnidades').change(function() {
+            table.column($(this).data('column')).search($(this).val()).draw();
+        });
+
+        $('.filtroFumigadores').change(function() {
+            table.column($(this).data('column')).search($(this).val()).draw();
+        });
+        $('.filtroEstatusFumigacion').change(function() {
+            table.column($(this).data('column')).search($(this).val()).draw();
+        });
+        $('.filtroTipoUnidad').change(function() {
+            table.column($(this).data('column')).search($(this).val()).draw();
+        });
+
+        $('.#min, .#max').change(function() {
+            table.draw();
         });
     });
 </script>

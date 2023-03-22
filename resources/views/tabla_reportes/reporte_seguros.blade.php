@@ -36,11 +36,11 @@
                                                     <label for="filtrofechafinal" style="width:45%">Fecha Final</label>
                                                 </div>
                                                 <div class="input-group">
-                                                    <input type="date" name="filtrofechainicio" class="form-control"
+                                                    <input type="date" name="filtrofechainicio" class="form-control" id="fechaInicio"
                                                         style="width:40%">
                                                     <span id="boot-icon" class="bi bi-dash-square-fill"
                                                         style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
-                                                    <input type="date" name="filtrofechafinal" class="form-control"
+                                                    <input type="date" name="filtrofechafinal" class="form-control" id="fechaFin"
                                                         style="width:40%">
                                                 </div>
                                             </div>
@@ -54,7 +54,7 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrocli">Filtro Clientes:</label>
-                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                    <input type="text" name="filtrocli" id="filtrocli"  data-column="1" class="form-control filtroClientes"
                                                         value="{{ $clientes }}" readonly="readonly" style="width:100%">
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                                 <div class="input-group">
                                                     <label class="label" for="filtrocli">Filtro Clientes</label>
                                                     <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
-                                                        class="form-select form-select-sm mb-3"
+                                                        class="form-select form-select-sm mb-3 filtroClientes" data-column="1"
                                                         aria-label=".form-select-sm example" style="width:100%">
                                                         <option value="todos">Todos los Clientes</option>
                                                         @foreach ($clientes as $cliente)

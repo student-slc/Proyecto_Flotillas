@@ -36,11 +36,11 @@
                                                     <label for="filtrofechafinal" style="width:45%">Fecha Final</label>
                                                 </div>
                                                 <div class="input-group">
-                                                    <input type="date" name="filtrofechainicio" class="form-control"
+                                                    <input type="date" name="filtrofechainicio" class="form-control" id="min"
                                                         style="width:40%">
                                                     <span id="boot-icon" class="bi bi-dash-square-fill"
                                                         style="font-size: 2rem; color: rgb(84, 84, 84);"></span>
-                                                    <input type="date" name="filtrofechafinal" class="form-control"
+                                                    <input type="date" name="filtrofechafinal" class="form-control" id="max"
                                                         style="width:40%">
                                                 </div>
                                             </div>
@@ -55,16 +55,16 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrocli">Filtro Clientes:</label>
-                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control filtroClientes" data-column="1"
                                                         value="{{ $clientes }}" readonly="readonly" style="width:100%">
                                                 </div>
                                             </div>
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrounid">Filtro Unidades</label>
-                                                    <select name="filtrounid" id="filtrounid" readonly="readonly"
-                                                        class=" selectsearch" style="width:100%">
-                                                        <option selected value="todos">Todas Las Unidades</option>
+                                                    <select name="filtrounid" id="filtrounid" readonly="readonly" 
+                                                        class="form-control filtroUnidades" data-column="3" style="width:100%">
+                                                        <option  value=" ">Todas Las Unidades</option>
                                                         @foreach ($unidades as $unidade)
                                                             <option value="{{ $unidade->serieunidad }}">{{ $unidade->serieunidad }}
                                                             </option>
@@ -80,9 +80,9 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                    <select name="filtroveri" id="filtroveri" class="form-control filtroVerificaciones"  data-column="10"
                                                         style="width:100%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
+                                                        <option selected value=" ">Ambas Verificaciones</option>
                                                         <option value="Ambiental">Verificaciones Ambientales</option>
                                                         <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
                                                     </select>
@@ -99,9 +99,9 @@
                                                 <div class="input-group">
                                                     <label class="label" for="filtrocli">Filtro Clientes</label>
                                                     <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
-                                                        class="form-select form-select-sm mb-3"
+                                                        class="form-select form-select-sm mb-3 form-control filtroClientes" data-column="1"
                                                         aria-label=".form-select-sm example" style="width:100%">
-                                                        <option value="todos">Todos los Clientes</option>
+                                                        <option value=" ">Todos los Clientes</option>
                                                         @foreach ($clientes as $cliente)
                                                             <option value="{{ $cliente->nombrecompleto }}">
                                                                 {{ $cliente->nombrecompleto }}
@@ -122,9 +122,9 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtroveri">Filtro Verificaciones</label>
-                                                    <select name="filtroveri" id="filtroveri" class=" selectsearch"
+                                                    <select name="filtroveri" id="filtroveri" class="form-control filtroVerificaciones"  data-column="10"
                                                         style="width:100%">
-                                                        <option selected value="Ambas">Ambas Verificaciones</option>
+                                                        <option selected value=" ">Ambas Verificaciones</option>
                                                         <option value="Ambiental">Verificaciones Ambientales</option>
                                                         <option value="Fisica">Verificaciones Fisico-Mecanicas</option>
                                                     </select>

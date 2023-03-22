@@ -54,7 +54,7 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrocli">Filtro Clientes:</label>
-                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                    <input type="text" name="filtrocli" id="filtrocli" data-column="1" class="form-control filtroClientes" 
                                                         value="{{ $clientes }}" readonly="readonly" style="width:100%">
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                                 <div class="input-group">
                                                     <label class="label" for="filtrocli">Filtro Clientes</label>
                                                     <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
-                                                        class="form-select form-select-sm mb-3"
+                                                        class="form-select form-select-sm mb-3 filtroClientes" data-column="1" 
                                                         aria-label=".form-select-sm example" style="width:100%">
                                                         <option value="todos">Todos los Clientes</option>
                                                         @foreach ($clientes as $cliente)
@@ -95,7 +95,7 @@
                                                 </div>
                                             </div>
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
-                                                <div class="input-group" id="unidades_opciones">
+                                                <div class="input-group" data-column="5" id="unidades_opciones">
                                                 </div>
                                             </div>
                                         </div>
