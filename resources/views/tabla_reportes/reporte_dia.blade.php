@@ -54,7 +54,7 @@
                                             <div class="card col-xs-12 col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <label for="filtrocli">Filtro Clientes:</label>
-                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control"
+                                                    <input type="text" name="filtrocli" id="filtrocli" class="form-control filtroClientes" data-column="1"
                                                         value="{{ $clientes }}" readonly="readonly" style="width:100%">
                                                 </div>
                                             </div>
@@ -83,9 +83,9 @@
                                                 <div class="input-group">
                                                     <label class="label" for="filtrocli">Filtro Clientes</label>
                                                     <select name="filtrocli" id="filtrocli" {{-- class="selectsearch" --}}
-                                                        class="form-select form-select-sm mb-3"
+                                                        class="form-select form-select-sm mb-3 filtroClientes" data-column="1"
                                                         aria-label=".form-select-sm example" style="width:100%">
-                                                        <option value="todos">Todos los Clientes</option>
+                                                        <option value=" ">Todos los Clientes</option>
                                                         @foreach ($clientes as $cliente)
                                                             <option value="{{ $cliente->nombrecompleto }}">
                                                                 {{ $cliente->nombrecompleto }}
@@ -107,11 +107,11 @@
                                         <div class="card col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="filtrotuni">Filtro Tipo de Unidad</label>
-                                                <select name="filtrotuni" id="filtrotuni" class=" selectsearch"
+                                                <select name="filtrotuni" id="filtrotuni" class=" form-select filtroTipoUnidad" data-column="4"
                                                     style="width:100%">
-                                                    <option selected value="Ambas">Ambas Unidades</option>
+                                                    <option selected value=" ">Ambas Unidades</option>
                                                     <option value="Habitacion">Habitacionales</option>
-                                                    <option value="Vehiculo">Vehiculares</option>
+                                                    <option value="Vehicular">Vehiculares</option>
                                                 </select>
                                             </div>
                                         </div>
