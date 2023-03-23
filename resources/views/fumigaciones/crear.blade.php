@@ -38,31 +38,58 @@
                                         </div>
                                     </div>
                                     {{-- ================================================ --}}
+                                    <h4 class="form-check-label">Tipo de Folio</h4>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label class="label" for="numerofumigacion">Folio De Fumigación</label>
-                                            <select name="numerofumigacion" id="numerofumigacion"
-                                                class="form-select form-select-sm mb-3" aria-label=".form-select-sm example"
-                                                onchange="toggleButton_2()">
-                                                <option disabled selected value="">SELECCIONA UN FOLIO</option>
-                                                @foreach ($folios as $folio)
-                                                    @php
-                                                        $string = $folio->folio;
-                                                        $inicio = preg_replace('/[^0-9]/', '', $string);
-                                                        $string_2 = $folio->rango;
-                                                        $final = preg_replace('/[^0-9]/', '', $string_2);
-                                                        $fin = (int) $final;
-                                                        $numeros = (int) $inicio + (int) $folio->contador;
-                                                    @endphp
-                                                    @if ($fin == $numeros)
-                                                    @else
-                                                        @if ($fin >= $numeros)
-                                                            <option value="{{ $folio->id }}">{{ $numeros }}
-                                                            </option>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="tipo" id="manual"
+                                                value="">
+                                            <label class="form-check-label" for="manual">
+                                                Folio Manual
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="tipo" id="automatico"
+                                                value="">
+                                            <label class="form-check-label" for="automatico">
+                                                Folio Automatico
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form no_mostrar" id="MostrarManual">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label class="label" for="numerofumigacion">Folio De Fumigación</label>
+                                                <select id="FolioA" name="numerofumigacion" class="form-select form-select-sm mb-3"
+                                                    aria-label=".form-select-sm example" onchange="toggleButton_2()">
+                                                    <option disabled selected value="">SELECCIONA UN FOLIO</option>
+                                                    @foreach ($folios as $folio)
+                                                        @php
+                                                            $string = $folio->folio;
+                                                            $inicio = preg_replace('/[^0-9]/', '', $string);
+                                                            $string_2 = $folio->rango;
+                                                            $final = preg_replace('/[^0-9]/', '', $string_2);
+                                                            $fin = (int) $final;
+                                                            $numeros = (int) $inicio + (int) $folio->contador;
+                                                        @endphp
+                                                        @if ($fin == $numeros)
+                                                        @else
+                                                            @if ($fin >= $numeros)
+                                                                <option value="{{ $folio->id }}">{{ $numeros }}
+                                                                </option>
+                                                            @endif
                                                         @endif
-                                                    @endif
-                                                @endforeach
-                                            </select>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form no_mostrar" id="MostrarAutomatico">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="numerofumigacion">Folio De Fumigación</label>
+                                                <input id="FolioM" type="text" name="numerofumigacion"
+                                                    class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                     {{-- MOSTRAR SI ES V O H --}}
@@ -171,25 +198,26 @@
                                         <div class="form-group">
                                             <label for="producto">Producto Utilizado</label>
                                             <select name="producto" id="producto" class=" selectsearch">
-                                                <option value="CYNOFF 40 PH" selected>CYNOFF 40 PH</option>
-                                                <option value="BIOTRINE FLOW" selected>BIOTRINE FLOW</option>
-                                                <option value="BIOTRINE C.E." selected>BIOTRINE C.E.</option>
-                                                <option value="ELEGY" selected>ELEGY</option>
-                                                <option value="TERMIDOR" selected>TERMIDOR</option>
-                                                <option value="TEMRPID SC" selected>TEMRPID SC</option>
-                                                <option value="TYSON2E" selected>TYSON2E</option>
-                                                <option value="DDVP 500" selected>DDVP 500</option>
-                                                <option value="SIEGE" selected>SIEGE</option>
-                                                <option value="MAXFORCE" selected>MAXFORCE</option>
-                                                <option value="TALÓN BLOQUE" selected>TALÓN BLOQUE</option>
-                                                <option value="STORM" selected>STORM</option>
-                                                <option value="ARMA" selected>ARMA</option>
-                                                <option value="RODILON BLOQUE" selected>RODILON BLOQUE</option>
-                                                <option value="DIFARAT" selected>DIFARAT</option>
-                                                <option value="C-REALB" selected>C-REALB</option>
-                                                <option value="BETA QUAT 4" selected>BETA QUAT 4</option>
-                                                <option value="VIRTUAL" selected>VIRTUAL</option>
-                                                <option value="SAVAGE" selected>SAVAGE</option>
+                                                <option disabled selected value="">SELECCIONA UN PRODUCTO</option>
+                                                <option value="CYNOFF 40 PH">CYNOFF 40 PH</option>
+                                                <option value="BIOTRINE FLOW">BIOTRINE FLOW</option>
+                                                <option value="BIOTRINE C.E.">BIOTRINE C.E.</option>
+                                                <option value="ELEGY">ELEGY</option>
+                                                <option value="TERMIDOR">TERMIDOR</option>
+                                                <option value="TEMRPID SC">TEMRPID SC</option>
+                                                <option value="TYSON2E">TYSON2E</option>
+                                                <option value="DDVP 500">DDVP 500</option>
+                                                <option value="SIEGE">SIEGE</option>
+                                                <option value="MAXFORCE">MAXFORCE</option>
+                                                <option value="TALÓN BLOQUE">TALÓN BLOQUE</option>
+                                                <option value="STORM">STORM</option>
+                                                <option value="ARMA">ARMA</option>
+                                                <option value="RODILON BLOQUE">RODILON BLOQUE</option>
+                                                <option value="DIFARAT">DIFARAT</option>
+                                                <option value="C-REALB">C-REALB</option>
+                                                <option value="BETA QUAT 4">BETA QUAT 4</option>
+                                                <option value="VIRTUAL">VIRTUAL</option>
+                                                <option value="SAVAGE">SAVAGE</option>
                                             </select>
                                         </div>
                                     </div>
@@ -416,4 +444,32 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    <script>
+        //----------------------------------------- MOSTRAR TIPO DE UNIDAD -----------------------------------------
+        var manual = document.getElementById('MostrarManual');
+        document.getElementById('manual').addEventListener('click', function(e) {
+            manual.style.display = 'none';
+        });
+        document.getElementById('automatico').addEventListener('click', function(e) {
+            manual.style.display = 'inline';
+        });
+        /* llllllllllllllllllllllllllllllllllllllllllllllllllll */
+        var automatico = document.getElementById('MostrarAutomatico');
+        document.getElementById('manual').addEventListener('click', function(e) {
+            automatico.style.display = 'inline';
+        });
+        document.getElementById('automatico').addEventListener('click', function(e) {
+            automatico.style.display = 'none';
+        });
+        //----------------------------------------- MOSTRAR TIPO DE UNIDAD -----------------------------------------
+        $(function() {
+            $(document).on('change', '#FolioA', function() {
+                var value = $(this).val();
+                $('#FolioM').val(value);
+            });
+        });
+        /* llllllllllllllllllllllllllllllllllllllllllllllllllll */
+    </script>
 @endsection

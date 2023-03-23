@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FumigacionesRequest;
-use App\Models\{Cliente,Fumigacione,Fumigadore,Folio, Unidade};
+use App\Models\{Cliente, Fumigacione, Fumigadore, Folio, Unidade};
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FumigacionesExport;
 use App\Imports\FumigacionesImport;
@@ -26,7 +26,7 @@ class Metodos extends Controller
             $frecuencia = $unidad->frecuencia_fumiga;
         }
         /* ----------------------- OBTENER FECHA POR DIA-MES-AÑO ------------------------*/
-        $fecha_fumigacion=substr($fecha, 0, 10);
+        $fecha_fumigacion = substr($fecha, 0, 10);
         /* ------------------------------------------------------------------------------- */
         /* ----------------------- CALCULO DE FECHA DE VENCIMIENTO ----------------------- */
         $fecha = Carbon::parse($fecha_fumigacion);
@@ -119,18 +119,20 @@ class FumigacionesController extends Metodos
         $fecha = $request->fechaprogramada;
         $proxima_fumigacion = Metodos::CalculoFechas($unidad, $fecha);
         $request->merge(['proxima_fumigacion' => '' . $proxima_fumigacion]);
+        $fecha_sin_t = str_replace("T", " ", $fecha);
+        $request->merge(['fechaprogramada' => '' . $fecha_sin_t]);
         /* ---------------------------------------------------------------------------------------------------- */
         /* ---------------------------------------------- FOLIOS ---------------------------------------------- */
-        foreach ($folios as $folio) {
-            $contador = $folio->contador;
-            $string = $folio->folio;
-            $inicio = preg_replace('/[^0-9]/', '', $string);
-            $fin = (int) $inicio + (int) $contador;
+        if (Folio::where('id', '=', $folio_actual)->exists()) {
+            foreach ($folios as $folio) {
+                $contador = $folio->contador;
+                $string = $folio->folio;
+                $inicio = preg_replace('/[^0-9]/', '', $string);
+                $fin = (int) $inicio + (int) $contador;
+            }
+            $request->merge(['numerofumigacion' => '' . $fin]);
+            $cambio = Folio::where('id', '=', $folio_actual)->update(["contador" => $contador + 1]);
         }
-        $request->merge(['numerofumigacion' => '' . $fin]);
-        $fecha_sin_t = str_replace("T", " ",$fecha);
-        $request->merge(['fechaprogramada' => '' . $fecha_sin_t]);
-        $cambio = Folio::where('id', '=', $folio_actual)->update(["contador" => $contador + 1]);
         /* ---------------------------------------------------------------------------------------------------- */
         Fumigacione::create(
             [
@@ -214,7 +216,7 @@ class FumigacionesController extends Metodos
         }
         /* ======================= FECHAS ====================================== */
         $fecha = $request->fechaprogramada;
-        $fecha_sin_t = str_replace("T", " ",$fecha);
+        $fecha_sin_t = str_replace("T", " ", $fecha);
         $request->merge(['fechaprogramada' => '' . $fecha_sin_t]);
         /* ===================================================================== */
         $fumigacione->update($request->validated());
@@ -313,6 +315,4 @@ class FumigacionesController extends Metodos
         Excel::import(new ClientesImport,request()->file('file'));
         return back();
     } */
-
-
 }

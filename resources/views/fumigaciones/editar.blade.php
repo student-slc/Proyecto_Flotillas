@@ -119,6 +119,7 @@
                                         <div class="form-group">
                                             <label for="producto">Producto Utilizado</label>
                                             <select name="producto" id="producto" class=" selectsearch">
+                                                <option disabled selected value="">SELECCIONA UN PRODUCTO</option>
                                                 <option value="CYNOFF 40 PH"
                                                     @if ($fumigacione->producto == 'CYNOFF 40 PH') selected @endif>CYNOFF 40 PH</option>
                                                 <option value="BIOTRINE FLOW"
